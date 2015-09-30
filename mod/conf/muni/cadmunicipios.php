@@ -145,16 +145,16 @@
 						</div>
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
-							<div class="panel-body">
-								<button class="btn btn-success" onclick="submit();">
+							<div class="panel-heading">
+								<button class="btn btn-success mob-btn-block" onclick="submit();">
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
-								<button class="btn btn-warning">
+								<button class="btn btn-warning mob-btn-block">
 									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 									 Cancelar
 								</button>
-								<button class="btn btn-danger <?php if (empty($tipo) || $tipo == "inclusao") { echo "disabled"; } 	?>">
+								<button class="btn btn-danger mob-btn-block <?php if (empty($tipo) || $tipo == "inclusao") { echo "disabled"; } 	?>">
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>

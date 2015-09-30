@@ -12,3 +12,19 @@
 .btn-control-bar button {
 	margin-top: 5px;
 }
+
+
+/* button block mobile */
+@media all and (max-width: 480px) {
+	.mob-btn-block {
+		width: 103.5%;
+		display: block;
+	}
+}
+
+@media all and (max-width: 360px) {
+	.mob-btn-block {
+		width: 105%;
+		display: block;
+	}	
+}
