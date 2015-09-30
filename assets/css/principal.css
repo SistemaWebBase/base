@@ -1,0 +1,14 @@
+/* painel de avisos */
+.aviso {
+	display: none;
+}
+
+/* barra de botoes de controle */
+.btn-control-bar {
+	margin-top: -20px;
+	margin-left: -15px;
+}
+
+.btn-control-bar button {
+	margin-top: 5px;
+}

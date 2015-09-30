@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -9,11 +10,11 @@
 		<link rel="apple-touch-icon" type="image/png" href="/assets/imagens/favicon.png"/>
 		<link rel="stylesheet" type="text/css" href="/assets/bootstrap/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
-		<link rel="stylesheet" type="text/css" href="/assets/css/conmunicipios.css" />
+		<link rel="stylesheet" type="text/css" href="/assets/css/cadmunicipios.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
-		<script type="text/javascript" src="/assets/js/conmunicipios.js"></script>
+		<script type="text/javascript" src="/assets/js/cadmunicipios.js"></script>
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
 	<body>
@@ -108,53 +109,55 @@
 					</div>
 					<!-- AREA DE CONTEUDO -->
 					<div id="conteudo" class="col-xs-12 col-md-9">
-						<!-- TITULO -->
+						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Consulta de Municípios
+								Cadastro de Município
 							</div>
 							<div class="panel-body">
-								<!--<div class="table-responsive">-->
-									<table class="table table-hover table-striped">
-										<thead>
-											<tr>
-												<th>Nome do Município</th>
-												<th>UF</th>
-												<th>IBGE</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php
-												require_once '../../../util/conexao.php';
-												
-												// Abrir conexao
-												$conexao = new Conexao();
-												$offset = $_GET['offset'];
-												if (empty($offset)) {
-													$offset = "0";
-												}
-												
-												$sql = "select * from municipios order by municipio limit 10 offset " . $offset;
-												$result = $conexao->query($sql);
-												
-												// Listar resultados
-												$rows = pg_fetch_all($result);
-												if ($rows == null) {
-													return;
-												}
-												
-												foreach ($rows as $row) {
-													echo "<tr>";
-													echo "<td>" . $row['municipio'] . "</td>";
-													echo "<td>" . $row['uf'] . "</td>";
-													echo "<td>" . $row['ibge'] . "</td>";
-													echo "</tr>";
-												}
-												
-											?>
-										</tbody>
-									</table>
-								<!--</div>-->
+								<form role="form">
+									<div class="form-group col-md-6">
+										<label for="municipio">Nome do Município:</label>
+										<input type="text" class="form-control" id="municipio" name="municipio" maxlength="60">
+									</div>
+									<div class="form-group col-md-3">
+										<label for="uf">UF:</label>
+										<select class="form-control" id="uf" name="uf">
+										<?php
+											$ufs = array('AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RS', 'SC', 'SE', 'SP', 'TO');
+									
+											foreach($ufs as $u) {
+												echo '<option value="' . $u . '">' . $u . '</option>';
+											}
+										?>
+										</select>
+									</div>
+									<div class="form-group col-md-3">
+										<label for="ibge">IBGE:</label>
+										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="ibge" name="ibge" value="0" min="0" max="999999">
+									</div>
+									<input type="hidden" name="_action" value="inclusao">
+								</form>
+							</div>
+						</div>
+						<!-- PAINEL DE AVISO -->
+						<div class="aviso">
+						</div>
+						<!-- PAINEL DE BOTOES -->
+						<div class="btn-control-bar">
+							<div class="panel-body">
+								<button class="btn btn-success" onclick="submit();">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+									 Salvar
+								</button>
+								<button class="btn btn-warning">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									 Cancelar
+								</button>
+								<button class="btn btn-danger <?php if (empty($tipo) || $tipo == "inclusao") { echo "disabled"; } 	?>">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									 Excluir
+								</button>
 							</div>
 						</div>
 					</div>
