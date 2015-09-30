@@ -35,7 +35,7 @@
 					<!-- MENU -->
 					<ul class="nav navbar-nav">
 						<!-- MENU 'Início' -->
-						<li class="active"><a href="/">Início</a></li>
+						<li><a href="/">Início</a></li>
 						<!-- MENU 'Clientes' -->
 						<li class="dropdown">
 							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Clientes<b class="caret"></b></a>
@@ -73,7 +73,7 @@
 							</ul>
 						</li>
 						<!-- MENU 'Configurações' -->
-						<li class="dropdown">
+						<li class="dropdown active">
 							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Configurações<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-header">Cadastros</li>
@@ -82,7 +82,7 @@
 								<li><a href="#">Vendedores</a></li>
 								<li role="separator" class="divider"></li>
 								<li class="dropdown-header">Tabelas do Sistema</li>
-								<li><a href="mod/conf/muni/conmunicipios.php">Municípios</a></li>
+								<li class="active"><a href="mod/conf/muni/conmunicipios.php">Municípios</a></li>
 								<li><a href="#">NCM (Nomenclatura Comum do MERCOSUL)</a></li>
 								<li><a href="#">Tributação</a></li>
 							</ul>
@@ -107,8 +107,56 @@
 						
 					</div>
 					<!-- AREA DE CONTEUDO -->
-					<div id="conteudo" class="col-md-9">
-						
+					<div id="conteudo" class="col-xs-12 col-md-9">
+						<!-- TITULO -->
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								Consulta de Municípios
+							</div>
+							<div class="panel-body">
+								<!--<div class="table-responsive">-->
+									<table class="table table-hover table-striped">
+										<thead>
+											<tr>
+												<th>Nome do Município</th>
+												<th>UF</th>
+												<th>IBGE</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+												require_once '../../../util/conexao.php';
+												
+												// Abrir conexao
+												$conexao = new Conexao();
+												$offset = $_GET['offset'];
+												if (empty($offset)) {
+													$offset = "0";
+												}
+												
+												$sql = "select * from municipios order by municipio limit 10 offset " . $offset;
+												$result = $conexao->query($sql);
+												
+												// Listar resultados
+												$rows = pg_fetch_all($result);
+												if ($rows == null) {
+													return;
+												}
+												
+												foreach ($rows as $row) {
+													echo "<tr>";
+													echo "<td>" . $row['municipio'] . "</td>";
+													echo "<td>" . $row['uf'] . "</td>";
+													echo "<td>" . $row['ibge'] . "</td>";
+													echo "</tr>";
+												}
+												
+											?>
+										</tbody>
+									</table>
+								<!--</div>-->
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
