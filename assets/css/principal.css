@@ -25,17 +25,22 @@ input[type=text] {
 /* button block mobile */
 @media all and (max-width: 480px) {
 	.mob-btn-block {
-		width: 103.5%;
 		height: 45px;
-		display: block;
+	}
+	
+	.btn-control-bar .mob-btn-block {
+		width: 103.5%;
 	}
 }
 
 @media all and (max-width: 360px) {
 	.mob-btn-block {
-		width: 105%;
-		display: block;
+		height: 45px;
 	}	
+	
+	.btn-control-bar .mob-btn-block {
+		width: 105%;
+	}
 }
 
 /* tabela de registros */
