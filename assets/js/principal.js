@@ -5,6 +5,12 @@ function avisoSucesso(msg) {
 	$(".aviso").slideDown();
 }
 
+function avisoInfo(msg) {
+	$(".aviso").empty();
+	$(".aviso").append("<div class=\"alert alert-info\" role=\"alert\"><span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> "+msg+"</div>");
+	$(".aviso").slideDown();
+}
+
 function avisoErro(msg) {
 	$(".aviso").empty();
 	$(".aviso").append("<div class=\"alert alert-danger\" role=\"alert\"><span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span> "+msg+"</div>");
@@ -19,4 +25,10 @@ function postError(xhr, status, error) {
 	} else {		
 		avisoErro("Falha na requisição. Tente novamente mais tarde ou contate o suporte. (" + status + " " + xhr.status + ": " + error + ")");
 	}
+}
+
+/* esubmit - submit para exclusao */
+function esubmit() {
+	$("input[name=_action]").val("exclusao");
+	submit();
 }

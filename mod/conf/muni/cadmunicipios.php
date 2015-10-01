@@ -18,6 +18,35 @@
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
 	<body>
+		<?php
+			require_once '../../../util/conexao.php';
+			
+			$_action = "inclusao"; // por padrao, entrar no modo de inclusao
+			
+			// Se passar id, abrir registro
+			$id = $_GET['id'];
+			if (!empty($id)) {
+				// Abrir nova conexão
+				$conexao = new Conexao();
+
+				$sql = "select * from municipios where id=" . $id;
+				$result = $conexao->query($sql);
+			
+				// Abrir resultado
+				$rows = pg_fetch_all($result);
+			
+				if ($rows == null) {
+					return;
+				}
+			
+				$id = $rows[0]['id'];
+				$municipio = $rows[0]['municipio'];
+				$uf = $rows[0]['uf'];
+				$ibge = $rows[0]['ibge'];
+				$_action = "alteracao";
+			}
+			
+		?>
 		<!-- MENU -->
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container">
@@ -118,7 +147,7 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="municipio">Nome do Município:</label>
-										<input type="text" class="form-control" id="municipio" name="municipio" maxlength="60">
+										<input type="text" class="form-control" id="municipio" name="municipio" maxlength="60" value="<?= $municipio ?>">
 									</div>
 									<div class="form-group col-md-3">
 										<label for="uf">UF:</label>
@@ -127,16 +156,21 @@
 											$ufs = array('AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RS', 'SC', 'SE', 'SP', 'TO');
 									
 											foreach($ufs as $u) {
-												echo '<option value="' . $u . '">' . $u . '</option>';
+												if ($u == $uf) {
+													echo '<option value="' . $u . '" selected>' . $u . '</option>';
+												} else {
+													echo '<option value="' . $u . '">' . $u . '</option>';
+												}
 											}
 										?>
 										</select>
 									</div>
 									<div class="form-group col-md-3">
 										<label for="ibge">IBGE:</label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="ibge" name="ibge" value="0" min="0" max="999999">
+										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="ibge" name="ibge" min="0" max="999999" value="<?= $ibge ?>">
 									</div>
-									<input type="hidden" name="_action" value="inclusao">
+									<input type="hidden" name="id" value="<?= $id ?>">
+									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>
 						</div>
@@ -150,11 +184,13 @@
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
-								<button class="btn btn-warning mob-btn-block">
-									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-									 Cancelar
-								</button>
-								<button class="btn btn-danger mob-btn-block <?php if (empty($tipo) || $tipo == "inclusao") { echo "disabled"; } 	?>">
+								<a href="conmunicipios.php">
+									<button class="btn btn-warning mob-btn-block">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+										 Cancelar
+									</button>
+								</a>
+								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" onclick="esubmit();">
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>

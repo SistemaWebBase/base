@@ -13,6 +13,9 @@
 	margin-top: 5px;
 }
 
+.btn-control-bar a {
+	text-decoration: none;
+}
 
 /* button block mobile */
 @media all and (max-width: 480px) {
@@ -27,4 +30,9 @@
 		width: 105%;
 		display: block;
 	}	
+}
+
+/* tabela de registros */
+.tabela-registro tbody tr {
+	cursor: pointer;
 }

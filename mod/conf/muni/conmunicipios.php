@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -28,7 +29,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/">sistema Web</a>
+					<a class="navbar-brand" href="/">Sistema Web</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-navbar">
@@ -108,14 +109,14 @@
 					</div>
 					<!-- AREA DE CONTEUDO -->
 					<div id="conteudo" class="col-xs-12 col-md-9">
-						<!-- TITULO -->
+						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								Consulta de Municípios
 							</div>
 							<div class="panel-body">
 								<!--<div class="table-responsive">-->
-									<table class="table table-hover table-striped">
+									<table class="table table-hover table-striped tabela-registro">
 										<thead>
 											<tr>
 												<th>Nome do Município</th>
@@ -124,6 +125,7 @@
 											</tr>
 										</thead>
 										<tbody>
+											<form method="POST">
 											<?php
 												require_once '../../../util/conexao.php';
 												
@@ -144,7 +146,7 @@
 												}
 												
 												foreach ($rows as $row) {
-													echo "<tr>";
+													echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
 													echo "<td>" . $row['municipio'] . "</td>";
 													echo "<td>" . $row['uf'] . "</td>";
 													echo "<td>" . $row['ibge'] . "</td>";
@@ -152,9 +154,24 @@
 												}
 												
 											?>
+											</form>
 										</tbody>
 									</table>
 								<!--</div>-->
+							</div>
+						</div>
+						<!-- PAINEL DE AVISO -->
+						<div class="aviso">
+						</div>
+						<!-- PAINEL DE BOTOES -->
+						<div class="btn-control-bar">
+							<div class="panel-heading">
+								<a href="cadmunicipios.php">
+									<button class="btn btn-success mob-btn-block">
+										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+										 Novo
+									</button>
+								</a>
 							</div>
 						</div>
 					</div>

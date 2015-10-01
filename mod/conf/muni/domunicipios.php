@@ -2,9 +2,10 @@
    require_once '../../../util/conexao.php';
 
    $municipio = str_replace("'", "", trim($_POST['municipio']));
+   $id = $_POST['id'];
    $uf = str_replace("'", "", trim($_POST['uf']));
    $ibge = str_replace("'", "", trim($_POST['ibge']));
-   $action = $_POST['_action'];
+   $_action = $_POST['_action'];
    
    // validar campos
    if (empty($municipio)) {
@@ -19,7 +20,7 @@
 	   return;
    }
    
-   if (empty($action)) {
+   if (empty($_action)) {
 	   http_response_code(400);
 	   echo "Falha nos parâmetros da solicitação.";
          return;
@@ -31,13 +32,22 @@
    // Testar acao
    $sql = "";
    
-   if ($action == "inclusao") {
+   if ($_action == "inclusao") {
          $sql = "insert into municipios (municipio, uf, ibge) values ('" . $municipio . "', '" . $uf . "', " . $ibge . ');';
    }
    
+   if ($_action == "alteracao") {
+         $sql = "update municipios set municipio='" . $municipio . "',uf='" . $uf . "',ibge=" . $ibge . " where id=" . $id;
+   }
+   
+   if ($_action == "exclusao") {
+         $sql = "delete from municipios where id=" . $id;
+   }
+   
    if (empty($sql)) {
-         http_response_header(400);
-	   echo "Falha nos parâmetros da solicitação.";
+         http_response_code(400);
+	   echo "Falha nos parâmetros da solicitação. Tente novamente mais tarde ou contate o suporte.";
+         return;
    }
    
    $flag = 0;
@@ -49,6 +59,17 @@
          return;
    }
    
-   echo "Registro incluído com sucesso.";
+   $msg = "";
+   if ($_action == "inclusao") {
+         $msg = "incluído";
+   }
+   if ($_action == "alteracao") {
+         $msg = "alterado";
+   }
+   if ($_action == "exclusao") {
+         $msg = "excluído";
+   }
+   
+   echo "Registro " . $msg . " com sucesso.";
    
 ?>
