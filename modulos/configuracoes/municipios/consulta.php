@@ -66,18 +66,15 @@
 												
 												// Listar resultados
 												$rows = pg_fetch_all($result);
-												if ($rows == null) {
-													return;
-												}
-												
-												foreach ($rows as $row) {
-													echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
-													echo "<td>" . $row['municipio'] . "</td>";
-													echo "<td>" . $row['uf'] . "</td>";
-													echo "<td>" . $row['ibge'] . "</td>";
-													echo "</tr>";
-												}
-												
+												if ($rows != null) {
+													foreach ($rows as $row) {
+														echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
+														echo "<td>" . $row['municipio'] . "</td>";
+														echo "<td>" . $row['uf'] . "</td>";
+														echo "<td>" . $row['ibge'] . "</td>";
+														echo "</tr>";
+													}
+												}												
 											?>
 											</form>
 										</tbody>

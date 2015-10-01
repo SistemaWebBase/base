@@ -8,6 +8,6 @@ function submit() {
 		avisoSucesso(data);
 		
 		// redirecionar para pagina anterior
-		$("body").append("<meta http-equiv=\"refresh\" content=\"1;consulta.php\">");
+		redirecionar("consulta.php", 1000);
 	}).fail(postError);
 } 

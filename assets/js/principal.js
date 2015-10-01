@@ -33,6 +33,13 @@ function esubmit() {
 	submit();
 }
 
+/* redirecionar */
+function redirecionar(url, sleep) {
+	setTimeout(function() {
+		window.location.href = url;
+	}, sleep)
+}
+
 /**********/
 $(document).ready(function () {
 	
