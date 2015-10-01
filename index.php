@@ -13,15 +13,15 @@
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
-		<script type="text/javascript" src="/assets/js/conmunicipios.js"></script>
+		<script type="text/javascript" src="/assets/js/index.js"></script>
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
 	<body>
 		<!-- MENU -->
 		<?php
-		    require_once 'util/menu.php';
+		    require_once 'util/arquivo.php';
 			
-			menu("modulos/sistema/menu/menu.php");
+			import("modulos/sistema/menu/menu.php");
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">

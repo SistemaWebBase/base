@@ -49,9 +49,9 @@
 		?>
 		<!-- MENU -->
 		<?php
-		    require_once '../../../util/menu.php';
+		    require_once '../../../util/arquivo.php';
 			
-			menu("../../sistema/menu/menu.php");
+			import("../../sistema/menu/menu.php");
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
@@ -71,11 +71,11 @@
 							<div class="panel-body">
 								<form role="form">
 									<div class="form-group col-md-6">
-										<label for="municipio">Nome do Município:</label>
-										<input type="text" class="form-control" id="municipio" name="municipio" maxlength="60" value="<?= $municipio ?>">
+										<label for="municipio">Nome do Município: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" class="form-control" id="municipio" name="municipio" maxlength="60" value="<?= $municipio ?>" autofocus>
 									</div>
 									<div class="form-group col-md-3">
-										<label for="uf">UF:</label>
+										<label for="uf">UF: <span class="label label-danger">Obrigatório</span></label>
 										<select class="form-control" id="uf" name="uf">
 										<?php
 											$ufs = array('AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RS', 'SC', 'SE', 'SP', 'TO');
@@ -91,7 +91,7 @@
 										</select>
 									</div>
 									<div class="form-group col-md-3">
-										<label for="ibge">IBGE:</label>
+										<label for="ibge">IBGE: <span class="label label-danger">Obrigatório</span></label>
 										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="ibge" name="ibge" min="0" max="999999" value="<?= $ibge ?>">
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">

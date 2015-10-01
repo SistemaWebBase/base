@@ -1,6 +1,6 @@
 <?php
-   // Mostrar menu
-   function menu($url) {
+   // Importar conteudo do arquivo
+   function import($url) {
 	   $arquivo = fopen($url, "r");
 
        while (! feof($arquivo)) {

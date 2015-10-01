@@ -72,7 +72,7 @@
 					<!-- PESQUISA -->
 					<form class="navbar-form navbar-right" role="search">
 						<div class="form-group">
-							<input class="form-control" type="text" placeholder="Pesquisar">
+							<input class="form-control" type="text">
 						</div>
 						<button class="btn btn-default" type="submit">Pesquisar</button>
 					</form>

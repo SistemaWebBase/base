@@ -32,3 +32,8 @@ function esubmit() {
 	$("input[name=_action]").val("exclusao");
 	submit();
 }
+
+/**********/
+$(document).ready(function () {
+	
+});

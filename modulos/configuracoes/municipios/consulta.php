@@ -20,9 +20,9 @@
 	<body>
 		<!-- MENU -->
 		<?php
-		    require_once '../../../util/menu.php';
+		    require_once '../../../util/arquivo.php';
 			
-			menu("../../sistema/menu/menu.php");
+			import("../../sistema/menu/menu.php");
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">

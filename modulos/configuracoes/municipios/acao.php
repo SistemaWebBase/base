@@ -1,10 +1,11 @@
 <?php
    require_once '../../../util/conexao.php';
+   require_once '../../../util/util.php';
 
-   $municipio = str_replace("'", "", trim($_POST['municipio']));
+   $municipio = tratarTexto($_POST['municipio']);
    $id = $_POST['id'];
-   $uf = str_replace("'", "", trim($_POST['uf']));
-   $ibge = str_replace("'", "", trim($_POST['ibge']));
+   $uf = tratarTexto($_POST['uf']);
+   $ibge = tratarTexto($_POST['ibge']);
    $_action = $_POST['_action'];
    
    // validar campos
