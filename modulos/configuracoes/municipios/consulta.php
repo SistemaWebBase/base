@@ -40,73 +40,192 @@
 								Consulta de Municípios
 							</div>
 							<div class="panel-body">
-								<!--<div class="table-responsive">-->
-									<form action="consulta.php" method="POST">
-										<div class="form">
-											<div class="row">
-												<div class="col-sm-5 col-md-4">
-													<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa">
-												</div>
-												<div class="col-sm-2 col-md-1">
-													<button id="btn-pesquisar" class="form-control btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
-												</div>
+								<!-- PESQUISA -->
+								<form action="consulta.php" method="GET">
+									<div class="form">
+										<div class="row">
+											<div class="col-sm-5 col-md-4">
+											<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa">
+											</div>
+											<div class="col-sm-2 col-md-1">
+												<button id="btn-pesquisar" class="form-control btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
 											</div>
 										</div>
-									</form>
-									<table class="table table-hover table-striped tabela-registro">
-										<thead>
-											<tr>
-												<th>Nome do Município</th>
-												<th>UF</th>
-												<th>IBGE</th>
-											</tr>
-										</thead>
-										<tbody>
-											<form method="POST">
-											<?php
-												require_once '../../../util/conexao.php';
-												require_once '../../../util/util.php';
-												
-												// Abrir conexao
-												$conexao = new Conexao();
-												
-												// Ler POST
-												$pesquisa = tratarTexto($_POST['pesquisa']);
-												
-												// Ler GET
-												$offset = $_GET['offset'];
-												if (empty($offset)) {
-													$offset = "0";
-												}
-												
-												$sql = "";
-												
-												if (empty($pesquisa)) {
-													$sql = "select * from municipios order by municipio limit 10 offset " . $offset;
-												} else {
-													$sql = "select * from municipios where municipio like '" . $pesquisa . "%' order by municipio limit 10 offset " . $offset;
-												}
-												
-												$result = $conexao->query($sql);
-												
-												// Listar resultados
-												$rows = pg_fetch_all($result);
-												if ($rows != null) {
-													foreach ($rows as $row) {
-														echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
-														echo "<td>" . $row['municipio'] . "</td>";
-														echo "<td>" . $row['uf'] . "</td>";
-														echo "<td>" . $row['ibge'] . "</td>";
-														echo "</tr>";
-													}
-												}												
-											?>
-											</form>
-										</tbody>
-									</table>
-								<!--</div>-->
+									</div>
+								</form>
+								<!-- TABELA DE REGISTRO -->
+								<table class="table table-hover table-striped tabela-registro" id="tabela">
+									<thead>
+										<tr>
+											<th>Nome do Município</th>
+											<th>UF</th>
+											<th>IBGE</th>
+										</tr>
+									</thead>
+									<tbody>
+									<?php
+										require_once '../../../util/conexao.php';
+										require_once '../../../util/util.php';
+										
+										// Maximo de resultados por pagina
+										$limite = 10;
+										
+										// Limite de paginas
+										$limite_paginas = 14;
+										$limite_paginas_xs = 6;
+										
+										// Abrir conexao
+										$conexao = new Conexao();
+										
+										// Ler POST
+										$pesquisa = tratarTexto($_GET['pesquisa']);
+										
+										// Ler GET
+										$pagina = $_GET['pagina'];
+										if (empty($pagina)) {
+											$pagina = "1";
+										}
+										
+										$sql = "";
+									
+										if (empty($pesquisa)) {
+											$sql = "select * from municipios order by municipio limit " . $limite . " offset " . (($pagina-1)*$limite);
+										} else {
+											$sql = "select * from municipios where municipio like '" . $pesquisa . "%' order by municipio limit " . $limite . " offset " . (($pagina-1)*$limite);
+										}
+										
+										$result = $conexao->query($sql);
+											
+										// Listar resultados
+										$rows = pg_fetch_all($result);
+										if ($rows != null) {
+											foreach ($rows as $row) {
+												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
+												echo "<td>" . $row['municipio'] . "</td>";
+												echo "<td>" . $row['uf'] . "</td>";
+												echo "<td>" . $row['ibge'] . "</td>";
+												echo "</tr>";
+											}
+										}	
+									
+										// Paginaçao
+										if (empty($pesquisa)) {
+											$sql = "select count(*) as num from municipios";
+										} else {
+											$sql = "select count(*) as num from municipios where municipio like '" . $pesquisa . "%';";
+										}
+										
+										$num = pg_fetch_all($conexao->query($sql))[0]['num'];
+										$pag = ceil($num/$limite);
+									?>
+									</tbody>
+								</table>
 							</div>
 						</div>
+						<!-- PAGINACAO PARA SMARTPHONE -->
+						<nav class="hidden-sm hidden-md hidden-lg paginacao">
+							<ul class="pagination">
+							<?php
+								// botao para a primeira pagina
+								if (empty($pesquisa)) {
+									echo '<li><a href="?pagina=1#tabela">&laquo;</a></li>';
+								} else {
+									echo '<li><a href="?pesquisa=' . $pesquisa . '&pagina=1#tabela">&laquo;</a></li>';
+								}
+							
+								// gerar paginacao
+								if ($pagina <= $pag) {
+									// gerar links anteriores
+									$link = 0;
+									for ($i = $pagina-(($limite_paginas_xs/2)-1); $i < $pagina;$i++) {
+										if ($i > 0) {
+											if (empty($pesquisa)) {
+												echo '<li><a href="?pagina=' . $i . '#tabela">' . $i . '</a></li>';
+											} else {
+												echo '<li><a href="?pesquisa=' . $pesquisa . '&pagina=' . $i . '#tabela">' . $i . '</a></li>';
+											}
+											$link++;
+										}
+									
+									}
+								
+									// pagina atual
+									echo '<li class="active"><span>' . $pagina . '</span></li>';
+									$link++;
+							
+									// gerar restante
+									for ($i = 1; $i <= $limite_paginas_xs-$link && $i < $pag; $i++) {										
+										if ($i+$pagina <= $pag) {
+											if (empty($pesquisa)) {
+												echo '<li><a href="?pagina=' . ($i+$pagina) . '#tabela">' . ($i+$pagina) . '</a></li>';
+											} else {
+												echo '<li><a href="?pesquisa=' . $pesquisa . '&pagina=' . ($i+$pagina) . '#tabela">' . ($i+$pagina) . '</a></li>';
+											}
+										}
+									}
+								}
+								
+								// botao para a ultima pagina
+								if (empty($pesquisa)) {
+									echo '<li><a href="?pagina=' . $pag . '#tabela">&raquo;</a></li>';
+								} else {
+									echo '<li><a href="?pesquisa=' . $pesquisa . '&pagina=' . $pag . '#tabela">&raquo;</a></li>';
+								}
+							?>
+							</ul>
+						</nav>
+						<!-- PAGINACAO PARA DESKTOP -->
+						<nav class="hidden-xs paginacao">
+							<ul class="pagination">
+							<?php
+								// botao para a primeira pagina
+								if (empty($pesquisa)) {
+									echo '<li><a href="?pagina=1#tabela">&laquo;</a></li>';
+								} else {
+									echo '<li><a href="?pesquisa=' . $pesquisa . '&pagina=1#tabela">&laquo;</a></li>';
+								}
+							
+								if ($pagina <= $pag) {
+									// gerar links anteriores
+									$link = 0;
+									for ($i = $pagina-(($limite_paginas/2)-1); $i < $pagina;$i++) {
+										if ($i > 0) {
+											if (empty($pesquisa)) {
+												echo '<li><a href="?pagina=' . $i . '#tabela">' . $i . '</a></li>';
+											} else {
+												echo '<li><a href="?pesquisa=' . $pesquisa . '&pagina=' . $i . '#tabela">' . $i . '</a></li>';
+											}
+											$link++;
+										}
+									
+									}
+								
+									// pagina atual
+									echo '<li class="active"><span>' . $pagina . '</span></li>';
+									$link++;
+							
+									// gerar restante
+									for ($i = 1; $i <= $limite_paginas-$link && $i < $pag; $i++) {										
+										if ($i+$pagina <= $pag) {
+											if (empty($pesquisa)) {
+												echo '<li><a href="?pagina=' . ($i+$pagina) . '#tabela">' . ($i+$pagina) . '</a></li>';
+											} else {
+												echo '<li><a href="?pesquisa=' . $pesquisa . '&pagina=' . ($i+$pagina) . '#tabela">' . ($i+$pagina) . '</a></li>';
+											}
+										}
+									
+									}
+								}
+								
+								// botao para a ultima pagina
+								if (empty($pesquisa)) {
+									echo '<li><a href="?pagina=' . $pag . '#tabela">&raquo;</a></li>';
+								} else {
+									echo '<li><a href="?pesquisa=' . $pesquisa . '&pagina=' . $pag . '#tabela">&raquo;</a></li>';
+								}
+							?>
+							</ul>
+						</nav>
 						<!-- PAINEL DE AVISO -->
 						<div class="aviso">
 						</div>
