@@ -41,6 +41,18 @@
 							</div>
 							<div class="panel-body">
 								<!--<div class="table-responsive">-->
+									<form action="consulta.php" method="POST">
+										<div class="form">
+											<div class="row">
+												<div class="col-sm-5 col-md-4">
+													<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa">
+												</div>
+												<div class="col-sm-2 col-md-1">
+													<button id="btn-pesquisar" class="form-control btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+												</div>
+											</div>
+										</div>
+									</form>
 									<table class="table table-hover table-striped tabela-registro">
 										<thead>
 											<tr>
@@ -53,15 +65,28 @@
 											<form method="POST">
 											<?php
 												require_once '../../../util/conexao.php';
+												require_once '../../../util/util.php';
 												
 												// Abrir conexao
 												$conexao = new Conexao();
+												
+												// Ler POST
+												$pesquisa = tratarTexto($_POST['pesquisa']);
+												
+												// Ler GET
 												$offset = $_GET['offset'];
 												if (empty($offset)) {
 													$offset = "0";
 												}
 												
-												$sql = "select * from municipios order by municipio limit 10 offset " . $offset;
+												$sql = "";
+												
+												if (empty($pesquisa)) {
+													$sql = "select * from municipios order by municipio limit 10 offset " . $offset;
+												} else {
+													$sql = "select * from municipios where municipio like '" . $pesquisa . "%' order by municipio limit 10 offset " . $offset;
+												}
+												
 												$result = $conexao->query($sql);
 												
 												// Listar resultados

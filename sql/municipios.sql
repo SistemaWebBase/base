@@ -7,7 +7,7 @@ create table if not exists municipios (
    	constraint PK_MUNICIPIOS primary key (id)
 );
 
-/*insert into municipios (municipio, uf, ibge) values ('ABADIA DE GOIAS', 'GO', 0005052);
+insert into municipios (municipio, uf, ibge) values ('ABADIA DE GOIAS', 'GO', 0005052);
 insert into municipios (municipio, uf, ibge) values ('ABADIA DOS DOURADOS', 'MG', 0010431);
 insert into municipios (municipio, uf, ibge) values ('ABADIANIA', 'GO', 0010052);
 insert into municipios (municipio, uf, ibge) values ('ABAETE', 'MG', 0020331);
@@ -5542,4 +5542,3 @@ insert into municipios (municipio, uf, ibge) values ('NOVO SANTO ANTONIO', 'MT',
 insert into municipios (municipio, uf, ibge) values ('TAGUATINGA', 'DF', 5310853);
 insert into municipios (municipio, uf, ibge) values ('MOGI DAS CRUZES', 'SP', 3060735);
 insert into municipios (municipio, uf, ibge) values ('NOVA SANTA HELENA', 'MT', 0619051);
-*/
