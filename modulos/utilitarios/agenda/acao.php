@@ -6,6 +6,11 @@
    $id = $_POST['id'];
    $endereco = tratarTexto($_POST['endereco']);
    $bairro = tratarTexto($_POST['bairro']);
+   $cep = tratarTexto($_POST['cep']);
+   $municipio = tratarTexto($_POST['municipio']);
+   $telefone = tratarTexto($_POST['telefone']);
+   $contato = tratarTexto($_POST['contato']);
+   $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
    
    // validar campos
@@ -46,7 +51,7 @@
    }
    
    if ($_action == "alteracao") {
-         $sql = "update agenda set razaosocial='" . $razaosocial . "',endereco='" . $endereco . "',bairro=" . $bairro . " where id=" . $id;
+         $sql = "update agenda set razaosocial='" . $razaosocial . "',endereco='" . $endereco . "',bairro=" . $bairro . "',cep=" . $cep . "',municipio=" . $municipio . "',telefone=" . $telefone . "',contato=" . $contato . "',observacoes=" . $obsercacoes . " where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
