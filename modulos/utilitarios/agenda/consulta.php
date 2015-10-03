@@ -37,7 +37,7 @@
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Consulta de Municípios
+								Agenda Tefónica
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
@@ -57,9 +57,9 @@
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
 									<thead>
 										<tr>
-											<th>Nome do Município</th>
-											<th>UF</th>
-											<th>IBGE</th>
+											<th>Nome</th>
+											<th>Telefone</th>
+											<th>Cidade</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -94,9 +94,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from municipios order by municipio limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from agenda order by agenda limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from municipios where municipio like '" . $pesquisa . "%' order by municipio limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from agenda where agenda like '" . $pesquisa . "%' order by agenda limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -106,18 +106,18 @@
 										if ($rows != null) {
 											foreach ($rows as $row) {
 												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
-												echo "<td>" . $row['municipio'] . "</td>";
-												echo "<td>" . $row['uf'] . "</td>";
-												echo "<td>" . $row['ibge'] . "</td>";
+												echo "<td>" . $row['nome'] . "</td>";
+												echo "<td>" . $row['telefone'] . "</td>";
+												echo "<td>" . $row['cidade'] . "</td>";
 												echo "</tr>";
 											}
 										}	
 									
 										// Paginaçao
 										if (empty($pesquisa)) {
-											$sql = "select count(*) as num from municipios";
+											$sql = "select count(*) as num from agenda";
 										} else {
-											$sql = "select count(*) as num from municipios where municipio like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from agenda where agennda like '" . $pesquisa . "%';";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];

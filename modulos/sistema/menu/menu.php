@@ -53,6 +53,14 @@
 								<li><a href="#">Nota Fiscal de Consumidor Eletrônica</a></li>
 							</ul>
 						</li>
+						<!-- MENU 'Utilitários' -->
+						<li class="dropdown">
+							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Utilitários<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-header">Cadastros</li>
+								<li><a href="/modulos/utilitarios/agenda/consulta.php">Agenda</a></li>
+							</ul>
+						</li>						
 						<!-- MENU 'Configurações' -->
 						<li class="dropdown">
 							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Configurações<b class="caret"></b></a>

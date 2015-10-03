@@ -29,7 +29,7 @@
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from municipios where id=" . $id;
+				$sql = "select * from agenda where id=" . $id;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -40,9 +40,9 @@
 				}
 			
 				$id = $rows[0]['id'];
-				$municipio = $rows[0]['municipio'];
-				$uf = $rows[0]['uf'];
-				$ibge = $rows[0]['ibge'];
+				$nome = $rows[0]['nome'];
+				$telefone = $rows[0]['telefone'];
+				$cidade = $rows[0]['cidade'];
 				$_action = "alteracao";
 			}
 			
@@ -71,28 +71,8 @@
 							<div class="panel-body">
 								<form role="form">
 									<div class="form-group col-md-6">
-										<label for="municipio">Nome do Município: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="municipio" name="municipio" maxlength="60" value="<?= $municipio ?>" autofocus>
-									</div>
-									<div class="form-group col-md-3">
-										<label for="uf">UF: <span class="label label-danger">Obrigatório</span></label>
-										<select class="form-control" id="uf" name="uf">
-										<?php
-											$ufs = array('AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RS', 'SC', 'SE', 'SP', 'TO');
-									
-											foreach($ufs as $u) {
-												if ($u == $uf) {
-													echo '<option value="' . $u . '" selected>' . $u . '</option>';
-												} else {
-													echo '<option value="' . $u . '">' . $u . '</option>';
-												}
-											}
-										?>
-										</select>
-									</div>
-									<div class="form-group col-md-3">
-										<label for="ibge">IBGE: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="ibge" name="ibge" min="0" max="999999" value="<?= $ibge ?>">
+										<label for="agenda">Nome: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" class="form-control" id="agenda" name="agenda" maxlength="60" value="<?= $agenda ?>" autofocus>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
@@ -105,7 +85,7 @@
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button class="btn btn-success mob-btn-block" onclick="submit('#municipio');">
+								<button class="btn btn-success mob-btn-block" onclick="submit('#agenda');">
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
