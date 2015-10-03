@@ -37,7 +37,7 @@
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Agenda Tefónica
+								Agenda Telefónica
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
@@ -94,9 +94,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from agenda order by agenda limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from agenda order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from agenda where agenda like '" . $pesquisa . "%' order by agenda limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from agenda where agenda like '" . $pesquisa . "%' order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -106,7 +106,7 @@
 										if ($rows != null) {
 											foreach ($rows as $row) {
 												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
-												echo "<td>" . $row['nome'] . "</td>";
+												echo "<td>" . $row['razaosocial'] . "</td>";
 												echo "<td>" . $row['telefone'] . "</td>";
 												echo "<td>" . $row['cidade'] . "</td>";
 												echo "</tr>";
@@ -117,7 +117,7 @@
 										if (empty($pesquisa)) {
 											$sql = "select count(*) as num from agenda";
 										} else {
-											$sql = "select count(*) as num from agenda where agennda like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from agenda where razaosocial like '" . $pesquisa . "%';";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];

@@ -40,7 +40,7 @@
 				}
 			
 				$id = $rows[0]['id'];
-				$nome = $rows[0]['nome'];
+				$razaosocial = $rows[0]['razaosocial'];
 				$telefone = $rows[0]['telefone'];
 				$cidade = $rows[0]['cidade'];
 				$_action = "alteracao";
@@ -66,13 +66,21 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Cadastro de Município
+								Agenda Telefónica
 							</div>
 							<div class="panel-body">
 								<form role="form">
 									<div class="form-group col-md-6">
-										<label for="agenda">Nome: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="agenda" name="agenda" maxlength="60" value="<?= $agenda ?>" autofocus>
+										<label for="razaosocial">Nome: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" class="form-control" id="razaosocial" name="razaosocial" maxlength="60" value="<?= $razaosocial ?>" autofocus>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="endereco">Endereço: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" class="form-control" id="endereco" name="endereco" maxlength="60" value="<?= $endereco ?>">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="bairro">Bairro: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" class="form-control" id="bairro" name="bairro" maxlength="60" value="<?= $bairro ?>" autofocus>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
@@ -85,7 +93,7 @@
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button class="btn btn-success mob-btn-block" onclick="submit('#agenda');">
+								<button class="btn btn-success mob-btn-block" onclick="submit('#razaosocial');">
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>

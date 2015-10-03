@@ -2,22 +2,28 @@
    require_once '../../../util/conexao.php';
    require_once '../../../util/util.php';
 
-   $municipio = tratarTexto($_POST['municipio']);
+   $razaosocial = tratarTexto($_POST['razaosocial']);
    $id = $_POST['id'];
-   $uf = tratarTexto($_POST['uf']);
-   $ibge = tratarTexto($_POST['ibge']);
+   $endereco = tratarTexto($_POST['endereco']);
+   $bairro = tratarTexto($_POST['bairro']);
    $_action = $_POST['_action'];
    
    // validar campos
-   if (empty($municipio)) {
+   if (empty($razaosocial)) {
 	   http_response_code(400);
-	   echo "Informe o nome do município.";
+	   echo "Informe o nome do contato.";
 	   return;  
    }
    
-   if (empty($ibge)) {
+   if (empty($endereco)) {
 	   http_response_code(400);
-	   echo "Informe o código IBGE.";
+	   echo "Informe o endereço do contato.";
+	   return;
+   }
+   
+   if (empty($bairro)) {
+	   http_response_code(400);
+	   echo "Informe o bairro do contato.";
 	   return;
    }
    
@@ -34,19 +40,19 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into municipios (municipio, uf, ibge) values ('" . $municipio . "', '" . $uf . "', " . $ibge . ');';
+         $sql = "insert into agenda (razaosocial, endereco, bairro, cep, municipio, telefone, contato, observacoes) values ('" . $razaosocial . "', '" . $endereco . "', " . $bairro . "', '" . $cep . "', '" . $municipio . "', '" . $telefone . "', '" . $contato . "', '" . $observacoes .');';
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update municipios set municipio='" . $municipio . "',uf='" . $uf . "',ibge=" . $ibge . " where id=" . $id;
+         $sql = "update agenda set razaosocial='" . $razaosocial . "',endereco='" . $endereco . "',bairro=" . $bairro . " where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from municipios where id=" . $id;
+         $sql = "delete from agenda where id=" . $id;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }
