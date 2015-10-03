@@ -47,7 +47,7 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into agenda (razaosocial, endereco, bairro, cep, municipio, telefone, celular, contato, observacoes) values ('" . $razaosocial . "', '" . $endereco . "', '" . $bairro . "', '" . $cep . "', " . $municipio . ", '" . $telefone . ", '" . $celular . "', '" . $contato . ", '" . $email . "', '" . $observacoes . ');';
+         $sql = "insert into agenda (razaosocial, endereco, bairro, cep, municipio, telefone, celular, contato, observacoes) values ('" . $razaosocial . "', '" . $endereco . "', '" . $bairro . "', '" . $cep . "', " . $municipio . ", '" . $telefone . "', '" . $celular . "', '" . $contato . "', '" . $email . "', '" . $observacoes . ');';
          echo $sql;
          echo $sql;
          echo $sql;

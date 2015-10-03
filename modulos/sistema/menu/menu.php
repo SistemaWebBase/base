@@ -66,7 +66,7 @@
 							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Configurações<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-header">Cadastros</li>
-								<li><a href="#">Usuários</a></li>
+								<li><a href="/modulos/configuracoes/usuarios/consulta.php">Usuários</a></li>
 								<li><a href="#">Gerentes</a></li>
 								<li><a href="#">Vendedores</a></li>
 								<li role="separator" class="divider"></li>

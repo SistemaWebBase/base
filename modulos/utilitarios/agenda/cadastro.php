@@ -78,27 +78,27 @@
 										<label for="endereco">Endereço: </label>
 										<input type="text" class="form-control" id="endereco" name="endereco" maxlength="60" value="<?= $endereco ?>">
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label for="bairro">Bairro: </label>
 										<input type="text" class="form-control" id="bairro" name="bairro" maxlength="60" value="<?= $bairro ?>" autofocus>
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label for="cep">CEP: </label>
 										<input type="text" class="form-control" id="cep" name="cep" maxlength="60" value="<?= $cep ?>" autofocus>
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label for="municipio">Município: </label>
 										<input type="text" class="form-control" id="municipio" name="municipio" maxlength="60" value="<?= $municipio ?>" autofocus>
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
 										<input type="text" class="form-control" id="telefone" name="telefone" maxlength="60" value="<?= $telefone ?>" autofocus>
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label for="celular">Celular: </label>
 										<input type="text" class="form-control" id="celular" name="celular" maxlength="60" value="<?= $celular ?>" autofocus>
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label for="contato">Contato: <span class="label label-danger">Obrigatório</span></label>
 										<input type="text" class="form-control" id="contato" name="contato" maxlength="60" value="<?= $contato ?>" autofocus>
 									</div>
