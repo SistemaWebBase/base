@@ -35,14 +35,20 @@
    
    if ($_action == "inclusao") {
          $sql = "insert into municipios (municipio, uf, ibge) values ('" . $municipio . "', '" . $uf . "', " . $ibge . ');';
+         $msg1 = "incluir";
+         $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
          $sql = "update municipios set municipio='" . $municipio . "',uf='" . $uf . "',ibge=" . $ibge . " where id=" . $id;
+         $msg1 = "alterar";
+         $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
          $sql = "delete from municipios where id=" . $id;
+         $msg1 = "excluir";
+         $msg2 = "excluído";
    }
    
    if (empty($sql)) {
@@ -56,21 +62,10 @@
    
    if ($flag == 1) {
          http_response_code(400);
-         echo "Falha ao incluir registro. Tente novamente mais tarde ou contate o suporte.";
+         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte.";
          return;
    }
-   
-   $msg = "";
-   if ($_action == "inclusao") {
-         $msg = "incluído";
-   }
-   if ($_action == "alteracao") {
-         $msg = "alterado";
-   }
-   if ($_action == "exclusao") {
-         $msg = "excluído";
-   }
-   
-   echo "Registro " . $msg . " com sucesso.";
+
+   echo "Registro " . $msg2 . " com sucesso.";
    
 ?>
