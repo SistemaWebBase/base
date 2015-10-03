@@ -9,7 +9,9 @@
    $cep = tratarTexto($_POST['cep']);
    $municipio = tratarTexto($_POST['municipio']);
    $telefone = tratarTexto($_POST['telefone']);
+   $celular = tratarTexto($_POST['celular']);
    $contato = tratarTexto($_POST['contato']);
+   $email = tratarTexto($_POST['email']);
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
    
@@ -20,15 +22,15 @@
 	   return;  
    }
    
-   if (empty($endereco)) {
+   if (empty($telefone)) {
 	   http_response_code(400);
-	   echo "Informe o endereço do contato.";
+	   echo "Informe o telefone do contato.";
 	   return;
    }
    
-   if (empty($bairro)) {
+   if (empty($contato)) {
 	   http_response_code(400);
-	   echo "Informe o bairro do contato.";
+	   echo "Informe o contato.";
 	   return;
    }
    
@@ -45,13 +47,18 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into agenda (razaosocial, endereco, bairro, cep, municipio, telefone, contato, observacoes) values ('" . $razaosocial . "', '" . $endereco . "', " . $bairro . "', '" . $cep . "', '" . $municipio . "', '" . $telefone . "', '" . $contato . "', '" . $observacoes .');';
+         $sql = "insert into agenda (razaosocial, endereco, bairro, cep, municipio, telefone, celular, contato, observacoes) values ('" . $razaosocial . "', '" . $endereco . "', '" . $bairro . "', '" . $cep . "', " . $municipio . ", '" . $telefone . ", '" . $celular . "', '" . $contato . ", '" . $email . "', '" . $observacoes . ');';
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update agenda set razaosocial='" . $razaosocial . "',endereco='" . $endereco . "',bairro=" . $bairro . "',cep=" . $cep . "',municipio=" . $municipio . "',telefone=" . $telefone . "',contato=" . $contato . "',observacoes=" . $obsercacoes . " where id=" . $id;
+         $sql = "update agenda set razaosocial='" . $razaosocial . "',endereco='" . $endereco . "',bairro=" . $bairro . "',cep=" . $cep . "',municipio=" . $municipio . "',telefone=" . $telefone . "',celular=" . $celular . "',contato=" . $contato . "',email=" . $email . "',observacoes=" . $obsercacoes . " where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }

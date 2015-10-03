@@ -95,8 +95,16 @@
 										<input type="text" class="form-control" id="telefone" name="telefone" maxlength="60" value="<?= $telefone ?>" autofocus>
 									</div>
 									<div class="form-group col-md-6">
+										<label for="celular">Celular: </label>
+										<input type="text" class="form-control" id="celular" name="celular" maxlength="60" value="<?= $celular ?>" autofocus>
+									</div>
+									<div class="form-group col-md-6">
 										<label for="contato">Contato: <span class="label label-danger">Obrigatório</span></label>
 										<input type="text" class="form-control" id="contato" name="contato" maxlength="60" value="<?= $contato ?>" autofocus>
+									</div>
+								    <div class="form-group col-md-6">
+										<label for="email">E-mail: </label>
+										<input type="text" class="form-control" id="email" name="email" maxlength="60" value="<?= $email ?>" autofocus>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="observacoes">Observações: </label>
