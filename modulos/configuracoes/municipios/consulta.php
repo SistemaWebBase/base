@@ -80,6 +80,11 @@
 										// Ler POST
 										$pesquisa = tratarTexto($_GET['pesquisa']);
 										
+										// Se for passado referencia de alguma pagina, seta-lo como pesquisa
+										if (! empty(tratarTexto($_GET['_ref']))) {
+											$pesquisa = $_GET['_ref'];
+										}
+										
 										// Ler GET
 										$pagina = $_GET['pagina'];
 										if (empty($pagina)) {

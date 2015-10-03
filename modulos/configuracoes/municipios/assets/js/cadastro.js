@@ -1,4 +1,4 @@
-function submit() {
+function submit(refkey) {
 	var query = $("form").serialize();
 	
 	avisoInfo("Aguarde por favor...");
@@ -8,6 +8,11 @@ function submit() {
 		avisoSucesso(data);
 		
 		// redirecionar para pagina anterior
-		redirecionar("consulta.php", 1000);
+		if ($(refkey).val() != null) {
+			redirecionar("consulta.php?_ref=" + $(refkey).val().toUpperCase(), 1000);
+		} else {
+			redirecionar(document.referrer, 1000);
+		}
+		
 	}).fail(postError);
 } 
