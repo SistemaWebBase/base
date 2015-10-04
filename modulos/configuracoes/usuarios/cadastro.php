@@ -114,7 +114,7 @@
 									</div>
 									<div class="form-group col-md-3">
 										<label for="nivel">Nível: <span class="label label-danger">Obrigatório</span></label>
-										<select class="form-control" id="nivel" name="nivel" autocomplete="off">
+										<select class="form-control" id="nivel" name="nivel" >
 										<?php
 											$nivels = array('01', '02', '03', '04', '05');
 									

@@ -52,13 +52,13 @@
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-											<input class="form-control" type="text" maxlength="20" name="login" placeholder="USUÁRIO" autofocus>
+											<input class="form-control" type="text" maxlength="20" name="login" autocomplete="off" placeholder="USUÁRIO" autofocus>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-											<input class="form-control" type="password" maxlength="20" name="senha" placeholder="SENHA">
+											<input class="form-control" type="password" maxlength="20" name="senha" autocomplete="off" placeholder="SENHA">
 										</div>
 									</div>
 									<!-- PAINEL DE AVISO -->
