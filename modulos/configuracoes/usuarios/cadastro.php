@@ -33,6 +33,7 @@
 			// Se passar id, abrir registro
 			$id = $_GET['id'];
 			if (!empty($id)) {
+
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
@@ -50,6 +51,7 @@
 				$nome = $rows[0]['nome'];
 				$login = $rows[0]['login'];
 				$senha = $rows[0]['senha'];
+				$senha = $rows[0]['confirmacao_senha'];
 				$modelo = $rows[0]['modelo'];
 				$empresa = $rows[0]['empresa'];
 				$nivel = $rows[0]['nivel'];
@@ -99,8 +101,8 @@
 										<input type="password" class="form-control" id="senha" name="senha" autocomplete="off" maxlength="60" value="<?= $senha ?>">
 									</div>
 									<div class="form-group col-md-6">
-										<label for="senha">Confirme a Senha: <span class="label label-danger">Obrigatório</span></label>
-										<input type="password" class="form-control" id="senha" name="senha" autocomplete="off" maxlength="60" value="<?= $senha ?>">
+										<label for="confirmacao_senha">Confirme a Senha: <span class="label label-danger">Obrigatório</span></label>
+										<input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" autocomplete="off" maxlength="60" value="<?= $confirmacao_senha ?>">
 									</div>
 									<div class="form-group col-md-6">
 										<label for="modelo">Modelo: </label>
