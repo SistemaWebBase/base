@@ -10,7 +10,6 @@
    $municipio = tratarTexto($_POST['municipio']);
    $telefone = tratarTexto($_POST['telefone']);
    $celular = tratarTexto($_POST['celular']);
-   $contato = tratarTexto($_POST['contato']);
    $email = tratarTexto($_POST['email']);
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
@@ -28,12 +27,6 @@
 	   return;
    }
    
-   if (empty($contato)) {
-	   http_response_code(400);
-	   echo "Informe o contato.";
-	   return;
-   }
-   
    if (empty($_action)) {
 	   http_response_code(400);
 	   echo "Falha nos parâmetros da solicitação.";
@@ -47,20 +40,17 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into agenda (razaosocial, endereco, bairro, cep, municipio, telefone, celular, contato, observacoes) values ('" . $razaosocial . "', '" . $endereco . "', '" . $bairro . "', '" . $cep . "', " . $municipio . ", '" . $telefone . "', '" . $celular . "', '" . $contato . "', '" . $email . "', '" . $observacoes . ');';
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         
+         $sql = "insert into agenda (razaosocial, endereco, bairro, cep, municipio, telefone, celular, email, observacoes) values ('" . $razaosocial . "', '" . $endereco . "', '" . $bairro . "', '" . $cep . "', " . $municipio . ", '" . $telefone . "', '" . $celular . "', '" . $email . "', '" . $observacoes . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
+                
    }
    
    if ($_action == "alteracao") {
-         $sql = "update agenda set razaosocial='" . $razaosocial . "',endereco='" . $endereco . "',bairro=" . $bairro . "',cep=" . $cep . "',municipio=" . $municipio . "',telefone=" . $telefone . "',celular=" . $celular . "',contato=" . $contato . "',email=" . $email . "',observacoes=" . $obsercacoes . " where id=" . $id;
+         $sql = "update agenda set razaosocial='" . $razaosocial . "',endereco='" . $endereco . "',bairro='" . $bairro . "',cep='" . $cep . "',municipio=" . $municipio . ",telefone='" . $telefone . "',celular='" . $celular . "',email='" . $email . "',observacoes='" . $observacoes . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
+         
    }
    
    if ($_action == "exclusao") {

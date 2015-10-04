@@ -41,8 +41,14 @@
 			
 				$id = $rows[0]['id'];
 				$razaosocial = $rows[0]['razaosocial'];
-				$telefone = $rows[0]['telefone'];
+				$endereco = $rows[0]['endereco'];
+				$bairro = $rows[0]['bairro'];
+				$cep = $rows[0]['cep'];
 				$cidade = $rows[0]['cidade'];
+				$telefone = $rows[0]['telefone'];
+				$celular = $rows[0]['celular'];
+				$email = $rows[0]['email'];
+				$observacoes = $rows[0]['observacoes'];
 				$_action = "alteracao";
 			}
 			
@@ -80,35 +86,31 @@
 									</div>
 									<div class="form-group col-md-4">
 										<label for="bairro">Bairro: </label>
-										<input type="text" class="form-control" id="bairro" name="bairro" maxlength="60" value="<?= $bairro ?>" autofocus>
+										<input type="text" class="form-control" id="bairro" name="bairro" maxlength="60" value="<?= $bairro ?>" >
 									</div>
 									<div class="form-group col-md-4">
 										<label for="cep">CEP: </label>
-										<input type="text" class="form-control" id="cep" name="cep" maxlength="60" value="<?= $cep ?>" autofocus>
+										<input type="text" class="form-control" id="cep" name="cep" maxlength="60" value="<?= $cep ?>" >
 									</div>
 									<div class="form-group col-md-4">
 										<label for="municipio">Município: </label>
-										<input type="text" class="form-control" id="municipio" name="municipio" maxlength="60" value="<?= $municipio ?>" autofocus>
+										<input type="text" class="form-control" id="municipio" name="municipio" maxlength="60" value="<?= $municipio ?>" >
 									</div>
 									<div class="form-group col-md-4">
 										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="telefone" name="telefone" maxlength="60" value="<?= $telefone ?>" autofocus>
+										<input type="text" class="form-control" id="telefone" name="telefone" maxlength="60" value="<?= $telefone ?>" >
 									</div>
 									<div class="form-group col-md-4">
 										<label for="celular">Celular: </label>
-										<input type="text" class="form-control" id="celular" name="celular" maxlength="60" value="<?= $celular ?>" autofocus>
-									</div>
-									<div class="form-group col-md-4">
-										<label for="contato">Contato: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="contato" name="contato" maxlength="60" value="<?= $contato ?>" autofocus>
+										<input type="text" class="form-control" id="celular" name="celular" maxlength="60" value="<?= $celular ?>" >
 									</div>
 								    <div class="form-group col-md-6">
 										<label for="email">E-mail: </label>
-										<input type="text" class="form-control" id="email" name="email" maxlength="60" value="<?= $email ?>" autofocus>
+										<input type="text" class="form-control" id="email" name="email" maxlength="60" value="<?= $email ?>" >
 									</div>
 									<div class="form-group col-md-6">
 										<label for="observacoes">Observações: </label>
-										<input type="text" class="form-control" id="observacoes" name="observacoes" maxlength="60" value="<?= $observacoes ?>" autofocus>
+										<input type="text" class="form-control" id="observacoes" name="observacoes" maxlength="60" value="<?= $observacoes ?>" >
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
