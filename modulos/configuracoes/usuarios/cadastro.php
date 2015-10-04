@@ -1,3 +1,10 @@
+<?php
+        // validar sessao
+        require_once '../../../util/sessao.php';
+
+        validarSessao();
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>

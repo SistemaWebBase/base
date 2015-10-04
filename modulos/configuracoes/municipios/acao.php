@@ -1,4 +1,13 @@
 <?php
+        // validar sessao
+        require_once '../../../util/sessao.php';
+
+        validarSessao();
+
+?>
+
+<?php
+
    require_once '../../../util/conexao.php';
    require_once '../../../util/util.php';
 
