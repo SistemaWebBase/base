@@ -112,13 +112,24 @@
 										<label for="empresa">Empresa: <span class="label label-danger">Obrigatório</span></label>
 										<input type="text" class="form-control" id="empresa" name="empresa" autocomplete="off" maxlength="60" value="<?= $empresa ?>">
 									</div>
-									<div class="form-group col-md-6">
-										<label for="nivel">Nível </label>
-										<input type="text" class="form-control" id="nivel" name="nivel" autocomplete="off" maxlength="60" value="<?= $nivel ?>">
+									<div class="form-group col-md-3">
+										<label for="nivel">Nível: <span class="label label-danger">Obrigatório</span></label>
+										<select class="form-control" id="nivel" name="nivel" autocomplete="off">
+										<?php
+											$nivels = array('01', '02', '03', '04', '05');
+									
+											foreach($nivels as $u) {
+												if ($u == $nivel) {
+													echo '<option value="' . $u . '" selected>' . $u . '</option>';
+												} else {
+													echo '<option value="' . $u . '">' . $u . '</option>';
+												}
+											}
+										?>
+										</select>
 									</div>
-									<div class="form-group col-md-6">
-										<label for="externo">Externo: </label>
-										<input type="text" class="form-control" id="externo" name="externo" autocomplete="off" maxlength="60" value="<?= $externo ?>">
+									<div class="form-group col-md-1">
+										<input type="checkbox" value="0" id="externo" name="externo" value="<?= $externo ?>">
 									</div>
 									<div class="form-group col-md-6">
 										<label for="mobile">Mobile: </label>
