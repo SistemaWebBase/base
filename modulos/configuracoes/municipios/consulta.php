@@ -44,11 +44,13 @@
 								<form action="consulta.php" method="GET">
 									<div class="form">
 										<div class="row">
-											<div class="col-sm-5 col-md-4">
-											<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa">
-											</div>
-											<div class="col-sm-2 col-md-1">
-												<button id="btn-pesquisar" class="form-control btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+											<div class="col-md-5">
+												<div class="input-group">
+													<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa">
+													<span class="input-group-btn">
+														<button class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+													</span>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -59,7 +61,7 @@
 										<tr>
 											<th>Nome do Município</th>
 											<th>UF</th>
-											<th>IBGE</th>
+											<th class="hidden-xs">IBGE</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -108,7 +110,7 @@
 												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
 												echo "<td>" . $row['municipio'] . "</td>";
 												echo "<td>" . $row['uf'] . "</td>";
-												echo "<td>" . $row['ibge'] . "</td>";
+												echo "<td class=\"hidden-xs\">" . $row['ibge'] . "</td>";
 												echo "</tr>";
 											}
 										}	
