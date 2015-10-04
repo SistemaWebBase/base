@@ -1,15 +1,11 @@
 <?php
-        // validar sessao
-        require_once '../../../util/sessao.php';
-
-        validarSessao();
-
-?>
-
-<?php
 
    require_once '../../../util/conexao.php';
    require_once '../../../util/util.php';
+   require_once '../../../util/sessao.php';
+   
+   // validar sessao
+   validarSessao();
 
    $municipio = tratarTexto($_POST['municipio']);
    $id = $_POST['id'];
