@@ -46,7 +46,7 @@
 										<div class="row">
 											<div class="col-md-5">
 												<div class="input-group">
-													<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa">
+													<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa" autocomplete="off">
 													<span class="input-group-btn">
 														<button class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
 													</span>
