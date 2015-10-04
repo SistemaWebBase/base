@@ -78,39 +78,39 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="razaosocial">Nome: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="razaosocial" name="razaosocial" maxlength="60" value="<?= $razaosocial ?>" autofocus>
+										<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="60" value="<?= $razaosocial ?>" autofocus>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="endereco">Endereço: </label>
-										<input type="text" class="form-control" id="endereco" name="endereco" maxlength="60" value="<?= $endereco ?>">
+										<input type="text" class="form-control" id="endereco" name="endereco" autocomplete="off" maxlength="60" value="<?= $endereco ?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="bairro">Bairro: </label>
-										<input type="text" class="form-control" id="bairro" name="bairro" maxlength="60" value="<?= $bairro ?>" >
+										<input type="text" class="form-control" id="bairro" name="bairro" autocomplete="off" maxlength="60" value="<?= $bairro ?>" >
 									</div>
 									<div class="form-group col-md-4">
 										<label for="cep">CEP: </label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="cep" name="cep" min="0" max="999999" value="<?= $cep ?>" >
+										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="cep" name="cep" autocomplete="off" min="0" max="999999" value="<?= $cep ?>" >
 									</div>
 									<div class="form-group col-md-4">
 										<label for="municipio">Município: </label>
-										<input type="text" class="form-control" id="municipio" name="municipio" maxlength="60" value="<?= $municipio ?>" >
+										<input type="text" class="form-control" id="municipio" name="municipio" autocomplete="off" maxlength="60" value="<?= $municipio ?>" >
 									</div>
 									<div class="form-group col-md-4">
 										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="telefone" name="telefone" min="0" max="999999" value="<?= $telefone ?>">
+										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="telefone" name="telefone" autocomplete="off" min="0" max="999999" value="<?= $telefone ?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="celular">Celular: </label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="celular" name="celular" min="0" max="999999" value="<?= $celular ?>">
+										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="celular" name="celular" autocomplete="off" min="0" max="999999" value="<?= $celular ?>">
 									</div>
 								    <div class="form-group col-md-6">
 										<label for="email">E-mail: </label>
-										<input type="email" class="form-control" id="email" name="email" maxlength="60" value="<?= $email ?>" >
+										<input type="email" class="form-control" id="email" name="email" autocomplete="off" maxlength="60" value="<?= $email ?>" >
 									</div>
 									<div class="form-group col-md-6">
 										<label for="observacoes">Observações: </label>
-										<input type="text" class="form-control" id="observacoes" name="observacoes" maxlength="60" value="<?= $observacoes ?>" >
+										<input type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="60" value="<?= $observacoes ?>" >
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

@@ -72,7 +72,7 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="municipio">Nome do Município: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="municipio" name="municipio" maxlength="60" value="<?= $municipio ?>" autofocus>
+										<input type="text" class="form-control" id="municipio" name="municipio" tocomplete="off" maxlength="60" value="<?= $municipio ?>" autofocus>
 									</div>
 									<div class="form-group col-md-3">
 										<label for="uf">UF: <span class="label label-danger">Obrigatório</span></label>
@@ -92,7 +92,7 @@
 									</div>
 									<div class="form-group col-md-3">
 										<label for="ibge">IBGE: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="ibge" name="ibge" min="0" max="999999" value="<?= $ibge ?>">
+										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="ibge" name="ibge" tocomplete="off" min="0" max="999999" value="<?= $ibge ?>">
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
