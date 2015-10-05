@@ -1,15 +1,11 @@
 <?php
-        // validar sessao
-        require_once '../../../util/sessao.php';
-
-        validarSessao();
-
-?>
-
-<?php
    require_once '../../../util/conexao.php';
    require_once '../../../util/util.php';
+   require_once '../../../util/sessao.php';
 
+   // validar sessao
+   validarSessao();
+   
    $id = $_POST['id'];
    $login = tratarTexto($_POST['login']);
    $senha = tratarTexto($_POST['senha']);
