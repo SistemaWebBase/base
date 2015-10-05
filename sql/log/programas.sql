@@ -1,5 +1,5 @@
 /* criar tabela de programas */
-create table if not exists programas (
+create table if not exists log.programas (
 	/* campos originais da tabela */
 	id serial not null,
 	nome varchar(20) not null,
