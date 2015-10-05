@@ -19,6 +19,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
@@ -97,7 +98,7 @@
 									</div>
 									<div class="form-group col-md-4">
 										<label for="cep">CEP: </label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="cep" name="cep" autocomplete="off" min="0" max="999999" value="<?= $cep ?>" >
+										<input type="text" inputmode="numeric" pattern="[0-9]{5}-[0-9]{3}" class="form-control cep" id="cep" name="cep" autocomplete="off" min="0" max="999999" value="<?= $cep ?>" >
 									</div>
 									<div class="form-group col-md-4">
 										<label for="municipio">Município: </label>
@@ -105,11 +106,11 @@
 									</div>
 									<div class="form-group col-md-4">
 										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="telefone" name="telefone" autocomplete="off" min="0" max="999999" value="<?= $telefone ?>">
+										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" min="0" max="999999" value="<?= $telefone ?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="celular">Celular: </label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="celular" name="celular" autocomplete="off" min="0" max="999999" value="<?= $celular ?>">
+										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="celular" name="celular" autocomplete="off" min="0" max="999999" value="<?= $celular ?>">
 									</div>
 								    <div class="form-group col-md-6">
 										<label for="email">E-mail: </label>

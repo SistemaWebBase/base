@@ -64,7 +64,21 @@ function redirecionar(url, sleep) {
 	}, sleep)
 }
 
+/* adicionar mascaras */
+function adicionarMascaras() {
+	// Telefone
+	if (typeof $(".telefone").mask == 'function') {
+		$(".telefone").mask("(00) 0000-00009");
+	}
+	
+	// CEP
+	if (typeof $(".cep").mask == 'function') {
+		$(".cep").mask("00000-000");
+	}
+	
+}
+
 /**********/
 $(document).ready(function () {
-	
+	adicionarMascaras();
 });
