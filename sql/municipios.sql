@@ -7,7 +7,35 @@ create table if not exists municipios (
    	constraint PK_MUNICIPIOS primary key (id)
 );
 
-insert into municipios (municipio, uf, ibge) values ('ABADIA DE GOIAS', 'GO', 0005052);
+/* TRIGGER DA LOG */
+create function gravar_log_municipios() returns trigger as $gravar_log_municipios$
+begin
+	/* INCLUSAO */
+	if (TG_OP = 'INSERT') then
+		insert into log.municipios select NEW.*, 'I', current_setting('sistemaweb.usuario'),  current_setting('sistemaweb.pagina');
+		return NEW; 
+	end if;
+	/* ALTERACAO */
+	if (TG_OP = 'UPDATE') then
+		insert into log.municipios select OLD.*, 'A', current_setting('sistemaweb.usuario'), current_setting('sistemaweb.pagina');
+		insert into log.municipios select NEW.*, 'D', current_setting('sistemaweb.usuario'), current_setting('sistemaweb.pagina');
+		return NEW;
+	end if;
+	/* EXCLUSAO */
+	if (TG_OP = 'DELETE') then
+		insert into log.municipios select OLD.*, 'E', current_setting('sistemaweb.usuario'), current_setting('sistemaweb.pagina');
+		return OLD;
+	end if;
+	
+	return NULL;
+end;
+
+$gravar_log_municipios$ language plpgsql;
+
+create trigger gravar_log_municipios after insert or update or delete on municipios
+	for each row execute procedure gravar_log_municipios();
+
+/*insert into municipios (municipio, uf, ibge) values ('ABADIA DE GOIAS', 'GO', 0005052);
 insert into municipios (municipio, uf, ibge) values ('ABADIA DOS DOURADOS', 'MG', 0010431);
 insert into municipios (municipio, uf, ibge) values ('ABADIANIA', 'GO', 0010052);
 insert into municipios (municipio, uf, ibge) values ('ABAETE', 'MG', 0020331);
@@ -5542,3 +5570,4 @@ insert into municipios (municipio, uf, ibge) values ('NOVO SANTO ANTONIO', 'MT',
 insert into municipios (municipio, uf, ibge) values ('TAGUATINGA', 'DF', 5310853);
 insert into municipios (municipio, uf, ibge) values ('MOGI DAS CRUZES', 'SP', 3060735);
 insert into municipios (municipio, uf, ibge) values ('NOVA SANTA HELENA', 'MT', 0619051);
+*/
