@@ -1,3 +1,4 @@
+/* criar tabela de usuarios */
 create table if not exists usuarios (
 	id serial not null,
 	login varchar(20) not null,
@@ -15,3 +16,32 @@ create table if not exists usuarios (
 	observacoes text,
 	constraint PK_USUARIOS primary key (id)
 );
+
+/* TRIGGER DA LOG */
+create function gravar_log_usuarios() returns trigger as $gravar_log_usuarios$
+begin
+	/* INCLUSAO */
+	if (TG_OP = 'INSERT') then
+		insert into log.usuarios select NEW.*, 'I', current_setting('sistemaweb.usuario'),  current_setting('sistemaweb.pagina');
+		return NEW; 
+	end if;
+	/* ALTERACAO */
+	if (TG_OP = 'UPDATE') then
+		insert into log.usuarios select OLD.*, 'A', current_setting('sistemaweb.usuario'), current_setting('sistemaweb.pagina');
+		insert into log.usuarios select NEW.*, 'D', current_setting('sistemaweb.usuario'), current_setting('sistemaweb.pagina');
+		return NEW;
+	end if;
+	/* EXCLUSAO */
+	if (TG_OP = 'DELETE') then
+		insert into log.usuarios select OLD.*, 'E', current_setting('sistemaweb.usuario'), current_setting('sistemaweb.pagina');
+		return OLD;
+	end if;
+	
+	return NULL;
+end;
+
+$gravar_log_usuarios$ language plpgsql;
+
+create trigger gravar_log_usuarios after insert or update or delete on usuarios
+	for each row execute procedure gravar_log_usuarios();
+
