@@ -9,6 +9,7 @@
    $id = $_POST['id'];
    $login = tratarTexto($_POST['login']);
    $senha = tratarTexto($_POST['senha']);
+   $confirmacao_senha = tratarTexto($_POST['confirmacao_senha']);
    $nome = tratarTexto($_POST['nome']);
    $modelo = tratarTexto($_POST['modelo']);
    $empresa = tratarTexto($_POST['empresa']);

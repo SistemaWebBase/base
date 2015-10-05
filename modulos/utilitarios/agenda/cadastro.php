@@ -51,6 +51,7 @@
 				$endereco = $rows[0]['endereco'];
 				$bairro = $rows[0]['bairro'];
 				$cep = $rows[0]['cep'];
+				$municipio = $rows[0]['municipio'];
 				$cidade = $rows[0]['cidade'];
 				$telefone = $rows[0]['telefone'];
 				$celular = $rows[0]['celular'];
@@ -97,7 +98,7 @@
 									</div>
 									<div class="form-group col-md-4">
 										<label for="cep">CEP: </label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="cep" name="cep" autocomplete="off" min="0" max="999999" value="<?= $cep ?>" >
+										<input type="text" class="form-control" id="cep" name="cep" autocomplete="off" maxlength="60" value="<?= $cep ?>" >
 									</div>
 									<div class="form-group col-md-4">
 										<label for="municipio">Município: </label>
