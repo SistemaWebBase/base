@@ -1,7 +1,7 @@
 /* criar tabela de municipios */
 create table if not exists log.usuarios (
 	/* campos originais da tabela */
-	id serial not null,
+	id int not null,
 	login varchar(20) not null,
 	senha char(40) not null,
 	nome varchar(60) not null,

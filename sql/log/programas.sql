@@ -1,7 +1,7 @@
 /* criar tabela de programas */
 create table if not exists log.programas (
 	/* campos originais da tabela */
-	id serial not null,
+	id int not null,
 	nome varchar(20) not null,
 	modulo int not null,
 	pasta varchar(20) not null,

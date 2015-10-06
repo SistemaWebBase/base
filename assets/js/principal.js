@@ -22,6 +22,30 @@ function dialogYesNo(evtyes, evtno, title, message, icon) {
 	');
 }
 
+function dialogSemPermissao(permissao) {
+	$('#modal').remove();
+	$('body').append('\
+			<div id="modal" class="modal fade" role="dialog">\
+				<div class="modal-dialog">\
+					<div class="modal-content">\
+						<div class="modal-header">\
+							<button type="button" class="close" data-dismiss="modal">&times;</button>\
+							<h4 class="modal-title"><span class="glyphicon glyphicon-alert"></span> Sem Permissão</h4>\
+						</div>\
+						<div class="modal-body">\
+							<h4>' + permissao + '</h4>\
+							<h6>Solicite liberação ao administrador.</h6>\
+						</div>\
+						<div class="modal-footer">\
+							<button type="button" class="btn btn-success" data-dismiss="modal">OK</button>\
+						</div>\
+					</div>\
+				</div>\
+			</div>\
+	');
+	$('#modal').modal('toggle');
+}
+
 /* painel de mensagens */
 function avisoSucesso(msg) {
 	$(".aviso").empty();

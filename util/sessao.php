@@ -12,6 +12,16 @@ function validarSessao() {
 		echo "<script>window.location.href = '/login.php';</script>";
 	}
 	
+	// Se a pagina de referencia for do login e não tiver passado a empresa, entao retornar 2
+	if (empty($_SESSION['empresa']) && ($_SERVER['PHP_SELF'] == "/login.php" || $_SERVER['PHP_SELF'] == "/util/permissao.php")) {
+		return 2;
+	}
+	
+	if (empty($_SESSION['empresa'])) {
+		echo "<script>window.location.href = '/login.php';</script>";
+		return;
+	}
+	
 	// conetar com o banco de dados
 	require_once 'conexao.php';
 	
