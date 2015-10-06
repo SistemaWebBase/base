@@ -5,7 +5,7 @@ create table if not exists usuarios (
 	senha char(40) not null,
 	nome varchar(60) not null,
 	modelo int default 0,
-	empresa int default 0,
+	empresa int,
 	nivel int not null default 0,
 	externo char(1) not null default 'N',
 	mobile char(1) not null default 'N',
@@ -14,7 +14,8 @@ create table if not exists usuarios (
 	bloqueado char(1) not null default 'N',
 	foto bytea,
 	observacoes text,
-	constraint PK_USUARIOS primary key (id)
+	constraint PK_USUARIOS primary key (id),
+	constraint FK_USUARIOS_EMPRESAS foreign key (empresa) references empresas(id)
 );
 
 /* TRIGGER DA LOG */
