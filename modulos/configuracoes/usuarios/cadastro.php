@@ -85,7 +85,7 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Cadastro de Município
+								Cadastro de Usuários
 							</div>
 							<div class="panel-body">
 								<form role="form">
@@ -113,8 +113,16 @@
 										<label for="empresa">Empresa: <span class="label label-danger">Obrigatório</span></label>
 										<input type="text" class="form-control" id="empresa" name="empresa" autocomplete="off" maxlength="60" value="<?= $empresa ?>">
 									</div>
+									<div class="form-group col-md-6">
+										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" min="0" max="999999" value="<?= $telefone ?>">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="ramal">Ramal: <span class="label label-danger">Obrigatório</span></label>
+										<input type="number" inputmode="numeric" pattern="[0-9]{3}" class="form-control" id="ramal" name="ramal" autocomplete="off" min="0" max="999999" value="<?= $ramal ?>">
+									</div>
 									<div class="form-group col-md-3">
-										<label for="nivel">Nível: <span class="label label-danger">Obrigatório</span></label>
+										<label for="nivel">Nível: </label>
 										<select class="form-control" id="nivel" name="nivel" >
 										<?php
 											$nivels = array('01', '02', '03', '04', '05');
@@ -129,26 +137,55 @@
 										?>
 										</select>
 									</div>
-									<div class="form-group col-md-1">
-										<input type="checkbox" value="0" id="externo" name="externo" value="<?= $externo ?>">
+									<div class="form-group col-md-3">
+										<label for="externo">Externo: </label>
+										<select class="form-control" id="externo" name="externo" >
+										<?php
+											$externos = array('NAO', 'SIM');
+									
+											foreach($externos as $u) {
+												if ($u == $nivel) {
+													echo '<option value="' . $u . '" selected>' . $u . '</option>';
+												} else {
+													echo '<option value="' . $u . '">' . $u . '</option>';
+												}
+											}
+										?>
+										</select>
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-3">
 										<label for="mobile">Mobile: </label>
-										<input type="text" class="form-control" id="mobile" name="mobile" autocomplete="off" maxlength="60" value="<?= $mobile ?>">
+										<select class="form-control" id="mobile" name="mobile" >
+										<?php
+											$mobiles = array('NAO', 'SIM');
+									
+											foreach($mobiles as $u) {
+												if ($u == $nivel) {
+													echo '<option value="' . $u . '" selected>' . $u . '</option>';
+												} else {
+													echo '<option value="' . $u . '">' . $u . '</option>';
+												}
+											}
+										?>
+										</select>
 									</div>
-									<div class="form-group col-md-6">
-										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" min="0" max="999999" value="<?= $telefone ?>">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="ramal">Ramal: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]{3}" class="form-control" id="ramal" name="ramal" autocomplete="off" min="0" max="999999" value="<?= $ramal ?>">
-									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-3">
 										<label for="bloqueado">Bloqueado: </label>
-										<input type="text" class="form-control" id="bloqueado" name="bloqueado" autocomplete="off" maxlength="60" value="<?= $bloqueado ?>">
+										<select class="form-control" id="bloqueado" name="bloqueado" >
+										<?php
+											$bloqueados = array('NAO', 'SIM');
+									
+											foreach($bloqueados as $u) {
+												if ($u == $nivel) {
+													echo '<option value="' . $u . '" selected>' . $u . '</option>';
+												} else {
+													echo '<option value="' . $u . '">' . $u . '</option>';
+												}
+											}
+										?>
+										</select>
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-12">
 										<label for="observacoes">Observações: </label>
 										<input type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="60" value="<?= $observacoes ?>">
 									</div>

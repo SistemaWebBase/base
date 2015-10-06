@@ -6,30 +6,32 @@
    
    // validar sessao
    validarSessao();
-
-   $municipio = tratarTexto($_POST['municipio']);
+         
    $id = $_POST['id'];
-   $uf = tratarTexto($_POST['uf']);
-   $ibge = tratarTexto($_POST['ibge']);
+   $municipio = tratarTexto($_POST['municipio']);
+   $uf = $_POST['uf'];
+   $ibge = $_POST['ibge'];
    $_action = $_POST['_action'];
    
-   // validar campos
-   if (empty($municipio)) {
-	   http_response_code(400);
-	   echo "Informe o nome do município.";
-	   return;  
-   }
+   if ($_action != "exclusao") {
+         // validar campos
+         if (empty($municipio)) {
+	         http_response_code(400);
+        	   echo "Informe o nome do município.";
+	         return;  
+         }
    
-   if (empty($ibge)) {
-	   http_response_code(400);
-	   echo "Informe o código IBGE.";
-	   return;
-   }
+         if (empty($ibge)) {
+	         http_response_code(400);
+	         echo "Informe o código IBGE.";
+	         return;
+         }
    
-   if (empty($_action)) {
-	   http_response_code(400);
-	   echo "Falha nos parâmetros da solicitação.";
-         return;
+         if (empty($_action)) {
+	         http_response_code(400);
+	         echo "Falha nos parâmetros da solicitação.";
+               return;
+         }
    }
    
    // Abrir conexao

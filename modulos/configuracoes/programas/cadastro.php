@@ -101,7 +101,7 @@
 										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>">
 									</div>
 									<div class="form-group col-md-3">
-										<label for="nivel">Nível: <span class="label label-danger">Obrigatório</span></label>
+										<label for="nivel">Nível: </label>
 										<select class="form-control" id="nivel" name="nivel" >
 										<?php
 											$nivels = array('01', '02', '03', '04', '05');

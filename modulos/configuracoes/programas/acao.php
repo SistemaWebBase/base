@@ -9,54 +9,57 @@
    
    $id = $_POST['id'];
    $nome = tratarTexto($_POST['nome']);
-   $modulo = tratarTexto($_POST['modulo']);
+   $modulo = $_POST['modulo'];
    $pasta = tratarTexto($_POST['pasta']);
    $agrupamento = tratarTexto($_POST['agrupamento']);
-   $indice = tratarTexto($_POST['indice']);
-   $nivel = tratarTexto($_POST['nivel']);
+   $indice = $_POST['indice'];
+   $nivel = $_POST['nivel'];
    $_action = $_POST['_action'];
    
-   // validar campos
-   if (empty($nome)) {
-	   http_response_code(400);
-	   echo "Informe o nome do programa.";
-	   return;  
-   }
+   if ($_action != "exclusao") {
+
+         // validar campos
+         if (empty($nome)) {
+	         http_response_code(400);
+	         echo "Informe o nome do programa.";
+	         return;  
+         }
    
-   if (empty($modulo)) {
-	   http_response_code(400);
-	   echo "Informe o modulo do programa.";
-	   return;  
-   }
+         if (empty($modulo)) {
+	         http_response_code(400);
+       	   echo "Informe o modulo do programa.";
+	         return;  
+         }
    
-   if (empty($pasta)) {
-	   http_response_code(400);
-	   echo "Informe a pasta do programa.";
-	   return;  
-   }
+         if (empty($pasta)) {
+	         http_response_code(400);
+	         echo "Informe a pasta do programa.";
+	         return;  
+         }
    
-   if (empty($agrupamento)) {
-	   http_response_code(400);
-	   echo "Informe o agrupamento do programa.";
-	   return;  
-   }
+         if (empty($agrupamento)) {
+	         http_response_code(400);
+	         echo "Informe o agrupamento do programa.";
+	         return;  
+         }
    
-   if (empty($indice)) {
-	   http_response_code(400);
-	   echo "Informe o índice do programa.";
-	   return;  
-   }
+         if (empty($indice)) {
+	         http_response_code(400);
+	         echo "Informe o índice do programa.";
+	         return;  
+         }
    
-   if (empty($nivel)) {
-	   http_response_code(400);
-	   echo "Informe o nivel do programa.";
-	   return;  
-   }
+         if (empty($nivel)) {
+	         http_response_code(400);
+	         echo "Informe o nivel do programa.";
+	         return;  
+         }
    
-   if (empty($_action)) {
-	   http_response_code(400);
-	   echo "Falha nos parâmetros da solicitação.";
-         return;
+         if (empty($_action)) {
+	         http_response_code(400);
+	         echo "Falha nos parâmetros da solicitação.";
+               return;
+         }
    }
    
    // Abrir conexao

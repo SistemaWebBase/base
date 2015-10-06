@@ -10,25 +10,28 @@
    $id = $_POST['id'];
    $endereco = tratarTexto($_POST['endereco']);
    $bairro = tratarTexto($_POST['bairro']);
-   $cep = tratarTexto($_POST['cep']);
+   $cep = tratarNumero($_POST['cep']);
    $municipio = tratarTexto($_POST['municipio']);
-   $telefone = tratarTexto($_POST['telefone']);
-   $celular = tratarTexto($_POST['celular']);
+   $telefone = tratarNumero($_POST['telefone']);
+   $celular = tratarNumero($_POST['celular']);
    $email = tratarTexto($_POST['email']);
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
    
-   // validar campos
-   if (empty($razaosocial)) {
-	   http_response_code(400);
-	   echo "Informe o nome do contato.";
-	   return;  
-   }
+   if ($_action != "exclusao") {
+         
+         // validar campos
+         if (empty($razaosocial)) {
+	         http_response_code(400);
+	         echo "Informe o nome do contato.";
+	         return;  
+         }
    
-   if (empty($telefone)) {
-	   http_response_code(400);
-	   echo "Informe o telefone do contato.";
-	   return;
+         if (empty($telefone)) {
+	         http_response_code(400);
+	         echo "Informe o telefone do contato.";
+	         return;
+         }
    }
    
    if (empty($_action)) {
