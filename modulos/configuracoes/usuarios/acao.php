@@ -37,6 +37,12 @@
 	          return;  
           }
    
+         if((strlen($senha)) < 6){
+	         http_response_code(400);
+	         echo "O campo senha deve conter no mínimo 6 dígitos.";
+	         return;
+         }
+         
          if (empty($senha)) {
 	         http_response_code(400);
 	         echo "Informe a senha.";

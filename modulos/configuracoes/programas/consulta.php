@@ -55,7 +55,7 @@
 												<div class="input-group">
 													<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa" autocomplete="off">
 													<span class="input-group-btn">
-														<button class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+														<button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 													</span>
 												</div>
 											</div>
