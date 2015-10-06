@@ -1,7 +1,7 @@
 /* criar tabela de empresas */
 create table if not exists log.empresas (
 	/* campos originais da tabela */
-	id serial not null,
+	id int not null,
 	cnpj char(14) not null,
 	ie varchar(20),
 	im varchar(20),

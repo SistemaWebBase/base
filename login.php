@@ -1,8 +1,7 @@
 <?php
 	// destruir sessoes anteriores
-	if (isset($_SESSION)) {
-		session_destroy();
-	}
+	@session_start();
+	@session_destroy();
 	
 ?>
 <!DOCTYPE html>
@@ -24,6 +23,88 @@
 		<script type="text/javascript" src="/assets/js/login.js"></script>
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
+	<?php
+	if ($_POST['_action'] == "login") {
+
+		/* fazer login */
+		require_once 'util/conexao.php';
+		require_once 'util/util.php';
+		require_once 'util/sessao.php';
+
+		$login = tratarTexto($_POST['login']);
+		$senha = tratarTexto($_POST['senha']);
+
+		function logar($login, $senha) {
+		
+			if (empty($login)) {
+				return "Informe o login";
+			}
+		
+			if (empty($senha)) {
+				return "Informe a senha";
+			}
+		
+			// validar login
+			$conexao = new Conexao();
+		
+			$sql = "select * from usuarios where login='" . $login . "' and senha='" . sha1($senha) . "';";
+			$result = $conexao->query($sql);
+
+			if (! pg_num_rows($result) > 0) {
+				return "Login ou Senha incorretos.";
+			}
+		
+			// IP do cliente e User-Agent
+			$ip = $_SERVER['REMOTE_ADDR'];
+			$useragent = $_SERVER['HTTP_USER_AGENT'];
+		
+			// Gravar id do usuario e data/hora
+			$rows = pg_fetch_all($result);
+		
+			$id = $rows[0]['id'];
+			$_SESSION['id'] = $id;
+		
+			// Empresa vinculada ao usuario
+			$empresa = $rows[0]['empresa'];
+			if (! empty($empresa)) {
+				$_SESSION['empresa'] = $empresa;
+			}
+		
+			// Gerar checksum
+			$checksum = sha1("SISTEMAWEB?user=" . $id . "&timestamp=" . time() . "/PHP");
+			$_SESSION['checksum'] = $checksum; 
+				
+			// Criar sessao
+			$sql = "insert into sessoes (usuario, useragent, ip, checksum) values (" . $id . ", '" . $useragent . "', '" . $ip . "', '" . $checksum . "');";
+		
+			$flag = 0;
+			$result = $conexao->query($sql) or $flag = 1;
+		
+			// Validar sessao
+			$validacao = validarSessao();
+			if ($flag == 1 || $validacao == 1) {
+				return "Falha ao criar sessão. Tente novamente mais tarde ou contate o suporte.";
+			}
+		
+			// Pegar empresa se nao tiver
+			if ($validacao == 2) {
+				return "OK-EMPR";
+			} else {
+				return "OK";
+			}
+	
+		}
+	
+		// logar
+		$msg = logar($login, $senha);
+	
+		switch($msg) {
+			case "OK"; echo "<script>redirecionar('/', 0);</script>";break;
+			case "OK-EMPR"; echo "<script>redirecionar('/empresa.php', 0);</script>";break;
+			default: echo "<script>avisoErro('" . $msg . "');</script>"; 
+		}
+	}
+	?>
 	<body>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
@@ -90,74 +171,3 @@
 		</footer>
 	</body>
 </html>
-<?php
-	if ($_POST['_action'] != "login") {
-		return;
-	}
-
-	/* fazer login */
-	require_once 'util/conexao.php';
-	require_once 'util/util.php';
-	require_once 'util/sessao.php';
-	
-	$login = tratarTexto($_POST['login']);
-	$senha = tratarTexto($_POST['senha']);
-	
-	function logar($login, $senha) {
-		
-		if (empty($login)) {
-			return "Informe o login";
-		}
-		
-		if (empty($senha)) {
-			return "Informe a senha";
-		}
-		
-		// validar login
-		$conexao = new Conexao();
-		
-		$sql = "select * from usuarios where login='" . $login . "' and senha='" . sha1($senha) . "';";
-		$result = $conexao->query($sql);
-
-		if (! pg_num_rows($result) > 0) {
-			return "Login ou Senha incorretos.";
-		}
-		
-		// IP do cliente e User-Agent
-		$ip = $_SERVER['REMOTE_ADDR'];
-		$useragent = $_SERVER['HTTP_USER_AGENT'];
-		
-		// Gravar id do usuario e data/hora
-		$id = pg_fetch_all($result)[0]['id'];
-		$_SESSION['id'] = $id;
-		
-		// Gerar checksum
-		$checksum = sha1("SISTEMAWEB?user=" . $id . "&timestamp=" . time() . "/PHP");
-		$_SESSION['checksum'] = $checksum; 
-				
-		// Criar sessao
-		$sql = "insert into sessoes (usuario, useragent, ip, checksum) values (" . $id . ", '" . $useragent . "', '" . $ip . "', '" . $checksum . "');";
-		
-		$flag = 0;
-		$result = $conexao->query($sql) or $flag = 1;
-		
-		// Validar sessao
-		if ($flag == 1 || validarSessao() == 1) {
-			return "Falha ao criar sessão. Tente novamente mais tarde ou contate o suporte.";
-		}
-
-		return "OK";		
-		
-	}
-	
-	// logar
-	$msg = logar($login, $senha);
-	
-	if ($msg != "OK") {
-		echo "<script>avisoErro('" . $msg . "');</script>";
-	} else {
-		// redirecionar para o index
-		echo "<script>redirecionar('/', 0);</script>";
-	}
-	
-?>
