@@ -99,11 +99,7 @@
 									</div>
 									<div class="form-group col-md-4">
 										<label for="cep">CEP: </label>
-<<<<<<< HEAD
-										<input type="text" class="form-control" id="cep" name="cep" autocomplete="off" maxlength="60" value="<?= $cep ?>" >
-=======
-										<input type="text" inputmode="numeric" pattern="[0-9]{5}-[0-9]{3}" class="form-control cep" id="cep" name="cep" autocomplete="off" min="0" max="999999" value="<?= $cep ?>" >
->>>>>>> master
+									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" min="0" max="999999" value="<?= $cep ?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="municipio">Município: </label>
@@ -117,11 +113,11 @@
 										<label for="celular">Celular: </label>
 										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="celular" name="celular" autocomplete="off" min="0" max="999999" value="<?= $celular ?>">
 									</div>
-								    <div class="form-group col-md-6">
+								    <div class="form-group col-md-4">
 										<label for="email">E-mail: </label>
 										<input type="email" class="form-control" id="email" name="email" autocomplete="off" maxlength="60" value="<?= $email ?>" >
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-12">
 										<label for="observacoes">Observações: </label>
 										<input type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="60" value="<?= $observacoes ?>" >
 									</div>

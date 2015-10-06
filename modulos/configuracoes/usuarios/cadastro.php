@@ -99,11 +99,11 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label for="senha">Senha: <span class="label label-danger">Obrigatório</span></label>
-										<input type="password" class="form-control" id="senha" name="senha" autocomplete="off" maxlength="60" value="<?= $senha ?>">
+										<input type="password" class="form-control" id="senha" name="senha" autocomplete="off" maxlength="6" value="<?= $senha ?>">
 									</div>
 									<div class="form-group col-md-6">
 										<label for="confirmacao_senha">Confirme a Senha: <span class="label label-danger">Obrigatório</span></label>
-										<input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" autocomplete="off" maxlength="60" value="<?= $confirmacao_senha ?>">
+										<input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" autocomplete="off" maxlength="6" value="<?= $confirmacao_senha ?>">
 									</div>
 									<div class="form-group col-md-6">
 										<label for="modelo">Modelo: </label>
