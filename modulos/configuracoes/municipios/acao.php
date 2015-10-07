@@ -8,6 +8,16 @@
    // validar sessao
    validarSessao();
    
+   // retornar cadastro em JSON
+   if ($_POST['_action'] == "consultar") {
+         $id = $_POST['id'];
+         
+         $conexao = new Conexao();
+         $sql = "select * from municipios where id=" . $id;
+         echo json_encode(pg_fetch_all($conexao->query($sql)));
+         return;
+   }
+   
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {

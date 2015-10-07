@@ -16,3 +16,25 @@ function submit(refkey) {
 		
 	}).fail(postError);
 } 
+
+// consultar municipio
+function consultarMunicipio() {
+	var id = $("#municipio").val();
+	if (id == "") {
+		return;
+	}
+	
+	$("#nome_municipio").val("AGUARDE...");
+	
+	$.post("/modulos/configuracoes/municipios/acao.php", {_action : 'consultar', id : id}, function (data) {
+		if (data == "false") {
+			$("#nome_municipio").val("MUNICÍPIO NÃO CADASTRADO");
+			return;
+		}
+		
+		var dados = JSON.parse(data);
+		
+		$("#nome_municipio").val(dados[0].municipio + " / " + dados[0].uf);
+		
+	}).fail(postError);
+}

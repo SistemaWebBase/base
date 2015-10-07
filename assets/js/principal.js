@@ -96,6 +96,44 @@ function redirecionar(url, sleep) {
 	}, sleep)
 }
 
+/* abrir consulta */
+function abrirConsulta(url, link) {
+	// Salvar dados atuais do formulario
+	var dados = JSON.stringify($('form').serializeArray());
+	var chave = "link-data-" + link;
+	sessionStorage.setItem(chave, dados);
+	
+	chave = "link-call-" + link;
+	sessionStorage.setItem(chave, location.href);
+	
+	// Abrir consulta
+	redirecionar(url + "?link=" + link, 0);
+}
+
+/* selecionar cadastro */
+function selecionarCadastro(id, link) {
+	sessionStorage.setItem("link-ret-" + link, id);
+	redirecionar((sessionStorage.getItem("link-call-" + link)).split("?")[0] + "?link=" + link, 0);
+}
+
+/* restaurar cadastro */
+function restaurarCadastro(link, alvo) {
+	var chave = "link-data-" + link;
+	var dados = JSON.parse(sessionStorage.getItem(chave));
+	
+	dados.forEach(function (element, index, array) {
+		$("#" + element['name']).val(element['value']);
+	});
+	
+	$(alvo).val(sessionStorage.getItem("link-ret-" + link));
+	
+	// apagar dados
+	sessionStorage.removeItem("link-data-" + link);
+	sessionStorage.removeItem("link-call-" + link);
+	sessionStorage.removeItem("link-ret-" + link);
+	
+}
+
 /* adicionar mascaras */
 function adicionarMascaras() {
 	// Telefone
