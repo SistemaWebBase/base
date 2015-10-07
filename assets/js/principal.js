@@ -76,6 +76,8 @@ function postError(xhr, status, error) {
 	var errorCode = xhr.status;
 	if (errorCode == 400) {
 		avisoErro(xhr.responseText);
+	} else if (errorCode == 401) {
+		avisoAtencao(xhr.responseText);
 	} else {		
 		avisoErro("Falha na requisição. Tente novamente mais tarde ou contate o suporte. (" + status + " " + xhr.status + ": " + error + ")");
 	}
