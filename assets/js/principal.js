@@ -59,6 +59,12 @@ function avisoInfo(msg) {
 	$(".aviso").slideDown();
 }
 
+function avisoAtencao(msg) {
+	$(".aviso").empty();
+	$(".aviso").append("<div class=\"alert alert-warning\" role=\"alert\"><span class=\"glyphicon glyphicon-warning-sign\" aria-hidden=\"true\"></span> "+msg+"</div>");
+	$(".aviso").slideDown();
+}
+
 function avisoErro(msg) {
 	$(".aviso").empty();
 	$(".aviso").append("<div class=\"alert alert-danger\" role=\"alert\"><span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span> "+msg+"</div>");

@@ -3,6 +3,12 @@
         require_once '../../../util/sessao.php';
 
         validarSessao();
+		
+		// Testar permissao
+		require_once '../../../util/permissao.php';
+		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE MUNICIPIOS');
+		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE MUNICIPIOS');
+		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE MUNICIPIOS');
 
 ?>
 <!DOCTYPE html>
@@ -75,15 +81,30 @@
 							<div class="panel-heading">
 								Cadastro de Município
 							</div>
+							<!-- REGRAS DE PERMISSAO -->
+							<?php
+								function permissao() {
+									global $_action, $perm_incluir, $perm_alterar;
+									
+									if ($_action == "inclusao" && $perm_incluir != "S") {
+										echo "disabled";
+										return;
+									}
+									if ($_action == "alteracao" && $perm_alterar != "S") {
+										echo "disabled";
+										return;
+									}
+								}
+							?>
 							<div class="panel-body">
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="municipio">Nome do Município: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="municipio" name="municipio" autocomplete="off" maxlength="60" value="<?= $municipio ?>" autofocus>
+										<input type="text" class="form-control" id="municipio" name="municipio" autocomplete="off" maxlength="60" value="<?= $municipio ?>" autofocus <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-3">
 										<label for="uf">UF: <span class="label label-danger">Obrigatório</span></label>
-										<select class="form-control" id="uf" name="uf" autocomplete="off">
+										<select class="form-control" id="uf" name="uf" autocomplete="off" <?php permissao(); ?>>
 										<?php
 											$ufs = array('AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RS', 'SC', 'SE', 'SP', 'TO');
 									
@@ -99,7 +120,7 @@
 									</div>
 									<div class="form-group col-md-3">
 										<label for="ibge">IBGE: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]{5}" class="form-control" id="ibge" name="ibge" autocomplete="off" min="0" max="999999" value="<?= $ibge ?>">
+										<input type="number" inputmode="numeric" pattern="[0-9]{5}" class="form-control" id="ibge" name="ibge" autocomplete="off" min="0" max="999999" value="<?= $ibge ?>" <?php permissao(); ?>>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
@@ -108,11 +129,20 @@
 						</div>
 						<!-- PAINEL DE AVISO -->
 						<div class="aviso">
+							<?php
+								if ($_action == 'inclusao' && $perm_incluir != 'S') {
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE MUNICIPIO. Solicite ao administrador a liberação.');</script>";
+								}
+								
+								if ($_action == 'alteracao' && $perm_alterar != 'S') {
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE MUNICIPIO. Solicite ao administrador a liberação.');</script>";
+								}
+							?>
 						</div>
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button class="btn btn-success mob-btn-block" onclick="submit('#municipio');">
+								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#municipio');" <?php permissao(); ?>>
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
@@ -122,7 +152,7 @@
 										 Cancelar
 									</button>
 								</a>
-								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Município', 'Deseja excluir este município ?', 'trash');">
+								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Município', 'Deseja excluir este município ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>
