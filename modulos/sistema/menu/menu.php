@@ -1,5 +1,5 @@
 		<!-- MENU -->
-		<nav class="navbar navbar-default" role="navigation">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
@@ -84,10 +84,12 @@
 					</ul>
 					<!-- PESQUISA -->
 					<form class="navbar-form navbar-right" role="search">
-						<div class="form-group">
-							<input class="form-control" type="text">
-						</div>
-						<button class="btn btn-default" type="submit">Pesquisar</button>
+						<div class="input-group">
+							<input class="form-control" type="text" placeholder="Pesquisar">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></button>
+							</span>
+						</div>						
 					</form>
 				</div>
 			</div>
