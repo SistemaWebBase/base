@@ -25,7 +25,7 @@
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
-	<body <?php if (! empty($_GET['link'])) { echo "onload=\"restaurarCadastro('" . $_GET['link'] . "', '#municipio'); consultarMunicipio(); \""; } ?>>
+	<body <?= (! empty($_GET['id'])) ? 'onload="consultarMunicipio();"' : "" ?> <?php if (! empty($_GET['link'])) { echo "onload=\"restaurarCadastro('" . $_GET['link'] . "', '#municipio'); consultarMunicipio(); \""; } ?>>
 		<?php
 			require_once '../../../util/conexao.php';
 			
@@ -99,7 +99,7 @@
 									</div>
 									<div class="form-group col-md-2">
 										<label for="cep">CEP: </label>
-									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" min="0" max="999999" value="<?= $cep ?>">
+									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" value="<?= $cep ?>">
 									</div>
 									<div class="form-group col-md-6">
 										<div class="row">
