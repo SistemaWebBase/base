@@ -3,6 +3,12 @@
         require_once '../../../util/sessao.php';
 
         validarSessao();
+		
+		// Testar permissao
+		require_once '../../../util/permissao.php';
+		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE USUARIOS');
+		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE USUARIOS');
+		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE USUARIOS');
 
 ?>
 <!DOCTYPE html>
@@ -87,43 +93,58 @@
 							<div class="panel-heading">
 								Cadastro de Usuários
 							</div>
+							<!-- REGRAS DE PERMISSAO -->
+							<?php
+								function permissao() {
+									global $_action, $perm_incluir, $perm_alterar;
+									
+									if ($_action == "inclusao" && $perm_incluir != "S") {
+										echo "disabled";
+										return;
+									}
+									if ($_action == "alteracao" && $perm_alterar != "S") {
+										echo "disabled";
+										return;
+									}
+								}
+							?>
 							<div class="panel-body">
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="nome">Nome do Usuário: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus>
+										<input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="login">Login: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="login" name="login" autocomplete="off" maxlength="60" value="<?= $login ?>">
+										<input type="text" class="form-control" id="login" name="login" autocomplete="off" maxlength="60" value="<?= $login ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="senha">Senha: <span class="label label-danger">Obrigatório</span></label>
-										<input type="password" class="form-control" id="senha" name="senha" autocomplete="off" maxlength="20" value="<?= $senha ?>">
+										<input type="password" class="form-control" id="senha" name="senha" autocomplete="off" maxlength="20" value="<?= $senha ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="confirmacao_senha">Confirme a Senha: <span class="label label-danger">Obrigatório</span></label>
-										<input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" autocomplete="off" maxlength="20" value="<?= $confirmacao_senha ?>">
+										<input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" autocomplete="off" maxlength="20" value="<?= $confirmacao_senha ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="modelo">Modelo: </label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="modelo" name="modelo" autocomplete="off" min="0" max="999999" value="<?= $modelo ?>">
+										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="modelo" name="modelo" autocomplete="off" min="0" max="999999" value="<?= $modelo ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="empresa">Empresa: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="empresa" name="empresa" autocomplete="off" maxlength="60" value="<?= $empresa ?>">
+										<input type="text" class="form-control" id="empresa" name="empresa" autocomplete="off" maxlength="60" value="<?= $empresa ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" min="0" max="999999" value="<?= $telefone ?>">
+										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" value="<?= $telefone ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="ramal">Ramal: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]{3}" class="form-control" id="ramal" name="ramal" autocomplete="off" min="0" max="999999" value="<?= $ramal ?>">
+										<input type="number" inputmode="numeric" pattern="[0-9]{3}" class="form-control" id="ramal" name="ramal" autocomplete="off" min="0" max="999999" value="<?= $ramal ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-3">
 										<label for="nivel">Nível: </label>
-										<select class="form-control" id="nivel" name="nivel" >
+										<select class="form-control" id="nivel" name="nivel" <?php permissao(); ?>>
 										<?php
 											$nivels = array('01', '02', '03', '04', '05');
 									
@@ -139,7 +160,7 @@
 									</div>
 									<div class="form-group col-md-3">
 										<label for="externo">Externo: </label>
-										<select class="form-control" id="externo" name="externo" >
+										<select class="form-control" id="externo" name="externo" <?php permissao(); ?>>
 										<?php
 											$externos = array('NAO', 'SIM');
 									
@@ -155,7 +176,7 @@
 									</div>
 									<div class="form-group col-md-3">
 										<label for="mobile">Mobile: </label>
-										<select class="form-control" id="mobile" name="mobile" >
+										<select class="form-control" id="mobile" name="mobile" <?php permissao(); ?>>
 										<?php
 											$mobiles = array('NAO', 'SIM');
 									
@@ -171,7 +192,7 @@
 									</div>
 									<div class="form-group col-md-3">
 										<label for="bloqueado">Bloqueado: </label>
-										<select class="form-control" id="bloqueado" name="bloqueado" >
+										<select class="form-control" id="bloqueado" name="bloqueado" <?php permissao(); ?>>
 										<?php
 											$bloqueados = array('NAO', 'SIM');
 									
@@ -187,7 +208,7 @@
 									</div>
 									<div class="form-group col-md-12">
 										<label for="observacoes">Observações: </label>
-										<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>">
+										<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>" <?php permissao(); ?>>
 										</textarea>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
@@ -197,11 +218,20 @@
 						</div>
 						<!-- PAINEL DE AVISO -->
 						<div class="aviso">
+							<?php
+								if ($_action == 'inclusao' && $perm_incluir != 'S') {
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE USUARIOS. Solicite ao administrador a liberação.');</script>";
+								}
+								
+								if ($_action == 'alteracao' && $perm_alterar != 'S') {
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE USUARIOS. Solicite ao administrador a liberação.');</script>";
+								}
+							?>
 						</div>
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button class="btn btn-success mob-btn-block" onclick="submit('#nome');">
+								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#nome');" <?php permissao(); ?>>
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
@@ -211,7 +241,7 @@
 										 Cancelar
 									</button>
 								</a>
-								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Usuário', 'Deseja excluir este usuário ?', 'trash');">
+								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Usuário', 'Deseja excluir este usuário ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>

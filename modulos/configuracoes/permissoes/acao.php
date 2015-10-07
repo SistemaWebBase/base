@@ -1,12 +1,30 @@
 <?php
 
    require_once '../../../util/conexao.php';
+   require_once '../../../util/permissao.php';   
    require_once '../../../util/util.php';
    require_once '../../../util/sessao.php';
    
    // validar sessao
    validarSessao();
-         
+   
+   // testar permissao
+   $nperm = "";
+   switch($_POST['_action']) {
+         case "inclusao": $nperm = "INCLUIR CADASTRO DE MUNICIPIOS";break;
+         case "alteracao": $nperm = "ALTERAR CADASTRO DE MUNICIPIOS";break;
+         case "exclusao": $nperm = "EXCLUIR CADASTRO DE MUNICIPIOS";break;
+   }
+   
+   $perm = testarPermissao($nperm);
+   
+   if ($perm != 'S') {
+         http_response_code(401);
+         echo "Sem permissão: " . $nperm . ". Solicite ao administrador a liberação.";
+         return;
+   }
+   
+   // acao         
    $id = $_POST['id'];
    $descricao = tratarTexto($_POST['descricao']);
    $observacao = tratarTexto($_POST['observacao']);
@@ -47,6 +65,16 @@
    
    if ($_action == "exclusao") {
          $sql = "delete from permissoes where id=" . $id;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+          
+        
          $msg1 = "excluir";
          $msg2 = "excluído";
    }

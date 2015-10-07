@@ -67,3 +67,19 @@ util.php
 programas.sql
 usuarios.sql
 agenda.sql
+
+*** These modified files were found in JOE when it aborted on Wed Oct  7 11:15:06 2015
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+.git/COMMIT_EDITMSG
+.git/MERGE_MSG
+modulos/sistema/menu/
+empresas.sql
+permissoes
+permissoes.sql
+permissoes_usuario.sql
+.git/COMMIT_EDITMSG
+.git/COMMIT_EDITMSG
+empresas.sql
+permissoes_usuario.sql

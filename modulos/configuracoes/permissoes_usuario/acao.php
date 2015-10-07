@@ -1,12 +1,30 @@
 <?php
 
    require_once '../../../util/conexao.php';
+   require_once '../../../util/permissao.php';
    require_once '../../../util/util.php';
    require_once '../../../util/sessao.php';
    
    // validar sessao
    validarSessao();
-         
+   
+   // testar permissao
+   $nperm = "";
+   switch($_POST['_action']) {
+         case "inclusao": $nperm = "INCLUIR PERMISSOES DO USUARIO";break;
+         case "alteracao": $nperm = "ALTERAR PERMISSOES DO USUARIO";break;
+         case "exclusao": $nperm = "EXCLUIR PERMISSOES DO USUARIO";break;
+   }
+   
+   $perm = testarPermissao($nperm);
+   
+   if ($perm != 'S') {
+         http_response_code(401);
+         echo "Sem permissão: " . $nperm . ". Solicite ao administrador a liberação.";
+         return;
+   }
+   
+   // acao         
    $id = $_POST['id'];
    $usuario = $_POST['usuario'];
    $permissao = $_POST['permissao'];   

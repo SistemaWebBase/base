@@ -3,6 +3,10 @@
         require_once '../../../util/sessao.php';
 
         validarSessao();
+		
+		// testar permissao
+		require_once '../../../util/permissao.php';
+		$perm = testarPermissao('INCLUIR CADASTRO DE MUNICIPIOS');
 
 ?>
 <!DOCTYPE html>
@@ -242,16 +246,19 @@
 						</nav>
 						<!-- PAINEL DE AVISO -->
 						<div class="aviso">
+							<?php
+								if ($perm != 'S') {
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE PROGRAMAS. Solicite ao administrador a liberação.');</script>";
+								}
+							?>
 						</div>
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<a href="cadastro.php">
-									<button class="btn btn-success mob-btn-block">
-										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-										 Novo
-									</button>
-								</a>
+								<button onclick="redirecionar('cadastro.php', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+									 Novo
+								</button>
 							</div>
 						</div>
 					</div>

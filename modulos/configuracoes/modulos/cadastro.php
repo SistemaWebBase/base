@@ -3,6 +3,12 @@
         require_once '../../../util/sessao.php';
 
         validarSessao();
+		
+		// Testar permissao
+		require_once '../../../util/permissao.php';
+		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE MODULOS');
+		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE MODULOS');
+		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE MODULOS');
 
 ?>
 <!DOCTYPE html>
@@ -76,23 +82,38 @@
 							<div class="panel-heading">
 								Cadastro de Módulos
 							</div>
+							<!-- REGRAS DE PERMISSAO -->
+							<?php
+								function permissao() {
+									global $_action, $perm_incluir, $perm_alterar;
+									
+									if ($_action == "inclusao" && $perm_incluir != "S") {
+										echo "disabled";
+										return;
+									}
+									if ($_action == "alteracao" && $perm_alterar != "S") {
+										echo "disabled";
+										return;
+									}
+								}
+							?>
 							<div class="panel-body">
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="nome">Nome do Módulo: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus>
+										<input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" >
+										<input type="text" class="form-control" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="indice">Índice: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>">
+										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-3">
 										<label for="nivel">Nível: </label>
-										<select class="form-control" id="nivel" name="nivel" >
+										<select class="form-control" id="nivel" name="nivel" <?php permissao(); ?>>
 										<?php
 											$nivels = array('01', '02', '03', '04', '05');
 									
@@ -113,11 +134,20 @@
 						</div>
 						<!-- PAINEL DE AVISO -->
 						<div class="aviso">
+							<?php
+								if ($_action == 'inclusao' && $perm_incluir != 'S') {
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE MODULOS. Solicite ao administrador a liberação.');</script>";
+								}
+								
+								if ($_action == 'alteracao' && $perm_alterar != 'S') {
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE MODULOS. Solicite ao administrador a liberação.');</script>";
+								}
+							?>
 						</div>
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button class="btn btn-success mob-btn-block" onclick="submit('#nome');">
+								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#nome');" <?php permissao(); ?>>
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
@@ -127,7 +157,7 @@
 										 Cancelar
 									</button>
 								</a>
-								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Módulo', 'Deseja excluir este módulo ?', 'trash');">
+								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Módulo', 'Deseja excluir este módulo ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>
