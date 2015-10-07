@@ -44,7 +44,7 @@
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Agenda Telefónica
+								Consulta de Permissões
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
@@ -66,9 +66,7 @@
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
 									<thead>
 										<tr>
-											<th>Nome</th>
-											<th>Telefone</th>
-											<th>Cidade</th>
+											<th>Descrição</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -103,9 +101,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from agenda order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from permissoes order by descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from agenda where razaosocial like '" . $pesquisa . "%' order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from permissoes where descricao like '" . $pesquisa . "%' order by descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -115,18 +113,16 @@
 										if ($rows != null) {
 											foreach ($rows as $row) {
 												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
-												echo "<td>" . $row['razaosocial'] . "</td>";
-												echo "<td>" . $row['telefone'] . "</td>";
-												echo "<td>" . $row['cidade'] . "</td>";
+												echo "<td>" . $row['descricao'] . "</td>";
 												echo "</tr>";
 											}
 										}	
 									
 										// Paginaçao
 										if (empty($pesquisa)) {
-											$sql = "select count(*) as num from agenda";
+											$sql = "select count(*) as num from permissoes";
 										} else {
-											$sql = "select count(*) as num from agenda where razaosocial like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from permissoes where descricao like '" . $pesquisa . "%';";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];

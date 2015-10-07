@@ -19,7 +19,6 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
-		<script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
@@ -37,7 +36,7 @@
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from agenda where id=" . $id;
+				$sql = "select * from modulos where id=" . $id;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -48,16 +47,10 @@
 				}
 			
 				$id = $rows[0]['id'];
-				$razaosocial = $rows[0]['razaosocial'];
-				$endereco = $rows[0]['endereco'];
-				$bairro = $rows[0]['bairro'];
-				$cep = $rows[0]['cep'];
-				$municipio = $rows[0]['municipio'];
-				$cidade = $rows[0]['cidade'];
-				$telefone = $rows[0]['telefone'];
-				$celular = $rows[0]['celular'];
-				$email = $rows[0]['email'];
-				$observacoes = $rows[0]['observacoes'];
+				$nome = $rows[0]['nome'];
+				$pasta = $rows[0]['pasta'];
+				$indice = $rows[0]['indice'];
+				$nivel = $rows[0]['nivel'];
 				$_action = "alteracao";
 			}
 			
@@ -81,45 +74,37 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Agenda Telefónica
+								Cadastro de Módulos
 							</div>
 							<div class="panel-body">
 								<form role="form">
 									<div class="form-group col-md-6">
-										<label for="razaosocial">Nome: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="60" value="<?= $razaosocial ?>" autofocus>
+										<label for="nome">Nome do Módulo: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus>
 									</div>
 									<div class="form-group col-md-6">
-										<label for="endereco">Endereço: </label>
-										<input type="text" class="form-control" id="endereco" name="endereco" autocomplete="off" maxlength="60" value="<?= $endereco ?>">
+										<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" class="form-control" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" >
 									</div>
-									<div class="form-group col-md-4">
-										<label for="bairro">Bairro: </label>
-										<input type="text" class="form-control" id="bairro" name="bairro" autocomplete="off" maxlength="60" value="<?= $bairro ?>" >
+									<div class="form-group col-md-6">
+										<label for="indice">Índice: <span class="label label-danger">Obrigatório</span></label>
+										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>">
 									</div>
-									<div class="form-group col-md-4">
-										<label for="cep">CEP: </label>
-									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" min="0" max="999999" value="<?= $cep ?>">
-									</div>
-									<div class="form-group col-md-4">
-										<label for="municipio">Município: </label>
-										<input type="text" class="form-control" id="municipio" name="municipio" autocomplete="off" maxlength="60" value="<?= $municipio ?>" >
-									</div>
-									<div class="form-group col-md-4">
-										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" min="0" max="999999" value="<?= $telefone ?>">
-									</div>
-									<div class="form-group col-md-4">
-										<label for="celular">Celular: </label>
-										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="celular" name="celular" autocomplete="off" min="0" max="999999" value="<?= $celular ?>">
-									</div>
-								    <div class="form-group col-md-4">
-										<label for="email">E-mail: </label>
-										<input type="email" class="form-control" id="email" name="email" autocomplete="off" maxlength="60" value="<?= $email ?>" >
-									</div>
-									<div class="form-group col-md-12">
-										<label for="observacoes">Observações: </label>
-										<input type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="60" value="<?= $observacoes ?>" >
+									<div class="form-group col-md-3">
+										<label for="nivel">Nível: </label>
+										<select class="form-control" id="nivel" name="nivel" >
+										<?php
+											$nivels = array('01', '02', '03', '04', '05');
+									
+											foreach($nivels as $u) {
+												if ($u == $nivel) {
+													echo '<option value="' . $u . '" selected>' . $u . '</option>';
+												} else {
+													echo '<option value="' . $u . '">' . $u . '</option>';
+												}
+											}
+										?>
+										</select>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
@@ -132,7 +117,7 @@
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button class="btn btn-success mob-btn-block" onclick="submit('#razaosocial');">
+								<button class="btn btn-success mob-btn-block" onclick="submit('#nome');">
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
@@ -142,7 +127,7 @@
 										 Cancelar
 									</button>
 								</a>
-								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Contato', 'Deseja excluir este contato ?', 'trash');">
+								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Módulo', 'Deseja excluir este módulo ?', 'trash');">
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>

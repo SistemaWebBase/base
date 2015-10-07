@@ -104,7 +104,7 @@
 									</div>
 									<div class="form-group col-md-3">
 										<label for="uf">UF: <span class="label label-danger">Obrigatório</span></label>
-										<select class="form-control" id="uf" name="uf" autocomplete="off" <?php permissao(); ?>>
+										<select class="form-control" id="uf" name="uf" <?php permissao(); ?>>
 										<?php
 											$ufs = array('AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RS', 'SC', 'SE', 'SP', 'TO');
 									

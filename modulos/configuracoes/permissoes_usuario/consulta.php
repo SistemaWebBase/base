@@ -44,7 +44,7 @@
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Agenda Telefónica
+								Consulta de Permissões do Usuário
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
@@ -66,9 +66,9 @@
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
 									<thead>
 										<tr>
-											<th>Nome</th>
-											<th>Telefone</th>
-											<th>Cidade</th>
+											<th>Usuário</th>
+											<th>Permissão</th>
+											<th class="hidden-xs">Valor</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -103,9 +103,20 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from agenda order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from permissoes_usuario order by usuario limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from agenda where razaosocial like '" . $pesquisa . "%' order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
+											select B.nome, C.descricao, A.valor from permissoes_usuario A join usuarios B on A.usuario = B.id join permissoes C on A.permissao = C.id;
+											$sql = "select * from permissoes_usuario where usuario like " . $pesquisa . "% order by usuario limit " . $limite . " offset " . (($pagina-1)*$limite);
+											echo $sql;
+											echo $sql;
+											echo $sql;
+											echo $sql;
+											echo $sql;
+											echo $sql;
+											echo $sql;
+											echo $sql;
+											echo $sql;
+											echo $sql;
 										}
 										
 										$result = $conexao->query($sql);
@@ -115,18 +126,18 @@
 										if ($rows != null) {
 											foreach ($rows as $row) {
 												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
-												echo "<td>" . $row['razaosocial'] . "</td>";
-												echo "<td>" . $row['telefone'] . "</td>";
-												echo "<td>" . $row['cidade'] . "</td>";
+												echo "<td>" . $row['usuario'] . "</td>";
+												echo "<td>" . $row['permissao'] . "</td>";
+												echo "<td class=\"hidden-xs\">" . $row['valor'] . "</td>";
 												echo "</tr>";
 											}
 										}	
 									
 										// Paginaçao
 										if (empty($pesquisa)) {
-											$sql = "select count(*) as num from agenda";
+											$sql = "select count(*) as num from permissoes_usuario";
 										} else {
-											$sql = "select count(*) as num from agenda where razaosocial like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from permissoes_usuario where usuario like " . $pesquisa . "%;";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];

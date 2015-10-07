@@ -8,25 +8,32 @@
    validarSessao();
          
    $id = $_POST['id'];
-   $municipio = tratarTexto($_POST['municipio']);
-   $uf = $_POST['uf'];
-   $ibge = $_POST['ibge'];
+   $usuario = $_POST['usuario'];
+   $permissao = $_POST['permissao'];   
+   $valor = tratarTexto($_POST['valor']);
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {
          // validar campos
-         if (empty($municipio)) {
+         if (empty($usuario)) {
 	         http_response_code(400);
-        	   echo "Informe o nome do município.";
+        	   echo "Informe o usuário.";
 	         return;  
          }
-   
-         if (empty($ibge)) {
+         
+         if (empty($valor)) {
 	         http_response_code(400);
-	         echo "Informe o código IBGE.";
-	         return;
+        	   echo "Informe a permissão.";
+	         return;  
          }
-   
+         
+         
+         if (empty($valor)) {
+	         http_response_code(400);
+        	   echo "Informe o valor da permissão.";
+	         return;  
+         }
+      
          if (empty($_action)) {
 	         http_response_code(400);
 	         echo "Falha nos parâmetros da solicitação.";
@@ -41,19 +48,28 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into municipios (municipio, uf, ibge) values ('" . $municipio . "', '" . $uf . "', " . $ibge . ');';
+         $sql = "insert into permissoes_usuario (usuario, permissao, valor) values (" . $usuario . ", " . $permissao . ", '" . $valor . "');";
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update municipios set municipio='" . $municipio . "',uf='" . $uf . "',ibge=" . $ibge . " where id=" . $id;
+         $sql = "update permissoes_usuario set usuario=" . $usuario . ",permissao=" . $permissao . ",valor='" . $valor . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from municipios where id=" . $id;
+         $sql = "delete from permissoes_usuario where id=" . $id;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }

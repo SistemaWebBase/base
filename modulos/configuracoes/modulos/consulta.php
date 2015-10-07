@@ -44,7 +44,7 @@
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Agenda Telefónica
+								Consulta de Módulos
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
@@ -66,9 +66,9 @@
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
 									<thead>
 										<tr>
-											<th>Nome</th>
-											<th>Telefone</th>
-											<th>Cidade</th>
+											<th>Nome do Módulo</th>
+											<th>Índice</th>
+											<th class="hidden-xs">Nível</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -103,9 +103,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from agenda order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from modulos order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from agenda where razaosocial like '" . $pesquisa . "%' order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from modulos where nome like '" . $pesquisa . "%' order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -115,18 +115,18 @@
 										if ($rows != null) {
 											foreach ($rows as $row) {
 												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
-												echo "<td>" . $row['razaosocial'] . "</td>";
-												echo "<td>" . $row['telefone'] . "</td>";
-												echo "<td>" . $row['cidade'] . "</td>";
+												echo "<td>" . $row['nome'] . "</td>";
+												echo "<td>" . $row['indice'] . "</td>";
+												echo "<td class=\"hidden-xs\">" . $row['nivel'] . "</td>";
 												echo "</tr>";
 											}
 										}	
 									
 										// Paginaçao
 										if (empty($pesquisa)) {
-											$sql = "select count(*) as num from agenda";
+											$sql = "select count(*) as num from modulos";
 										} else {
-											$sql = "select count(*) as num from agenda where razaosocial like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from modulos where nome like '" . $pesquisa . "%';";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];

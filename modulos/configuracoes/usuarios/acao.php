@@ -1,80 +1,85 @@
 <?php
-        // validar sessao
-        require_once '../../../util/sessao.php';
-
-        validarSessao();
-
-?>
-
-<?php
    require_once '../../../util/conexao.php';
    require_once '../../../util/util.php';
+   require_once '../../../util/sessao.php';
 
+   // validar sessao
+   validarSessao();
+   
    $id = $_POST['id'];
    $login = tratarTexto($_POST['login']);
-   $senha = tratarTexto($_POST['senha']);
+   $senha = $_POST['senha'];
+   $confirmacao_senha = $_POST['confirmacao_senha'];
    $nome = tratarTexto($_POST['nome']);
-   $modelo = tratarTexto($_POST['modelo']);
-   $empresa = tratarTexto($_POST['empresa']);
-   $nivel = tratarTexto($_POST['nivel']);
-   $externo = tratarTexto($_POST['externo']);
-   $mobile = tratarTexto($_POST['mobile']);
-   $telefone = tratarTexto($_POST['telefone']);
-   $ramal = tratarTexto($_POST['ramal']);
-   $bloqueado = tratarTexto($_POST['bloqueado']);
-   $foto = tratarTexto($_POST['foto']);
+   $modelo = $_POST['modelo'];
+   $empresa = $_POST['empresa'];
+   $nivel = $_POST['nivel'];
+   $externo = $_POST['externo'];
+   $mobile = $_POST['mobile'];
+   $telefone = tratarNumero($_POST['telefone']);
+   $ramal = $_POST['ramal'];
+   $bloqueado = $_POST['bloqueado'];
+   $foto = $_POST['foto'];
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
    
-   // validar campos
-    if (empty($nome)) {
-	   http_response_code(400);
-	   echo "Informe o nome do usuário.";
-	   return;
-   }
+    if ($_action != "exclusao") {
+          // validar campos
+          if (empty($nome)) {
+	          http_response_code(400);
+	          echo "Informe o nome do usuário.";
+	          return;
+          }
    
-   if (empty($login)) {
-	   http_response_code(400);
-	   echo "Informe o login.";
-	   return;  
-   }
+          if (empty($login)) {
+	          http_response_code(400);
+	          echo "Informe o login.";
+	          return;  
+          }
    
-   if (empty($senha)) {
-	   http_response_code(400);
-	   echo "Informe a senha.";
-	   return;
-   }
+         if((strlen($senha)) < 6){
+	         http_response_code(400);
+	         echo "O campo senha deve conter no mínimo 6 dígitos.";
+	         return;
+         }
+         
+         if (empty($senha)) {
+	         http_response_code(400);
+	         echo "Informe a senha.";
+	         return;
+         }
    
-   if ($senha != $senha_confirmacao) {
-	   http_response_code(400);
-	   echo "Senhas não conferem.";
-	   return;
-   }
+         if ($senha != $senha_confirmacao) {
+	         http_response_code(400);
+	         echo "Senhas não conferem.";
+	         return;
+         }
      
-   if (empty($empresa)) {
-	   http_response_code(400);
-	   echo "Informe a empresa.";
-	   return;
-   }    
+         if (empty($empresa)) {
+	         http_response_code(400);
+	         echo "Informe a empresa.";
+	         return;
+         }    
    
-   if (empty($telefone)) {
-	   http_response_code(400);
-	   echo "Informe o telefone.";
-	   return;
-   }    
+         if (empty($telefone)) {
+	         http_response_code(400);
+	         echo "Informe o telefone.";
+	         return;
+         }    
    
-   if (empty($ramal)) {
-	   http_response_code(400);
-	   echo "Informe o ramal.";
-	   return;
-   }      
+         if (empty($ramal)) {
+	         http_response_code(400);
+	         echo "Informe o ramal.";
+	         return;
+         }      
    
-   if (empty($_action)) {
-	   http_response_code(400);
-	   echo "Falha nos parâmetros da solicitação.";
-         return;
-   }
-   
+         if (empty($_action)) {
+	         http_response_code(400);
+	         echo "Falha nos parâmetros da solicitação.";
+               return;
+         }
+    }
+    
    // Abrir conexao
    $conexao = new Conexao();
    

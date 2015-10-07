@@ -8,23 +8,16 @@
    validarSessao();
          
    $id = $_POST['id'];
-   $municipio = tratarTexto($_POST['municipio']);
-   $uf = $_POST['uf'];
-   $ibge = $_POST['ibge'];
+   $descricao = tratarTexto($_POST['descricao']);
+   $observacao = tratarTexto($_POST['observacao']);
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {
          // validar campos
-         if (empty($municipio)) {
+         if (empty($descricao)) {
 	         http_response_code(400);
-        	   echo "Informe o nome do município.";
+        	   echo "Informe a descrição da permissão.";
 	         return;  
-         }
-   
-         if (empty($ibge)) {
-	         http_response_code(400);
-	         echo "Informe o código IBGE.";
-	         return;
          }
    
          if (empty($_action)) {
@@ -41,19 +34,19 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into municipios (municipio, uf, ibge) values ('" . $municipio . "', '" . $uf . "', " . $ibge . ');';
+         $sql = "insert into permissoes (descricao, observacao) values ('" . $descricao . "', '" . $observacao. "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update municipios set municipio='" . $municipio . "',uf='" . $uf . "',ibge=" . $ibge . " where id=" . $id;
+         $sql = "update permissoes set descricao='" . $descricao . "',observacao='" . $observacao . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from municipios where id=" . $id;
+         $sql = "delete from permissoes where id=" . $id;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }

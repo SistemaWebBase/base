@@ -1,37 +1,40 @@
 <?php
+
    require_once '../../../util/conexao.php';
    require_once '../../../util/util.php';
    require_once '../../../util/sessao.php';
 
    // validar sessao
    validarSessao();
-   
-   $razaosocial = tratarTexto($_POST['razaosocial']);
+        
    $id = $_POST['id'];
-   $endereco = tratarTexto($_POST['endereco']);
-   $bairro = tratarTexto($_POST['bairro']);
-   $cep = tratarNumero($_POST['cep']);
-   $municipio = tratarTexto($_POST['municipio']);
-   $telefone = tratarNumero($_POST['telefone']);
-   $celular = tratarNumero($_POST['celular']);
-   $email = tratarTexto($_POST['email']);
-   $observacoes = tratarTexto($_POST['observacoes']);
+   $nome = tratarTexto($_POST['nome']);
+   $pasta = tratarTexto($_POST['pasta']);
+   $indice = $_POST['indice'];
+   $nivel = $_POST['nivel'];
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {
-         
+
          // validar campos
-         if (empty($razaosocial)) {
+         if (empty($nome)) {
 	         http_response_code(400);
-	         echo "Informe o nome do contato.";
+	         echo "Informe o nome do módulo.";
 	         return;  
          }
    
-         if (empty($telefone)) {
+         if (empty($pasta)) {
 	         http_response_code(400);
-	         echo "Informe o telefone do contato.";
-	         return;
+	         echo "Informe o nome do pasta.";
+       	   return;  
          }
+   
+         if (empty($indice)) {
+	         http_response_code(400);
+	         echo "Informe o nome do índice.";
+	         return;  
+         }
+      
    }
    
    if (empty($_action)) {
@@ -47,21 +50,19 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into agenda (razaosocial, endereco, bairro, cep, municipio, telefone, celular, email, observacoes) values ('" . $razaosocial . "', '" . $endereco . "', '" . $bairro . "', '" . $cep . "', " . $municipio . ", '" . $telefone . "', '" . $celular . "', '" . $email . "', '" . $observacoes . "');";
+         $sql = "insert into modulos (nome, pasta, indice,nivel) values ('" . $nome . "', '" . $pasta . "', " . $indice . ", " . $nivel . ');';
          $msg1 = "incluir";
          $msg2 = "inclusão";
-                
    }
    
    if ($_action == "alteracao") {
-         $sql = "update agenda set razaosocial='" . $razaosocial . "',endereco='" . $endereco . "',bairro='" . $bairro . "',cep='" . $cep . "',municipio=" . $municipio . ",telefone='" . $telefone . "',celular='" . $celular . "',email='" . $email . "',observacoes='" . $observacoes . "' where id=" . $id;
+         $sql = "update modulos set nome='" . $nome . "',pasta='" . $pasta . "',indice=" . $indice . ",nivel=" . $nivel . " where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
-         
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from agenda where id=" . $id;
+         $sql = "delete from modulos where id=" . $id;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }
