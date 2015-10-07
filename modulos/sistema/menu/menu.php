@@ -69,7 +69,7 @@
 								<li><a href="/modulos/configuracoes/usuarios/consulta.php">Usuários</a></li>
 								<li><a href="/modulos/configuracoes/programas/consulta.php">Programas</a></li>
 								<li><a href="/modulos/configuracoes/modulos/consulta.php">Módulos</a></li>
-								<li><a href="/modulos/configuracoes/empresa/consulta.php">Empresa</a></li>
+								<li><a href="/modulos/configuracoes/empresas/consulta.php">Empresa</a></li>
 								<li><a href="/modulos/configuracoes/permissoes/consulta.php">Permissões</a></li>
 								<li><a href="/modulos/configuracoes/permissoes_usuario/consulta.php">Permissões Usuário</a></li>
 								<li><a href="#">Gerentes</a></li>

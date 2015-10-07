@@ -49,6 +49,15 @@
    
    if ($_action == "inclusao") {
          $sql = "insert into permissoes_usuario (usuario, permissao, valor) values (" . $usuario . ", " . $permissao . ", '" . $valor . "');";
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
+         echo $sql;
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }

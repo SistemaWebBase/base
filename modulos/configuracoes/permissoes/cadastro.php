@@ -80,7 +80,7 @@
 										<label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
 										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" autofocus>
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-12">
 										<label for="observacao">Observação: </label>
 										<input type="text" class="form-control" id="observacao" name="observacao" autocomplete="off" maxlength="60" value="<?= $observacao ?>" >
 									</div>
