@@ -52,7 +52,7 @@
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
-								<form action="consulta.php" method="GET">
+								<form action="#" method="GET">
 									<div class="form">
 										<div class="row">
 											<div class="col-md-5">
@@ -65,6 +65,12 @@
 											</div>
 										</div>
 									</div>
+									<!-- LINK -->
+									<?php
+										if (! empty($_GET['link'])) {
+											echo "<input type=\"hidden\" name=\"link\" value=\"" . $_GET['link'] . "\">";
+										}
+									?>
 								</form>
 								<!-- TABELA DE REGISTRO -->
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
@@ -118,7 +124,12 @@
 										$rows = pg_fetch_all($result);
 										if ($rows != null) {
 											foreach ($rows as $row) {
-												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
+												// verificar se foi passado link
+												if (! empty($_GET['link'])) {
+													echo "<tr onclick=\"selecionarCadastro('" . $row['id'] . "', '" . $_GET['link'] . "');\">";
+												} else {
+													echo "<tr onclick=\"abrirCadastro('" . $row['id'] . "');\">";
+												}
 												echo "<td>" . $row['municipio'] . "</td>";
 												echo "<td>" . $row['uf'] . "</td>";
 												echo "<td class=\"hidden-xs\">" . $row['ibge'] . "</td>";
@@ -255,10 +266,29 @@
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button onclick="redirecionar('cadastro.php', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
+								<!-- NOVO -->
+								<button onclick="redirecionar('<?= empty($_GET['link']) ? "cadastro.php" : "cadastro.php?link=" . $_GET['link'] ?>', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									 Novo
 								</button>
+								<?php
+									$url = $_SERVER['HTTP_REFERER'];
+									$link = explode("?link=", $url)[1];
+									if (empty($link)) {
+										$link = $_GET['link'];
+										$url .= "?link=" . $link;
+									} else {
+										$url = explode("?link=", $url)[0] . "?link=" . $_GET['link'];
+									}
+								
+									echo '
+									<a href="' . $url . '">
+										<button class="btn btn-warning mob-btn-block">
+											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+											 Cancelar
+										</button>
+									</a>';
+								?>
 							</div>
 						</div>
 					</div>

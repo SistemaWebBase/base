@@ -25,7 +25,7 @@
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
-	<body>
+	<body <?= (! empty($_GET['id'])) ? 'onload="consultarMunicipio();"' : "" ?> <?php if (! empty($_GET['link'])) { echo "onload=\"restaurarCadastro('" . $_GET['link'] . "', '#municipio'); consultarMunicipio(); \""; } ?>>
 		<?php
 			require_once '../../../util/conexao.php';
 			
@@ -81,7 +81,7 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Agenda Telefónica
+								Agenda Telefônica
 							</div>
 							<div class="panel-body">
 								<form role="form">
@@ -97,21 +97,34 @@
 										<label for="bairro">Bairro: </label>
 										<input type="text" class="form-control" id="bairro" name="bairro" autocomplete="off" maxlength="60" value="<?= $bairro ?>" >
 									</div>
-									<div class="form-group col-md-4">
+									<div class="form-group col-md-2">
 										<label for="cep">CEP: </label>
-									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" min="0" max="999999" value="<?= $cep ?>">
+									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" value="<?= $cep ?>">
 									</div>
-									<div class="form-group col-md-4">
-										<label for="municipio">Município: </label>
-										<input type="text" class="form-control" id="municipio" name="municipio" autocomplete="off" maxlength="60" value="<?= $municipio ?>" >
+									<div class="form-group col-md-6">
+										<div class="row">
+											<div class="col-md-4">
+												<label for="municipio">Código: </label>
+												<div class="input-group">
+													<input type="numeric" pattern="[0-9]*" class="form-control" id="municipio" name="municipio" autocomplete="off" value="<?= $municipio ?>" onblur="consultarMunicipio();">
+													<span class="input-group-btn">
+														<button class="btn btn-primary" onclick="abrirConsulta('/modulos/configuracoes/municipios/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+													</span>
+												</div>
+											</div>
+											<div class="col-md-8">
+												<label for="nome_municipio">Município: </label>
+												<input type="text" class="form-control" id="nome_municipio" autocomplete="off" maxlength="60" value="<?= $nome_municipio ?>"  disabled>
+											</div>
+										</div>
 									</div>
 									<div class="form-group col-md-4">
 										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" min="0" max="999999" value="<?= $telefone ?>">
+										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" value="<?= $telefone ?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="celular">Celular: </label>
-										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="celular" name="celular" autocomplete="off" min="0" max="999999" value="<?= $celular ?>">
+										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="celular" name="celular" autocomplete="off" value="<?= $celular ?>">
 									</div>
 								    <div class="form-group col-md-4">
 										<label for="email">E-mail: </label>
