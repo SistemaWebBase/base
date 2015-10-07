@@ -125,7 +125,10 @@ function restaurarCadastro(link, alvo) {
 		$("#" + element['name']).val(element['value']);
 	});
 	
-	$(alvo).val(sessionStorage.getItem("link-ret-" + link));
+	var ret = sessionStorage.getItem("link-ret-" + link);
+	if (ret != null) {
+		$(alvo).val(ret);
+	}
 	
 	// apagar dados
 	sessionStorage.removeItem("link-data-" + link);
