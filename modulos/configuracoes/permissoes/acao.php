@@ -11,9 +11,9 @@
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {
-         case "inclusao": $nperm = "INCLUIR CADASTRO DE MUNICIPIOS";break;
-         case "alteracao": $nperm = "ALTERAR CADASTRO DE MUNICIPIOS";break;
-         case "exclusao": $nperm = "EXCLUIR CADASTRO DE MUNICIPIOS";break;
+         case "inclusao": $nperm = "INCLUIR CADASTRO DE PERMISSOES";break;
+         case "alteracao": $nperm = "ALTERAR CADASTRO DE PERMISSOES";break;
+         case "exclusao": $nperm = "EXCLUIR CADASTRO DE PERMISSOES";break;
    }
    
    $perm = testarPermissao($nperm);
@@ -81,7 +81,7 @@
    
    if ($flag == 1) {
          http_response_code(400);
-         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte.";
+         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte." . $sql;
          return;
    }
 

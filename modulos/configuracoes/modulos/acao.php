@@ -43,13 +43,13 @@
    
          if (empty($pasta)) {
 	         http_response_code(400);
-	         echo "Informe o nome do pasta.";
+	         echo "Informe a pasta do módulo.";
        	   return;  
          }
    
          if (empty($indice)) {
 	         http_response_code(400);
-	         echo "Informe o nome do índice.";
+	         echo "Informe o índice do módulo.";
 	         return;  
          }
       

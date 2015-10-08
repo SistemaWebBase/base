@@ -61,12 +61,6 @@
 	         return;  
          }
    
-         if (empty($nivel)) {
-	         http_response_code(400);
-	         echo "Informe o nivel do programa.";
-	         return;  
-         }
-   
          if (empty($_action)) {
 	         http_response_code(400);
 	         echo "Falha nos parâmetros da solicitação.";
