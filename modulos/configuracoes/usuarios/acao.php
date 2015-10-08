@@ -37,7 +37,6 @@
    $telefone = tratarNumero($_POST['telefone']);
    $ramal = $_POST['ramal'];
    $bloqueado = $_POST['bloqueado'];
-   $foto = $_POST['foto'];
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
    
@@ -67,7 +66,7 @@
 	         return;
          }
    
-         if ($senha != $senha_confirmacao) {
+         if ($senha != $confirmacao_senha) {
 	         http_response_code(400);
 	         echo "Senhas não conferem.";
 	         return;
@@ -77,19 +76,7 @@
 	         http_response_code(400);
 	         echo "Informe a empresa.";
 	         return;
-         }    
-   
-         if (empty($telefone)) {
-	         http_response_code(400);
-	         echo "Informe o telefone.";
-	         return;
-         }    
-   
-         if (empty($ramal)) {
-	         http_response_code(400);
-	         echo "Informe o ramal.";
-	         return;
-         }      
+         }
    
          if (empty($_action)) {
 	         http_response_code(400);
@@ -105,13 +92,13 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into usuarios (login, senha, nome, modelo, empresa, nivel, externo, mobile, telefone, ramal, bloqueado, foto, observacoes) values ('" . $login . "', '" . $senha . "', '" . $nome . "', " . $modelo . ", " . $empresa . ", " . $nivel . ", '" . $externo . "', '" . $mobile . "', '" . $telefone . "', '" . $ramal . "', '" . $bloqueado . "', '" . $foto . "', '" . $observacoes . "');";
+         $sql = "insert into usuarios (login, senha, nome, modelo, empresa, nivel, externo, mobile, telefone, ramal, bloqueado, observacoes) values ('" . $login . "', '" . sha1($senha) . "', '" . $nome . "', " . $modelo . ", " . $empresa . ", " . $nivel . ", '" . $externo . "', '" . $mobile . "', '" . $telefone . "', '" . $ramal . "', '" . $bloqueado . "', '" . $observacoes . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update usuarios set login='" . $login . "',senha='" . $senha . "',nome='" . $nome . "',modelo=" . $modelo . ",empresa=" . $empresa . ",nivel=" . $nivel . ",externo='" . $externo . "',mobile='" . $mobile . "',telefone='" . $telefone . "',ramal='" . $ramal . "',bloqueado='" . $bloqueado . "',foto='" . $foto . "',observacoes='" . $observacoes ."' where id=" . $id;
+         $sql = "update usuarios set login='" . $login . "',senha='" . sha1($senha) . "',nome='" . $nome . "',modelo=" . $modelo . ",empresa=" . $empresa . ",nivel=" . $nivel . ",externo='" . $externo . "',mobile='" . $mobile . "',telefone='" . $telefone . "',ramal='" . $ramal . "',bloqueado='" . $bloqueado . "',observacoes='" . $observacoes ."' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
@@ -133,7 +120,7 @@
    
    if ($flag == 1) {
          http_response_code(400);
-         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte.";
+         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte." . $sql;
          return;
    }
 

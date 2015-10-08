@@ -72,7 +72,7 @@
 										<tr>
 											<th>Nome</th>
 											<th>Modulo</th>
-											<th class="hidden-xs">Nível</th>
+											<th class="hidden-xs">Índice</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -107,9 +107,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select A.*, B.nome as nome_modulo from programas A join modulos B on A.modulo = B.id order by A.nome limit "  . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select A.*, B.nome as nome_modulo from programas A join modulos B on A.modulo = B.id order by A.indice,A.agrupamento limit "  . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select A.*, B.nome as nome_modulo from programas A join modulos B on A.modulo = B.id where like='" . $pesquisa . "%' order by A.nome limit "  . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select A.*, B.nome as nome_modulo from programas A join modulos B on A.modulo = B.id where A.nome like '" . $pesquisa . "%' order by A.nome limit "  . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -121,7 +121,7 @@
 												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
 												echo "<td>" . $row['nome'] . "</td>";
 												echo "<td>" . $row['nome_modulo'] . "</td>";
-												echo "<td class=\"hidden-xs\">" . $row['nivel'] . "</td>";
+												echo "<td class=\"hidden-xs\">" . $row['indice'] . "</td>";
 												echo "</tr>";
 											}
 										}	

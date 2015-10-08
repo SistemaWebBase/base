@@ -70,7 +70,6 @@
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
 									<thead>
 										<tr>
-											<th>Usuário</th>
 											<th>Permissão</th>
 											<th class="hidden-xs">Valor</th>
 										</tr>
@@ -107,20 +106,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from permissoes_usuario order by usuario limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select A.permissao, A.valor, B.descricao from permissoes_usuario A join permissoes B on A.permissao = B.id order by B.descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select B.nome, C.descricao, A.valor from permissoes_usuario A join usuarios B on A.usuario = B.id join permissoes C on A.permissao = C.id order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
-											//$sql = "select * from permissoes_usuario where usuario like " . $pesquisa . "% order by usuario limit " . $limite . " offset " . (($pagina-1)*$limite);
-											echo $sql;
-											echo $sql;
-											echo $sql;
-											echo $sql;
-											echo $sql;
-											echo $sql;
-											echo $sql;
-											echo $sql;
-											echo $sql;
-											echo $sql;
+											$sql = "select A.permissao, A.valor, B.descricao from permissoes_usuario A join permissoes B on A.permissao = B.id order by B.descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -129,9 +117,8 @@
 										$rows = pg_fetch_all($result);
 										if ($rows != null) {
 											foreach ($rows as $row) {
-												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
-												echo "<td>" . $row['usuario'] . "</td>";
-												echo "<td>" . $row['permissao'] . "</td>";
+												echo "<tr onclick=\"abrirCadastro('" . $row['permissao'] . "');\">";
+												echo "<td>" . $row['descricao'] . "</td>";
 												echo "<td class=\"hidden-xs\">" . $row['valor'] . "</td>";
 												echo "</tr>";
 											}
