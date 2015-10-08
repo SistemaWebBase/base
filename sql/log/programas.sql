@@ -2,10 +2,10 @@
 create table if not exists log.programas (
 	/* campos originais da tabela */
 	id int not null,
-	nome varchar(20) not null,
+	nome varchar(40) not null,
 	modulo int not null,
-	pasta varchar(20) not null,
-	agrupamento varchar(20),
+	pasta varchar(40) not null,
+	agrupamento varchar(40),
 	indice int not null,
 	nivel int,
 	/* campos da log */
