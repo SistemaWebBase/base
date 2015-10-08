@@ -11,6 +11,10 @@ input[type=text] {
 	text-transform: uppercase;
 }
 
+.no-uppercase {
+	text-transform: none !important;
+}
+
 /* painel de avisos */
 .aviso {
 	display: none;

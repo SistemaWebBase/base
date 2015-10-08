@@ -20,7 +20,7 @@
 						<li><a href="/">Início</a></li>';
 						
 						$conexao = new Conexao();
-						$conexao->query("SET CLIENT_ENCODING TO UTF8");
+						// $conexao->query("SET CLIENT_ENCODING TO UTF8");
 						
 						$sql = "select * from modulos order by indice";
 						$result = $conexao->query($sql);

@@ -26,10 +26,10 @@
    
    // acao   
    $id = $_POST['id'];
-   $nome = tratarTexto($_POST['nome']);
+   $nome = $_POST['nome'];
    $modulo = $_POST['modulo'];
-   $pasta = tratarTexto($_POST['pasta']);
-   $agrupamento = tratarTexto($_POST['agrupamento']);
+   $pasta = $_POST['pasta'];
+   $agrupamento = $_POST['agrupamento'];
    $indice = $_POST['indice'];
    $nivel = $_POST['nivel'];
    $_action = $_POST['_action'];
@@ -52,12 +52,6 @@
          if (empty($pasta)) {
 	         http_response_code(400);
 	         echo "Informe a pasta do programa.";
-	         return;  
-         }
-   
-         if (empty($agrupamento)) {
-	         http_response_code(400);
-	         echo "Informe o agrupamento do programa.";
 	         return;  
          }
    
