@@ -6,7 +6,7 @@
 		
 		// testar permissao
 		require_once '../../../util/permissao.php';
-		$perm = testarPermissao('INCLUIR CADASTRO DE MUNICIPIOS');
+		$perm = testarPermissao('INCLUIR CADASTRO DE PROGRAMAS');
 
 ?>
 <!DOCTYPE html>

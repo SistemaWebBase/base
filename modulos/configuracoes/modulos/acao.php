@@ -26,8 +26,8 @@
    
    // acao        
    $id = $_POST['id'];
-   $nome = tratarTexto($_POST['nome']);
-   $pasta = tratarTexto($_POST['pasta']);
+   $nome = $_POST['nome'];
+   $pasta = $_POST['pasta'];
    $indice = $_POST['indice'];
    $nivel = $_POST['nivel'];
    $_action = $_POST['_action'];

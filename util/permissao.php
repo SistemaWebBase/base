@@ -27,6 +27,9 @@ function testarPermissao($permissao) {
 	$idperm = pg_fetch_all($conexao->query($sql))[0]['id'];
 	
 	if (empty($idperm)) {
+		// cadastrar permissao quando nao existir
+		$sql = "insert into permissoes (descricao) values ('" . $permissao . "');";
+		$conexao->query($sql);
 		return "N";
 	}
 	

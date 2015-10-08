@@ -9,7 +9,7 @@ function submit(refkey) {
 		
 		// redirecionar para pagina anterior
 		if ($(refkey).val() != null) {
-			redirecionar("consulta.php?_ref=" + $(refkey).val().toUpperCase(), 1000);
+			redirecionar("consulta.php?_ref=" + $(refkey).val(), 1000);
 		} else {
 			redirecionar(document.referrer, 1000);
 		}

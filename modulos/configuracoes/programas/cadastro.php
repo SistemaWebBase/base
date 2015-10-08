@@ -103,7 +103,7 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="nome">Nome do Programa: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?>>
+										<input type="text" class="form-control no-uppercase" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="modulo">Modulo: <span class="label label-danger">Obrigatório</span></label>
@@ -111,11 +111,11 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?>>
+										<input type="text" class="form-control no-uppercase" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
-										<label for="agrupamento">Agrupamento: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="agrupamento" name="agrupamento" autocomplete="off" maxlength="60" value="<?= $agrupamento ?>" <?php permissao(); ?>>
+										<label for="agrupamento">Agrupamento:</label>
+										<input type="text" class="form-control no-uppercase" id="agrupamento" name="agrupamento" autocomplete="off" maxlength="60" value="<?= $agrupamento ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="indice">Índice: <span class="label label-danger">Obrigatório</span></label>
