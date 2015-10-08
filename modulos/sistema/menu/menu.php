@@ -1,4 +1,5 @@
-		<!-- MENU -->
+<?php
+		echo '
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -15,72 +16,47 @@
 				<div class="collapse navbar-collapse" id="bs-navbar">
 					<!-- MENU -->
 					<ul class="nav navbar-nav">
-						<!-- MENU 'Início' -->
-						<li><a href="/">Início</a></li>
-						<!-- MENU 'Clientes' -->
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Clientes<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Cadastro de Clientes/Fornecedores</a></li>
-								<li><a href="#">Títulos à Receber</a></li>
-							</ul>
-						</li>
-						<!-- MENU 'Fornecedores' -->
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Fornecedores<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Títulos à Pagar</a></li>
-								<li><a href="#">Cadastro de Financiamentos</a></li>
-							</ul>
-						</li>
-						<!-- MENU 'Estoque' -->
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Estoque<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Cadastro de Estoque</a></li>
-							</ul>
-						</li>
-						<!-- MENU 'Vendas' -->
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Vendas<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Orçamentos</a></li>
-								<li><a href="#">Pedidos</a></li>
-								<li role="separator" class="divider"></li>
-								<li class="dropdown-header">Notas Fiscais</li>
-								<li><a href="#">Nota Fiscal de Eletrônica</a></li>
-								<li><a href="#">Nota Fiscal de Serviço Eletrônica</a></li>
-								<li><a href="#">Nota Fiscal de Consumidor Eletrônica</a></li>
-							</ul>
-						</li>
-						<!-- MENU 'Utilitários' -->
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Utilitários<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li class="dropdown-header">Cadastros</li>
-								<li><a href="/modulos/utilitarios/agenda/consulta.php">Agenda</a></li>
-							</ul>
-						</li>						
-						<!-- MENU 'Configurações' -->
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Configurações<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li class="dropdown-header">Cadastros</li>
-								<li><a href="/modulos/configuracoes/usuarios/consulta.php">Usuários</a></li>
-								<li><a href="/modulos/configuracoes/programas/consulta.php">Programas</a></li>
-								<li><a href="/modulos/configuracoes/modulos/consulta.php">Módulos</a></li>
-								<li><a href="/modulos/configuracoes/empresas/consulta.php">Empresa</a></li>
-								<li><a href="/modulos/configuracoes/permissoes/consulta.php">Permissões</a></li>
-								<li><a href="/modulos/configuracoes/permissoes_usuario/consulta.php">Permissões Usuário</a></li>
-								<li><a href="#">Gerentes</a></li>
-								<li><a href="#">Vendedores</a></li>
-								<li role="separator" class="divider"></li>
-								<li class="dropdown-header">Tabelas do Sistema</li>
-								<li><a href="/modulos/configuracoes/municipios/consulta.php">Municípios</a></li>
-								<li><a href="#">NCM (Nomenclatura Comum do MERCOSUL)</a></li>
-								<li><a href="#">Tributação</a></li>
-							</ul>
-						</li>
+						<!-- MENU "Início" -->
+						<li><a href="/">Início</a></li>';
+						
+						$conexao = new Conexao();
+						$conexao->query("SET CLIENT_ENCODING TO UTF8");
+						
+						$sql = "select * from modulos order by indice";
+						$result = $conexao->query($sql);
+						$rows = pg_fetch_all($result);
+						
+						foreach ($rows as $row) {
+							echo '<!-- MENU "' . $row['nome'] . '" -->';
+							echo '<li class="dropdown">';
+							echo '<a class="dropdown-toggle" href="#" data-toggle="dropdown">' . $row['nome'] . '<b class="caret"></b></a>';
+							echo '<ul class="dropdown-menu">';
+							
+							$sql2 = "select * from programas where modulo=" . $row['id'] . " order by indice, agrupamento";
+							$result2 = $conexao->query($sql2);
+							$rows2 = pg_fetch_all($result2);
+							
+							if ($rows2 == null) {
+								echo "</ul></a></li>";
+								continue;
+							}
+							
+							$agrupamento = "";
+							foreach ($rows2 as $row2) {
+								if ($row2['agrupamento'] != $agrupamento) {
+									$agrupamento = $row2['agrupamento'];
+									echo '<li class="dropdown-header">' . $agrupamento . '</li>';
+								}
+								
+								echo '<li><a href="/modulos/' . $row['pasta'] . '/' . $row2['pasta'] . '/">' . $row2['nome'] . '</a></li>';
+							}
+							
+							echo "</ul>";
+						}
+						
+						echo '</li>';
+						
+					echo '
 					</ul>
 					<!-- PESQUISA -->
 					<form class="navbar-form navbar-right" role="search">
@@ -93,5 +69,5 @@
 					</form>
 				</div>
 			</div>
-		</nav>
-		
+		</nav>';
+?>

@@ -2,7 +2,7 @@
 create table if not exists permissoes_usuario (
 	usuario int not null,
 	permissao int not null,
-	valor varchar(20),
+	valor varchar(20) default 'S',
 	constraint PK_PERMISSOES_USUARIO primary key (usuario, permissao),
 	constraint FK_PERMISSOES_USUARIO_USUARIOS foreign key (usuario) references usuarios(id),
 	constraint FK_PERMISSOES_USUARIO_PERMISSOES foreign key (permissao) references permissoes(id)
