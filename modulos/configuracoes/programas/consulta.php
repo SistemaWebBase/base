@@ -107,9 +107,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from programas order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select A.*, B.nome as nome_modulo from programas A join modulos B on A.modulo = B.id order by A.nome limit "  . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from programas where nome like '" . $pesquisa . "%' order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select A.*, B.nome as nome_modulo from programas A join modulos B on A.modulo = B.id where like='" . $pesquisa . "%' order by A.nome limit "  . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -120,7 +120,7 @@
 											foreach ($rows as $row) {
 												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
 												echo "<td>" . $row['nome'] . "</td>";
-												echo "<td>" . $row['modulo'] . "</td>";
+												echo "<td>" . $row['nome_modulo'] . "</td>";
 												echo "<td class=\"hidden-xs\">" . $row['nivel'] . "</td>";
 												echo "</tr>";
 											}

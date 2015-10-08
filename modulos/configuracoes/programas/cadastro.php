@@ -107,7 +107,25 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label for="modulo">Modulo: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="modulo" name="modulo" autocomplete="off" min="0" max="999999" value="<?= $modulo ?>" <?php permissao(); ?>>
+										<select class="form-control" id="modulo" name="modulo" <?php permissao(); ?>>
+										<?php
+											$conexao = new Conexao();
+											$result = $conexao->query("select * from modulos order by nome");
+											$rows = pg_fetch_all($result);
+											
+											if ($rows != null) {
+												
+												foreach ($rows as $row) {
+													if ($row['id'] == $modulo) {	
+														echo '<option value="' . $row['id'] . '" selected>' . $row['nome'] . '</option>';
+													} else {
+														echo '<option value="' . $row['id'] . '">' . $row['nome'] . '</option>';
+													}
+												}
+												
+											}
+										?>
+										</select>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
