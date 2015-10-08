@@ -120,7 +120,7 @@
 									</div>
 									<div class="form-group col-md-3">
 										<label for="ibge">IBGE: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]{5}" class="form-control" id="ibge" name="ibge" autocomplete="off" min="0" max="999999" value="<?= $ibge ?>" <?php permissao(); ?>>
+										<input type="number" inputmode="numeric" pattern="[0-9]{5}" class="form-control" id="ibge" name="ibge" autocomplete="off" min="0" max="999999"  value="<?= $ibge ?>" <?php permissao(); ?>>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

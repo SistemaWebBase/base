@@ -155,3 +155,4 @@ function adicionarMascaras() {
 $(document).ready(function () {
 	adicionarMascaras();
 });
+

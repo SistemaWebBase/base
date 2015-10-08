@@ -109,8 +109,8 @@
 										if (empty($pesquisa)) {
 											$sql = "select * from permissoes_usuario order by usuario limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											select B.nome, C.descricao, A.valor from permissoes_usuario A join usuarios B on A.usuario = B.id join permissoes C on A.permissao = C.id;
-											$sql = "select * from permissoes_usuario where usuario like " . $pesquisa . "% order by usuario limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select B.nome, C.descricao, A.valor from permissoes_usuario A join usuarios B on A.usuario = B.id join permissoes C on A.permissao = C.id order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
+											//$sql = "select * from permissoes_usuario where usuario like " . $pesquisa . "% order by usuario limit " . $limite . " offset " . (($pagina-1)*$limite);
 											echo $sql;
 											echo $sql;
 											echo $sql;

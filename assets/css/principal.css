@@ -55,3 +55,8 @@ input[type=text] {
 .tabela-registro tbody tr {
 	cursor: pointer;
 }
+
+/*fixa textarea*/
+textarea {
+    resize: none;
+}
