@@ -27,6 +27,7 @@
    // acao         
    $id = $_POST['id'];
    $descricao = tratarTexto($_POST['descricao']);
+   $nivel = $_POST['nivel'];
    $observacao = tratarTexto($_POST['observacao']);
    $_action = $_POST['_action'];
    
@@ -52,29 +53,19 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into permissoes (descricao, observacao) values ('" . $descricao . "', '" . $observacao. "');";
+         $sql = "insert into permissoes (descricao, nivel, observacao) values ('" . $descricao . "', " . $nivel . ", '" . $observacao. "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update permissoes set descricao='" . $descricao . "',observacao='" . $observacao . "' where id=" . $id;
+         $sql = "update permissoes set descricao='" . $descricao . "',nivel=" . $nivel . ",observacao='" . $observacao . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from permissoes where id=" . $id;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-          
-        
+         $sql = "delete from permissoes where id=" . $id;       
          $msg1 = "excluir";
          $msg2 = "excluído";
    }

@@ -2,6 +2,7 @@
 create table if not exists permissoes (
 	id serial not null,
 	descricao varchar(80),
+	nivel int not null default 0,
 	observacao text,
 	constraint PK_PERMISSOES primary key (id)
 );
