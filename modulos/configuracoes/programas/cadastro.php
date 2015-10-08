@@ -103,11 +103,11 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="nome">Nome do Programa: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control no-uppercase" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?>>
+										<input type="text" class="form-control no-uppercase" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="modulo">Modulo: <span class="label label-danger">Obrigatório</span></label>
-										<select class="form-control" id="modulo" name="modulo" <?php permissao(); ?>>
+										<select class="form-control" id="modulo" name="modulo" <?php permissao(); ?> required>
 										<?php
 											$conexao = new Conexao();
 											$result = $conexao->query("select * from modulos order by nome");
@@ -129,7 +129,7 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control no-uppercase" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?>>
+										<input type="text" class="form-control no-uppercase" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="agrupamento">Agrupamento:</label>
@@ -137,7 +137,7 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label for="indice">Índice: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>" <?php permissao(); ?>>
+										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>" <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-3">
 										<label for="nivel">Nível: </label>

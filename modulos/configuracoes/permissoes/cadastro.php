@@ -100,7 +100,7 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" autofocus <?php permissao(); ?>>
+										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" autofocus <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-3">
 										<label for="nivel">Nível: </label>

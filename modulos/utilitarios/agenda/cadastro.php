@@ -108,7 +108,7 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="razaosocial">Nome: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="60" value="<?= $razaosocial ?>" autofocus <?php permissao(); ?>>
+										<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="60" value="<?= $razaosocial ?>" autofocus <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="endereco">Endereço: </label>
@@ -141,7 +141,7 @@
 									</div>
 									<div class="form-group col-md-4">
 										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" value="<?= $telefone ?>" <?php permissao(); ?>>
+										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" value="<?= $telefone ?>" <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-4">
 										<label for="celular">Celular: </label>

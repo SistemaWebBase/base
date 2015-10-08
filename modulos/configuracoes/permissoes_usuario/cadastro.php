@@ -100,15 +100,15 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="usuario">Usuário: <span class="label label-danger">Obrigatório</span></label>
-									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="usuario" name="usuario" autocomplete="off" value="<?= $usuario ?>" autofocus <?php permissao(); ?>>
+									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="usuario" name="usuario" autocomplete="off" value="<?= $usuario ?>" autofocus <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="permissao">Permissão: <span class="label label-danger">Obrigatório</span></label>
-									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="permissao" name="permissao" autocomplete="off" value="<?= $permissao ?>" <?php permissao(); ?>>
+									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="permissao" name="permissao" autocomplete="off" value="<?= $permissao ?>" <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?>>
+										<input type="text" class="form-control" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?> required>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
