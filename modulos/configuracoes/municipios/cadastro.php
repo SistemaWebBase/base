@@ -100,7 +100,7 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="municipio">Nome do Município: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="municipio" name="municipio" autocomplete="off" maxlength="60" value="<?= $municipio ?>" autofocus <?php permissao(); ?>>
+										<input type="text" class="form-control" id="municipio" name="municipio" autocomplete="off" maxlength="60" onKeyPress="return Enum(event)" value="<?= $municipio ?>" autofocus <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-3">
 										<label for="uf">UF: <span class="label label-danger">Obrigatório</span></label>

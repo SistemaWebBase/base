@@ -6,9 +6,9 @@
 		
 		// Testar permissao
 		require_once '../../../util/permissao.php';
-		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE MUNICIPIOS');
-		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE MUNICIPIOS');
-		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE MUNICIPIOS');
+		$perm_incluir = testarPermissao('INCLUIR CONTATO NA AGENDA');
+		$perm_alterar = testarPermissao('ALTERAR CONTATO DA AGENDA');
+		$perm_excluir = testarPermissao('EXCLUIR CONTATO DA AGENDA');
 
 ?>
 <!DOCTYPE html>
