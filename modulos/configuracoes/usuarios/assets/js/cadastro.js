@@ -16,3 +16,8 @@ function submit(refkey) {
 		
 	}).fail(postError);
 } 
+
+function permissoes() {
+	redirecionar("/modulos/configuracoes/permissoes_usuario/consulta.php?usuario=" + $("#id").val(), 0);
+	
+}

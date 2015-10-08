@@ -223,7 +223,7 @@
 										<label for="observacoes">Observações: </label>
 										<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>" <?php permissao(); ?>></textarea>
 									</div>
-									<input type="hidden" name="id" value="<?= $id ?>">
+									<input type="hidden" id="id" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>
@@ -247,6 +247,19 @@
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
+								<?php
+									if ($_action == "alteracao") {
+										echo '
+										<button class="btn btn-primary mob-btn-block" onclick="permissoes();">
+											<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+									 		Permissões
+										</button>
+										<button class="btn btn-info mob-btn-block" onclick="">
+											<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+									 		Programas
+										</button>';
+									}	
+								?>
 								<a href="<?= $_SERVER['HTTP_REFERER'] ?>">
 									<button class="btn btn-warning mob-btn-block">
 										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

@@ -30,19 +30,20 @@
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
-	<body>
+	<body <?php if (!empty($_GET['usuario'])) { echo "onload=\"consultarUsuario(); consultarPermissao();\""; } ?>>
 		<?php
 			require_once '../../../util/conexao.php';
 			
 			$_action = "inclusao"; // por padrao, entrar no modo de inclusao
 			
 			// Se passar id, abrir registro
-			$id = $_GET['id'];
-			if (!empty($id)) {
+			$usuario = $_GET['usuario'];
+			$permissao = $_GET['permissao'];
+			if (!empty($usuario) && !empty($permissao)) {
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from permissoes_usuario where id=" . $id;
+				$sql = "select * from permissoes_usuario where usuario=" . $usuario . " and permissao=" . $permissao;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -51,8 +52,7 @@
 				if ($rows == null) {
 					return;
 				}
-			
-				$id = $rows[0]['id'];
+
 				$usuario = $rows[0]['usuario'];
 				$permissao = $rows[0]['permissao'];
 				$valor = $rows[0]['valor'];
@@ -100,17 +100,18 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="usuario">Usuário: <span class="label label-danger">Obrigatório</span></label>
-									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="usuario" name="usuario" autocomplete="off" value="<?= $usuario ?>" autofocus <?php permissao(); ?>>
+									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="nome_usuario" autocomplete="off" value="<?= $usuario ?>" autofocus <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="permissao">Permissão: <span class="label label-danger">Obrigatório</span></label>
-									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="permissao" name="permissao" autocomplete="off" value="<?= $permissao ?>" <?php permissao(); ?>>
+									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="nome_permissao" autocomplete="off" value="<?= $permissao ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
 										<input type="text" class="form-control" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?>>
 									</div>
-									<input type="hidden" name="id" value="<?= $id ?>">
+									<input type="hidden" id="usuario" name="usuario" value="<?= $usuario ?>">
+									<input type="hidden" id="permissao" name="permissao" value="<?= $permissao ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>

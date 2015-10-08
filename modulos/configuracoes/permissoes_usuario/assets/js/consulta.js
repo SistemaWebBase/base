@@ -1,4 +1,4 @@
 // Abrir cadastro
-function abrirCadastro(id) {
-	window.location.href = "cadastro.php?id=" + id;
+function abrirCadastro(usuario, permissao) {
+	window.location.href = "cadastro.php?usuario=" + usuario + "&permissao=" + permissao;
 }

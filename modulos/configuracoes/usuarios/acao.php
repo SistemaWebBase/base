@@ -7,6 +7,19 @@
    // validar sessao
    validarSessao();
    
+   // retornar cadastro em JSON
+   if ($_POST['_action'] == "consultar") {
+         $usuario = $_POST['usuario'];
+         if (empty($usuario)) {
+               return;
+         }
+         
+         $conexao = new Conexao();
+         $sql = "select * from usuarios where id=" . $usuario;
+         echo json_encode(pg_fetch_all($conexao->query($sql)));
+         return;
+   }
+   
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {

@@ -20,7 +20,7 @@ function submit(refkey) {
 // consultar municipio
 function consultarMunicipio() {
 	var id = $("#municipio").val();
-	if (id == "") {
+	if (id == null) {
 		return;
 	}
 	
