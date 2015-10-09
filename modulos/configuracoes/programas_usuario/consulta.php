@@ -6,7 +6,7 @@
 		
 		// testar permissao
 		require_once '../../../util/permissao.php';
-		$perm = testarPermissao('INCLUIR CADASTRO DE PERMISSOES');
+		$perm = testarPermissao('INCLUIR PROGRAMAS DO USUARIO');
 
 ?>
 <!DOCTYPE html>
@@ -32,21 +32,21 @@
 		<!-- MENU -->
 		<?php
 		    require_once '../../sistema/menu/menu.php';
-		    require_once '../../sistema/sidebar/sidebar.php';
+			require_once '../../sistema/sidebar/sidebar.php';
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
 			<div class="container">
 				<div class="row">
 					<!-- SIDEBAR -->
-					<div class="col-md-2">
+					<div class="col-md-2">				
 					</div>
 					<!-- AREA DE CONTEUDO -->
 					<div id="conteudo" class="col-xs-12 col-md-10">
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Consulta de Permissões
+								Consulta de Permissões do Usuário
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
@@ -63,12 +63,14 @@
 											</div>
 										</div>
 									</div>
+									<input type="hidden" name="usuario" value="<?= $_GET['usuario'] ?>">
 								</form>
 								<!-- TABELA DE REGISTRO -->
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
 									<thead>
 										<tr>
-											<th>Descrição</th>
+											<th>Permissão</th>
+											<th class="hidden-xs">Valor</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -86,7 +88,8 @@
 										// Abrir conexao
 										$conexao = new Conexao();
 										
-										// Ler POST
+										// Ler GET
+										$id_usuario = $_GET['usuario'];
 										$pesquisa = tratarTexto($_GET['pesquisa']);
 										
 										// Se for passado referencia de alguma pagina, seta-lo como pesquisa
@@ -103,9 +106,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from permissoes order by descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select A.usuario, A.programa, A.valor, B.descricao from programas_usuario A join programas B on A.programa = B.id where A.usuario=" . $id_usuario . " order by B.descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from permissoes where descricao like '" . $pesquisa . "%' order by descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select A.usuario, A.programa, A.valor, B.descricao from programas_usuario A join programas B on A.programa = B.id where A.usuario=" . $id_usuario . " and B.descricao like '" . $pesquisa . "%' order by B.descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -114,17 +117,18 @@
 										$rows = pg_fetch_all($result);
 										if ($rows != null) {
 											foreach ($rows as $row) {
-												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
+												echo "<tr onclick=\"abrirCadastro('" . $row['usuario'] . "', '" . $row['programas'] . "');\">";
 												echo "<td>" . $row['descricao'] . "</td>";
+												echo "<td class=\"hidden-xs\">" . $row['valor'] . "</td>";
 												echo "</tr>";
 											}
 										}	
 									
 										// Paginaçao
 										if (empty($pesquisa)) {
-											$sql = "select count(*) as num from permissoes";
+											$sql = "select count(*) as num from programas_usuario where usuario=" . $id_usuario;
 										} else {
-											$sql = "select count(*) as num from permissoes where descricao like '" . $pesquisa . "%';";
+											$sql = "select count(A.*) as num from programas_usuario A join programas B on A.programas = B.id where A.usuario=" . $id_usuario . " and B.descricao like '" . $pesquisa . "%';"; 
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];
@@ -242,14 +246,14 @@
 						<div class="aviso">
 							<?php
 								if ($perm != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE PERMISSOES. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR PROGRAMAS DO USUARIO. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button onclick="redirecionar('cadastro.php', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
+								<button onclick="redirecionar('cadastro.php?usuario=<?= $id_usuario ?>', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									 Novo
 								</button>

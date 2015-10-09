@@ -73,17 +73,17 @@
 		<!-- MENU -->
 		<?php
 		    require_once '../../sistema/menu/menu.php';
+		    require_once '../../sistema/sidebar/sidebar.php';			
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
 			<div class="container">
 				<div class="row">
 					<!-- SIDEBAR -->
-					<div id="sidebar" class="col-md-3">
-						
+					<div class="col-md-2">
 					</div>
 					<!-- AREA DE CONTEUDO -->
-					<div id="conteudo" class="col-xs-12 col-md-9">
+					<div id="conteudo" class="col-xs-12 col-md-10">
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">

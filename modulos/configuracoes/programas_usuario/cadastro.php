@@ -6,9 +6,9 @@
 		
 		// Testar permissao
 		require_once '../../../util/permissao.php';
-		$perm_incluir = testarPermissao('INCLUIR PERMISSOES DO USUARIO');
-		$perm_alterar = testarPermissao('ALTERAR PERMISSOES DO USUARIO');
-		$perm_excluir = testarPermissao('EXCLUIR PERMISSOES DO USUARIO');
+		$perm_incluir = testarPermissao('INCLUIR PROGRAMAS DO USUARIO');
+		$perm_alterar = testarPermissao('ALTERAR PROGRAMAS DO USUARIO');
+		$perm_excluir = testarPermissao('EXCLUIR PROGRAMAS DO USUARIO');
 
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,7 @@
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from permissoes_usuario where usuario=" . $usuario . " and permissao=" . $permissao;
+				$sql = "select * from programas_usuario where usuario=" . $usuario . " and permissao=" . $permissao;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -54,7 +54,7 @@
 				}
 
 				$usuario = $rows[0]['usuario'];
-				$permissao = $rows[0]['permissao'];
+				$programa = $rows[0]['programa'];
 				$valor = $rows[0]['valor'];
 				$_action = "alteracao";
 			}
@@ -63,7 +63,7 @@
 		<!-- MENU -->
 		<?php
 		    require_once '../../sistema/menu/menu.php';
-		    require_once '../../sistema/sidebar/sidebar.php';
+			require_once '../../sistema/sidebar/sidebar.php';
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
@@ -101,15 +101,15 @@
 									    <input type="text" class="form-control" id="nome_usuario" autocomplete="off" value="<?= $usuario ?>" autofocus <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
-										<label for="permissao">Permissão: <span class="label label-danger">Obrigatório</span></label>
-									    <input type="text" class="form-control" id="nome_permissao" autocomplete="off" value="<?= $permissao ?>" <?php permissao(); ?>>
+										<label for="programa">Permissão: <span class="label label-danger">Obrigatório</span></label>
+									    <input type="text" class="form-control" id="nome_programa" autocomplete="off" value="<?= $programa ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
 										<input type="text" class="form-control" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?> required>
 									</div>
 									<input type="hidden" id="usuario" name="usuario" value="<?= $usuario ?>">
-									<input type="hidden" id="permissao" name="permissao" value="<?= $permissao ?>">
+									<input type="hidden" id="programa" name="programa" value="<?= $programa ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>
@@ -118,18 +118,18 @@
 						<div class="aviso">
 							<?php
 								if ($_action == 'inclusao' && $perm_incluir != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR PERMISSOES DO USUARIO. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR PROGRAMAS DO USUARIO. Solicite ao administrador a liberação.');</script>";
 								}
 								
 								if ($_action == 'alteracao' && $perm_alterar != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: ALTERAR PERMISSOES DO USUARIO. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR PROGRAMAS DO USUARIO. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#usuario');" <?php permissao(); ?>>
+								<button class="btn btn-success mob-btn-block <?php programa(); ?>" onclick="submit('#usuario');" <?php programa(); ?>>
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
