@@ -56,7 +56,20 @@
 						
 						echo '</li>';
 						
+					// Módulo do usuário
+					$usuario = pg_fetch_all($conexao->query("select * from usuarios where id=" . $_SESSION['id']))[0]['login'];
+						
 					echo '
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> ' . $usuario . '<b class="badge" style="float: right; margin-left: 10px; background:#f00">5</b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Trocar Senha</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/login.php"><span class="glyphicon glyphicon-off"></span> Sair</a></li>
+							</ul>
+						</li>
 					</ul>
 					<!-- PESQUISA -->
 					<form class="navbar-form navbar-right" role="search">
