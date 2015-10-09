@@ -1,7 +1,7 @@
 <?php
 		echo '
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="container">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
 					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-navbar">
@@ -61,7 +61,7 @@
 					<!-- PESQUISA -->
 					<form class="navbar-form navbar-right" role="search">
 						<div class="input-group">
-							<input class="form-control" type="text" placeholder="Pesquisar">
+							<input class="form-control" type="text" placeholder="Pesquisar" id="pesquisa_menu">
 							<span class="input-group-btn">
 								<button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></button>
 							</span>

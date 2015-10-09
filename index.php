@@ -25,19 +25,17 @@
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
 	<body>
-		<!-- MENU -->
+		<!-- MENU/SIDEBAR -->
 		<?php
-		    require_once 'util/arquivo.php';
-			
-			import("modulos/sistema/menu/menu.php");
+		    require_once 'modulos/sistema/menu/menu.php';
+			require_once 'modulos/sistema/sidebar/sidebar.php';
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
 			<div class="container">
 				<div class="row">
 					<!-- SIDEBAR -->
-					<div id="sidebar" class="col-md-3">
-						
+					<div class="col-md-3">
 					</div>
 					<!-- AREA DE CONTEUDO -->
 					<div id="conteudo" class="col-md-9">

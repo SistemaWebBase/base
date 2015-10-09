@@ -161,11 +161,25 @@ function adicionarMascaras() {
 	
 }
 
+/* abrir submenu */
+function abrirSubmenu(menu) {
+	$(".sidebar-dropdown:not(" + menu + ") ul").slideUp(0);
+	$(".sidebar-dropdown:not(" + menu + ")").removeClass("sidebar-dropdown-active");
+	$(menu + " ul").slideToggle(100);
+	
+	if (! $(menu).hasClass("sidebar-dropdown-active")) {
+		$(menu).addClass("sidebar-dropdown-active");
+	} else {
+		$(menu).removeClass("sidebar-dropdown-active");
+	}
+	
+}
+
 /**********/
 $(document).ready(function () {
 	adicionarMascaras();
 });
 
-$("#txtNome").blur(function(){
+/*$("#txtNome").blur(function(){
     alert("O input perdeu o foco.");
-});
+});*/

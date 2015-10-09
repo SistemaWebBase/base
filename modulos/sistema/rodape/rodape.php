@@ -40,7 +40,7 @@
 				</div>
 				<!-- COPYRIGHT -->
 				<div class="hidden-xs col-md-4">
-					<span class="glyphicon glyphicon-copyright-mark"></span>THIAGO & RAPHAEL SISTEMAS <span class="glyphicon glyphicon-earphone"></span> <b>(65)9963-2977</b> / <b>(65)9602-0786</b>
+					<span class="glyphicon glyphicon-copyright-mark"></span> THIAGO & RAPHAEL SISTEMAS <span class="glyphicon glyphicon-earphone"></span> <b>(65)9963-2977</b> / <b>(65)9602-0786</b>
 				</div>
 			</div>
 		</div>
