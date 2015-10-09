@@ -49,9 +49,9 @@
 		<!-- RODAPE -->
 		<footer>
 			<div class="container">
-				<div class="row">
-					
-				</div>
+				<?php
+					require_once 'modulos/sistema/rodape/rodape.php';
+				?>
 			</div>
 		</footer>
 	</body>
