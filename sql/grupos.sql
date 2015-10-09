@@ -2,9 +2,7 @@
 create table if not exists grupos (
 	id serial not null,
 	grupo varchar(30) not null,
-	linha int not null default 0,
-	constraint PK_GRUPOS primary key (id),
-	constraint FK_GRUPOS_LINHAS foreign key (linha) references linhas(id)
+	constraint PK_GRUPOS primary key (id)
 );
 
 /* TRIGGER DA LOG */
