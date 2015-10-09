@@ -166,4 +166,6 @@ $(document).ready(function () {
 	adicionarMascaras();
 });
 
-
+$("#txtNome").blur(function(){
+    alert("O input perdeu o foco.");
+});
