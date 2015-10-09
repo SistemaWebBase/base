@@ -1,4 +1,4 @@
-/* criar tabela de municipios */
+/* criar tabela de usuários */
 create table if not exists log.usuarios (
 	/* campos originais da tabela */
 	id int not null,
