@@ -8,7 +8,6 @@
 						<span class="glyphicon glyphicon-home"></span>
 				';
 				
-	require_once 'util/conexao.php';
 	$conexao = new Conexao();
 	
 	// Empresa
