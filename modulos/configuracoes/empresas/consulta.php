@@ -6,7 +6,7 @@
 		
 		// testar permissao
 		require_once '../../../util/permissao.php';
-		$perm = testarPermissao('INCLUIR PERMISSOES DO USUARIO');
+		$perm = testarPermissao('INCLUIR CADASTRO DE EMPRESAS');
 
 ?>
 <!DOCTYPE html>
@@ -46,7 +46,7 @@
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Consulta de Permissões do Usuário
+								Consulta de Empresas
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
@@ -68,8 +68,9 @@
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
 									<thead>
 										<tr>
-											<th>Permissão</th>
-											<th class="hidden-xs">Valor</th>
+											<th>Razão Social</th>
+											<th>CNPJ</th>
+											<th class="hidden-xs">IE</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -104,9 +105,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select A.permissao, A.valor, B.descricao from permissoes_usuario A join permissoes B on A.permissao = B.id order by B.descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from empresas order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select A.permissao, A.valor, B.descricao from permissoes_usuario A join permissoes B on A.permissao = B.id order by B.descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from empresas where razaosocial like '" . $pesquisa . "%' order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -115,18 +116,19 @@
 										$rows = pg_fetch_all($result);
 										if ($rows != null) {
 											foreach ($rows as $row) {
-												echo "<tr onclick=\"abrirCadastro('" . $row['permissao'] . "');\">";
-												echo "<td>" . $row['descricao'] . "</td>";
-												echo "<td class=\"hidden-xs\">" . $row['valor'] . "</td>";
+												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
+												echo "<td>" . $row['razaosocial'] . "</td>";
+												echo "<td>" . $row['cnpj'] . "</td>";
+												echo "<td class=\"hidden-xs\">" . $row['ie'] . "</td>";
 												echo "</tr>";
 											}
 										}	
 									
 										// Paginaçao
 										if (empty($pesquisa)) {
-											$sql = "select count(*) as num from permissoes_usuario";
+											$sql = "select count(*) as num from empresas";
 										} else {
-											$sql = "select count(*) as num from permissoes_usuario where usuario like " . $pesquisa . "%;";
+											$sql = "select count(*) as num from empresas where razaosocial like '" . $pesquisa . "%';";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];
@@ -244,7 +246,7 @@
 						<div class="aviso">
 							<?php
 								if ($perm != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR PERMISSOES DO USUARIO. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE EMPRESAS. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>
@@ -262,7 +264,7 @@
 			</div>
 		</div>
 		<!-- RODAPE -->
-		<footer>
+        <footer>
 			<div class="container">
 				<?php
 					require_once '../../sistema/rodape/rodape.php';

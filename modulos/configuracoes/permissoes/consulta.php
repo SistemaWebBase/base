@@ -31,9 +31,7 @@
 	<body>
 		<!-- MENU -->
 		<?php
-		    require_once '../../../util/arquivo.php';
-			
-			import("../../sistema/menu/menu.php");
+		    require_once '../../sistema/menu/menu.php';
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
@@ -264,9 +262,9 @@
 		<!-- RODAPE -->
 		<footer>
 			<div class="container">
-				<div class="row">
-					
-				</div>
+				<?php
+					require_once '../../sistema/rodape/rodape.php';
+				?>
 			</div>
 		</footer>
 	</body>
