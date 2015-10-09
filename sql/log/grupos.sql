@@ -3,7 +3,6 @@ create table if not exists log.grupos (
 	/* campos originais da tabela */
 	id int not null,
 	grupo varchar(30) not null,
-	linha int not null default 0,
 	/* campos da log */
 	log_tipo char(1) not null,
 	log_usuario text not null,

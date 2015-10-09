@@ -6,16 +6,16 @@ create table if not exists linhas (
 );
 
 /* TRIGGER DA LOG */
-create function gravar_log_modulos() returns trigger as $gravar_log_modulos$
+create function gravar_log_linhas() returns trigger as $gravar_log_linhas$
 begin
 	/* INCLUSAO */
 	if (TG_OP = 'INSERT') then
-		insert into log.modulos select NEW.*, 'I', current_setting('sistemaweb.usuario'),  current_setting('sistemaweb.pagina');
+		insert into log.linhas select NEW.*, 'I', current_setting('sistemaweb.usuario'),  current_setting('sistemaweb.pagina');
 		return NEW; 
 	end if;
 	/* ALTERACAO */
 	if (TG_OP = 'UPDATE') then
-		insert into log.modulos select OLD.*, 'A', current_setting('sistemaweb.usuario'), current_setting('sistemaweb.pagina');
+		insert into log.linhas select OLD.*, 'A', current_setting('sistemaweb.usuario'), current_setting('sistemaweb.pagina');
 		insert into log.linhas select NEW.*, 'D', current_setting('sistemaweb.usuario'), current_setting('sistemaweb.pagina');
 		return NEW;
 	end if;

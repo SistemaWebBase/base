@@ -2,7 +2,7 @@
 create table if not exists subgrupos (
 	id serial not null,
 	subgrupo varchar(30) not null,
-	grupo int not null default 0,
+	grupo int not null,
 	constraint PK_SUBGRUPOS primary key (id),
 	constraint FK_SUBGRUPOS_GRUPOS foreign key (grupo) references grupos(id)
 	 
