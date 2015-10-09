@@ -54,6 +54,7 @@
 			
 				$id = $rows[0]['id'];
 				$descricao = $rows[0]['descricao'];
+				$nivel = $rows[0]['nivel'];
 				$observacao = $rows[0]['observacao'];
 				$_action = "alteracao";
 			}
@@ -99,7 +100,23 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" autofocus <?php permissao(); ?>>
+										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" autofocus <?php permissao(); ?> required>
+									</div>
+									<div class="form-group col-md-3">
+										<label for="nivel">Nível: </label>
+										<select class="form-control" id="nivel" name="nivel" <?php permissao(); ?>>
+										<?php
+											$nivels = array('01', '02', '03', '04', '05');
+									
+											foreach($nivels as $u) {
+												if ($u == $nivel) {
+													echo '<option value="' . $u . '" selected>' . $u . '</option>';
+												} else {
+													echo '<option value="' . $u . '">' . $u . '</option>';
+												}
+											}
+										?>
+										</select>
 									</div>
 									<div class="form-group col-md-12">
 										<label for="observacao">Observação: </label>

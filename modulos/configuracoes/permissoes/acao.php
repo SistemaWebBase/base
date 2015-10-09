@@ -24,9 +24,9 @@
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {
-         case "inclusao": $nperm = "INCLUIR CADASTRO DE MUNICIPIOS";break;
-         case "alteracao": $nperm = "ALTERAR CADASTRO DE MUNICIPIOS";break;
-         case "exclusao": $nperm = "EXCLUIR CADASTRO DE MUNICIPIOS";break;
+         case "inclusao": $nperm = "INCLUIR CADASTRO DE PERMISSOES";break;
+         case "alteracao": $nperm = "ALTERAR CADASTRO DE PERMISSOES";break;
+         case "exclusao": $nperm = "EXCLUIR CADASTRO DE PERMISSOES";break;
    }
    
    $perm = testarPermissao($nperm);
@@ -40,6 +40,7 @@
    // acao         
    $id = $_POST['id'];
    $descricao = tratarTexto($_POST['descricao']);
+   $nivel = $_POST['nivel'];
    $observacao = tratarTexto($_POST['observacao']);
    $_action = $_POST['_action'];
    
@@ -65,29 +66,19 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into permissoes (descricao, observacao) values ('" . $descricao . "', '" . $observacao. "');";
+         $sql = "insert into permissoes (descricao, nivel, observacao) values ('" . $descricao . "', " . $nivel . ", '" . $observacao. "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update permissoes set descricao='" . $descricao . "',observacao='" . $observacao . "' where id=" . $id;
+         $sql = "update permissoes set descricao='" . $descricao . "',nivel=" . $nivel . ",observacao='" . $observacao . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from permissoes where id=" . $id;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-         echo $sql;
-          
-        
+         $sql = "delete from permissoes where id=" . $id;       
          $msg1 = "excluir";
          $msg2 = "excluído";
    }
@@ -103,7 +94,7 @@
    
    if ($flag == 1) {
          http_response_code(400);
-         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte.";
+         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte." . $sql;
          return;
    }
 

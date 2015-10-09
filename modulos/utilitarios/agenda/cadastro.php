@@ -108,19 +108,15 @@
 								<form role="form">
 									<div class="form-group col-md-6">
 										<label for="razaosocial">Nome: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="60" value="<?= $razaosocial ?>" autofocus <?php permissao(); ?>>
+										<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="60" value="<?= $razaosocial ?>" autofocus <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="endereco">Endereço: </label>
 										<input type="text" class="form-control" id="endereco" name="endereco" autocomplete="off" maxlength="60" value="<?= $endereco ?>" <?php permissao(); ?>>
 									</div>
-									<div class="form-group col-md-4">
+									<div class="form-group col-md-6">
 										<label for="bairro">Bairro: </label>
 										<input type="text" class="form-control" id="bairro" name="bairro" autocomplete="off" maxlength="60" value="<?= $bairro ?>" <?php permissao(); ?>>
-									</div>
-									<div class="form-group col-md-2">
-										<label for="cep">CEP: </label>
-									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" value="<?= $cep ?>" <?php permissao(); ?>>
 									</div>
 									<div class="form-group col-md-6">
 										<div class="row">
@@ -140,8 +136,12 @@
 										</div>
 									</div>
 									<div class="form-group col-md-4">
+										<label for="cep">CEP: </label>
+									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" value="<?= $cep ?>" <?php permissao(); ?>>
+									</div>
+									<div class="form-group col-md-4">
 										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" value="<?= $telefone ?>" <?php permissao(); ?>>
+										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" value="<?= $telefone ?>" <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-4">
 										<label for="celular">Celular: </label>
@@ -153,8 +153,7 @@
 									</div>
 									<div class="form-group col-md-12">
 										<label for="observacoes">Observações: </label>
-										<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>" <?php permissao(); ?>>
-										</textarea>
+										<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>" <?php permissao(); ?>></textarea>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

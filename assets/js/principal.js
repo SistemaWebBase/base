@@ -149,6 +149,16 @@ function adicionarMascaras() {
 		$(".cep").mask("00000-000");
 	}
 	
+	//CPF
+	if (typeof $(".cpf").mask == 'function') {
+		$(".cpf").mask("000.000.000-00");
+	}
+	
+	//CNPJ
+	if (typeof $(".cnpj").mask == 'function') {
+       $(".cnpj").mask("00.000.000/0000-00");
+	}
+	
 }
 
 /**********/
@@ -156,19 +166,6 @@ $(document).ready(function () {
 	adicionarMascaras();
 });
 
-function Enum(num){
-	if (document.all)
-		var tecla = event.keyCode;
-	else if(document.layers)
-		var tecla = num.which;
-		if (tecla > 47 && tecla < 58)
-			return true;
-		else
-			{
-				if (tecla != 8)
-					event.keyCode = 0;
-				else
-					return true;
-			}
-}
-
+$("#txtNome").blur(function(){
+    alert("O input perdeu o foco.");
+});
