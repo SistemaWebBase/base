@@ -105,9 +105,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from modulos order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from modulos order by indice limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from modulos where nome like '" . $pesquisa . "%' order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from modulos where nome like '" . $pesquisa . "%' order by indice limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);

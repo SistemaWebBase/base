@@ -2,8 +2,8 @@
 create table if not exists log.modulos (
 	/* campos originais da tabela */
 	id int not null,
-	nome varchar(20) not null,
-	pasta varchar(20) not null,
+	nome varchar(40) not null,
+	pasta varchar(40) not null,
 	indice int not null,
 	nivel int ,
 	/* campos da log */

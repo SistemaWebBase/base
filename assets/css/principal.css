@@ -74,6 +74,13 @@ textarea {
     resize: none;
 }
 
+/* notificacao */
+.notificacao {
+	background: #e74c3c;
+	float: right;
+	margin-left: 15px;
+}
+
 /* rodape */
 .rodape {
 	font-size: 13px;
