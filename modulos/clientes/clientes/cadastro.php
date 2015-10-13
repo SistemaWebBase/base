@@ -177,7 +177,7 @@
 												<div class="col-md-4">
 													<label for="municipio_entrega">Código: </label >
 													<div class="input-group">
-														<input type="numeric" pattern="[0-9]*" class="form-control numero" id="municipio_entrega" name="municipio_entrega" autocomplete="off" value="<?= $municipio_entrega ?>" onblur="consultarMunicipio('#municipio_entrega', '#nome_municipio_entrega');" <?php permissao(); ?>>
+														<input type="numeric" pattern="[0-9]*" class="form-control" data-mask="000000" id="municipio_entrega" name="municipio_entrega" autocomplete="off" value="<?= $municipio_entrega ?>" onblur="consultarMunicipio('#municipio_entrega', '#nome_municipio_entrega');" <?php permissao(); ?>>
 														<span class="input-group-btn">
 															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/municipios/consulta.php', '<?= time() . '&target=municipio_entrega'; ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>
@@ -230,7 +230,7 @@
 												<div class="col-md-4">
 													<label for="municipio_cobranca">Código: </label >
 													<div class="input-group">
-														<input type="numeric" pattern="[0-9]*" class="form-control cobranca numero" id="municipio_cobranca" name="municipio_cobranca" autocomplete="off" value="<?= $municipio_cobranca ?>" onblur="consultarMunicipio('#municipio_cobranca', '#nome_municipio_cobranca');" <?php permissao(); ?>>
+														<input type="numeric" pattern="[0-9]*" class="form-control cobranca" data-mask="000000" id="municipio_cobranca" name="municipio_cobranca" autocomplete="off" value="<?= $municipio_cobranca ?>" onblur="consultarMunicipio('#municipio_cobranca', '#nome_municipio_cobranca');" <?php permissao(); ?>>
 														<span class="input-group-btn">
 															<button class="btn btn-primary cobranca" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/municipios/consulta.php', '<?= time() . '&target=municipio_cobranca'; ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>

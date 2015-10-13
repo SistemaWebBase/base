@@ -101,6 +101,13 @@ function adicionarMascaras() {
 	if (typeof $(".cnpj").mask == 'function') {
        $(".cnpj").mask("00.000.000/0000-00");
 	}
+	
+	// Mascara persolizado
+	$('body').find('input[data-mask]').each(function() {
+		if (typeof $(this).mask == 'function') {
+			$(this).mask($(this).attr('data-mask'));
+		}
+	});
 
 }
 
