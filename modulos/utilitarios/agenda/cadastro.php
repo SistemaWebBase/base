@@ -9,6 +9,10 @@
 		$perm_incluir = testarPermissao('INCLUIR CONTATO NA AGENDA');
 		$perm_alterar = testarPermissao('ALTERAR CONTATO DA AGENDA');
 		$perm_excluir = testarPermissao('EXCLUIR CONTATO DA AGENDA');
+		
+		// Testar assinatura da URL
+		require_once '../../../util/util.php';
+		testarAssinaturaURL();
 
 ?>
 <!DOCTYPE html>

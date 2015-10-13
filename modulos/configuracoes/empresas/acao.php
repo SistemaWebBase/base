@@ -25,16 +25,16 @@
    }
    
    // acao         
-   $id = $_POST['id'];
+   $id = (int)$_POST['id'];
    $cnpj = tratarNumero($_POST['cnpj']);
    $ie = tratarNumero($_POST['ie']);   
-   $im = $_POST['im'];   
+   $im = trarTexto($_POST['im']);   
    $razaosocial = tratarTexto($_POST['razaosocial']);   
    $nomefantasia = tratarTexto($_POST['nomefantasia']);   
    $endereco = tratarTexto($_POST['endereco']);   
    $bairro = tratarTexto($_POST['bairro']);   
    $cep = tratarNumero($_POST['cep']);   
-   $municipio = $_POST['municipio'];
+   $municipio = (int)$_POST['municipio'];
    $telefone = tratarNumero($_POST['telefone']);   
    $fax = tratarNumero($_POST['fax']);   
    

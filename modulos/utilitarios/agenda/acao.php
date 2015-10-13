@@ -25,7 +25,7 @@
    
    // acao   
    $razaosocial = tratarTexto($_POST['razaosocial']);
-   $id = $_POST['id'];
+   $id = (int)$_POST['id'];
    $endereco = tratarTexto($_POST['endereco']);
    $bairro = tratarTexto($_POST['bairro']);
    $cep = tratarNumero($_POST['cep']);

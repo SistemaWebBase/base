@@ -25,9 +25,9 @@
    }
    
    // acao         
-   $id = $_POST['id'];
-   $usuario = $_POST['usuario'];
-   $permissao = $_POST['permissao'];   
+   $id = (int)$_POST['id'];
+   $usuario = (int)$_POST['usuario'];
+   $permissao = (int)$_POST['permissao'];   
    $valor = tratarTexto($_POST['valor']);
    $_action = $_POST['_action'];
    

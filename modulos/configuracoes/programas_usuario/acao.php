@@ -25,9 +25,9 @@
    }
    
    // acao         
-   $id = $_POST['id'];
-   $usuario = $_POST['usuario'];
-   $programa = $_POST['programa'];   
+   $id = (int)$_POST['id'];
+   $usuario = (int)$_POST['usuario'];
+   $programa = (int)$_POST['programa'];   
    $valor = tratarTexto($_POST['valor']);
    $_action = $_POST['_action'];
    

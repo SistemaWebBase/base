@@ -37,19 +37,19 @@
    }
    
    // acao   
-   $id = $_POST['id'];
+   $id = (int)$_POST['id'];
    $login = tratarTexto($_POST['login']);
-   $senha = $_POST['senha'];
-   $confirmacao_senha = $_POST['confirmacao_senha'];
+   $senha = pg_escape_string($_POST['senha']);
+   $confirmacao_senha = pg_escape_string($_POST['confirmacao_senha']);
    $nome = tratarTexto($_POST['nome']);
-   $modelo = $_POST['modelo'];
-   $empresa = $_POST['empresa'];
-   $nivel = $_POST['nivel'];
-   $externo = $_POST['externo'];
-   $mobile = $_POST['mobile'];
+   $modelo = (int)$_POST['modelo'];
+   $empresa = (int)$_POST['empresa'];
+   $nivel = (int)$_POST['nivel'];
+   $externo = tratarTexto($_POST['externo']);
+   $mobile = tratarTexto($_POST['mobile']);
    $telefone = tratarNumero($_POST['telefone']);
-   $ramal = $_POST['ramal'];
-   $bloqueado = $_POST['bloqueado'];
+   $ramal = tratarNumero($_POST['ramal']);
+   $bloqueado = tratarTexto($_POST['bloqueado']);
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
    

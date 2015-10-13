@@ -104,7 +104,7 @@
 										
 										// Se for passado referencia de alguma pagina, seta-lo como pesquisa
 										if (! empty(tratarTexto($_GET['_ref']))) {
-											$pesquisa = $_GET['_ref'];
+											$pesquisa = tratarTexto($_GET['_ref']);
 										}
 										
 										// Ler GET
@@ -133,7 +133,7 @@
 												} else if (! empty($_GET['link']) && ! empty($_GET['target'])) {
 													echo "<tr onclick=\"selecionarCadastro('" . $row['id'] . "', '" . $_GET['link'] . "&target=" . $_GET['target'] . "');\">";
 												} else {
-													echo "<tr onclick=\"abrirCadastro('" . $row['id'] . "');\">";
+													echo "<tr onclick=\"abrirCadastro('" . $row['id'] . "', '" . assinarParametros('id=' . $row['id']) . "');\">";
 												}
 												echo "<td>" . $row['municipio'] . "</td>";
 												echo "<td>" . $row['uf'] . "</td>";

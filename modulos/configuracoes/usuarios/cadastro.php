@@ -9,6 +9,10 @@
 		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE USUARIOS');
 		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE USUARIOS');
 		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE USUARIOS');
+		
+		// Testar assinatura da URL
+		require_once '../../../util/util.php';
+		testarAssinaturaURL();
 
 ?>
 <!DOCTYPE html>
@@ -248,7 +252,7 @@
 								<?php
 									if ($_action == "alteracao") {
 										echo '
-										<button class="btn btn-primary mob-btn-block" onclick="permissoes();">
+										<button class="btn btn-primary mob-btn-block" onclick="permissoes(\'' . assinarParametros('usuario=' . $_GET['id']) .  '\');">
 											<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
 									 		Permissões
 										</button>

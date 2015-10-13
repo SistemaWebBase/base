@@ -10,7 +10,10 @@
 		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE EMPRESAS');
 		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE EMPRESAS');
 
-
+		// Testar assinatura da URL
+		require_once '../../../util/util.php';
+		testarAssinaturaURL();
+		
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,7 +1,7 @@
 <?php
 
 function tratarTexto($texto) {
-	return strtoupper(str_replace("'", "", trim($texto)));
+	return pg_escape_string(strtoupper(str_replace("'", "", trim($texto))));
 }
 
 function tratarNumero($texto) {
@@ -114,6 +114,36 @@ function validarCnpj($cnpj) {
 	
 	return TRUE;
 	
+}
+
+// Assinar URL
+function assinarURL() {
+	$query = explode("&token=", $_SERVER['QUERY_STRING'])[0];
+	return sha1($query . $_SESSION['checksum'] . '/SIGNATURE');
+}
+
+function assinarParametros($param) {
+	return sha1($param . $_SESSION['checksum'] . '/SIGNATURE');
+}
+
+function testarAssinaturaURL() {
+	// nao testar quando nao tiver parametros
+	if (empty($_SERVER['QUERY_STRING'])) {
+		return TRUE;
+	}
+	
+	if (empty(explode("link=", $_SERVER['QUERY_STRING'])[0]) || explode("link=", $_SERVER['QUERY_STRING'])[0] == "?") {
+		return TRUE;
+	}
+	
+	$token = $_GET['token'];
+	if (assinarURL() != $token) {
+		
+	    // echo "<script>window.location.href='/'</script>";
+		return FALSE;
+	} else {
+		return TRUE;
+	}
 }
 
 

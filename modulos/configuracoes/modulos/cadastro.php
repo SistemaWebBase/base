@@ -9,6 +9,10 @@
 		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE MODULOS');
 		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE MODULOS');
 		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE MODULOS');
+		
+		// Testar assinatura da URL
+		require_once '../../../util/util.php';
+		testarAssinaturaURL();
 
 ?>
 <!DOCTYPE html>
