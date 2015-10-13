@@ -109,7 +109,7 @@
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from clientess where id=" . $id;
+         $sql = "delete from clientes where id=" . $id;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }
