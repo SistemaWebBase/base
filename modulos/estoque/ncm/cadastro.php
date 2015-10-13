@@ -96,32 +96,36 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<!-- NCM -->
-									<div class="form-group col-md-6">
-										<label for="ncm">NCM: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control no-uppercase" id="ncm" name="ncm" autocomplete="off" maxlength="60" value="<?= $ncm ?>" autofocus <?php permissao(); ?> required>
+									<div class="row">
+									    <!-- NCM -->
+									    <div class="form-group col-md-6">
+										    <label for="ncm">NCM: <span class="label label-danger">Obrigatório</span></label>
+    										<input type="text" class="form-control no-uppercase" id="ncm" name="ncm" autocomplete="off" maxlength="60" value="<?= $ncm ?>" autofocus <?php permissao(); ?> required>
+	    								</div>
+		    							<!-- MONOFASICO -->
+			    						<div class="form-group col-md-3">
+				    						<label for="monofasico">Monofasico: </label>
+					    					<select class="form-control" id="monofasico" name="monofasico" <?php permissao(); ?>>
+						    				<?php
+							    				$externo_a = array('N', 'S');
+								   			
+									    		foreach($externo_a as $e) {
+										    		if ($e == $externo) {
+											    		echo '<option value="' . $e . '" selected>' . (($e == "S") ? "SIM" : "NÃO") . '</option>'; 
+												    } else {
+													    echo '<option value="' . $e . '">' . (($e == "S") ? "SIM" : "NÃO") . '</option>';
+   		    										}
+	    										}
+			    							?>
+				    						</select>
+					    				</div>
 									</div>
-									<!-- DESCRICAO -->
-									<div class="form-group col-md-6">
-										<label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control no-uppercase" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
-									</div>
-									<!-- MONOFASICO -->
-									<div class="form-group col-md-3">
-										<label for="monofasico">Monofasico: </label>
-										<select class="form-control" id="monofasico" name="monofasico" <?php permissao(); ?>>
-										<?php
-											$externo_a = array('N', 'S');
-											
-											foreach($externo_a as $e) {
-												if ($e == $externo) {
-													echo '<option value="' . $e . '" selected>' . (($e == "S") ? "SIM" : "NÃO") . '</option>'; 
-												} else {
-													echo '<option value="' . $e . '">' . (($e == "S") ? "SIM" : "NÃO") . '</option>';
-												}
-											}
-										?>
-										</select>
+									<div class="row">
+									    <!-- DESCRICAO -->
+									    <div class="form-group col-md-6">
+										    <label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
+    										<input type="text" class="form-control no-uppercase" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
+	    								</div>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

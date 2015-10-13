@@ -6,9 +6,9 @@
 		
 		// Testar permissao
 		require_once '../../../util/permissao.php';
-		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE MODULOS');
-		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE MODULOS');
-		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE MODULOS');
+		$perm_incluir = testarPermissao('INCLUIR PARAMETRO DO SISTEMA');
+		$perm_alterar = testarPermissao('ALTERAR PARAMETRO DO SISTEMA');
+		$perm_excluir = testarPermissao('EXCLUIR PARAMETRO DO SISTEMA');
 
 ?>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from modulos where id=" . $id;
+				$sql = "select * from parametros_sistema where id=" . $id;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -53,10 +53,9 @@
 				}
 			
 				$id = $rows[0]['id'];
-				$nome = $rows[0]['nome'];
-				$pasta = $rows[0]['pasta'];
-				$indice = $rows[0]['indice'];
-				$nivel = $rows[0]['nivel'];
+				$chave = $rows[0]['chave'];
+				$valor = $rows[0]['valor'];
+				$observacoes = $rows[0]['obsevacoes'];
 				$_action = "alteracao";
 			}
 			
@@ -78,7 +77,7 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Cadastro de Módulos
+								Cadastro de Parâmetros do Sistema
 							</div>
 							<!-- REGRAS DE PERMISSAO -->
 							<?php
@@ -97,33 +96,24 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class="form-group col-md-6">
-										<label for="nome">Nome do Módulo: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control no-uppercase" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
+									<div class="row">
+									    <!-- CHAVE -->
+									    <div class="form-group col-md-6">
+										    <label for="chave">Chave: <span class="label label-danger">Obrigatório</span></label>
+    										<input type="text" class="form-control no-uppercase" id="chave" name="chave" autocomplete="off" maxlength="60" value="<?= $chave ?>" autofocus <?php permissao(); ?> required>
+	    								</div>
+		    							<!-- VALOR -->
+			    						<div class="form-group col-md-6">
+				    						<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
+					    					<input type="text" class="form-control no-uppercase" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?> required>
+						    			</div>
 									</div>
-									<div class="form-group col-md-6">
-										<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control no-uppercase" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?> required>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="indice">Índice: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>" <?php permissao(); ?> required>
-									</div>
-									<div class="form-group col-md-3">
-										<label for="nivel">Nível: </label>
-										<select class="form-control" id="nivel" name="nivel" <?php permissao(); ?>>
-										<?php
-											$nivels = array('01', '02', '03', '04', '05');
-									
-											foreach($nivels as $u) {
-												if ($u == $nivel) {
-													echo '<option value="' . $u . '" selected>' . $u . '</option>';
-												} else {
-													echo '<option value="' . $u . '">' . $u . '</option>';
-												}
-											}
-										?>
-										</select>
+									<div class="row">
+						    			<!-- OBSERVACOES -->
+							    		<div class="form-group col-md-12">
+								     		<label for="observacoes">Observações: </label>
+									     	<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>" <?php permissao(); ?>></textarea>
+									    </div>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
@@ -134,11 +124,11 @@
 						<div class="aviso">
 							<?php
 								if ($_action == 'inclusao' && $perm_incluir != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE MODULOS. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR PARAMETRO DO SISTEMA. Solicite ao administrador a liberação.');</script>";
 								}
 								
 								if ($_action == 'alteracao' && $perm_alterar != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE MODULOS. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR PARAMETRO DO SISTEMA. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>

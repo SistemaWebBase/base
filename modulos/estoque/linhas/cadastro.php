@@ -94,7 +94,7 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class=row>
+									<div class="row">
 							        	<!-- LINHA -->
 							    		<div class="form-group col-md-6">
 									        <label for="linha">Nome da Linha: <span class="label label-danger">Obrigatório</span></label>

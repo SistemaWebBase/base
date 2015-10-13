@@ -95,13 +95,17 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class="form-group col-md-6">
-										<label for="subgrupo">Nome do Subgrupo: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control no-uppercase" id="subgrupo" name="subgrupo" autocomplete="off" maxlength="60" value="<?= $subgrupo ?>" autofocus <?php permissao(); ?> required>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="grupo">Grupo: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="grupo" name="grupo" autocomplete="off" min="0" max="999999" value="<?= $grupo ?>" <?php permissao(); ?>>
+									<div class="row">
+										<!-- SUBGRUPO -->
+									    <div class="form-group col-md-6">
+										    <label for="subgrupo">Nome do Subgrupo: <span class="label label-danger">Obrigatório</span></label>
+									    	<input type="text" class="form-control no-uppercase" id="subgrupo" name="subgrupo" autocomplete="off" maxlength="60" value="<?= $subgrupo ?>" autofocus <?php permissao(); ?> required>
+									    </div>
+										<!-- GRUPO -->
+									    <div class="form-group col-md-6">
+										    <label for="grupo">Grupo: <span class="label label-danger">Obrigatório</span></label>
+										    <input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="grupo" name="grupo" autocomplete="off" min="0" max="999999" value="<?= $grupo ?>" <?php permissao(); ?>>
+									    </div>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

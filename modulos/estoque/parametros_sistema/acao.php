@@ -11,9 +11,9 @@
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {
-         case "inclusao": $nperm = "INCLUIR CADASTRO DE MODULOS";break;
-         case "alteracao": $nperm = "ALTERAR CADASTRO DE MODULOS";break;
-         case "exclusao": $nperm = "EXCLUIR CADASTRO DE MODULOS";break;
+         case "inclusao": $nperm = "INCLUIR PARAMETRO DO SISTEMA";break;
+         case "alteracao": $nperm = "ALTERAR PARAMETRO DO SISTEMA";break;
+         case "exclusao": $nperm = "EXCLUIR PARAMETRO DO SISTEMA";break;
    }
    
    $perm = testarPermissao($nperm);
@@ -26,31 +26,24 @@
    
    // acao        
    $id = $_POST['id'];
-   $nome = $_POST['nome'];
-   $pasta = $_POST['pasta'];
-   $indice = $_POST['indice'];
-   $nivel = $_POST['nivel'];
+   $chave = $_POST['chave'];
+   $valor = $_POST['valor'];
+   $observacoes = $_POST['observacoes'];
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {
 
          // validar campos
-         if (empty($nome)) {
+         if (empty($chave)) {
 	         http_response_code(400);
-	         echo "Informe o nome do módulo.";
+	         echo "Informe a chave do parâmetro.";
 	         return;  
          }
    
-         if (empty($pasta)) {
+         if (empty($valor)) {
 	         http_response_code(400);
-	         echo "Informe a pasta do módulo.";
+	         echo "Informe o valor do parâmetro.";
        	   return;  
-         }
-   
-         if (empty($indice)) {
-	         http_response_code(400);
-	         echo "Informe o índice do módulo.";
-	         return;  
          }
       
    }
@@ -68,19 +61,19 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into modulos (nome, pasta, indice,nivel) values ('" . $nome . "', '" . $pasta . "', " . $indice . ", " . $nivel . ');';
+         $sql = "insert into parametros_sistema (chave, valor, observacoes) values ('" . $chave . "', '" . $valor . "', '" . $observacoes . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update modulos set nome='" . $nome . "',pasta='" . $pasta . "',indice=" . $indice . ",nivel=" . $nivel . " where id=" . $id;
+         $sql = "update parametros_sistema set chave='" . $chave . "',valor='" . $valor . "',observacoes='" . $observacoes . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from modulos where id=" . $id;
+         $sql = "delete from parametros_sistema where id=" . $id;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }

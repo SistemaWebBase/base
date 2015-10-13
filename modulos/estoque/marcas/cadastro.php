@@ -94,9 +94,12 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class="form-group col-md-6">
-										<label for="marca">Nome da Marca: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control no-uppercase" id="marca" name="marca" autocomplete="off" maxlength="60" value="<?= $marca ?>" autofocus <?php permissao(); ?> required>
+									<div class="row">
+									    <!-- MARCA -->
+									    <div class="form-group col-md-6">
+										    <label for="marca">Nome da Marca: <span class="label label-danger">Obrigatório</span></label>
+    										<input type="text" class="form-control no-uppercase" id="marca" name="marca" autocomplete="off" maxlength="60" value="<?= $marca ?>" autofocus <?php permissao(); ?> required>
+	    								</div>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

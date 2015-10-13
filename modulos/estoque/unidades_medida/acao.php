@@ -11,9 +11,9 @@
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {
-         case "inclusao": $nperm = "INCLUIR CADASTRO DE MODULOS";break;
-         case "alteracao": $nperm = "ALTERAR CADASTRO DE MODULOS";break;
-         case "exclusao": $nperm = "EXCLUIR CADASTRO DE MODULOS";break;
+         case "inclusao": $nperm = "INCLUIR CADASTRO DE UNIDADE DE MEDIDA";break;
+         case "alteracao": $nperm = "ALTERAR CADASTRO DE UNIDADE DE MEDIDA";break;
+         case "exclusao": $nperm = "EXCLUIR CADASTRO DE UNIDADE DE MEDIDA";break;
    }
    
    $perm = testarPermissao($nperm);
@@ -26,31 +26,23 @@
    
    // acao        
    $id = $_POST['id'];
-   $nome = $_POST['nome'];
-   $pasta = $_POST['pasta'];
-   $indice = $_POST['indice'];
-   $nivel = $_POST['nivel'];
+   $unidade = $_POST['unidade'];
+   $descricao = $_POST['descricao'];
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {
 
          // validar campos
-         if (empty($nome)) {
+         if (empty($unidade)) {
 	         http_response_code(400);
-	         echo "Informe o nome do módulo.";
+	         echo "Informe a sigla da unidade de medida.";
 	         return;  
          }
    
-         if (empty($pasta)) {
+         if (empty($descricao)) {
 	         http_response_code(400);
-	         echo "Informe a pasta do módulo.";
+	         echo "Informe a descrição.";
        	   return;  
-         }
-   
-         if (empty($indice)) {
-	         http_response_code(400);
-	         echo "Informe o índice do módulo.";
-	         return;  
          }
       
    }
@@ -68,19 +60,19 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into modulos (nome, pasta, indice,nivel) values ('" . $nome . "', '" . $pasta . "', " . $indice . ", " . $nivel . ');';
+         $sql = "insert into unidades_medida (unidade, descricao) values ('" . $unidade . "', '" . $descricao . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update modulos set nome='" . $nome . "',pasta='" . $pasta . "',indice=" . $indice . ",nivel=" . $nivel . " where id=" . $id;
+         $sql = "update unidades_medida set unidade='" . $unidade . "',descricao='" . $descricao . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from modulos where id=" . $id;
+         $sql = "delete from unidades_medida where id=" . $id;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }
