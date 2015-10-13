@@ -35,10 +35,10 @@
    }
    
    // acao
-   $id = $_POST['id'];
+   $id = (int)$_POST['id'];
    $municipio = tratarTexto($_POST['municipio']);
-   $uf = $_POST['uf'];
-   $ibge = $_POST['ibge'];
+   $uf = tratarTexto($_POST['uf']);
+   $ibge = (int)$_POST['ibge'];
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {

@@ -25,13 +25,13 @@
    }
    
    // acao   
-   $id = $_POST['id'];
-   $nome = $_POST['nome'];
-   $modulo = $_POST['modulo'];
-   $pasta = $_POST['pasta'];
-   $agrupamento = $_POST['agrupamento'];
-   $indice = $_POST['indice'];
-   $nivel = $_POST['nivel'];
+   $id = (int)$_POST['id'];
+   $nome = pg_escape_string($_POST['nome']);
+   $modulo = (int)$_POST['modulo'];
+   $pasta = pg_escape_string($_POST['pasta']);
+   $agrupamento = pg_escape_string($_POST['agrupamento']);
+   $indice = (int)$_POST['indice'];
+   $nivel = (int)$_POST['nivel'];
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {

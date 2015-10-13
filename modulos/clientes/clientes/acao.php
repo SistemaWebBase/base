@@ -24,10 +24,10 @@
    }
    
    // acao
-   $id = $_POST['id'];
+   $id = (int)$_POST['id'];
    $cnpj = tratarTexto($_POST['cnpj']);
    $ie = tratarTexto($_POST['ie']);
-   $im = $_POST['im'];
+   $im = tratarTexto($_POST['im']);
    $razaosocial = tratarTexto($_POST['razaosocial']);
    $nomefantasia = tratarTexto($_POST['nomefantasia']);
    $endereco_entrega = tratarTexto($_POST['endereco_entrega']);
@@ -42,8 +42,8 @@
    $municipio_cobranca = tratarNumero($_POST['municipio_cobranca']);
    $telefone_cobranca = tratarNumero($_POST['telefone_cobranca']);
    $celular_cobranca = tratarNumero($_POST['celular_cobranca']);
-   $email01 = $_POST['email01'];
-   $email02 = $_POST['email02'];
+   $email01 = pg_escape_string($_POST['email01']);
+   $email02 = pg_escape_string($_POST['email02']);
    $autorizado_comprar = tratarTexto($_POST['autorizado_comprar']);
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
@@ -109,7 +109,7 @@
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from clientess where id=" . $id;
+         $sql = "delete from clientes where id=" . $id;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }

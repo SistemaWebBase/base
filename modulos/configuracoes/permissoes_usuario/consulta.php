@@ -7,6 +7,10 @@
 		// testar permissao
 		require_once '../../../util/permissao.php';
 		$perm = testarPermissao('INCLUIR PERMISSOES DO USUARIO');
+		
+		// Testar assinatura da URL
+		require_once '../../../util/util.php';
+		testarAssinaturaURL();
 
 ?>
 <!DOCTYPE html>
@@ -94,7 +98,7 @@
 										
 										// Se for passado referencia de alguma pagina, seta-lo como pesquisa
 										if (! empty(tratarTexto($_GET['_ref']))) {
-											$pesquisa = $_GET['_ref'];
+											$pesquisa = tratarTexto($_GET['_ref']);
 										}
 										
 										// Ler GET
@@ -117,7 +121,7 @@
 										$rows = pg_fetch_all($result);
 										if ($rows != null) {
 											foreach ($rows as $row) {
-												echo "<tr onclick=\"abrirCadastro('" . $row['usuario'] . "', '" . $row['permissao'] . "');\">";
+												echo "<tr onclick=\"abrirCadastro('" . $row['usuario'] . "', '" . $row['permissao'] . "', '" . assinarParametros("usuario=" . $row['usuario'] . "&permissao=" . $row['permissao']) . "');\">";
 												echo "<td>" . $row['descricao'] . "</td>";
 												echo "<td class=\"hidden-xs\">" . $row['valor'] . "</td>";
 												echo "</tr>";

@@ -9,6 +9,10 @@
 		$perm_incluir = testarPermissao('INCLUIR CONTATO NA AGENDA');
 		$perm_alterar = testarPermissao('ALTERAR CONTATO DA AGENDA');
 		$perm_excluir = testarPermissao('EXCLUIR CONTATO DA AGENDA');
+		
+		// Testar assinatura da URL
+		require_once '../../../util/util.php';
+		testarAssinaturaURL();
 
 ?>
 <!DOCTYPE html>
@@ -153,8 +157,8 @@
 										<label for="observacoes">Observações: </label>
 										<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>" <?php permissao(); ?>></textarea>
 									</div>
-									<input type="hidden" name="id" value="<?= $id ?>">
-									<input type="hidden" name="_action" value="<?= $_action ?>">
+									<input type="hidden" id="id" name="id" value="<?= $id ?>">
+									<input type="hidden" id="_action" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>
 						</div>

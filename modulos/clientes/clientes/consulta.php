@@ -94,7 +94,7 @@
 										
 										// Se for passado referencia de alguma pagina, seta-lo como pesquisa
 										if (! empty(tratarTexto($_GET['_ref']))) {
-											$pesquisa = $_GET['_ref'];
+											$pesquisa = tratarTexto($_GET['_ref']);
 										}
 										
 										// Ler GET
@@ -117,7 +117,7 @@
 										$rows = pg_fetch_all($result);
 										if ($rows != null) {
 											foreach ($rows as $row) {
-												echo "<tr onclick=\"abrirCadastro('" . $row['id'] . "');\">";
+												echo "<tr onclick=\"abrirCadastro('" . $row['id'] . "', '" . assinarParametros('id=' . $row['id']) . "');\">";
 												echo "<td>" . $row['id'] . "</td>";
 												echo "<td>" . $row['razaosocial'] . "</td>";
 												echo "<td>" . $row['cnpj'] . "</td>";

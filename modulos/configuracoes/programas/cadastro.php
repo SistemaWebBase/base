@@ -9,6 +9,10 @@
 		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE PROGRAMAS');
 		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE PROGRAMAS');
 		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE PROGRAMAS');
+		
+		// Testar assinatura da URL
+		require_once '../../../util/util.php';
+		testarAssinaturaURL();
 
 ?>
 <!DOCTYPE html>

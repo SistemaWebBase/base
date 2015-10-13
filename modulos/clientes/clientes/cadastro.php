@@ -9,6 +9,10 @@
 		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE CLIENTES');
 		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE CLIENTES');
 		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE CLIENTES');
+		
+		// Testar assinatura da URL
+		require_once '../../../util/util.php';
+		testarAssinaturaURL();
 
 ?>
 <!DOCTYPE html>
@@ -278,8 +282,8 @@
 											<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>" <?php permissao(); ?>></textarea>
 										</div>
 									</div>
-									<input type="hidden" name="id" value="<?= $id ?>">
-									<input type="hidden" name="_action" value="<?= $_action ?>">
+									<input type="hidden" id="id" name="id" value="<?= $id ?>">
+									<input type="hidden" id="_action" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>
 						</div>

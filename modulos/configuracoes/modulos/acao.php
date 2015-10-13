@@ -25,11 +25,11 @@
    }
    
    // acao        
-   $id = $_POST['id'];
-   $nome = $_POST['nome'];
-   $pasta = $_POST['pasta'];
-   $indice = $_POST['indice'];
-   $nivel = $_POST['nivel'];
+   $id = (int)$_POST['id'];
+   $nome = pg_escape_string($_POST['nome']);
+   $pasta = pg_escape_string($_POST['pasta']);
+   $indice = (int)$_POST['indice'];
+   $nivel = (int)$_POST['nivel'];
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {

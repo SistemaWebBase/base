@@ -9,6 +9,10 @@
 		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE MUNICIPIOS');
 		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE MUNICIPIOS');
 		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE MUNICIPIOS');
+		
+		// Testar assinatura da URL
+		require_once '../../../util/util.php';
+		testarAssinaturaURL();
 
 ?>
 <!DOCTYPE html>
