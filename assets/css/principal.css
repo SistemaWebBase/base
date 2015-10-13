@@ -8,6 +8,11 @@ img {
 	width: 100%;
 }
 
+hr {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
 /* campo de texto sempre maiusculo */
 input[type=text] {
 	text-transform: uppercase;
