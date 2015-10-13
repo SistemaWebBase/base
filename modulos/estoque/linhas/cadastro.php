@@ -94,9 +94,12 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class="form-group col-md-6">
-										<label for="linha">Nome da Linha: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control no-uppercase" id="linha" name="linha" autocomplete="off" maxlength="60" value="<?= $linha ?>" autofocus <?php permissao(); ?> required>
+									<div class=row>
+							        	<!-- LINHA -->
+							    		<div class="form-group col-md-6">
+									        <label for="linha">Nome da Linha: <span class="label label-danger">Obrigatório</span></label>
+										    <input type="text" class="form-control no-uppercase" id="linha" name="linha" autocomplete="off" maxlength="60" value="<?= $linha ?>" autofocus <?php permissao(); ?> required>
+									    </div>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
