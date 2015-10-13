@@ -63,7 +63,7 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> ' . $usuario . '<b class="badge" style="float: right; margin-left: 10px; background:#f00">5</b></a>
+							<a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> ' . $usuario . '<b class="badge notificacao">5</b></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Trocar Senha</a></li>
 								<li role="separator" class="divider"></li>

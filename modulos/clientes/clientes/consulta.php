@@ -6,7 +6,7 @@
 		
 		// testar permissao
 		require_once '../../../util/permissao.php';
-		$perm = testarPermissao('INCLUIR CADASTRO DE MUNICIPIOS');
+		$perm = testarPermissao('INCLUIR CADASTRO DE CLIENTES/FORNECEDORES');
 
 ?>
 <!DOCTYPE html>
@@ -39,23 +39,23 @@
 			<div class="container">
 				<div class="row">
 					<!-- SIDEBAR -->
-					<div class="col-md-2">						
+					<div class="col-md-2">				
 					</div>
 					<!-- AREA DE CONTEUDO -->
 					<div id="conteudo" class="col-xs-12 col-md-10">
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Consulta de Municípios
+								Cadastro de Clientes/Fornecedores
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
-								<form action="#" method="GET">
+								<form action="consulta.php" method="GET">
 									<div class="form">
 										<div class="row">
 											<div class="col-md-5">
 												<div class="input-group">
-													<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa" autocomplete="off" autofocus>
+													<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa" autocomplete="off">
 													<span class="input-group-btn">
 														<button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 													</span>
@@ -63,25 +63,15 @@
 											</div>
 										</div>
 									</div>
-									<!-- LINK -->
-									<?php
-										if (! empty($_GET['link']) && empty($_GET['target'])) {
-											echo "<input type=\"hidden\" name=\"link\" value=\"" . $_GET['link'] . "\">";
-										}
-										
-										if (! empty($_GET['link']) && ! empty($_GET['target'])) {
-											echo "<input type=\"hidden\" name=\"link\" value=\"" . $_GET['link'] . "\">";
-											echo "<input type=\"hidden\" name=\"target\" value=\"" . $_GET['target'] . "\">";
-										}
-									?>
 								</form>
 								<!-- TABELA DE REGISTRO -->
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
 									<thead>
 										<tr>
-											<th>Nome do Município</th>
-											<th>UF</th>
-											<th class="hidden-xs">IBGE</th>
+											<th>Id</th>
+											<th>Razão Social</th>
+											<th>CPF/CNPJ</th>
+											<th>Cidade/UF</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -116,9 +106,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from municipios order by municipio limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from clientes order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from municipios where municipio like '" . $pesquisa . "%' order by municipio limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from clientes where razaosocial like '" . $pesquisa . "%' order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -127,26 +117,20 @@
 										$rows = pg_fetch_all($result);
 										if ($rows != null) {
 											foreach ($rows as $row) {
-												// verificar se foi passado link
-												if (! empty($_GET['link']) && empty($_GET['target'])) {
-													echo "<tr onclick=\"selecionarCadastro('" . $row['id'] . "', '" . $_GET['link'] . "');\">";
-												} else if (! empty($_GET['link']) && ! empty($_GET['target'])) {
-													echo "<tr onclick=\"selecionarCadastro('" . $row['id'] . "', '" . $_GET['link'] . "&target=" . $_GET['target'] . "');\">";
-												} else {
-													echo "<tr onclick=\"abrirCadastro('" . $row['id'] . "');\">";
-												}
+												echo "<tr onclick=\"abrirCadastro('" . $row['id'] . "');\">";
+												echo "<td>" . $row['id'] . "</td>";
+												echo "<td>" . $row['razaosocial'] . "</td>";
+												echo "<td>" . $row['cnpj'] . "</td>";
 												echo "<td>" . $row['municipio'] . "</td>";
-												echo "<td>" . $row['uf'] . "</td>";
-												echo "<td class=\"hidden-xs\">" . $row['ibge'] . "</td>";
 												echo "</tr>";
 											}
 										}	
 									
 										// Paginaçao
 										if (empty($pesquisa)) {
-											$sql = "select count(*) as num from municipios";
+											$sql = "select count(*) as num from clientes";
 										} else {
-											$sql = "select count(*) as num from municipios where municipio like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from clientes where razaosocial like '" . $pesquisa . "%';";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];
@@ -264,7 +248,7 @@
 						<div class="aviso">
 							<?php
 								if ($perm != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE MUNICIPIO. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE CLIENTES/FORNECEDORES. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>
@@ -272,28 +256,10 @@
 						<div class="btn-control-bar">
 							<div class="panel-heading">
 								<!-- NOVO -->
-								<button onclick="redirecionar('<?= empty($_GET['link']) ? "cadastro.php" : "cadastro.php?link=" . $_GET['link'] ?>', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
+								<button onclick="redirecionar('cadastro.php', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									 Novo
 								</button>
-								<?php
-									$url = $_SERVER['HTTP_REFERER'];
-									$link = explode("?link=", $url)[1];
-									if (empty($link)) {
-										$link = $_GET['link'];
-										$url .= "?link=" . $link;
-									} else {
-										$url = explode("?link=", $url)[0] . "?link=" . $_GET['link'];
-									}
-								
-									echo '
-									<a href="' . $url . '">
-										<button class="btn btn-warning mob-btn-block">
-											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-											 Cancelar
-										</button>
-									</a>';
-								?>
 							</div>
 						</div>
 					</div>

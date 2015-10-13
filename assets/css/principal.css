@@ -8,6 +8,11 @@ img {
 	width: 100%;
 }
 
+hr {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
 /* campo de texto sempre maiusculo */
 input[type=text] {
 	text-transform: uppercase;
@@ -72,6 +77,13 @@ input[type=text] {
 /*fixa textarea*/
 textarea {
     resize: none;
+}
+
+/* notificacao */
+.notificacao {
+	background: #e74c3c;
+	float: right;
+	margin-left: 15px;
 }
 
 /* rodape */
