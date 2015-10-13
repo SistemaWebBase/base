@@ -26,13 +26,13 @@
    
    // acao        
    $id = $_POST['id'];
-   $nome = $_POST['marca'];
+   $marca = $_POST['marca'];
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {
 
          // validar campos
-         if (empty($nome)) {
+         if (empty($marca)) {
 	         http_response_code(400);
 	         echo "Informe o nome da marca.";
 	         return;  

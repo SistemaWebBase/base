@@ -26,13 +26,13 @@
    
    // acao        
    $id = $_POST['id'];
-   $nome = $_POST['nome'];
+   $linha = $_POST['linha'];
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {
 
          // validar campos
-         if (empty($nome)) {
+         if (empty($linha)) {
 	         http_response_code(400);
 	         echo "Informe o nome da linha.";
 	         return;  

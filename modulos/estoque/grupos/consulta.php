@@ -46,7 +46,7 @@
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Consulta de Módulos
+								Consulta de Grupos
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
@@ -68,9 +68,7 @@
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
 									<thead>
 										<tr>
-											<th>Nome do Módulo</th>
-											<th>Índice</th>
-											<th class="hidden-xs">Nível</th>
+											<th>Nome do Grupo</th>
 										</tr>
 									</thead>
 									<tbody>

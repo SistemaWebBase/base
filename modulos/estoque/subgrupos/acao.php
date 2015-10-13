@@ -33,13 +33,13 @@
    if ($_action != "exclusao") {
 
          // validar campos
-         if (empty($nome)) {
+         if (empty($subgrupo)) {
 	         http_response_code(400);
 	         echo "Informe o nome do subgrupo.";
 	         return;  
          }
          
-         if (empty($nome)) {
+         if (empty($grupo)) {
 	         http_response_code(400);
 	         echo "Informe o grupo.";
 	         return;  

@@ -11,9 +11,9 @@
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {
-         case "inclusao": $nperm = "INCLUIR CADASTRO DE GRUPOS";break;
-         case "alteracao": $nperm = "ALTERAR CADASTRO DE GRUPOS";break;
-         case "exclusao": $nperm = "EXCLUIR CADASTRO DE GRUPOS";break;
+         case "inclusao": $nperm = "INCLUIR PARAMETRO DO SISTEMA";break;
+         case "alteracao": $nperm = "ALTERAR PARAMETRO DO SISTEMA";break;
+         case "exclusao": $nperm = "EXCLUIR PARAMETRO DO SISTEMA";break;
    }
    
    $perm = testarPermissao($nperm);
@@ -26,16 +26,24 @@
    
    // acao        
    $id = $_POST['id'];
-   $grupo = $_POST['grupo'];
+   $chave = $_POST['chave'];
+   $valor = $_POST['valor'];
+   $observacoes = $_POST['observacoes'];
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {
 
          // validar campos
-         if (empty($grupo)) {
+         if (empty($chave)) {
 	         http_response_code(400);
-	         echo "Informe o nome do grupo.";
+	         echo "Informe a chave do parâmetro.";
 	         return;  
+         }
+   
+         if (empty($valor)) {
+	         http_response_code(400);
+	         echo "Informe o valor do parâmetro.";
+       	   return;  
          }
       
    }
@@ -53,19 +61,19 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into grupos (grupo) values ('" . $grupo . "');";
+         $sql = "insert into parametros_sistema (chave, valor, observacoes) values ('" . $chave . "', '" . $valor . "', '" . $observacoes . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update grupos set grupo='" . $grupo . "' where id=" . $id;
+         $sql = "update parametros_sistema set chave='" . $chave . "',valor='" . $valor . "',observacoes='" . $observacoes . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from grupos where id=" . $id;
+         $sql = "delete from parametros_sistema where id=" . $id;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }
