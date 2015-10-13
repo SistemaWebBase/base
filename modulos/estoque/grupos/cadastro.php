@@ -98,7 +98,7 @@
 										<!-- GRUPO -->
 									    <div class="form-group col-md-6">
 										    <label for="grupo">Nome do Grupo: <span class="label label-danger">Obrigatório</span></label>
-										    <input type="text" class="form-control no-uppercase" id="grupo" name="grupo" autocomplete="off" maxlength="60" value="<?= $grupo ?>" autofocus <?php permissao(); ?> required>
+										    <input type="text" class="form-control" id="grupo" name="grupo" autocomplete="off" maxlength="60" value="<?= $grupo ?>" autofocus <?php permissao(); ?> required>
 									    </div>
 								    </div>
 									<input type="hidden" name="id" value="<?= $id ?>">

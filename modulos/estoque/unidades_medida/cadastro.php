@@ -99,12 +99,12 @@
 									    <!-- UNIDADE DE MEDIDA -->
     									<div class="form-group col-md-3">
 	    									<label for="unidade">Unidade: <span class="label label-danger">Obrigatório</span></label>
-		   	    							<input type="text" class="form-control no-uppercase" id="unidade" name="unidade" autocomplete="off" maxlength="60" value="<?= $unidade ?>" autofocus <?php permissao(); ?> required>
+		   	    							<input type="text" class="form-control" id="unidade" name="unidade" autocomplete="off" maxlength="60" value="<?= $unidade ?>" autofocus <?php permissao(); ?> required>
 			 	    					</div>
 									    <!-- DESCRICAO -->
     									<div class="form-group col-md-9">
 	   		    							<label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
-		   		     						<input type="text" class="form-control no-uppercase" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
+		   		     						<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
 					    				</div>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">

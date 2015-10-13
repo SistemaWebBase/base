@@ -99,7 +99,7 @@
 										<!-- SUBGRUPO -->
 									    <div class="form-group col-md-6">
 										    <label for="subgrupo">Nome do Subgrupo: <span class="label label-danger">Obrigatório</span></label>
-									    	<input type="text" class="form-control no-uppercase" id="subgrupo" name="subgrupo" autocomplete="off" maxlength="60" value="<?= $subgrupo ?>" autofocus <?php permissao(); ?> required>
+									    	<input type="text" class="form-control" id="subgrupo" name="subgrupo" autocomplete="off" maxlength="60" value="<?= $subgrupo ?>" autofocus <?php permissao(); ?> required>
 									    </div>
 										<!-- GRUPO -->
 									    <div class="form-group col-md-6">

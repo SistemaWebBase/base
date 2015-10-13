@@ -100,7 +100,7 @@
 									    <!-- NCM -->
 									    <div class="form-group col-md-6">
 										    <label for="ncm">NCM: <span class="label label-danger">Obrigatório</span></label>
-    										<input type="text" class="form-control no-uppercase" id="ncm" name="ncm" autocomplete="off" maxlength="60" value="<?= $ncm ?>" autofocus <?php permissao(); ?> required>
+    										<input type="text" class="form-control " id="ncm" name="ncm" autocomplete="off" maxlength="60" value="<?= $ncm ?>" autofocus <?php permissao(); ?> required>
 	    								</div>
 		    							<!-- MONOFASICO -->
 			    						<div class="form-group col-md-3">
@@ -124,7 +124,7 @@
 									    <!-- DESCRICAO -->
 									    <div class="form-group col-md-6">
 										    <label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
-    										<input type="text" class="form-control no-uppercase" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
+    										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
 	    								</div>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
