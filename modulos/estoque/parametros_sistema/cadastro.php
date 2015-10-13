@@ -6,9 +6,9 @@
 		
 		// Testar permissao
 		require_once '../../../util/permissao.php';
-		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE PERMISSOES');
-		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE PERMISSOES');
-		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE PERMISSOES');
+		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE MODULOS');
+		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE MODULOS');
+		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE MODULOS');
 
 ?>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from permissoes where id=" . $id;
+				$sql = "select * from modulos where id=" . $id;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -53,9 +53,10 @@
 				}
 			
 				$id = $rows[0]['id'];
-				$descricao = $rows[0]['descricao'];
+				$nome = $rows[0]['nome'];
+				$pasta = $rows[0]['pasta'];
+				$indice = $rows[0]['indice'];
 				$nivel = $rows[0]['nivel'];
-				$observacao = $rows[0]['observacao'];
 				$_action = "alteracao";
 			}
 			
@@ -77,7 +78,7 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Cadastro de Permissões
+								Cadastro de Módulos
 							</div>
 							<!-- REGRAS DE PERMISSAO -->
 							<?php
@@ -97,8 +98,16 @@
 							<div class="panel-body">
 								<form role="form">
 									<div class="form-group col-md-6">
-										<label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" autofocus <?php permissao(); ?> required>
+										<label for="nome">Nome do Módulo: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" class="form-control no-uppercase" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" class="form-control no-uppercase" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?> required>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="indice">Índice: <span class="label label-danger">Obrigatório</span></label>
+										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>" <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-3">
 										<label for="nivel">Nível: </label>
@@ -116,10 +125,6 @@
 										?>
 										</select>
 									</div>
-									<div class="form-group col-md-12">
-										<label for="observacoes">Observações: </label>
-										<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>" <?php permissao(); ?>></textarea>
-									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
@@ -129,18 +134,18 @@
 						<div class="aviso">
 							<?php
 								if ($_action == 'inclusao' && $perm_incluir != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE PERMISSOES. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE MODULOS. Solicite ao administrador a liberação.');</script>";
 								}
 								
 								if ($_action == 'alteracao' && $perm_alterar != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE PERMISSOES. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE MODULOS. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#descricao');" <?php permissao(); ?>>
+								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#nome');" <?php permissao(); ?>>
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
@@ -150,7 +155,7 @@
 										 Cancelar
 									</button>
 								</a>
-								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Permissão', 'Deseja excluir esta permissão ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
+								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Módulo', 'Deseja excluir este módulo ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>
@@ -161,7 +166,7 @@
 			</div>
 		</div>
 		<!-- RODAPE -->
-		<footer>
+        <footer>
 			<div class="container">
 				<?php
 					require_once '../../sistema/rodape/rodape.php';
