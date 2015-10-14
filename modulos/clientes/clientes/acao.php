@@ -33,13 +33,13 @@
    $endereco_entrega = tratarTexto($_POST['endereco_entrega']);
    $bairro_entrega  = tratarTexto($_POST['bairro_entrega']);
    $cep_entrega = tratarNumero($_POST['cep_entrega']);
-   $municipio_entrega = tratarNumero($_POST['municipio_entrega']);
+   $municipio_entrega = (int)$_POST['municipio_entrega'];
    $telefone_entrega = tratarNumero($_POST['telefone_entrega']);
    $celular_entrega = tratarNumero($_POST['celular_entrega']);
    $endereco_cobranca = tratarTexto($_POST['endereco_cobranca']);
    $bairro_cobranca  = tratarTexto($_POST['bairro_cobranca']);
    $cep_cobranca = tratarNumero($_POST['cep_cobranca']);
-   $municipio_cobranca = tratarNumero($_POST['municipio_cobranca']);
+   $municipio_cobranca = (int)$_POST['municipio_cobranca'];
    $telefone_cobranca = tratarNumero($_POST['telefone_cobranca']);
    $celular_cobranca = tratarNumero($_POST['celular_cobranca']);
    $email01 = tratarTextoSimples($_POST['email01']);
