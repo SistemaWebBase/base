@@ -39,8 +39,8 @@
    // acao   
    $id = (int)$_POST['id'];
    $login = tratarTexto($_POST['login']);
-   $senha = pg_escape_string($_POST['senha']);
-   $confirmacao_senha = pg_escape_string($_POST['confirmacao_senha']);
+   $senha = tratarTextoSimples($_POST['senha']);
+   $confirmacao_senha = tratarTextoSimples($_POST['confirmacao_senha']);
    $nome = tratarTexto($_POST['nome']);
    $modelo = (int)$_POST['modelo'];
    $empresa = (int)$_POST['empresa'];

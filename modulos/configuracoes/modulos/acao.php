@@ -26,8 +26,8 @@
    
    // acao        
    $id = (int)$_POST['id'];
-   $nome = pg_escape_string($_POST['nome']);
-   $pasta = pg_escape_string($_POST['pasta']);
+   $nome = tratarTextoSimples($_POST['nome']);
+   $pasta = tratarTextoSimples($_POST['pasta']);
    $indice = (int)$_POST['indice'];
    $nivel = (int)$_POST['nivel'];
    $_action = $_POST['_action'];

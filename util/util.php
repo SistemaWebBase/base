@@ -1,7 +1,11 @@
 <?php
 
 function tratarTexto($texto) {
-	return pg_escape_string(strtoupper(str_replace("'", "", trim($texto))));
+	return strtoupper(str_replace("'", "", trim($texto)));
+}
+
+function tratarTextoSimples($texto) {
+	return str_replace("'", "", trim($texto));
 }
 
 function tratarNumero($texto) {
