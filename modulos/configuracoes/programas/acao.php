@@ -26,10 +26,10 @@
    
    // acao   
    $id = (int)$_POST['id'];
-   $nome = pg_escape_string($_POST['nome']);
+   $nome = tratarTextoSimples($_POST['nome']);
    $modulo = (int)$_POST['modulo'];
-   $pasta = pg_escape_string($_POST['pasta']);
-   $agrupamento = pg_escape_string($_POST['agrupamento']);
+   $pasta = tratarTextoSimples($_POST['pasta']);
+   $agrupamento = tratarTextoSimples($_POST['agrupamento']);
    $indice = (int)$_POST['indice'];
    $nivel = (int)$_POST['nivel'];
    $_action = $_POST['_action'];

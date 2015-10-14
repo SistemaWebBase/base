@@ -42,8 +42,8 @@
    $municipio_cobranca = tratarNumero($_POST['municipio_cobranca']);
    $telefone_cobranca = tratarNumero($_POST['telefone_cobranca']);
    $celular_cobranca = tratarNumero($_POST['celular_cobranca']);
-   $email01 = pg_escape_string($_POST['email01']);
-   $email02 = pg_escape_string($_POST['email02']);
+   $email01 = tratarTextoSimples($_POST['email01']);
+   $email02 = tratarTextoSimples($_POST['email02']);
    $autorizado_comprar = tratarTexto($_POST['autorizado_comprar']);
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
