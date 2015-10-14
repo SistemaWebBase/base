@@ -44,6 +44,12 @@
 	         echo "Informe a descrição.";
        	   return;  
          }
+         
+         if((strlen($unidade)) < 2){
+	         http_response_code(400);
+	         echo "Sigla da unidade de medida inválida.";
+	         return;
+         }
       
    }
    

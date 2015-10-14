@@ -53,7 +53,7 @@
 				}
 			
 				$id = $rows[0]['id'];
-				$nome = $rows[0]['linha'];
+				$linha = $rows[0]['linha'];
 				$_action = "alteracao";
 			}
 			

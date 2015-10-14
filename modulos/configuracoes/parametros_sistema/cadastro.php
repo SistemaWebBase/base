@@ -6,9 +6,9 @@
 		
 		// Testar permissao
 		require_once '../../../util/permissao.php';
-		$perm_incluir = testarPermissao('INCLUIR PARAMETRO DO SISTEMA');
-		$perm_alterar = testarPermissao('ALTERAR PARAMETRO DO SISTEMA');
-		$perm_excluir = testarPermissao('EXCLUIR PARAMETRO DO SISTEMA');
+		$perm_incluir = testarPermissao('INCLUIR PARAMETROS DO SISTEMA');
+		$perm_alterar = testarPermissao('ALTERAR PARAMETROS DO SISTEMA');
+		$perm_excluir = testarPermissao('EXCLUIR PARAMETROS DO SISTEMA');
 
 ?>
 <!DOCTYPE html>
@@ -124,11 +124,11 @@
 						<div class="aviso">
 							<?php
 								if ($_action == 'inclusao' && $perm_incluir != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR PARAMETRO DO SISTEMA. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR PARAMETROS DO SISTEMA. Solicite ao administrador a liberação.');</script>";
 								}
 								
 								if ($_action == 'alteracao' && $perm_alterar != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: ALTERAR PARAMETRO DO SISTEMA. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR PARAMETROS DO SISTEMA. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>

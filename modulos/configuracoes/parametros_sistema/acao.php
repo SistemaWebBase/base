@@ -11,9 +11,9 @@
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {
-         case "inclusao": $nperm = "INCLUIR PARAMETRO DO SISTEMA";break;
-         case "alteracao": $nperm = "ALTERAR PARAMETRO DO SISTEMA";break;
-         case "exclusao": $nperm = "EXCLUIR PARAMETRO DO SISTEMA";break;
+         case "inclusao": $nperm = "INCLUIR PARAMETROS DO SISTEMA";break;
+         case "alteracao": $nperm = "ALTERAR PARAMETROS DO SISTEMA";break;
+         case "exclusao": $nperm = "EXCLUIR PARAMETROS DO SISTEMA";break;
    }
    
    $perm = testarPermissao($nperm);

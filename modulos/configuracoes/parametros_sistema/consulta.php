@@ -6,7 +6,7 @@
 		
 		// testar permissao
 		require_once '../../../util/permissao.php';
-		$perm = testarPermissao('INCLUIR PARAMETRO DO SISTEMA');
+		$perm = testarPermissao('INCLUIR PARAMETROS DO SISTEMA');
 
 ?>
 <!DOCTYPE html>
@@ -244,7 +244,7 @@
 						<div class="aviso">
 							<?php
 								if ($perm != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR PARAMETRO DO SISTEMA. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR PARAMETROS DO SISTEMA. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>
