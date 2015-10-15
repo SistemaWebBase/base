@@ -112,7 +112,15 @@ function aplicarMascara() {
 }
 
 /* copiar endereco entrega -> endereco cobranca */
-function copiarEndereco() {
+function toggleCobranca() {
+	if ($("#checkboxCobranca").is(":checked")) {
+		copiarCobranca();
+	} else {
+		limparCobranca();
+	}
+}
+
+function copiarCobranca() {
 	$("#endereco_cobranca").val($("#endereco_entrega").val());
 	$("#bairro_cobranca").val($("#bairro_entrega").val());
 	$("#cep_cobranca").val($("#cep_entrega").val());
@@ -121,6 +129,12 @@ function copiarEndereco() {
 	$("#telefone_cobranca").val($("#telefone_entrega").val());
 	$("#celular_cobranca").val($("#celular_entrega").val());
 	
-	$(".cobranca").attr('disabled', 'disabled');
+	$(".cobranca").attr('readonly', 'readonly');
 }
+
+function limparCobranca() {
+	$(".cobranca").val("");
+	$(".cobranca").removeAttr("readonly");
+}
+
 

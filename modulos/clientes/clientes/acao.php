@@ -24,7 +24,7 @@
    }
    
    // acao
-   $id = (int)$_POST['id'];
+   $id = tratarChave($_POST['id']);
    $cnpj = tratarTexto($_POST['cnpj']);
    $ie = tratarTexto($_POST['ie']);
    $im = tratarTexto($_POST['im']);
@@ -33,13 +33,13 @@
    $endereco_entrega = tratarTexto($_POST['endereco_entrega']);
    $bairro_entrega  = tratarTexto($_POST['bairro_entrega']);
    $cep_entrega = tratarNumero($_POST['cep_entrega']);
-   $municipio_entrega = (int)$_POST['municipio_entrega'];
+   $municipio_entrega = tratarChave($_POST['municipio_entrega']);
    $telefone_entrega = tratarNumero($_POST['telefone_entrega']);
    $celular_entrega = tratarNumero($_POST['celular_entrega']);
    $endereco_cobranca = tratarTexto($_POST['endereco_cobranca']);
    $bairro_cobranca  = tratarTexto($_POST['bairro_cobranca']);
    $cep_cobranca = tratarNumero($_POST['cep_cobranca']);
-   $municipio_cobranca = (int)$_POST['municipio_cobranca'];
+   $municipio_cobranca = tratarChave($_POST['municipio_cobranca']);
    $telefone_cobranca = tratarNumero($_POST['telefone_cobranca']);
    $celular_cobranca = tratarNumero($_POST['celular_cobranca']);
    $email01 = tratarTextoSimples($_POST['email01']);
@@ -125,7 +125,7 @@
    
    if ($flag == 1) {
          http_response_code(400);
-         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte." . pg_last_error($conexao->getConnection()) . "{" . $sql . "}";
+         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte.";
          return;
    }
 

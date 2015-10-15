@@ -9,6 +9,7 @@
 		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE CLIENTES');
 		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE CLIENTES');
 		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE CLIENTES');
+		$perm_cnpj = testarPermissao('ALTERAR CNPJ DO CADASTRO DE CLIENTES');
 		
 		// Testar assinatura da URL
 		require_once '../../../util/util.php';
@@ -35,7 +36,13 @@
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
-	<body <?= (! empty($_GET['link']) && ! empty($_GET['target'])) ? 'onload="restaurarMunicipios(\'' . $_GET['link'] . '\', \'' . $_GET['target'] . '\');"' : "" ?> >
+	<body <?php
+			if (! empty($_GET['link']) && ! empty($_GET['target']))  {
+				echo 'onload="restaurarMunicipios(\'' . $_GET['link'] . '\', \'' . $_GET['target'] . '\');"';	
+			} else if (! empty($_GET['id'])) {
+				echo 'onload="consultarMunicipio(\'#municipio_entrega\', \'#nome_municipio_entrega\');consultarMunicipio(\'#municipio_cobranca\', \'#nome_municipio_cobranca\'); aplicarMascara();"';
+			}
+		?>>
 		<?php
 			require_once '../../../util/conexao.php';
 			
@@ -109,11 +116,21 @@
 									global $_action, $perm_incluir, $perm_alterar;
 									
 									if ($_action == "inclusao" && $perm_incluir != "S") {
-										echo "disabled";
+										echo "readonly";
 										return;
 									}
 									if ($_action == "alteracao" && $perm_alterar != "S") {
-										echo "disabled";
+										echo "readonly";
+										return;
+									}
+									
+								}
+								
+								function cnpjPermissao() {
+									global $_action, $perm_cnpj;
+									
+									if ($_action == "alteracao" && $perm_cnpj != "S") {
+										echo "readonly";
 										return;
 									}
 								}
@@ -130,7 +147,7 @@
 									<div class="row">
 										<div class="form-group col-md-4 has-feedback" id="form-group-cnpj">
 											<label for="cnpj">CPF/CNPJ: <span class="label label-danger">Obrigatório</span></label>
-											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control" id="cnpj" name="cnpj" autocomplete="off" maxlength="18" value="<?= $cnpj ?>" onfocus="removerMascara();" onblur="testarCpfCnpj();" <?php if (empty($_GET['link'])) { echo "autofocus"; } ?> <?php permissao(); ?>>
+											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control" id="cnpj" name="cnpj" autocomplete="off" maxlength="18" value="<?= $cnpj ?>" onfocus="removerMascara();" onblur="testarCpfCnpj();" <?php if ($_action == "inclusao") { echo "autofocus"; } ?> <?php permissao(); ?> <?php cnpjPermissao(); ?>>
 											<a href="#" data-toggle="popover" data-content="CPF/CNPJ inválido" data-trigger="focus" data-placement="bottom" id="popover-cnpj" tabindex="99"></a>
 											<h6>Digite <b>ISENTO</b> caso não houver.</h6>
 										</div>
@@ -147,7 +164,7 @@
 									<div class="row">
 										<div class="form-group col-md-6">
 											<label for="razaosocial">Razão Social: <span class="label label-danger">Obrigatório</span></label>
-											<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="80" value="<?= $razaosocial ?>" <?php permissao(); ?> required>
+											<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="80" value="<?= $razaosocial ?>" <?php if ($_action == "alteracao") { echo "autofocus"; } ?> <?php permissao(); ?> required>
 										</div>
 										<div class="form-group col-md-6">
 											<label for="endereco">Nome Fantasia: </label>
@@ -211,7 +228,7 @@
 									</div>
 									<div class="row">
 										<div class="form-group col-md-12">
-											<input type="checkbox" onclick="copiarEndereco();"> O endereço de cobrança é o mesmo de entrega
+											<input type="checkbox" id="checkboxCobranca" onclick="toggleCobranca();"> O endereço de cobrança é o mesmo de entrega
 										</div>
 									</div>
 									<div class="row">
@@ -291,11 +308,15 @@
 						<div class="aviso">
 							<?php
 								if ($_action == 'inclusao' && $perm_incluir != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE CLIENTES/FORNECEDORES. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE CLIENTES. Solicite ao administrador a liberação.');</script>";
+								}
+								
+								if ($_action == 'alteracao' && $perm_cnpj != 'S') {
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR CNPJ DO CADASTRO DE CLIENTES. Solicite ao administrador a liberação.');</script>";
 								}
 								
 								if ($_action == 'alteracao' && $perm_alterar != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE CLIENTES/FORNECEDORES. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE CLIENTES. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>

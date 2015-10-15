@@ -6,7 +6,7 @@
 		
 		// testar permissao
 		require_once '../../../util/permissao.php';
-		$perm = testarPermissao('INCLUIR CADASTRO DE CLIENTES/FORNECEDORES');
+		$perm = testarPermissao('INCLUIR CADASTRO DE CLIENTES');
 
 ?>
 <!DOCTYPE html>
@@ -248,7 +248,7 @@
 						<div class="aviso">
 							<?php
 								if ($perm != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE CLIENTES/FORNECEDORES. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE CLIENTES. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>
