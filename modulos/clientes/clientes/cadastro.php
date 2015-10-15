@@ -147,7 +147,7 @@
 									<div class="row">
 										<div class="form-group col-md-4 has-feedback" id="form-group-cnpj">
 											<label for="cnpj">CPF/CNPJ: <span class="label label-danger">Obrigatório</span></label>
-											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control" id="cnpj" name="cnpj" autocomplete="off" maxlength="18" value="<?= $cnpj ?>" onfocus="removerMascara();" onblur="consultarCliente();testarCpfCnpj();" <?php if ($_action == "inclusao") { echo "autofocus"; } ?> <?php permissao(); ?> <?php cnpjPermissao(); ?>>
+											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control" id="cnpj" name="cnpj" autocomplete="off" maxlength="18" value="<?= $cnpj ?>" onfocus="removerMascara();" onblur="consultarCliente();testarCpfCnpj();" <?php if ($_action == "inclusao" && empty($_GET['target'])) { echo "autofocus"; } ?> <?php permissao(); ?> <?php cnpjPermissao(); ?>>
 											<a href="#" data-toggle="popover" data-content="CPF/CNPJ inválido" data-trigger="focus" data-placement="bottom" id="popover-cnpj" tabindex="99"></a>
 											<h6>Digite <b>ISENTO</b> caso não houver.</h6>
 										</div>
@@ -164,7 +164,7 @@
 									<div class="row">
 										<div class="form-group col-md-6">
 											<label for="razaosocial">Razão Social: <span class="label label-danger">Obrigatório</span></label>
-											<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="80" value="<?= $razaosocial ?>" <?php if ($_action == "alteracao") { echo "autofocus"; } ?> <?php permissao(); ?> required>
+											<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="80" value="<?= $razaosocial ?>" <?php if ($_action == "alteracao" && empty($_GET['target'])) { echo "autofocus"; } ?> <?php permissao(); ?> required>
 										</div>
 										<div class="form-group col-md-6">
 											<label for="endereco">Nome Fantasia: </label>

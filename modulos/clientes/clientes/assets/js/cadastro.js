@@ -41,8 +41,12 @@ function consultarMunicipio(source, target) {
 
 // consultar cliente
 function consultarCliente() {
-	var cnpj = $("#cnpj").val();
+	var cnpj = tratarNumero($("#cnpj").val());
 	if (cnpj == "") {
+		return;
+	}
+	
+	if (! validarCpfCnpj(cnpj)) {
 		return;
 	}
 	
@@ -110,6 +114,7 @@ function testarCpfCnpj() {
 	} else {
 		$("#form-group-cnpj").removeClass("has-error");
 		$("#popover-cnpj").popover("destroy");
+		aplicarMascara();
 	}
 }
 
