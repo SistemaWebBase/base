@@ -34,7 +34,7 @@
    $endereco = tratarTexto($_POST['endereco']);   
    $bairro = tratarTexto($_POST['bairro']);   
    $cep = tratarNumero($_POST['cep']);   
-   $municipio = (int)$_POST['municipio'];
+   $municipio = tratarChave($_POST['municipio']);
    $telefone = tratarNumero($_POST['telefone']);   
    $fax = tratarNumero($_POST['fax']);   
    

@@ -25,7 +25,7 @@
    }
    
    // acao        
-   $id = (int)$_POST['id'];
+   $id = tratarChave($_POST['id']);
    $nome = tratarTextoSimples($_POST['nome']);
    $pasta = tratarTextoSimples($_POST['pasta']);
    $indice = (int)$_POST['indice'];

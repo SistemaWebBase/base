@@ -38,7 +38,7 @@
    }
    
    // acao         
-   $id = (int)$_POST['id'];
+   $id = tratarChave($_POST['id']);
    $descricao = tratarTexto($_POST['descricao']);
    $nivel = (int)$_POST['nivel'];
    $observacao = tratarTexto($_POST['observacao']);

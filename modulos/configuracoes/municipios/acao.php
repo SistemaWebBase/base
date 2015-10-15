@@ -35,7 +35,7 @@
    }
    
    // acao
-   $id = (int)$_POST['id'];
+   $id = tratarChave($_POST['id']);
    $municipio = tratarTexto($_POST['municipio']);
    $uf = tratarTexto($_POST['uf']);
    $ibge = (int)$_POST['ibge'];

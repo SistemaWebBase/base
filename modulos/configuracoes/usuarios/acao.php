@@ -37,13 +37,13 @@
    }
    
    // acao   
-   $id = (int)$_POST['id'];
+   $id = tratarChave($_POST['id']);
    $login = tratarTexto($_POST['login']);
    $senha = tratarTextoSimples($_POST['senha']);
    $confirmacao_senha = tratarTextoSimples($_POST['confirmacao_senha']);
    $nome = tratarTexto($_POST['nome']);
    $modelo = (int)$_POST['modelo'];
-   $empresa = (int)$_POST['empresa'];
+   $empresa = tratarChave($_POST['empresa']);
    $nivel = (int)$_POST['nivel'];
    $externo = tratarTexto($_POST['externo']);
    $mobile = tratarTexto($_POST['mobile']);
