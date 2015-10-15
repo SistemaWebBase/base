@@ -25,9 +25,9 @@
    }
    
    // acao        
-   $id = $_POST['id'];
-   $unidade = $_POST['unidade'];
-   $descricao = $_POST['descricao'];
+   $id = tratarChave($_POST['id']);
+   $unidade = tratarTexto($_POST['unidade']);
+   $descricao = tratarTexto($_POST['descricao']);
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {

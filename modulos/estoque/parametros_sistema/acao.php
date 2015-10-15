@@ -25,10 +25,10 @@
    }
    
    // acao        
-   $id = $_POST['id'];
-   $chave = $_POST['chave'];
-   $valor = $_POST['valor'];
-   $observacoes = $_POST['observacoes'];
+   $id = tratarChave($_POST['id']);
+   $chave = tratarTexto($_POST['chave']);
+   $valor = tratarTexto($_POST['valor']);
+   $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {

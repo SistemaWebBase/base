@@ -83,11 +83,11 @@
 									global $_action, $perm_incluir, $perm_alterar;
 									
 									if ($_action == "inclusao" && $perm_incluir != "S") {
-										echo "disabled";
+										echo "readonly";
 										return;
 									}
 									if ($_action == "alteracao" && $perm_alterar != "S") {
-										echo "disabled";
+										echo "readonly";
 										return;
 									}
 								}

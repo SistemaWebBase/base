@@ -25,9 +25,9 @@
    }
    
    // acao        
-   $id = $_POST['id'];
-   $subgrupo = $_POST['subgrupo'];
-   $grupo = $_POST['grupo'];
+   $id = tratarChave($_POST['id']);
+   $subgrupo = tratarTexto($_POST['subgrupo']);
+   $grupo = tratarChave($_POST['grupo']);
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {

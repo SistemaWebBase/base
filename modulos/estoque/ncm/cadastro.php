@@ -25,6 +25,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
@@ -85,11 +86,11 @@
 									global $_action, $perm_incluir, $perm_alterar;
 									
 									if ($_action == "inclusao" && $perm_incluir != "S") {
-										echo "disabled";
+										echo "readonly";
 										return;
 									}
 									if ($_action == "alteracao" && $perm_alterar != "S") {
-										echo "disabled";
+										echo "readonly";
 										return;
 									}
 								}
@@ -100,7 +101,7 @@
 									    <!-- NCM -->
 									    <div class="form-group col-md-6">
 										    <label for="ncm">NCM: <span class="label label-danger">Obrigatório</span></label>
-    										<input type="text" class="form-control " id="ncm" name="ncm" autocomplete="off" maxlength="60" value="<?= $ncm ?>" autofocus <?php permissao(); ?> required>
+										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="ncm" name="ncm" data-mask="00000000" autocomplete="off" value="<?= $ncm ?>" <?php permissao(); ?>>
 	    								</div>
 		    							<!-- MONOFASICO -->
 			    						<div class="form-group col-md-3">

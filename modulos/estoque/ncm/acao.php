@@ -25,10 +25,10 @@
    }
    
    // acao        
-   $id = $_POST['id'];
-   $ncm = $_POST['ncm'];
-   $descricao = $_POST['descricao'];
-   $monofasico = $_POST['monofasico'];
+   $id = tratarChave($_POST['id']);
+   $ncm = (int)$_POST['ncm'];
+   $descricao = tratarTexto($_POST['descricao']);
+   $monofasico = tratarTexto($_POST['monofasico']);
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {

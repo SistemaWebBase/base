@@ -25,8 +25,8 @@
    }
    
    // acao        
-   $id = $_POST['id'];
-   $linha = $_POST['linha'];
+   $id = tratarChave($_POST['id']);
+   $linha = tratarTexto($_POST['linha']);
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {

@@ -25,8 +25,8 @@
    }
    
    // acao        
-   $id = $_POST['id'];
-   $grupo = $_POST['grupo'];
+   $id = tratarChave($_POST['id']);
+   $grupo = tratarTexto($_POST['grupo']);
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {

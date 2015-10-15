@@ -25,6 +25,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
@@ -84,11 +85,11 @@
 									global $_action, $perm_incluir, $perm_alterar;
 									
 									if ($_action == "inclusao" && $perm_incluir != "S") {
-										echo "disabled";
+										echo "readonly";
 										return;
 									}
 									if ($_action == "alteracao" && $perm_alterar != "S") {
-										echo "disabled";
+										echo "readonly";
 										return;
 									}
 								}
@@ -99,7 +100,7 @@
 									    <!-- UNIDADE DE MEDIDA -->
     									<div class="form-group col-md-3">
 	    									<label for="unidade">Unidade: <span class="label label-danger">Obrigatório</span></label>
-		   	    							<input type="text" class="form-control" id="unidade" name="unidade" pattern="[a-z\s]+$" autocomplete="off" maxlength="02" value="<?= $unidade ?>" autofocus <?php permissao(); ?> required>
+		   	    							<input type="text" class="form-control" id="unidade" name="unidade" data-mask="SS"" autocomplete="off" maxlength="02" value="<?= $unidade ?>" autofocus <?php permissao(); ?> required>
 			 	    					</div>
 									    <!-- DESCRICAO -->
     									<div class="form-group col-md-9">
