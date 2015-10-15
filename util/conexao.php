@@ -21,7 +21,14 @@ class Conexao {
 	 }
 
 	 public function query($query) {
-			$result = pg_query($this->conn, $query); 			
+			$result = pg_query($this->conn, $query);
+			
+			// GRAVAR LOG SE HOUVER ERRO
+			if ($result == FALSE) {
+				require_once 'logs.php';
+				gravarLog(pg_last_error($this->conn) . "\nQUERY: \"" . $query . "\"", "ERROR");
+			}
+			
 			return $result;
 	 }
 	 	 
