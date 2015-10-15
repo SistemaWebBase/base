@@ -147,7 +147,7 @@
 									<div class="row">
 										<div class="form-group col-md-4 has-feedback" id="form-group-cnpj">
 											<label for="cnpj">CPF/CNPJ: <span class="label label-danger">Obrigatório</span></label>
-											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control" id="cnpj" name="cnpj" autocomplete="off" maxlength="18" value="<?= $cnpj ?>" onfocus="removerMascara();" onblur="testarCpfCnpj();" <?php if ($_action == "inclusao") { echo "autofocus"; } ?> <?php permissao(); ?> <?php cnpjPermissao(); ?>>
+											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control" id="cnpj" name="cnpj" autocomplete="off" maxlength="18" value="<?= $cnpj ?>" onfocus="removerMascara();" onblur="consultarCliente();testarCpfCnpj();" <?php if ($_action == "inclusao") { echo "autofocus"; } ?> <?php permissao(); ?> <?php cnpjPermissao(); ?>>
 											<a href="#" data-toggle="popover" data-content="CPF/CNPJ inválido" data-trigger="focus" data-placement="bottom" id="popover-cnpj" tabindex="99"></a>
 											<h6>Digite <b>ISENTO</b> caso não houver.</h6>
 										</div>
@@ -189,7 +189,7 @@
 										</div>
 										<div class="form-group col-md-3">
 											<label for="cep_entrega">CEP: </label>
-											<input type="text" class="form-control cep" id="cep_entrega" name="cep_entrega" autocomplete="off" maxlength="9" value="<?= $cep_entrega ?>" <?php permissao(); ?>>
+											<input type="text" class="form-control cep" id="cep_entrega" name="cep_entrega" autocomplete="off" data-mask="00000-000" maxlength="9" value="<?= $cep_entrega ?>" <?php permissao(); ?>>
 										</div>
 									</div>
 									<div class="row">
@@ -212,11 +212,11 @@
 										</div>
 										<div class="form-group col-md-3">
 											<label for="telefone_entrega">Telefone: </label>
-											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone_entrega" name="telefone_entrega" autocomplete="off" value="<?= $telefone_entrega ?>" <?php permissao(); ?> required>
+											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control" data-mask="(00)0000-00009" id="telefone_entrega" name="telefone_entrega" autocomplete="off" value="<?= $telefone_entrega ?>" <?php permissao(); ?> required>
 										</div>
 										<div class="form-group col-md-3">
 											<label for="celular_entrega">Celular: </label>
-											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="celular_entrega" name="celular_entrega" autocomplete="off" value="<?= $celular_entrega ?>" <?php permissao(); ?>>
+											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control" data-mask="(00)0000-00009" id="celular_entrega" name="celular_entrega" autocomplete="off" value="<?= $celular_entrega ?>" <?php permissao(); ?>>
 										</div>
 									</div>
 									<!-- ENDERECO DE COBRANCA -->
@@ -242,7 +242,7 @@
 										</div>
 										<div class="form-group col-md-3">
 											<label for="cep_cobranca">CEP: </label>
-											<input type="text" class="form-control cep cobranca" id="cep_cobranca" name="cep_cobranca" autocomplete="off" maxlength="9" value="<?= $cep_cobranca ?>" <?php permissao(); ?>>
+											<input type="text" class="form-control cep cobranca" id="cep_cobranca" name="cep_cobranca" data-mask="00000-000" autocomplete="off" maxlength="9" value="<?= $cep_cobranca ?>" <?php permissao(); ?>>
 										</div>
 									</div>
 									<div class="row">
@@ -265,11 +265,11 @@
 										</div>
 										<div class="form-group col-md-3">
 											<label for="telefone_cobranca">Telefone: </label>
-											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone cobranca" id="telefone_cobranca" name="telefone_cobranca" autocomplete="off" value="<?= $telefone_cobranca ?>" <?php permissao(); ?> required>
+											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control cobranca" data-mask="(00)0000-00009" id="telefone_cobranca" name="telefone_cobranca" autocomplete="off" value="<?= $telefone_cobranca ?>" <?php permissao(); ?> required>
 										</div>
 										<div class="form-group col-md-3">
 											<label for="celular_cobranca">Celular: </label>
-											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone cobranca" id="celular_cobranca" name="celular_cobranca" autocomplete="off" value="<?= $celular_cobranca ?>" <?php permissao(); ?>>
+											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control cobranca" data-mask="(00)0000-00009" id="celular_cobranca" name="celular_cobranca" autocomplete="off" value="<?= $celular_cobranca ?>" <?php permissao(); ?>>
 										</div>
 									</div>
 									<!-- OUTROS -->

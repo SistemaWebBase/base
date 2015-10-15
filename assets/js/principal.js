@@ -82,6 +82,7 @@ function restaurarCadastro(link, alvo) {
 
 /* adicionar mascaras */
 function adicionarMascaras() {
+	
 	// Telefone
 	if (typeof $(".telefone").mask == 'function') {
 		$(".telefone").mask("(00) 0000-00009");

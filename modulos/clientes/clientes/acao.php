@@ -7,15 +7,27 @@
    // validar sessao
    validarSessao();
    
+   // retornar cadastro em JSON
+   if ($_POST['_action'] == "consultar") {
+         $cnpj = $_POST['cnpj'];
+         
+         $conexao = new Conexao();
+         $sql = "select * from clientes where cnpj='" . $cnpj . "';";
+         echo json_encode(pg_fetch_all($conexao->query($sql)));
+         return;
+   }
+   
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {
          case "inclusao": $nperm = "INCLUIR CADASTRO DE CLIENTES";break;
+         case "inclusaodup": $nperm = "INCLUIR CADASTRO DE CLIENTES COM CPF/CNPJ DUPLICADO";break;
          case "alteracao": $nperm = "ALTERAR CADASTRO DE CLIENTES";break;
          case "exclusao": $nperm = "EXCLUIR CADASTRO DE CLIENTES";break;
    }
    
    $perm = testarPermissao($nperm);
+   $cnpjPerm = testarPermissao("ALTERAR CNPJ DO CADASTRO DE CLIENTES");
    
    if ($perm != 'S') {
          http_response_code(401);
@@ -94,7 +106,7 @@
    // Testar acao
    $sql = "";
    
-   if ($_action == "inclusao") {
+   if ($_action == "inclusao" || $_action == "inclusaodup") {
          $sql = "insert into clientes (cnpj, ie, im, razaosocial, nomefantasia, endereco_entrega, bairro_entrega, cep_entrega, municipio_entrega, telefone_entrega, celular_entrega, endereco_cobranca, bairro_cobranca, cep_cobranca, municipio_cobranca, telefone_cobranca, celular_cobranca, email01, email02, autorizado_comprar, observacoes) values ('" . $cnpj . "', '" . $ie . "', '" . $im . "', '" . $razaosocial . "', '" . $nomefantasia . "', '" . $endereco_entrega . "', '" . $bairro_entrega . "', '" . $cep_entrega . "', " . $municipio_entrega . ", '" . $telefone_entrega . "', '" . $celular_entrega . "', '" . $endereco_cobranca . "', '" . $bairro_cobranca . "', '" . $cep_cobranca . "', " . $municipio_cobranca . ", '" . $telefone_cobranca . "', '" . $celular_cobranca . "', '" . $email01 . "', '" . $email02 . "', '" . $autorizado_comprar . "', '" . $observacoes . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
@@ -102,7 +114,11 @@
    }
    
    if ($_action == "alteracao") {
-         $sql = "update clientes set ie='" . $ie . "',im='" . $im . "',razaosocial='" . $razaosocial . "',nomefantasia='" . $nomefantasia . "',endereco_entrega='" . $endereco_entrega . "',bairro_entrega='" . $bairro_entrega . "',cep_entrega='" . $cep_entrega . "',municipio_entrega=" . $municipio_entrega . ",telefone_entrega='" . $telefone_entrega . "',celular_entrega='" . $celular_entrega . "',endereco_cobranca='" . $endereco_cobranca . "',bairro_cobranca='" . $bairro_cobranca . "',cep_cobranca='" . $cep_cobranca . "',municipio_cobranca=" . $municipio_cobranca . ",telefone_cobranca='" . $telefone_cobranca . "',celular_cobranca='" . $celular_cobranca . "',email01='" . $email01 . "',email02='" . $email02 . "',autorizado_comprar='" . $autorizado_comprar . "',observacoes='" . $observacoes . "' where id=" . $id;
+         if ($cnpjPerm != 'S') {
+            $sql = "update clientes set ie='" . $ie . "',im='" . $im . "',razaosocial='" . $razaosocial . "',nomefantasia='" . $nomefantasia . "',endereco_entrega='" . $endereco_entrega . "',bairro_entrega='" . $bairro_entrega . "',cep_entrega='" . $cep_entrega . "',municipio_entrega=" .      $municipio_entrega . ",telefone_entrega='" . $telefone_entrega . "',celular_entrega='" . $celular_entrega . "',endereco_cobranca='" . $endereco_cobranca . "',bairro_cobranca='" . $bairro_cobranca . "',cep_cobranca='" . $cep_cobranca . "',municipio_cobranca=" . $municipio_cobranca . ",telefone_cobranca='" . $telefone_cobranca . "',celular_cobranca='" . $celular_cobranca . "',email01='" . $email01 . "',email02='" . $email02 . "',autorizado_comprar='" . $autorizado_comprar . "',observacoes='" . $observacoes . "' where id=" . $id;
+         } else {
+            $sql = "update clientes set cnpj='" . $cnpj . "',ie='" . $ie . "',im='" . $im . "',razaosocial='" . $razaosocial . "',nomefantasia='" . $nomefantasia . "',endereco_entrega='" . $endereco_entrega . "',bairro_entrega='" . $bairro_entrega . "',cep_entrega='" . $cep_entrega . "',municipio_entrega=" .      $municipio_entrega . ",telefone_entrega='" . $telefone_entrega . "',celular_entrega='" . $celular_entrega . "',endereco_cobranca='" . $endereco_cobranca . "',bairro_cobranca='" . $bairro_cobranca . "',cep_cobranca='" . $cep_cobranca . "',municipio_cobranca=" . $municipio_cobranca . ",telefone_cobranca='" . $telefone_cobranca . "',celular_cobranca='" . $celular_cobranca . "',email01='" . $email01 . "',email02='" . $email02 . "',autorizado_comprar='" . $autorizado_comprar . "',observacoes='" . $observacoes . "' where id=" . $id;
+         }
          $msg1 = "alterar";
          $msg2 = "alterado";
          
