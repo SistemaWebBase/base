@@ -92,11 +92,11 @@
 									global $_action, $perm_incluir, $perm_alterar;
 									
 									if ($_action == "inclusao" && $perm_incluir != "S") {
-										echo "disabled";
+										echo "readonly";
 										return;
 									}
 									if ($_action == "alteracao" && $perm_alterar != "S") {
-										echo "disabled";
+										echo "readonly";
 										return;
 									}
 								}
@@ -134,8 +134,8 @@
 										<input type="text" class="form-control no-uppercase" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-4">
-										<label for="agrupamento">Agrupamento:</label>
-										<input type="text" class="form-control no-uppercase" id="agrupamento" name="agrupamento" autocomplete="off" maxlength="60" value="<?= $agrupamento ?>" <?php permissao(); ?>>
+										<label for="agrupamento">Agrupamento: </label>
+										<input type="text" class="form-control no-uppercase" id="agrupamento" name="agrupamento" autocomplete="off" maxlength="60" value="<?= $agrupamento ?>" <?php permissao(); ?> required>
 									</div>
 									<div class="form-group col-md-4">
 										<label for="indice">Índice: <span class="label label-danger">Obrigatório</span></label>
