@@ -45,6 +45,12 @@
 	         echo "Informe a descricao.";
        	   return;  
          }
+         
+         if((strlen($ncm)) < 8){
+	         http_response_code(400);
+	         echo "O campo NCM deve conter 8 dígitos.";
+	         return;
+         }
       
    }
    

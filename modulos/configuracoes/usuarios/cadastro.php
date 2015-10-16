@@ -223,7 +223,7 @@
 									<!-- OBSERVACOES -->
 									<div class="form-group col-md-12">
 										<label for="observacoes">Observações: </label>
-										<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>" <?php permissao(); ?>></textarea>
+										<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" <?php permissao(); ?>><?= $observacoes ?></textarea>
 									</div>
 									<input type="hidden" id="id" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

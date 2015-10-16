@@ -108,13 +108,13 @@
 				    						<label for="monofasico">Monofasico: </label>
 					    					<select class="form-control" id="monofasico" name="monofasico" <?php permissao(); ?>>
 						    				<?php
-							    				$externo_a = array('N', 'S');
+							    				$monofasico_a = array('N', 'S');
 								   			
-									    		foreach($externo_a as $e) {
-										    		if ($e == $externo) {
-											    		echo '<option value="' . $e . '" selected>' . (($e == "S") ? "SIM" : "NÃO") . '</option>'; 
+									    		foreach($monofasico_a as $m) {
+										    		if ($m == $monofasico) {
+											    		echo '<option value="' . $m . '" selected>' . (($m == "S") ? "SIM" : "NÃO") . '</option>'; 
 												    } else {
-													    echo '<option value="' . $e . '">' . (($e == "S") ? "SIM" : "NÃO") . '</option>';
+													    echo '<option value="' . $m . '">' . (($m == "S") ? "SIM" : "NÃO") . '</option>';
    		    										}
 	    										}
 			    							?>

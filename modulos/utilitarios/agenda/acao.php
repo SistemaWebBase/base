@@ -25,11 +25,11 @@
    
    // acao   
    $razaosocial = tratarTexto($_POST['razaosocial']);
-   $id = (int)$_POST['id'];
+   $id = tratarChave($_POST['id']);
    $endereco = tratarTexto($_POST['endereco']);
    $bairro = tratarTexto($_POST['bairro']);
    $cep = tratarNumero($_POST['cep']);
-   $municipio = tratarTexto($_POST['municipio']);
+   $municipio = tratarChave($_POST['municipio']);
    $telefone = tratarNumero($_POST['telefone']);
    $celular = tratarNumero($_POST['celular']);
    $email = tratarTexto($_POST['email']);
