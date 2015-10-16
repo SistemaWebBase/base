@@ -4,9 +4,6 @@
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar sidebar">
 				<li><a href="#"><b>Página Inicial</b></a></li>
-				<li><a href="#">Mensagens<span class="badge notificacao">5</span></a></li>
-				<li><a href="#">Gráficos</a></li>
-				<li><a href="#">Configurações</a></li>
 				<li class="sidebar-dropdown" id="dropdown"><a href="#" onclick="abrirSubmenu(\'#dropdown\');">Dropdown<span class="glyphicon glyphicon-chevron-down" style="float: right"></span></a>
 					<ul class="nav navbar">
 						<li><a href="#">Teste 1</a></li>
@@ -21,7 +18,7 @@
 						<li><a href="#">Teste 3</a></li>
 					</ul>
 				</li>
-				<li><a href="/modulos/sistema/configuracao/">Configurações do Sistema</a></li>
+				<li><a href="/modulos/sistema/configuracao/">Configurações Sistema</a></li>
 				<li><a href="/modulos/sistema/logs/">Registros de Log';
 				
 				// contagem de erros da log
