@@ -39,6 +39,34 @@ function consultarMunicipio(source, target) {
 	}).fail(postError);
 }
 
+// consultar cliente
+function consultarCliente() {
+	var cnpj = tratarNumero($("#cnpj").val());
+	if (cnpj == "") {
+		return;
+	}
+	
+	if (! validarCpfCnpj(cnpj)) {
+		return;
+	}
+	
+	$.post("acao.php", {_action : 'consultar', cnpj : cnpj}, function (data) {
+		if (data == "false") {
+			return;
+		}
+		
+		var dados = JSON.parse(data);
+		
+		[].forEach.call(Object.keys(dados[0]), function(key) {
+			$("#" + key).val(dados[0][key]);
+		})
+		
+		$("#_action").val("inclusaodup");
+		// consultarMunicipio("#municipio_entrega", "#nome_municipio_entrega");
+		// consultarMunicipio("#municipio_cobranca", "#nome_municipio_cobranca");
+		
+	});
+}
 
 // Restaurar municipios
 function restaurarMunicipios(link, target) {
@@ -86,7 +114,6 @@ function testarCpfCnpj() {
 	} else {
 		$("#form-group-cnpj").removeClass("has-error");
 		$("#popover-cnpj").popover("destroy");
-	
 		aplicarMascara();
 	}
 }
