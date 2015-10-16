@@ -118,7 +118,7 @@
 											foreach ($rows as $row) {
 												echo "<tr onclick=\"abrirCadastro('" . $row['id'] . "', '". assinarParametros("id=" . $row['id']) . "');\">";
 												echo "<td>" . $row['razaosocial'] . "</td>";
-												echo "<td>" . $row['cnpj'] . "</td>";
+												echo "<td>" . formatarCpfCnpj($row['cnpj']) . "</td>";
 												echo "<td class=\"hidden-xs\">" . $row['ie'] . "</td>";
 												echo "</tr>";
 											}
