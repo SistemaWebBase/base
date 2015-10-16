@@ -83,4 +83,6 @@
 				</div>
 			</div>
 		</nav>';
+		
+		unset($agrupamento);
 ?>
