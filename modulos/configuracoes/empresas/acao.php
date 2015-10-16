@@ -25,10 +25,10 @@
    }
    
    // acao         
-   $id = (int)$_POST['id'];
+   $id = tratarChave($_POST['id']);
    $cnpj = tratarNumero($_POST['cnpj']);
    $ie = tratarNumero($_POST['ie']);   
-   $im = trarTexto($_POST['im']);   
+   $im = tratarTexto($_POST['im']);   
    $razaosocial = tratarTexto($_POST['razaosocial']);   
    $nomefantasia = tratarTexto($_POST['nomefantasia']);   
    $endereco = tratarTexto($_POST['endereco']);   
