@@ -22,6 +22,16 @@
 					</ul>
 				</li>
 				<li><a href="#">Sistema</a></li>
+				<li><a href="/modulos/sistema/logs/">Registros de Log';
+				
+				// contagem de erros da log
+				$errosLog = (int)contarErrosLog();
+				if ($errosLog > 0) {
+					echo '<span class="badge notificacao">' . $errosLog . '</span>';
+				}
+				
+		echo '
+				</a></li>
 				<li><a href="#">Ajuda</a></li>
 			</ul>
 		</div>

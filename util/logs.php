@@ -2,9 +2,6 @@
 	require_once 'conf.php';
 	
 	function gravarLog($msg, $level) {
-		// Setar Timezone
-		date_default_timezone_set(getConfig("timezone"));
-		
 		// Testar nivel de log
 		$levels = getConfig("log_levels");
 		$ls = explode(",", $levels);
@@ -40,6 +37,59 @@
 		// Fechar arquivo
 		fclose($arq);
 		
+	}
+	
+	// Mostrar log
+	function mostrarLog() {
+		// Nome da pasta
+		$dir = __DIR__ . "/../logs/" . date("Y/m/d");
+		if (file_exists($dir) == FALSE) {
+			mkdir($dir, 0777, true);
+		}
+
+		// Abrir arquivo e gravar
+		$arq = fopen($dir . "/log.txt", "r");
+		
+		$log = "";
+		$count = 0;
+		while (! feof($arq)) {
+			$linha = fgets($arq, 4096);
+			$log .= $linha;
+			if ($linha == "=========================================================================================\n") {
+				$count++;
+			}
+		}
+		
+		// fechar arquivo
+		fclose($arq);
+		
+		// retornar texto
+		return utf8_encode($log) . "\nForam encontrados " . $count . " erros.\n";
+	}
+	
+	function contarErrosLog() {
+		// Nome da pasta
+		$dir = __DIR__ . "/../logs/" . date("Y/m/d");
+		if (file_exists($dir) == FALSE) {
+			mkdir($dir, 0777, true);
+		}
+
+		// Abrir arquivo e gravar
+		$arq = fopen($dir . "/log.txt", "r");
+		
+		$count = 0;
+		while (! feof($arq)) {
+			$linha = fgets($arq, 4096);
+			if ($linha == "=========================================================================================\n") {
+				$count++;
+			}
+		}
+		
+		// fechar arquivo
+		fclose($arq);
+		
+		// retornar texto
+		return $count;
 	}
 	
 	// handler
