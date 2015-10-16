@@ -124,6 +124,24 @@ function validarCnpj($cnpj) {
 	
 }
 
+function formatarCpfCnpj($cpfcnpj) {
+	switch (strlen($cpfcnpj)) {
+		case 11: return formatarCpf($cpfcnpj);break;
+		case 14: return formatarCnpj($cpfcnpj);break;
+		default: return $cpfcnpj;
+	}
+}
+
+function formatarCpf($cpf) {
+	$array = str_split($cpf);
+	return $array[0] . $array[1] . $array[2] . "." . $array[3] . $array[4] . $array[5] . "." . $array[6] . $array[7] . $array[8] . "-" . $array[9] . $array[10];
+}
+
+function formatarCnpj($cnpj) {
+	$array = str_split($cnpj);
+	return $array[0] . $array[1] . "." . $array[2] . $array[3] . $array[4] . "." . $array[5] . $array[6] . $array[7] . "/" . $array[8] . $array[9] . $array[10] . $array[11] . "-" . $array[12] . $array[13];
+}
+
 // Assinar URL
 function assinarURL() {
 	$query = explode("&token=", $_SERVER['QUERY_STRING'])[0];

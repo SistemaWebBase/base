@@ -120,7 +120,7 @@
 												echo "<tr onclick=\"abrirCadastro('" . $row['id'] . "', '" . assinarParametros('id=' . $row['id']) . "');\">";
 												echo "<td>" . $row['id'] . "</td>";
 												echo "<td>" . $row['razaosocial'] . "</td>";
-												echo "<td>" . $row['cnpj'] . "</td>";
+												echo "<td>" . formatarCpfCnpj($row['cnpj']) . "</td>";
 												echo "<td>" . $row['municipio'] . " / " . $row['uf'] . "</td>";
 												echo "</tr>";
 											}
