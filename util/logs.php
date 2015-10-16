@@ -48,7 +48,12 @@
 		}
 
 		// Abrir arquivo e gravar
-		$arq = fopen($dir . "/log.txt", "r");
+		$narq = $dir . "/log.txt";
+		if (! file_exists($narq)) {
+			return;
+		}
+		
+		$arq = fopen($narq, "r");
 		
 		$log = "";
 		$count = 0;
@@ -75,7 +80,12 @@
 		}
 
 		// Abrir arquivo e gravar
-		$arq = fopen($dir . "/log.txt", "r");
+		$narq = $dir . "/log.txt";
+		if (! file_exists($narq)) {
+			return;
+		}
+		
+		$arq = fopen($narq, "r");
 		
 		$count = 0;
 		while (! feof($arq)) {
