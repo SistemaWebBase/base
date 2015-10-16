@@ -110,7 +110,7 @@
 									<div class="form-group col-md-4">
 										<label for="modulo">Modulo: <span class="label label-danger">Obrigatório</span></label>
 										<select class="form-control" id="modulo" name="modulo" <?php permissao(); ?> required>
-										<?php
+										<?php										
 											$conexao = new Conexao();
 											$result = $conexao->query("select * from modulos order by nome");
 											$rows = pg_fetch_all($result);

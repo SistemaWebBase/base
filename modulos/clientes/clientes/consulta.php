@@ -106,9 +106,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from clientes order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select A.*, B.municipio as municipio, B.uf as uf from clientes A join municipios B on A.municipio_entrega = B.id limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from clientes where razaosocial like '" . $pesquisa . "%' order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select A.*, B.municipio as municipio, B.uf as uf from clientes A join municipios B on A.municipio_entrega = B.id where razaosocial like '" . $pesquisa . "%' order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -120,8 +120,8 @@
 												echo "<tr onclick=\"abrirCadastro('" . $row['id'] . "', '" . assinarParametros('id=' . $row['id']) . "');\">";
 												echo "<td>" . $row['id'] . "</td>";
 												echo "<td>" . $row['razaosocial'] . "</td>";
-												echo "<td>" . $row['cnpj'] . "</td>";
-												echo "<td>" . $row['municipio'] . "</td>";
+												echo "<td>" . formatarCpfCnpj($row['cnpj']) . "</td>";
+												echo "<td>" . $row['municipio'] . " / " . $row['uf'] . "</td>";
 												echo "</tr>";
 											}
 										}	
