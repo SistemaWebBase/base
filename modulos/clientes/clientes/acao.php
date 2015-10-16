@@ -12,7 +12,7 @@
          $cnpj = $_POST['cnpj'];
          
          $conexao = new Conexao();
-         $sql = "select * from clientes where cnpj='" . $cnpj . "';";
+         $sql = "select A.*, B.municipio || ' / ' || B.uf as nome_municipio_entrega, C.municipio || ' / ' || C.uf as nome_municipio_cobranca from clientes A join municipios B on A.municipio_entrega = B.id join municipios C on A.municipio_cobranca = C.id where A.cnpj='" . $cnpj . "';";
          echo json_encode(pg_fetch_all($conexao->query($sql)));
          return;
    }

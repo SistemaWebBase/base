@@ -62,8 +62,8 @@ function consultarCliente() {
 		})
 		
 		$("#_action").val("inclusaodup");
-		consultarMunicipio("#municipio_entrega", "#nome_municipio_entrega");
-		consultarMunicipio("#municipio_cobranca", "#nome_municipio_cobranca");
+		// consultarMunicipio("#municipio_entrega", "#nome_municipio_entrega");
+		// consultarMunicipio("#municipio_cobranca", "#nome_municipio_cobranca");
 		
 	});
 }
