@@ -21,7 +21,7 @@
 						<li><a href="#">Teste 3</a></li>
 					</ul>
 				</li>
-				<li><a href="#">Sistema</a></li>
+				<li><a href="/modulos/sistema/configuracao/">Configurações do Sistema</a></li>
 				<li><a href="/modulos/sistema/logs/">Registros de Log';
 				
 				// contagem de erros da log
