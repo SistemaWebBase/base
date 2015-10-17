@@ -1,6 +1,6 @@
 <?php
 	function parseConfig() {
-		return parse_ini_file(__DIR__ . "/../conf/sistemaweb.ini");
+		return parse_ini_file(BASE_DIR . "/conf/sistemaweb.ini");
 	}
 	
 	function getConfig($name) {
