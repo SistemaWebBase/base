@@ -3,6 +3,7 @@
 	<div class="hidden-xs hidden-sm">
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar sidebar">
+				<h3><span style="margin-left: 15px;"><span style="color: #555555; font-weight: bold;">BEM</span> <span style="color: #444444">VINDO</span></span></h3>
 				<li><a href="#"><b>Página Inicial</b></a></li>
 				<li class="sidebar-dropdown" id="dropdown"><a href="#" onclick="abrirSubmenu(\'#dropdown\');">Dropdown<span class="glyphicon glyphicon-chevron-down" style="float: right"></span></a>
 					<ul class="nav navbar">
