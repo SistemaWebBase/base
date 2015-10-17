@@ -45,7 +45,6 @@
 								Registros de Log
 							</div>
 							<div class="panel-body">
-								<!-- PESQUISA -->
 								<textarea readonly><?php require_once '../../../util/logs.php';
 								                echo mostrarLog();
 										  ?></textarea> 
