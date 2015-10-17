@@ -55,7 +55,7 @@
 										<div class="row">
 											<div class="col-md-5">
 												<div class="input-group">
-													<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa" autocomplete="off">
+													<input class="form-control no-uppercase" type="text" placeholder="Pesquisar" name="pesquisa" autocomplete="off">
 													<span class="input-group-btn">
 														<button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 													</span>
@@ -89,11 +89,11 @@
 										$conexao = new Conexao();
 										
 										// Ler POST
-										$pesquisa = tratarTexto($_GET['pesquisa']);
+										$pesquisa = tratarTextoSimples($_GET['pesquisa']);
 										
 										// Se for passado referencia de alguma pagina, seta-lo como pesquisa
-										if (! empty(tratarTexto($_GET['_ref']))) {
-											$pesquisa = tratarTexto($_GET['_ref']);
+										if (! empty(tratarTextoSimples($_GET['_ref']))) {
+											$pesquisa = tratarTextoSimples($_GET['_ref']);
 										}
 										
 										// Ler GET
@@ -107,7 +107,7 @@
 										if (empty($pesquisa)) {
 											$sql = "select A.*, B.nome as nome_modulo from programas A join modulos B on A.modulo = B.id order by A.indice,A.agrupamento limit "  . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select A.*, B.nome as nome_modulo from programas A join modulos B on A.modulo = B.id where A.nome like '" . $pesquisa . "%' order by A.nome limit "  . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select A.*, B.nome as nome_modulo from programas A join modulos B on A.modulo = B.id where A.nome ilike '" . $pesquisa . "%' order by A.nome limit "  . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -128,7 +128,7 @@
 										if (empty($pesquisa)) {
 											$sql = "select count(*) as num from programas";
 										} else {
-											$sql = "select count(*) as num from programas where nome like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from programas where nome ilike '" . $pesquisa . "%';";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];
