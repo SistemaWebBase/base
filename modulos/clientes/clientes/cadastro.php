@@ -137,6 +137,25 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
+									<!-- BARRA DE BOTOES -->
+									<div class="btn-control-bar">
+										<div class="panel-heading">
+											<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= $_GET['id'] ?>&token=<?= assinarURL("id=" . $_GET['id']); ?>', 0)">
+												<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-triangle-left" aria-hidden="true" style="margin-left: -7px"></span>
+									 			Títulos à Receber
+											</button>
+											<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= $_GET['id'] ?>&token=<?= assinarURL("id=" . $_GET['id']); ?>', 0)">
+												<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-triangle-right" aria-hidden="true" style="margin-left: -7px"></span>
+									 			Títulos à Pagar
+											</button>
+											<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= $_GET['id'] ?>&token=<?= assinarURL("id=" . $_GET['id']); ?>', 0)">
+												<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+									 			Anexos
+											</button>
+										</div>
+									</div>
 									<!-- DADOS PRINCIPAIS -->
 									<div class="row">
 										<div class="form-group col-md-12">
