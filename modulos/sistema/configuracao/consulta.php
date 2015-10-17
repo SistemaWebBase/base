@@ -45,7 +45,6 @@
 								Configurações do Sistema
 							</div>
 							<div class="panel-body">
-								<!-- PESQUISA -->
 								<textarea readonly><?php require_once '../../../util/arquivo.php';
 								                echo lerArquivo(__DIR__ . "/../../../conf/sistemaweb.ini");
 										  ?></textarea> 

@@ -18,7 +18,7 @@
 		}
 		
 		// Nome da pasta
-		$dir = __DIR__ . "/../logs/" . date("Y/m/d");
+		$dir = BASE_DIR . "/logs/" . date("Y/m/d");
 		if (file_exists($dir) == FALSE) {
 			mkdir($dir, 0777, true);
 		}
@@ -42,7 +42,7 @@
 	// Mostrar log
 	function mostrarLog() {
 		// Nome da pasta
-		$dir = __DIR__ . "/../logs/" . date("Y/m/d");
+		$dir = BASE_DIR . "/logs/" . date("Y/m/d");
 		if (file_exists($dir) == FALSE) {
 			mkdir($dir, 0777, true);
 		}
@@ -74,7 +74,7 @@
 	
 	function contarErrosLog() {
 		// Nome da pasta
-		$dir = __DIR__ . "/../logs/" . date("Y/m/d");
+		$dir = BASE_DIR . "/logs/" . date("Y/m/d");
 		if (file_exists($dir) == FALSE) {
 			mkdir($dir, 0777, true);
 		}
