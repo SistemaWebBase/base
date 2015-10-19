@@ -1,9 +1,4 @@
 <?php
-// Variaveis
-define('DB_SERVER', 'localhost');
-define('DB_NAME', 'sistemaweb');
-define('DB_USER', 'postgres');
-define('DB_PASSWORD', '554860Ti');
 
 @session_start();
 
