@@ -32,7 +32,7 @@
 							echo '<a class="dropdown-toggle" href="#" data-toggle="dropdown">' . $row['nome'] . '<b class="caret"></b></a>';
 							echo '<ul class="dropdown-menu">';
 							
-							$sql2 = "select * from programas where modulo=" . $row['id'] . " order by indice, agrupamento_a";
+							$sql2 = "select * from programas where modulo=" . $row['id'] . " order by indice, agrupamento";
 							$result2 = $conexao->query($sql2);
 							$rows2 = pg_fetch_all($result2);
 							
@@ -43,8 +43,8 @@
 							
 							$agrupamento_a = "";
 							foreach ($rows2 as $row2) {
-								if ($row2['agrupamento_a'] != $agrupamento_a) {
-									$agrupamento_a = $row2['agrupamento_a'];
+								if ($row2['agrupamento'] != $agrupamento_a) {
+									$agrupamento_a = $row2['agrupamento'];
 									echo '<li class="dropdown-header">' . $agrupamento_a . '</li>';
 								}
 								
