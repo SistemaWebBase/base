@@ -16,4 +16,10 @@
 	ini_set('upload_tmp_dir', getConfig('upload_tmp_dir'));
 	ini_set('upload_max_filesize', getConfig('upload_max_filesize'));
 	ini_set('max_file_uploads', getConfig('max_file_uploads'));
+	
+	// Banco de dados
+	define('DB_SERVER', getConfig("db_server"));
+	define('DB_NAME', getConfig('db_name'));
+	define('DB_USER', getConfig('db_user'));
+	define('DB_PASSWORD', getConfig('db_password'));
 ?>
