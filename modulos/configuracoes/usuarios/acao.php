@@ -111,7 +111,7 @@
    }
    
    if ($_action == "alteracao") {
-         $sql = "update usuarios set login='" . $login . "',senha='" . sha1($senha) . "',nome='" . $nome . "',modelo=" . $modelo . ",empresa=" . $empresa . ",nivel=" . $nivel . ",externo='" . $externo . "',mobile='" . $mobile . "',telefone='" . $telefone . "',ramal='" . $ramal . "',bloqueado='" . $bloqueado . "',observacoes='" . $observacoes ."' where id=" . $id;
+         $sql = "update usuarios set nome='" . $nome . "',modelo=" . $modelo . ",empresa=" . $empresa . ",nivel=" . $nivel . ",externo='" . $externo . "',mobile='" . $mobile . "',telefone='" . $telefone . "',ramal='" . $ramal . "',bloqueado='" . $bloqueado . "',observacoes='" . $observacoes ."' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }

@@ -60,9 +60,6 @@
 			
 				$id = $rows[0]['id'];
 				$nome = $rows[0]['nome'];
-				$login = $rows[0]['login'];
-				$senha = $rows[0]['senha'];
-				$senha = $rows[0]['confirmacao_senha'];
 				$modelo = $rows[0]['modelo'];
 				$empresa = $rows[0]['empresa'];
 				$nivel = $rows[0]['nivel'];
@@ -108,7 +105,7 @@
 										echo "readonly";
 										return;
 									}
-								}
+								}	
 							?>
 							<div class="panel-body">
 								<form role="form">
@@ -125,12 +122,12 @@
 									<!-- SENHA -->
 									<div class="form-group col-md-6">
 										<label for="senha">Senha: <span class="label label-danger">Obrigatório</span></label>
-										<input type="password" class="form-control" id="senha" name="senha" autocomplete="off" maxlength="20" value="<?= $senha ?>" <?php permissao(); ?> required>
+										<input type="password" class="form-control" id="senha" name="senha" autocomplete="off" maxlength="20" value="<?= $senha ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo"readonly";} ?> required>
 									</div>
 									<!-- CONFIRMACAO DA SENHA -->
 									<div class="form-group col-md-6">
 										<label for="confirmacao_senha">Confirme a Senha: <span class="label label-danger">Obrigatório</span></label>
-										<input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" autocomplete="off" maxlength="20" value="<?= $confirmacao_senha ?>" <?php permissao(); ?> required>
+										<input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" autocomplete="off" maxlength="20" value="<?= $confirmacao_senha ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo"readonly";} ?> required>
 									</div>
 									<!-- MODELO -->
 									<div class="form-group col-md-6">
