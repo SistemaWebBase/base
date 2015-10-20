@@ -65,7 +65,7 @@
 						<li class="dropdown">
 							<a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> ' . $usuario . '<b class="badge notificacao">5</b></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Trocar Senha</a></li>
+								<li><a href="/modulos/configuracoes/alterar_senha/cadastro.php">Trocar Senha</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="/login.php"><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 							</ul>
