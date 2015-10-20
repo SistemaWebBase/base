@@ -6,7 +6,7 @@
 		
 		// testar permissao
 		require_once '../../../util/permissao.php';
-		$perm = testarPermissao('INCLUIR CADASTRO DE MODULOS');
+		$perm = testarPermissao('INCLUIR CADASTRO DE PRODUTOS');
 
 ?>
 <!DOCTYPE html>
@@ -46,7 +46,7 @@
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Consulta de Módulos
+								Consulta de Produtos
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
@@ -68,9 +68,9 @@
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
 									<thead>
 										<tr>
-											<th>Nome do Módulo</th>
-											<th>Índice</th>
-											<th class="hidden-xs">Nível</th>
+											<th>Código Interno</th>
+											<th>Nome do Produto</th>
+											<th class="hidden-xs">Marca</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -105,9 +105,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from modulos order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from produtos order by id limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from modulos where nome like '" . $pesquisa . "%' order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from produtos where id like '" . $pesquisa . "%' order by id limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -117,18 +117,18 @@
 										if ($rows != null) {
 											foreach ($rows as $row) {
 												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
+												echo "<td>" . $row['id'] . "</td>";
 												echo "<td>" . $row['nome'] . "</td>";
-												echo "<td>" . $row['indice'] . "</td>";
-												echo "<td class=\"hidden-xs\">" . $row['nivel'] . "</td>";
+												echo "<td class=\"hidden-xs\">" . $row['marca'] . "</td>";
 												echo "</tr>";
 											}
 										}	
 									
 										// Paginaçao
 										if (empty($pesquisa)) {
-											$sql = "select count(*) as num from modulos";
+											$sql = "select count(*) as num from produtos";
 										} else {
-											$sql = "select count(*) as num from modulos where nome like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from produtos where id like '" . $pesquisa . "%';";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];
@@ -246,7 +246,7 @@
 						<div class="aviso">
 							<?php
 								if ($perm != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE MODULOS. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE PRODUTOS. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>

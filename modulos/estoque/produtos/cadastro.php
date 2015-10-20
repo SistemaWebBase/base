@@ -6,9 +6,9 @@
 		
 		// Testar permissao
 		require_once '../../../util/permissao.php';
-		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE MODULOS');
-		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE MODULOS');
-		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE MODULOS');
+		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE PRODUTOS');
+		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE PRODUTOS');
+		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE PRODUTOS');
 
 ?>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from modulos where id=" . $id;
+				$sql = "select * from produtos where id=" . $id;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -54,9 +54,21 @@
 			
 				$id = $rows[0]['id'];
 				$nome = $rows[0]['nome'];
-				$pasta = $rows[0]['pasta'];
-				$indice = $rows[0]['indice'];
-				$nivel = $rows[0]['nivel'];
+				$codigo_referencia = $rows[0]['codigo_referencia'];
+				$codigo_fabrica = $rows[0]['codigo_fabrica'];
+				$codigo_serie = $rows[0]['codigo_serie'];
+				$codigo_barras = $rows[0]['codigo_barras'];
+				$linha = $rows[0]['linha'];
+				$grupo = $rows[0]['grupo'];
+				$subgrupo = $rows[0]['subgrupo'];
+				$ncm = $rows[0]['ncm'];
+				$unidade_medida = $rows[0]['unidade_medida'];
+				$marca = $rows[0]['marca'];
+				$situacao = $rows[0]['situacao'];
+				$qtd_embalagem = $rows[0]['qtd_embalagem'];
+				$preco_custo = $rows[0]['preco_custo'];
+				$preco_venda = $rows[0]['preco_venda'];
+				$observacoes = $rows[0]['observacoes'];
 				$_action = "alteracao";
 			}
 			
@@ -105,26 +117,6 @@
 										<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
 										<input type="text" class="form-control" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?> required>
 									</div>
-									<div class="form-group col-md-6">
-										<label for="indice">Índice: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>" <?php permissao(); ?> required>
-									</div>
-									<div class="form-group col-md-3">
-										<label for="nivel">Nível: </label>
-										<select class="form-control" id="nivel" name="nivel" <?php permissao(); ?>>
-										<?php
-											$nivels = array('01', '02', '03', '04', '05');
-									
-											foreach($nivels as $u) {
-												if ($u == $nivel) {
-													echo '<option value="' . $u . '" selected>' . $u . '</option>';
-												} else {
-													echo '<option value="' . $u . '">' . $u . '</option>';
-												}
-											}
-										?>
-										</select>
-									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
@@ -134,11 +126,11 @@
 						<div class="aviso">
 							<?php
 								if ($_action == 'inclusao' && $perm_incluir != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE MODULOS. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE PRODUTOS. Solicite ao administrador a liberação.');</script>";
 								}
 								
 								if ($_action == 'alteracao' && $perm_alterar != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE MODULOS. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE PRODUTOS. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>
