@@ -1,0 +1,4 @@
+AuthUserFile /www/.htpasswd
+AuthType Basic
+AuthName "Autenticação Necessária"
+Require valid-user
