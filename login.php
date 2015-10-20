@@ -2,7 +2,6 @@
 	// destruir sessoes anteriores
 	@session_start();
 	@session_destroy();
-	
 ?>
 <!DOCTYPE html>
 <html>

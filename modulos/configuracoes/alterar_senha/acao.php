@@ -49,22 +49,20 @@
    $conexao = new Conexao();
    
    // Módulo do usuário
-   $senha_bd = pg_fetch_all($conexao->query("select * from usuarios where id=" . $_SESSION['id']))[0]['senha'];
+   $senha_bd = pg_fetch_all($conexao->query("select senha from usuarios where id=" . $_SESSION['id']))[0]['senha'];
 
-   if ($senha_atual != $senha_bd) {
+   if (sha1($senha_atual) != $senha_bd) {
          http_response_code(400);
-	   echo "Senhas não conferem.";
+	   echo "Senha incorreta.";
 	   return;
    }						
    
    // Testar acao
    $sql = "";
       
-   if ($_action == "alteracao") {
-         $sql = "update marcas set senha='" . $senha_atual . "' where id=" . $id;
-         $msg1 = "alterar";
-         $msg2 = "alterado";
-   }
+   $sql = "update usuarios set senha='" . sha1($nova_senha) . "' where id=" . $_SESSION['id'];
+   $msg1 = "alterar";
+   $msg2 = "alterado";
    
    if (empty($sql)) {
          http_response_code(400);
