@@ -35,7 +35,7 @@
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
-	<body <?php if (!empty($_GET['usuario'])) { echo "onload=\"consultarUsuario(); consultarPermissao();\""; } ?>>
+	<body>
 		<?php
 			require_once '../../../util/conexao.php';
 			

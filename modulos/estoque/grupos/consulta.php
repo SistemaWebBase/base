@@ -1,13 +1,11 @@
 <?php
         // validar sessao
         require_once '../../../util/sessao.php';
-
         validarSessao();
 		
 		// testar permissao
 		require_once '../../../util/permissao.php';
 		$perm = testarPermissao('INCLUIR CADASTRO DE GRUPOS');
-
 ?>
 <!DOCTYPE html>
 <html>

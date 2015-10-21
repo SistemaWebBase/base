@@ -1,10 +1,8 @@
 <?php
-
    require_once '../../../util/conexao.php';
    require_once '../../../util/permissao.php';
    require_once '../../../util/util.php';
    require_once '../../../util/sessao.php';
-
    // validar sessao
    validarSessao();
    
@@ -30,7 +28,6 @@
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {
-
          // validar campos
          if (empty($grupo)) {
 	         http_response_code(400);
@@ -84,7 +81,6 @@
          echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte.";
          return;
    }
-
    echo "Registro " . $msg2 . " com sucesso.";
    
 ?>

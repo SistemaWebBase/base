@@ -1,7 +1,6 @@
 <?php
         // validar sessao
         require_once '../../../util/sessao.php';
-
         validarSessao();
 		
 		// Testar permissao
@@ -9,7 +8,6 @@
 		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE GRUPOS');
 		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE GRUPOS');
 		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE GRUPOS');
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +39,6 @@
 			if (!empty($id)) {
 				// Abrir nova conexão
 				$conexao = new Conexao();
-
 				$sql = "select * from grupos where id=" . $id;
 				$result = $conexao->query($sql);
 			
