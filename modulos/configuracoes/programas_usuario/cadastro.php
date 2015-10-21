@@ -100,17 +100,24 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class="form-group col-md-6">
-										<label for="usuario">Usuário: <span class="label label-danger">Obrigatório</span></label>
-									    <input type="text" class="form-control" id="nome_usuario" autocomplete="off" value="<?= $usuario ?>" autofocus <?php permissao(); ?>>
+									<div class="row">
+										<!-- USUARIO -->
+										<div class="form-group col-md-6">
+											<label for="usuario">Usuário: <span class="label label-danger">Obrigatório</span></label>
+										    <input type="text" class="form-control" id="nome_usuario" autocomplete="off" value="<?= $usuario ?>" autofocus <?php permissao(); ?>>
+										</div>
+										<!-- PROGRAMA -->
+										<div class="form-group col-md-6">
+											<label for="programa">Permissão: <span class="label label-danger">Obrigatório</span></label>
+										    <input type="text" class="form-control" id="nome_programa" autocomplete="off" value="<?= $programa ?>" <?php permissao(); ?>>
+										</div>
 									</div>
-									<div class="form-group col-md-6">
-										<label for="programa">Permissão: <span class="label label-danger">Obrigatório</span></label>
-									    <input type="text" class="form-control" id="nome_programa" autocomplete="off" value="<?= $programa ?>" <?php permissao(); ?>>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?> required>
+									<div class="row">
+										<!-- VALOR -->
+										<div class="form-group col-md-6">
+											<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
+											<input type="text" class="form-control" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?> required>
+										</div>
 									</div>
 									<input type="hidden" id="usuario" name="usuario" value="<?= $usuario ?>">
 									<input type="hidden" id="programa" name="programa" value="<?= $programa ?>">

@@ -1,5 +1,5 @@
-/* criar tabela de grupos */
-create table if not exists log.grupos (
+/* criar tabela de produtos */
+create table if not exists log.produtos (
 	/* campos originais da tabela */
 	id serial not null,
 	nome varchar(40) not null,
@@ -24,5 +24,5 @@ create table if not exists log.grupos (
 	log_pagina text,
 	log_data timestamp default current_timestamp,
 	log_seq serial not null,
-   	constraint PK_LOG_GRUPOS primary key (log_seq)
+   	constraint PK_LOG_PRODUTOS primary key (log_seq)
 );

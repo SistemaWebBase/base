@@ -103,60 +103,70 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class="form-group col-md-4">
-										<label for="nome">Nome do Programa: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control no-uppercase" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
-									</div>
-									<div class="form-group col-md-4">
-										<label for="modulo">Modulo: <span class="label label-danger">Obrigatório</span></label>
-										<select class="form-control" id="modulo" name="modulo" <?php permissao(); ?> required>
-										<?php										
-											$conexao = new Conexao();
-											$result = $conexao->query("select * from modulos order by nome");
-											$rows = pg_fetch_all($result);
+									<div class="row">
+										<!-- NOME -->
+  										<div class="form-group col-md-4">
+											<label for="nome">Nome do Programa: <span class="label label-danger">Obrigatório</span></label>
+											<input type="text" class="form-control no-uppercase" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
+										</div>
+										<!-- MODULO -->
+										<div class="form-group col-md-4">
+											<label for="modulo">Modulo: <span class="label label-danger">Obrigatório</span></label>
+											<select class="form-control" id="modulo" name="modulo" <?php permissao(); ?> required>
+											<?php										
+												$conexao = new Conexao();
+												$result = $conexao->query("select * from modulos order by nome");
+												$rows = pg_fetch_all($result);
 											
-											if ($rows != null) {
+												if ($rows != null) {
+													
+													foreach ($rows as $row) {
+														if ($row['id'] == $modulo) {	
+															echo '<option value="' . $row['id'] . '" selected>' . $row['nome'] . '</option>';
+														} else {
+															echo '<option value="' . $row['id'] . '">' . $row['nome'] . '</option>';
+														}
+													}
 												
-												foreach ($rows as $row) {
-													if ($row['id'] == $modulo) {	
-														echo '<option value="' . $row['id'] . '" selected>' . $row['nome'] . '</option>';
+												}
+											?>
+											</select>
+										</div>
+										<!-- PASTA -->
+										<div class="form-group col-md-4">
+											<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
+											<input type="text" class="form-control no-uppercase" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?> required>
+										</div>
+									</div>
+									<div class="row">
+										<!-- AGRUPAMENTO -->
+										<div class="form-group col-md-4">
+											<label for="agrupamento">Agrupamento: </label>
+											<input type="text" class="form-control no-uppercase" id="agrupamento" name="agrupamento" autocomplete="off" maxlength="60" value="<?= $agrupamento ?>" <?php permissao(); ?> required>
+										</div>
+										<!-- INDICE -->
+										<div class="form-group col-md-4">
+											<label for="indice">Índice: <span class="label label-danger">Obrigatório</span></label>
+											<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>" <?php permissao(); ?> required>
+										</div>
+										<!-- NIVEL -->
+										<div class="form-group col-md-4">
+											<label for="nivel">Nível: </label>
+											<select class="form-control" id="nivel" name="nivel" <?php permissao(); ?>>
+											<?php
+												$nivels = array('01', '02', '03', '04', '05');
+									
+												foreach($nivels as $u) {
+													if ($u == $nivel) {
+														echo '<option value="' . $u . '" selected>' . $u . '</option>';
 													} else {
-														echo '<option value="' . $row['id'] . '">' . $row['nome'] . '</option>';
+														echo '<option value="' . $u . '">' . $u . '</option>';
 													}
 												}
-												
-											}
-										?>
-										</select>
-									</div>
-									<div class="form-group col-md-4">
-										<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control no-uppercase" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?> required>
-									</div>
-									<div class="form-group col-md-4">
-										<label for="agrupamento">Agrupamento: </label>
-										<input type="text" class="form-control no-uppercase" id="agrupamento" name="agrupamento" autocomplete="off" maxlength="60" value="<?= $agrupamento ?>" <?php permissao(); ?> required>
-									</div>
-									<div class="form-group col-md-4">
-										<label for="indice">Índice: <span class="label label-danger">Obrigatório</span></label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>" <?php permissao(); ?> required>
-									</div>
-									<div class="form-group col-md-4">
-										<label for="nivel">Nível: </label>
-										<select class="form-control" id="nivel" name="nivel" <?php permissao(); ?>>
-										<?php
-											$nivels = array('01', '02', '03', '04', '05');
-									
-											foreach($nivels as $u) {
-												if ($u == $nivel) {
-													echo '<option value="' . $u . '" selected>' . $u . '</option>';
-												} else {
-													echo '<option value="' . $u . '">' . $u . '</option>';
-												}
-											}
-										?>
-										</select>
-									</div>
+											?>
+											</select>
+										</div>
+									</div>	
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
