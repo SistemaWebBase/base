@@ -25,6 +25,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
@@ -142,7 +143,7 @@
 													<!-- CODIGO LINHA -->
 													<label for="linha">Código: </label >
 													<div class="input-group">
-														<input type="numeric" pattern="[0-9]*" class="form-control" id="linha" name="linha" autocomplete="off" value="<?= $linha ?>" onblur="consultarLinha();" <?php permissao(); ?>>
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="linha" name="linha" data-mask="00000" autocomplete="off" value="<?= $linha ?>" onblur="consultarLinha();" <?php permissao(); ?>>
 														<span class="input-group-btn">
 															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/linhas/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>
@@ -162,7 +163,7 @@
 													<!-- CODIGO GRUPO -->
 													<label for="grupo">Código: </label >
 													<div class="input-group">
-														<input type="numeric" pattern="[0-9]*" class="form-control" id="grupo" name="grupo" autocomplete="off" value="<?= $grupo ?>" onblur="consultarGrupo();" <?php permissao(); ?>>
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="grupo" name="grupo" data-mask="00000" autocomplete="off" value="<?= $grupo ?>" onblur="consultarGrupo();" <?php permissao(); ?>>
 														<span class="input-group-btn">
 															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/grupos/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>
@@ -182,7 +183,7 @@
 													<!-- CODIGO SUBGRUPO -->
 													<label for="subgrupo">Código: </label >
 													<div class="input-group">
-														<input type="numeric" pattern="[0-9]*" class="form-control" id="subgrupo" name="subgrupo" autocomplete="off" value="<?= $subgrupo ?>" onblur="consultarSubgrupo();" <?php permissao(); ?>>
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="subgrupo" name="subgrupo" data-mask="00000" autocomplete="off" value="<?= $subgrupo ?>" onblur="consultarSubgrupo();" <?php permissao(); ?>>
 														<span class="input-group-btn">
 															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/subgrupos/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>
@@ -202,7 +203,7 @@
 													<!-- CODIGO MARCA -->
 													<label for="marca">Código: </label >
 													<div class="input-group">
-														<input type="numeric" pattern="[0-9]*" class="form-control" id="marca" name="marca" autocomplete="off" value="<?= $marca ?>" onblur="consultarMarca();" <?php permissao(); ?>>
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="marca" name="marca" data-mask="00000" autocomplete="off" value="<?= $marca ?>" onblur="consultarMarca();" <?php permissao(); ?>>
 														<span class="input-group-btn">
 															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/marcas/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>
@@ -222,7 +223,7 @@
 													<!-- CODIGO UNIDADE DE MEDIDA -->
 													<label for="unidade_medida">Código: </label >
 													<div class="input-group">
-														<input type="numeric" pattern="[0-9]*" class="form-control" id="unidade_medida" name="unidade_medida" autocomplete="off" value="<?= $unidade_medida ?>" onblur="consultarUnidadeMedida();" <?php permissao(); ?>>
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="unidade_medida" name="unidade_medida" data-mask="00000" autocomplete="off" value="<?= $unidade_medida ?>" onblur="consultarUnidadeMedida();" <?php permissao(); ?>>
 														<span class="input-group-btn">
 															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/unidades_medida/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>
@@ -242,7 +243,7 @@
 													<!-- CODIGO NCM -->
 													<label for="ncm">Código: </label >
 													<div class="input-group">
-														<input type="numeric" pattern="[0-9]*" class="form-control" id="ncm" name="ncm" autocomplete="off" value="<?= $ncm ?>" onblur="consultarNCM();" <?php permissao(); ?>>
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="ncm" name="ncm" data-mask="00000" autocomplete="off" value="<?= $ncm ?>" onblur="consultarNCM();" <?php permissao(); ?>>
 														<span class="input-group-btn">
 															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/ncm/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>
