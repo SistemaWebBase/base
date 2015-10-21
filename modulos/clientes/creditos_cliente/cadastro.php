@@ -6,9 +6,13 @@
 		
 		// Testar permissao
 		require_once '../../../util/permissao.php';
-		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE PRODUTOS');
-		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE PRODUTOS');
-		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE PRODUTOS');
+		$perm_incluir = testarPermissao('INCLUIR LOCAIS DE COBRANCA');
+		$perm_alterar = testarPermissao('ALTERAR LOCAIS DE COBRANCA');
+		$perm_excluir = testarPermissao('EXCLUIR LOCAIS DE COBRANCA');
+		
+		// Testar assinatura da URL
+		require_once '../../../util/util.php';
+		testarAssinaturaURL();
 
 ?>
 <!DOCTYPE html>
@@ -25,24 +29,26 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
+	    <script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
-	<body>
+	<body <?php if (!empty($_GET['usuario'])) { echo "onload=\"consultarUsuario(); consultarPermissao();\""; } ?>>
 		<?php
 			require_once '../../../util/conexao.php';
 			
 			$_action = "inclusao"; // por padrao, entrar no modo de inclusao
 			
 			// Se passar id, abrir registro
-			$id = $_GET['id'];
-			if (!empty($id)) {
+			$complemento = $_GET['complemento'];
+			$codigo_banco = $_GET['codigo_banco'];
+			if (!empty($complemento) && !empty($codigo_banco)) {
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from produtos where id=" . $id;
+				$sql = "select * from locais_cobranca where complemento='" . $complemento . "' and codigo_banco=" . $codigo_banco;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -51,24 +57,10 @@
 				if ($rows == null) {
 					return;
 				}
-			
-				$id = $rows[0]['id'];
-				$nome = $rows[0]['nome'];
-				$codigo_referencia = $rows[0]['codigo_referencia'];
-				$codigo_fabrica = $rows[0]['codigo_fabrica'];
-				$codigo_serie = $rows[0]['codigo_serie'];
-				$codigo_barras = $rows[0]['codigo_barras'];
-				$linha = $rows[0]['linha'];
-				$grupo = $rows[0]['grupo'];
-				$subgrupo = $rows[0]['subgrupo'];
-				$ncm = $rows[0]['ncm'];
-				$unidade_medida = $rows[0]['unidade_medida'];
-				$marca = $rows[0]['marca'];
-				$situacao = $rows[0]['situacao'];
-				$qtd_embalagem = $rows[0]['qtd_embalagem'];
-				$preco_custo = $rows[0]['preco_custo'];
-				$preco_venda = $rows[0]['preco_venda'];
-				$observacoes = $rows[0]['observacoes'];
+
+				$codigo_banco = $rows[0]['codigo_banco'];
+				$complemento = $rows[0]['complemento'];	
+				$descricao = $rows[0]['descricao'];
 				$_action = "alteracao";
 			}
 			
@@ -76,7 +68,7 @@
 		<!-- MENU -->
 		<?php
 		    require_once '../../sistema/menu/menu.php';
-		    require_once '../../sistema/sidebar/sidebar.php';			
+		    require_once '../../sistema/sidebar/sidebar.php';
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
@@ -90,7 +82,7 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Cadastro de Módulos
+								Cadastro de Permissões do Usuário
 							</div>
 							<!-- REGRAS DE PERMISSAO -->
 							<?php
@@ -98,11 +90,11 @@
 									global $_action, $perm_incluir, $perm_alterar;
 									
 									if ($_action == "inclusao" && $perm_incluir != "S") {
-										echo "disabled";
+										echo "readonly";
 										return;
 									}
 									if ($_action == "alteracao" && $perm_alterar != "S") {
-										echo "disabled";
+										echo "readonly";
 										return;
 									}
 								}
@@ -110,14 +102,17 @@
 							<div class="panel-body">
 								<form role="form">
 									<div class="form-group col-md-6">
-										<label for="nome">Nome do Módulo: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
+										<label for="codigo_banco">Código do Banco: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" inputmode="numeric" class="form-control" id="codigo_banco"  name="codigo_banco" data-mask="000" autocomplete="off" min="0" max="999999" value="<?= $codigo_banco ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";}  ?> required>
 									</div>
 									<div class="form-group col-md-6">
-										<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?> required>
+										<label for="complemento">Complemento: <span class="label label-danger">Obrigatório</span></label>
+									    <input type="text" class="form-control" id="complemento" name="complemento" autocomplete="off" value="<?= $complemento ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";} ?> required>
 									</div>
-									<input type="hidden" name="id" value="<?= $id ?>">
+									<div class="form-group col-md-6">
+										<label for="descricao">Descriçao: </label>
+										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
+									</div>
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>
@@ -126,18 +121,18 @@
 						<div class="aviso">
 							<?php
 								if ($_action == 'inclusao' && $perm_incluir != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE PRODUTOS. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR LOCAIS DE COBRANCA. Solicite ao administrador a liberação.');</script>";
 								}
 								
 								if ($_action == 'alteracao' && $perm_alterar != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE PRODUTOS. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR LOCAIS DE COBRANCA. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#nome');" <?php permissao(); ?>>
+								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#usuario');" <?php permissao(); ?>>
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
@@ -147,7 +142,7 @@
 										 Cancelar
 									</button>
 								</a>
-								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Módulo', 'Deseja excluir este módulo ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
+								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Permissão do Usuário', 'Deseja excluir esta Permissão ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>
@@ -158,7 +153,7 @@
 			</div>
 		</div>
 		<!-- RODAPE -->
-        <footer>
+		<footer>
 			<div class="container">
 				<?php
 					require_once '../../sistema/rodape/rodape.php';

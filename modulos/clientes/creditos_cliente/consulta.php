@@ -6,7 +6,11 @@
 		
 		// testar permissao
 		require_once '../../../util/permissao.php';
-		$perm = testarPermissao('INCLUIR CADASTRO DE PRODUTOS');
+		$perm = testarPermissao('INCLUIR SOLICITACAO DE CREDITO');
+		
+		// Testar assinatura da URL
+		require_once '../../../util/util.php';
+		testarAssinaturaURL();
 
 ?>
 <!DOCTYPE html>
@@ -32,45 +36,31 @@
 		<!-- MENU -->
 		<?php
 		    require_once '../../sistema/menu/menu.php';
-		    require_once '../../sistema/sidebar/sidebar.php';			
+			require_once '../../sistema/sidebar/sidebar.php';
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
 			<div class="container">
 				<div class="row">
 					<!-- SIDEBAR -->
-					<div class="col-md-2">						
+					<div id="sidebar" class="col-md-2">				
 					</div>
 					<!-- AREA DE CONTEUDO -->
 					<div id="conteudo" class="col-xs-12 col-md-10">
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Consulta de Produtos
+								Solicitações de Crédito
 							</div>
 							<div class="panel-body">
-								<!-- PESQUISA -->
-								<form action="consulta.php" method="GET">
-									<div class="form">
-										<div class="row">
-											<div class="col-md-5">
-												<div class="input-group">
-													<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa" autocomplete="off">
-													<span class="input-group-btn">
-														<button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-													</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
 								<!-- TABELA DE REGISTRO -->
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
 									<thead>
 										<tr>
-											<th>Código Interno</th>
-											<th>Nome do Produto</th>
-											<th class="hidden-xs">Marca</th>
+											<th>Seq.</th>
+											<th>Valor</th>
+											<th>Data e Hora</th>
+											<th>Status</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -88,26 +78,20 @@
 										// Abrir conexao
 										$conexao = new Conexao();
 										
-										// Ler POST
-										$pesquisa = tratarTexto($_GET['pesquisa']);
-										
-										// Se for passado referencia de alguma pagina, seta-lo como pesquisa
-										if (! empty(tratarTexto($_GET['_ref']))) {
-											$pesquisa = $_GET['_ref'];
-										}
-										
 										// Ler GET
+										$cliente = (int) $_GET['cliente'];
+										
 										$pagina = $_GET['pagina'];
 										if (empty($pagina)) {
 											$pagina = "1";
 										}
 										
-										$sql = "";
+										$sql = "select * from creditos_cliente where cliente=" . $_;
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from produtos order by id limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from locais_cobranca order by codigo_banco limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from produtos where id like '" . $pesquisa . "%' order by id limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from locais_cobranca where codigo_banco like '" . $pesquisa . "%' order by codigo_banco limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -116,19 +100,18 @@
 										$rows = pg_fetch_all($result);
 										if ($rows != null) {
 											foreach ($rows as $row) {
-												echo "<tr onclick=\"abrirCadastro('" . $row[id] . "');\">";
-												echo "<td>" . $row['id'] . "</td>";
-												echo "<td>" . $row['nome'] . "</td>";
-												echo "<td class=\"hidden-xs\">" . $row['marca'] . "</td>";
+												echo "<tr onclick=\"abrirCadastro('" . $row['codigo_banco'] . "', '" . $row['complemento'] . "', '" . assinarParametros("codigo_banco=" . $row['codigo_banco'] . "&complemento=" . $row['complemento']) . "');\">";
+												echo "<td>" . $row['codigo_banco'] . "</td>";
+												echo "<td>" . $row['complemento'] . "</td>";
 												echo "</tr>";
 											}
 										}	
 									
 										// Paginaçao
 										if (empty($pesquisa)) {
-											$sql = "select count(*) as num from produtos";
+											$sql = "select count(*) as num from locais_cobranca";
 										} else {
-											$sql = "select count(*) as num from produtos where id like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from locais_cobranca where codigo_banco like '" . $pesquisa . "%';";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];
@@ -246,16 +229,16 @@
 						<div class="aviso">
 							<?php
 								if ($perm != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE PRODUTOS. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR LOCAIS DE COBRANCA. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button onclick="redirecionar('cadastro.php', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
+								<button onclick="redirecionar('cadastro.php?usuario=<?= $id_usuario ?>', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-									 Novo
+									 Solicitar
 								</button>
 							</div>
 						</div>

@@ -11,9 +11,9 @@
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {
-         case "inclusao": $nperm = "INCLUIR CADASTRO DE MODULOS";break;
-         case "alteracao": $nperm = "ALTERAR CADASTRO DE MODULOS";break;
-         case "exclusao": $nperm = "EXCLUIR CADASTRO DE MODULOS";break;
+         case "inclusao": $nperm = "INCLUIR CADASTRO DE PRODUTOS";break;
+         case "alteracao": $nperm = "ALTERAR CADASTRO DE PRODUTOS";break;
+         case "exclusao": $nperm = "EXCLUIR CADASTRO DE PRODUTOS";break;
    }
    
    $perm = testarPermissao($nperm);
@@ -25,11 +25,23 @@
    }
    
    // acao        
-   $id = $_POST['id'];
-   $nome = $_POST['nome'];
-   $pasta = $_POST['pasta'];
-   $indice = $_POST['indice'];
-   $nivel = $_POST['nivel'];
+   $id = tratarChave($_POST['id']);
+   $nome = tratarTexto($_POST['nome']);
+   $codigo_referencia = tratarTexto($_POST['codigo_referencia']);
+   $codigo_fabrica = tratarTexto($_POST['codigo_fabrica']);
+   $codigo_serie = tratarTexto($_POST['codigo_serie']);
+   $codigo_barras = tratarTexto($_POST['codigo_barras']);
+   $linha = tratarChave($_POST['linha']);
+   $grupo = tratarChave($_POST['grupo']);
+   $subgrupo = tratarChave($_POST['subgrupo']);
+   $ncm = tratarChave($_POST['ncm']);
+   $unidade_medida = tratarChave($_POST['unidade_medida']);
+   $marca = tratarChave($_POST['marca']);
+   $situacao = tratarTexto($_POST['situacao']);
+   $qtd_embalagem = tratarNumero($_POST['qtd_embalagem']);
+   $preco_custo = tratarNumero($_POST['preco_custo']);
+   $preco_venda = tratarNumero($_POST['preco_venda']);
+   $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {
@@ -37,22 +49,39 @@
          // validar campos
          if (empty($nome)) {
 	         http_response_code(400);
-	         echo "Informe o nome do módulo.";
+	         echo "Informe o nome do produto.";
 	         return;  
          }
-   
-         if (empty($pasta)) {
+    
+         if (empty($linha)) {
 	         http_response_code(400);
-	         echo "Informe a pasta do módulo.";
-       	   return;  
-         }
-   
-         if (empty($indice)) {
-	         http_response_code(400);
-	         echo "Informe o índice do módulo.";
+	         echo "Informe a linha do produto.";
 	         return;  
          }
-      
+         
+         if (empty($grupo)) {
+	         http_response_code(400);
+	         echo "Informe o grupo do produto.";
+	         return;  
+         }
+         
+         if (empty($subgrupo)) {
+	         http_response_code(400);
+	         echo "Informe o subgrupo do produto.";
+	         return;  
+         }
+         
+         if (empty($marca)) {
+	         http_response_code(400);
+	         echo "Informe o marca do produto.";
+	         return;  
+         }
+         
+         if (empty($unidade_medida)) {
+	         http_response_code(400);
+	         echo "Informe a unidade de medida do produto.";
+	         return;  
+         }
    }
    
    if (empty($_action)) {
@@ -68,19 +97,19 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into modulos (nome, pasta, indice,nivel) values ('" . $nome . "', '" . $pasta . "', " . $indice . ", " . $nivel . ');';
+         $sql = "insert into produtos (nome, codigo_referencia, codigo_fabrica, codigo_serie, codigo_barras, linha, grupo, subgrupo, ncm, unidade_medida, marca, situacao, qtd_embalagem, preco_custo, preco_venda, observacoes ) values ('" . $nome . "', '" . $codigo_referencia . "', '" . $codigo_fabrica . "', '" . $codigo_serie . "', '" . $codigo_barras . "', " . $linha . ", " . $grupo . ", " . $subgrupo . ", " . $ncm . ", " . $unidade_medida . ", " . $marca . ", '" . $situacao  . "', " . $qtd_embalagem . ", " . $preco_custo . ", " . $preco_venda . ", '" . $observacoes . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update modulos set nome='" . $nome . "',pasta='" . $pasta . "',indice=" . $indice . ",nivel=" . $nivel . " where id=" . $id;
+         $sql = "update produtos set nome='" . $nome . "',codigo_referencia='" . $codigo_referencia . "',codigo_fabrica='" . $codigo_fabrica . "',codigo_serie='" . $codigo_serie . "',codigo_barras='" . $codigo_barras . "',linha=" . $linha . ",grupo=" . $grupo . ",subgrupo=" . $subgrupo . ",ncm=" . $ncm . ",unidade_medida=" . $unidade_medida . ",marca=" . $marca . ",situacao=" . $situacao . ",qtd_embalagem=" . $qtd_embalagem . ",preco_custo=" . $preco_custo . ",preco_venda=" . $preco_venda . ",observacoes='" . $observacoes . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from modulos where id=" . $id;
+         $sql = "delete from produtos where id=" . $id;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }
