@@ -133,7 +133,7 @@
 													<!-- CODIGO MUNICIPIO -->
 													<label for="municipio">Código: </label >
 													<div class="input-group">
-														<input type="numeric" pattern="[0-9]*" class="form-control" id="municipio" name="municipio" autocomplete="off" value="<?= $municipio ?>" onblur="consultarMunicipio();" <?php permissao(); ?>>
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="municipio" name="municipio" data-mask="00000" autocomplete="off" value="<?= $municipio ?>" onblur="consultarMunicipio();" <?php permissao(); ?>>
 														<span class="input-group-btn">
 															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/municipios/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>

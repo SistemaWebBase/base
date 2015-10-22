@@ -63,7 +63,7 @@
 									<div class="row">
 										<!-- NOVA SENHA -->
 									    <div class="form-group col-md-12">
-										    <label for="nova_senha">Senha Atual: <span class="label label-danger">Obrigatório</span></label>
+										    <label for="nova_senha">Nova Senha: <span class="label label-danger">Obrigatório</span></label>
     										<input type="password" class="form-control" id="nova_senha" name="nova_senha" autocomplete="off" maxlength="20" value="<?= $nova_senha ?>" required>
 	    								</div>
 									</div>

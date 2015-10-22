@@ -157,10 +157,25 @@
 					     				    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" value="<?= $cep ?>" <?php permissao(); ?> required>
 						    			</div>
 										<!-- MUNICIPIO -->
-							    		<div class="form-group col-md-6">
-								    		<label for="municipio">Município: <span class="label label-danger">Obrigatório</span></label>
-									     	<input type="text" class="form-control" id="municipio" name="municipio" autocomplete="off" maxlength="60" value="<?= $municipio ?>" <?php permissao(); ?> required>
-									    </div>
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO MUNICIPIO -->
+													<label for="municipio">Código: </label >
+													<div class="input-group">
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="municipio" name="municipio" data-mask="00000" autocomplete="off" value="<?= $municipio ?>" onblur="consultarMunicipio();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/municipios/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
+												</div>
+												<!-- DESCRICAO MUNICIPIO -->
+												<div class="col-md-8">
+													<label for="nome_municipio">Município: </label>
+													<input type="text" class="form-control" id="nome_municipio" autocomplete="off" maxlength="60" value="<?= $nome_municipio ?>"  disabled>
+												</div>
+											</div>
+										</div>
 								    </div>
 									<div class="row">
 										<!-- TELEFONE -->

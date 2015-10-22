@@ -25,6 +25,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
@@ -102,10 +103,25 @@
 									    	<input type="text" class="form-control" id="subgrupo" name="subgrupo" autocomplete="off" maxlength="60" value="<?= $subgrupo ?>" autofocus <?php permissao(); ?> required>
 									    </div>
 										<!-- GRUPO -->
-									    <div class="form-group col-md-6">
-										    <label for="grupo">Grupo: <span class="label label-danger">Obrigatório</span></label>
-										    <input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="grupo" name="grupo" autocomplete="off" min="0" max="999999" value="<?= $grupo ?>" <?php permissao(); ?>>
-									    </div>
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO GRUPO -->
+													<label for="grupo">Código: </label >
+													<div class="input-group">
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="grupo" name="grupo" data-mask="00000" autocomplete="off" value="<?= $grupo ?>" onblur="consultarGrupo();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/grupos/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
+												</div>
+												<!-- DESCRICAO GRUPO -->
+												<div class="col-md-8">
+													<label for="nome_grupo">Grupo: </label>
+													<input type="text" class="form-control" id="nome_grupo" autocomplete="off" maxlength="60" value="<?= $nome_grupo ?>"  disabled>
+												</div>
+											</div>
+										</div>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
