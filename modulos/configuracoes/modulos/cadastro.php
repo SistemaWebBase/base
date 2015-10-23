@@ -103,24 +103,22 @@
 								<form role="form">
 									<div class="row">
 										<!-- NOME -->
-    									<div class="form-group col-md-6">
+    									<div class="form-group col-md-4">
 	    									<label for="nome">Nome do Módulo: <span class="label label-danger">Obrigatório</span></label>
 		    								<input type="text" class="form-control no-uppercase" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
 			    						</div>
 										<!-- PASTA -->
-				    					<div class="form-group col-md-6">
+				    					<div class="form-group col-md-4">
 					    					<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
 						    				<input type="text" class="form-control no-uppercase" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?> required>
 							    		</div>
-									</div>
-									<div class="row">
 										<!-- INDICE -->
-    									<div class="form-group col-md-6">
+    									<div class="form-group col-md-2">
 	    									<label for="indice">Índice: <span class="label label-danger">Obrigatório</span></label>
 		    								<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="indice" name="indice" autocomplete="off" min="0" max="999999" value="<?= $indice ?>" <?php permissao(); ?> required>
 			    						</div>
 										<!-- NIVEL -->
-				    					<div class="form-group col-md-3">
+				    					<div class="form-group col-md-2">
 					    					<label for="nivel">Nível: </label>
 						     				<select class="form-control" id="nivel" name="nivel" <?php permissao(); ?>>
 							    			<?php

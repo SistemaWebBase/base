@@ -149,7 +149,7 @@
 									</div>
 									<div class="row">
 										<!-- CEP -->
-										<div class="form-group col-md-3">
+										<div class="form-group col-md-2">
 											<label for="cep">CEP: </label>
 										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" value="<?= $cep ?>" <?php permissao(); ?>>
 										</div>
@@ -164,7 +164,7 @@
 											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="celular" name="celular" autocomplete="off" value="<?= $celular ?>" <?php permissao(); ?>>
 										</div>
 										<!-- E-MAIL -->
-									    <div class="form-group col-md-3">
+									    <div class="form-group col-md-4">
 											<label for="email">E-mail: </label>
 											<input type="email" class="form-control" id="email" name="email" autocomplete="off" maxlength="60" value="<?= $email ?>" <?php permissao(); ?>>
 										</div>

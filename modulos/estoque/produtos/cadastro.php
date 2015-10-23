@@ -112,27 +112,27 @@
 								<form role="form">
 									<div class="row">
 										<!-- NOME -->
-									    <div class="form-group col-md-6">
+									    <div class="form-group col-md-12">
 										    <label for="nome">Nome do Produto: <span class="label label-danger">Obrigatório</span></label>
 										    <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
 									    </div>
 										<!-- CODIGO REFERENCIA -->
-									    <div class="form-group col-md-6">
+									    <div class="form-group col-md-3">
 										    <label for="codigo_referencia">Código de Referencia: </label>
 										    <input type="text" class="form-control" id="codigo_referencia" name="codigo_referencia" autocomplete="off" maxlength="60" value="<?= $codigo_referencia ?>" <?php permissao(); ?> >
 									    </div>
 										<!-- CODIGO FABRICA -->
-									    <div class="form-group col-md-6">
+									    <div class="form-group col-md-3">
 										    <label for="codigo_fabrica">Código da Fábrica: </label>
 										    <input type="text" class="form-control" id="codigo_fabrica" name="codigo_fabrica" autocomplete="off" maxlength="60" value="<?= $codigo_fabrica ?>" <?php permissao(); ?> >
 									    </div>
 										<!-- CODIGO SERIE -->
-									    <div class="form-group col-md-6">
+									    <div class="form-group col-md-3">
 										    <label for="codigo_serie">Código de Série: </label>
 										    <input type="text" class="form-control" id="codigo_serie" name="codigo_serie" autocomplete="off" maxlength="60" value="<?= $codigo_serie ?>" <?php permissao(); ?> >
 									    </div>
 										<!-- CODIGO BARRAS -->
-									    <div class="form-group col-md-6">
+									    <div class="form-group col-md-3">
 										    <label for="codigo_barras">Código de Barras: </label>
 										    <input type="text" class="form-control" id="codigo_barras" name="codigo_barras" autocomplete="off" maxlength="60" value="<?= $codigo_barras ?>" <?php permissao(); ?> >
 									    </div>
@@ -141,7 +141,7 @@
 											<div class="row">
 												<div class="col-md-4">
 													<!-- CODIGO LINHA -->
-													<label for="linha">Código: </label >
+													<label for="linha">Linha: </label >
 													<div class="input-group">
 														<input type="numeric" pattern="[0-9]*" class="form-control" id="linha" name="linha" data-mask="00000" autocomplete="off" value="<?= $linha ?>" onblur="consultarLinha();" <?php permissao(); ?>>
 														<span class="input-group-btn">
@@ -151,7 +151,7 @@
 												</div>
 												<!-- DESCRICAO LINHA -->
 												<div class="col-md-8">
-													<label for="nome_linha">Linha: </label>
+													<label for="nome_linha">Nome da Linha: </label>
 													<input type="text" class="form-control" id="nome_linha" autocomplete="off" maxlength="60" value="<?= $nome_linha ?>"  disabled>
 												</div>
 											</div>
@@ -161,7 +161,7 @@
 											<div class="row">
 												<div class="col-md-4">
 													<!-- CODIGO GRUPO -->
-													<label for="grupo">Código: </label >
+													<label for="grupo">Grupo: </label >
 													<div class="input-group">
 														<input type="numeric" pattern="[0-9]*" class="form-control" id="grupo" name="grupo" data-mask="00000" autocomplete="off" value="<?= $grupo ?>" onblur="consultarGrupo();" <?php permissao(); ?>>
 														<span class="input-group-btn">
@@ -171,7 +171,7 @@
 												</div>
 												<!-- DESCRICAO GRUPO -->
 												<div class="col-md-8">
-													<label for="nome_grupo">Grupo: </label>
+													<label for="nome_grupo">Nome do Grupo: </label>
 													<input type="text" class="form-control" id="nome_grupo" autocomplete="off" maxlength="60" value="<?= $nome_grupo ?>"  disabled>
 												</div>
 											</div>
@@ -181,7 +181,7 @@
 											<div class="row">
 												<div class="col-md-4">
 													<!-- CODIGO SUBGRUPO -->
-													<label for="subgrupo">Código: </label >
+													<label for="subgrupo">Subrupo: </label >
 													<div class="input-group">
 														<input type="numeric" pattern="[0-9]*" class="form-control" id="subgrupo" name="subgrupo" data-mask="00000" autocomplete="off" value="<?= $subgrupo ?>" onblur="consultarSubgrupo();" <?php permissao(); ?>>
 														<span class="input-group-btn">
@@ -191,7 +191,7 @@
 												</div>
 												<!-- DESCRICAO SUBGRUPO -->
 												<div class="col-md-8">
-													<label for="nome_subgrupo">Subrupo: </label>
+													<label for="nome_subgrupo">Nome do Subrupo: </label>
 													<input type="text" class="form-control" id="nome_subgrupo" autocomplete="off" maxlength="60" value="<?= $nome_subgrupo ?>"  disabled>
 												</div>
 											</div>
@@ -201,7 +201,7 @@
 											<div class="row">
 												<div class="col-md-4">
 													<!-- CODIGO MARCA -->
-													<label for="marca">Código: </label >
+													<label for="marca">Marca: </label >
 													<div class="input-group">
 														<input type="numeric" pattern="[0-9]*" class="form-control" id="marca" name="marca" data-mask="00000" autocomplete="off" value="<?= $marca ?>" onblur="consultarMarca();" <?php permissao(); ?>>
 														<span class="input-group-btn">
@@ -211,7 +211,7 @@
 												</div>
 												<!-- DESCRICAO MARCA -->
 												<div class="col-md-8">
-													<label for="nome_marca">Marca: </label>
+													<label for="nome_marca">Nome da Marca: </label>
 													<input type="text" class="form-control" id="nome_marca" autocomplete="off" maxlength="60" value="<?= $nome_marca ?>"  disabled>
 												</div>
 											</div>
@@ -221,7 +221,7 @@
 											<div class="row">
 												<div class="col-md-4">
 													<!-- CODIGO UNIDADE DE MEDIDA -->
-													<label for="unidade_medida">Código: </label >
+													<label for="unidade_medida">UN: </label >
 													<div class="input-group">
 														<input type="numeric" pattern="[0-9]*" class="form-control" id="unidade_medida" name="unidade_medida" data-mask="00000" autocomplete="off" value="<?= $unidade_medida ?>" onblur="consultarUnidadeMedida();" <?php permissao(); ?>>
 														<span class="input-group-btn">
@@ -231,7 +231,7 @@
 												</div>
 												<!-- DESCRICAO UNIDADE DE MEDIDA -->
 												<div class="col-md-8">
-													<label for="nome_unidade_medida">Unidade de Medida: </label>
+													<label for="nome_unidade_medida">Nome da Unidade de Medida: </label>
 													<input type="text" class="form-control" id="nome_unidade_medida" autocomplete="off" maxlength="60" value="<?= $nome_unidade_medida ?>"  disabled>
 												</div>
 											</div>
@@ -241,7 +241,7 @@
 											<div class="row">
 												<div class="col-md-4">
 													<!-- CODIGO NCM -->
-													<label for="ncm">Código: </label >
+													<label for="ncm">NCM: </label >
 													<div class="input-group">
 														<input type="numeric" pattern="[0-9]*" class="form-control" id="ncm" name="ncm" data-mask="00000" autocomplete="off" value="<?= $ncm ?>" onblur="consultarNCM();" <?php permissao(); ?>>
 														<span class="input-group-btn">
@@ -251,11 +251,26 @@
 												</div>
 												<!-- DESCRICAO NCM -->
 												<div class="col-md-8">
-													<label for="nome_ncm">NCM: </label>
+													<label for="nome_ncm">Descrição do NCM: </label>
 													<input type="text" class="form-control" id="nome_ncm" autocomplete="off" maxlength="60" value="<?= $nome_ncm ?>"  disabled>
 												</div>
 											</div>
 										</div>
+										<!-- QUANTIDADE POR EMBALAGEM -->
+									    <div class="form-group col-md-3">
+										    <label for="qtd_embalagem">QTD por Embalagem: </label>
+										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="qtd_embalagem" name="qtd_embalagem" autocomplete="off" value="<?= $ncm ?>" <?php permissao(); ?>>
+									    </div>
+										<!-- PRECO DE CUSTO -->
+									    <div class="form-group col-md-3">
+										    <label for="preco_custo">Preço de Custo: </label>
+										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="preco_custo" name="preco_custo" autocomplete="off" value="<?= $preco_custo ?>" <?php permissao(); ?>>
+									    </div>
+										<!-- PRECO DE VENDA -->
+									    <div class="form-group col-md-3">
+										    <label for="preco_venda">Preço de Venda: </label>
+										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="preco_venda" name="preco_venda" autocomplete="off" value="<?= $preco_venda ?>" <?php permissao(); ?>>
+									    </div>
 										<!-- SITUACAO -->
 							    		<div class="form-group col-md-3">
 								    		<label for="situacao">Situação: </label>
@@ -273,27 +288,11 @@
 									    	?>
 										    </select>
 								    	</div>
-										<!-- QUANTIDADE POR EMBALAGEM -->
-									    <div class="form-group col-md-6">
-										    <label for="qtd_embalagem">QTD por Embalagem: </label>
-										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="qtd_embalagem" name="qtd_embalagem" autocomplete="off" value="<?= $ncm ?>" <?php permissao(); ?>>
-									    </div>
-										<!-- PRECO DE CUSTO -->
-									    <div class="form-group col-md-6">
-										    <label for="preco_custo">Preço de Custo: </label>
-										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="preco_custo" name="preco_custo" autocomplete="off" value="<?= $preco_custo ?>" <?php permissao(); ?>>
-									    </div>
-										<!-- PRECO DE VENDA -->
-									    <div class="form-group col-md-6">
-										    <label for="preco_venda">Preço de Venda: </label>
-										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="preco_venda" name="preco_venda" autocomplete="off" value="<?= $preco_venda ?>" <?php permissao(); ?>>
-									    </div>
 										<!-- OBSERVACOES -->
 							    		<div class="form-group col-md-12">
 								    		<label for="observacoes">Observações: </label>
 									    	<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" <?php permissao(); ?>><?= $observacoes ?></textarea>
 								    	</div>
-										
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

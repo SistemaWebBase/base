@@ -18,6 +18,11 @@ input[type=text] {
 	text-transform: uppercase;
 }
 
+/* campo de e-mail sempre minusculo */
+input[type=email] {
+	text-transform: lowercase;
+}
+
 .no-uppercase {
 	text-transform: none !important;
 }
