@@ -105,9 +105,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from produtos order by id limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from produtos order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from produtos where id like '" . $pesquisa . "%' order by id limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from produtos where nome like '" . $pesquisa . "%' order by nome limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -128,7 +128,7 @@
 										if (empty($pesquisa)) {
 											$sql = "select count(*) as num from produtos";
 										} else {
-											$sql = "select count(*) as num from produtos where id like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from produtos where nome like '" . $pesquisa . "%';";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];

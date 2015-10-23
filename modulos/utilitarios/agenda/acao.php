@@ -32,7 +32,7 @@
    $municipio = tratarChave($_POST['municipio']);
    $telefone = tratarNumero($_POST['telefone']);
    $celular = tratarNumero($_POST['celular']);
-   $email = tratarTexto($_POST['email']);
+   $email = tratarTextoMinusculo($_POST['email']);
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
    

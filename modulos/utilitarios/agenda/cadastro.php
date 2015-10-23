@@ -108,54 +108,73 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class="form-group col-md-6">
-										<label for="razaosocial">Nome: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="60" value="<?= $razaosocial ?>" autofocus <?php permissao(); ?> required>
+									<div class="row">
+										<!-- RAZAO SOCIAL -->
+										<div class="form-group col-md-6">
+											<label for="razaosocial">Nome: <span class="label label-danger">Obrigatório</span></label>
+											<input type="text" class="form-control" id="razaosocial" name="razaosocial" autocomplete="off" maxlength="60" value="<?= $razaosocial ?>" autofocus <?php permissao(); ?> required>
+										</div>
+										<!-- ENDERECO -->
+										<div class="form-group col-md-6">
+											<label for="endereco">Endereço: </label>
+											<input type="text" class="form-control" id="endereco" name="endereco" autocomplete="off" maxlength="60" value="<?= $endereco ?>" <?php permissao(); ?>>
+										</div>
 									</div>
-									<div class="form-group col-md-6">
-										<label for="endereco">Endereço: </label>
-										<input type="text" class="form-control" id="endereco" name="endereco" autocomplete="off" maxlength="60" value="<?= $endereco ?>" <?php permissao(); ?>>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="bairro">Bairro: </label>
-										<input type="text" class="form-control" id="bairro" name="bairro" autocomplete="off" maxlength="60" value="<?= $bairro ?>" <?php permissao(); ?>>
-									</div>
-									<div class="form-group col-md-6">
-										<div class="row">
-											<div class="col-md-4">
-												<label for="municipio">Código: </label >
-												<div class="input-group">
-													<input type="numeric" pattern="[0-9]*" class="form-control" id="municipio" name="municipio" autocomplete="off" value="<?= $municipio ?>" onblur="consultarMunicipio();" <?php permissao(); ?>>
-													<span class="input-group-btn">
-														<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/municipios/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
-													</span>
+									<div class="row">
+										<!-- BAIRRO -->									
+										<div class="form-group col-md-6">
+											<label for="bairro">Bairro: </label>
+											<input type="text" class="form-control" id="bairro" name="bairro" autocomplete="off" maxlength="60" value="<?= $bairro ?>" <?php permissao(); ?>>
+										</div>
+										<!-- MUNICIPIO -->
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO MUNICIPIO -->
+													<label for="municipio">Código: </label >
+													<div class="input-group">
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="municipio" name="municipio" data-mask="00000" autocomplete="off" value="<?= $municipio ?>" onblur="consultarMunicipio();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/municipios/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
 												</div>
-											</div>
-											<div class="col-md-8">
-												<label for="nome_municipio">Município: </label>
-												<input type="text" class="form-control" id="nome_municipio" autocomplete="off" maxlength="60" value="<?= $nome_municipio ?>"  disabled>
+												<!-- NOME MUNICIPIO -->
+												<div class="col-md-8">
+													<label for="nome_municipio">Município: </label>
+													<input type="text" class="form-control" id="nome_municipio" autocomplete="off" maxlength="60" value="<?= $nome_municipio ?>"  disabled>
+												</div>
 											</div>
 										</div>
 									</div>
-									<div class="form-group col-md-4">
-										<label for="cep">CEP: </label>
-									    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" value="<?= $cep ?>" <?php permissao(); ?>>
+									<div class="row">
+										<!-- CEP -->
+										<div class="form-group col-md-2">
+											<label for="cep">CEP: </label>
+										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control cep" id="cep" name="cep" autocomplete="off" value="<?= $cep ?>" <?php permissao(); ?>>
+										</div>
+										<div class="form-group col-md-3">
+										<!-- TELEFONE -->
+											<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
+											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" value="<?= $telefone ?>" <?php permissao(); ?> required>
+										</div>
+										<!-- CELULAR -->
+										<div class="form-group col-md-3">
+											<label for="celular">Celular: </label>
+											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="celular" name="celular" autocomplete="off" value="<?= $celular ?>" <?php permissao(); ?>>
+										</div>
+										<!-- E-MAIL -->
+									    <div class="form-group col-md-4">
+											<label for="email">E-mail: </label>
+											<input type="email" class="form-control" id="email" name="email" autocomplete="off" maxlength="60" value="<?= $email ?>" <?php permissao(); ?>>
+										</div>
 									</div>
-									<div class="form-group col-md-4">
-										<label for="telefone">Telefone: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" value="<?= $telefone ?>" <?php permissao(); ?> required>
-									</div>
-									<div class="form-group col-md-4">
-										<label for="celular">Celular: </label>
-										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="celular" name="celular" autocomplete="off" value="<?= $celular ?>" <?php permissao(); ?>>
-									</div>
-								    <div class="form-group col-md-4">
-										<label for="email">E-mail: </label>
-										<input type="email" class="form-control" id="email" name="email" autocomplete="off" maxlength="60" value="<?= $email ?>" <?php permissao(); ?>>
-									</div>
-									<div class="form-group col-md-12">
-										<label for="observacoes">Observações: </label>
-										<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>" <?php permissao(); ?>></textarea>
+									<div class="row">
+										<!-- OBSERVACOES -->
+										<div class="form-group col-md-12">
+											<label for="observacoes">Observações: </label>
+											<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" value="<?= $observacoes ?>" <?php permissao(); ?>></textarea>
+										</div>
 									</div>
 									<input type="hidden" id="id" name="id" value="<?= $id ?>">
 									<input type="hidden" id="_action" name="_action" value="<?= $_action ?>">

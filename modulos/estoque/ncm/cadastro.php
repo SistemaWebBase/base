@@ -99,12 +99,17 @@
 								<form role="form">
 									<div class="row">
 									    <!-- NCM -->
-									    <div class="form-group col-md-6">
+									    <div class="form-group col-md-2">
 										    <label for="ncm">NCM: <span class="label label-danger">Obrigatório</span></label>
 										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="ncm" name="ncm" data-mask="00000000" autocomplete="off" value="<?= $ncm ?>" <?php permissao(); ?>>
 	    								</div>
-		    							<!-- MONOFASICO -->
-			    						<div class="form-group col-md-3">
+									    <!-- DESCRICAO -->
+									    <div class="form-group col-md-8">
+										    <label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
+    										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
+	    								</div>
+										<!-- MONOFASICO -->
+			    						<div class="form-group col-md-2">
 				    						<label for="monofasico">Monofasico: </label>
 					    					<select class="form-control" id="monofasico" name="monofasico" <?php permissao(); ?>>
 						    				<?php
@@ -120,13 +125,6 @@
 			    							?>
 				    						</select>
 					    				</div>
-									</div>
-									<div class="row">
-									    <!-- DESCRICAO -->
-									    <div class="form-group col-md-6">
-										    <label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
-    										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
-	    								</div>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

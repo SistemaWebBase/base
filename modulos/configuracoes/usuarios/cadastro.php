@@ -109,118 +109,130 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<!-- NOME DO USUARIO -->
-									<div class="form-group col-md-6">
-										<label for="nome">Nome do Usuário: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
+									<div class="row">
+    									<!-- NOME DO USUARIO -->
+	    								<div class="form-group col-md-6">
+		   									<label for="nome">Nome do Usuário: <span class="label label-danger">Obrigatório</span></label>
+											<input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
+										</div>
+										<!-- LOGIN -->
+										<div class="form-group col-md-6">
+											<label for="login">Login: <span class="label label-danger">Obrigatório</span></label>
+											<input type="text" class="form-control" id="login" name="login" autocomplete="off" maxlength="60" value="<?= $login ?>" <?php permissao(); ?> required>
+										</div>
 									</div>
-									<!-- LOGIN -->
-									<div class="form-group col-md-6">
-										<label for="login">Login: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="login" name="login" autocomplete="off" maxlength="60" value="<?= $login ?>" <?php permissao(); ?> required>
+									<div class="row">
+										<!-- SENHA -->
+										<div class="form-group col-md-6">
+											<label for="senha">Senha: <span class="label label-danger">Obrigatório</span></label>
+											<input type="password" class="form-control" id="senha" name="senha" autocomplete="off" maxlength="20" value="<?= $senha ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo"readonly";} ?> required>
+										</div>
+										<!-- CONFIRMACAO DA SENHA -->
+										<div class="form-group col-md-6">
+											<label for="confirmacao_senha">Confirme a Senha: <span class="label label-danger">Obrigatório</span></label>
+											<input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" autocomplete="off" maxlength="20" value="<?= $confirmacao_senha ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo"readonly";} ?> required>
+										</div>
 									</div>
-									<!-- SENHA -->
-									<div class="form-group col-md-6">
-										<label for="senha">Senha: <span class="label label-danger">Obrigatório</span></label>
-										<input type="password" class="form-control" id="senha" name="senha" autocomplete="off" maxlength="20" value="<?= $senha ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo"readonly";} ?> required>
+									<div class="row">
+										<!-- MODELO -->
+										<div class="form-group col-md-6">
+											<label for="modelo">Modelo: </label>
+											<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="modelo" name="modelo" autocomplete="off" min="0" max="999999" value="<?= $modelo ?>" <?php permissao(); ?>>
+										</div>
+										<!-- EMPRESA -->
+										<div class="form-group col-md-6">
+											<label for="empresa">Empresa: <span class="label label-danger">Obrigatório</span></label>
+											<input type="text" class="form-control" id="empresa" name="empresa" autocomplete="off" maxlength="60" value="<?= $empresa ?>" <?php permissao(); ?>>
+										</div>
 									</div>
-									<!-- CONFIRMACAO DA SENHA -->
-									<div class="form-group col-md-6">
-										<label for="confirmacao_senha">Confirme a Senha: <span class="label label-danger">Obrigatório</span></label>
-										<input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" autocomplete="off" maxlength="20" value="<?= $confirmacao_senha ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo"readonly";} ?> required>
+									<div class="row">
+										<!-- TELEFONE -->
+										<div class="form-group col-md-6">
+											<label for="telefone">Telefone:</label>
+											<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" value="<?= $telefone ?>" <?php permissao(); ?>>
+										</div>
+										<!-- RAMAL -->
+										<div class="form-group col-md-6">
+											<label for="ramal">Ramal:</label>
+											<input type="number" inputmode="numeric" pattern="[0-9]{3}" class="form-control" id="ramal" name="ramal" autocomplete="off" min="0" max="999999" value="<?= $ramal ?>" <?php permissao(); ?>>
+										</div>
 									</div>
-									<!-- MODELO -->
-									<div class="form-group col-md-6">
-										<label for="modelo">Modelo: </label>
-										<input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="modelo" name="modelo" autocomplete="off" min="0" max="999999" value="<?= $modelo ?>" <?php permissao(); ?>>
-									</div>
-									<!-- EMPRESA -->
-									<div class="form-group col-md-6">
-										<label for="empresa">Empresa: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="empresa" name="empresa" autocomplete="off" maxlength="60" value="<?= $empresa ?>" <?php permissao(); ?>>
-									</div>
-									<!-- TELEFONE -->
-									<div class="form-group col-md-6">
-										<label for="telefone">Telefone:</label>
-										<input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control telefone" id="telefone" name="telefone" autocomplete="off" value="<?= $telefone ?>" <?php permissao(); ?>>
-									</div>
-									<!-- RAMAL -->
-									<div class="form-group col-md-6">
-										<label for="ramal">Ramal:</label>
-										<input type="number" inputmode="numeric" pattern="[0-9]{3}" class="form-control" id="ramal" name="ramal" autocomplete="off" min="0" max="999999" value="<?= $ramal ?>" <?php permissao(); ?>>
-									</div>
-									<!-- NIVEL -->
-									<div class="form-group col-md-3">
-										<label for="nivel">Nível: </label>
-										<select class="form-control" id="nivel" name="nivel" <?php permissao(); ?>>
-										<?php
-											$nivels = array('01', '02', '03', '04', '05');
+									<div class="row">
+										<!-- NIVEL -->
+										<div class="form-group col-md-3">
+											<label for="nivel">Nível: </label>
+											<select class="form-control" id="nivel" name="nivel" <?php permissao(); ?>>
+											<?php
+												$nivels = array('01', '02', '03', '04', '05');
 									
-											foreach($nivels as $u) {
-												if ($u == $nivel) {
-													echo '<option value="' . $u . '" selected>' . $u . '</option>';
-												} else {
-													echo '<option value="' . $u . '">' . $u . '</option>';
+												foreach($nivels as $u) {
+													if ($u == $nivel) {
+														echo '<option value="' . $u . '" selected>' . $u . '</option>';
+													} else {
+														echo '<option value="' . $u . '">' . $u . '</option>';
+													}
 												}
-											}
-										?>
-										</select>
-									</div>
-									<!-- EXTERNO -->
-									<div class="form-group col-md-3">
-										<label for="externo">Externo: </label>
-										<select class="form-control" id="externo" name="externo" <?php permissao(); ?>>
-										<?php
-											$externo_a = array('N', 'S');
+											?>
+											</select>
+										</div>
+										<!-- EXTERNO -->
+										<div class="form-group col-md-3">
+											<label for="externo">Externo: </label>
+											<select class="form-control" id="externo" name="externo" <?php permissao(); ?>>
+											<?php
+												$externo_a = array('N', 'S');
 											
-											foreach($externo_a as $e) {
-												if ($e == $externo) {
-													echo '<option value="' . $e . '" selected>' . (($e == "S") ? "SIM" : "NÃO") . '</option>'; 
-												} else {
-													echo '<option value="' . $e . '">' . (($e == "S") ? "SIM" : "NÃO") . '</option>';
+												foreach($externo_a as $e) {
+													if ($e == $externo) {
+														echo '<option value="' . $e . '" selected>' . (($e == "S") ? "SIM" : "NÃO") . '</option>'; 
+													} else {
+														echo '<option value="' . $e . '">' . (($e == "S") ? "SIM" : "NÃO") . '</option>';
+													}
 												}
-											}
-										?>
-										</select>
-									</div>
-									<!-- MOBILE -->
-									<div class="form-group col-md-3">
-										<label for="mobile">Mobile: </label>
-										<select class="form-control" id="mobile" name="mobile" <?php permissao(); ?>>
-										<?php
-											$mobile_a = array('N', 'S');
+											?>
+											</select>
+										</div>
+										<!-- MOBILE -->
+										<div class="form-group col-md-3">
+											<label for="mobile">Mobile: </label>
+											<select class="form-control" id="mobile" name="mobile" <?php permissao(); ?>>
+											<?php
+												$mobile_a = array('N', 'S');
 											
-											foreach($mobile_a as $m) {
-												if ($m == $mobile) {
-													echo '<option value="' . $m . '" selected>' . (($m == "S") ? "SIM" : "NÃO") . '</option>'; 
-												} else {
-													echo '<option value="' . $m . '">' . (($m == "S") ? "SIM" : "NÃO") . '</option>';
+												foreach($mobile_a as $m) {
+													if ($m == $mobile) {
+														echo '<option value="' . $m . '" selected>' . (($m == "S") ? "SIM" : "NÃO") . '</option>'; 
+													} else {
+														echo '<option value="' . $m . '">' . (($m == "S") ? "SIM" : "NÃO") . '</option>';
+													}
 												}
-											}
-										?>
-										</select>
-									</div>
-									<!-- BLOQUEADO -->
-									<div class="form-group col-md-3">
-										<label for="bloqueado">Bloqueado: </label>
-										<select class="form-control" id="bloqueado" name="bloqueado" <?php permissao(); ?>>
-										<?php
-											$bloqueado_a = array('N', 'S');
-											
-											foreach($bloqueado_a as $b) {
-												if ($b == $bloqueado) {
-													echo '<option value="' . $b . '" selected>' . (($b == "S") ? "SIM" : "NÃO") . '</option>'; 
-												} else {
-													echo '<option value="' . $b . '">' . (($b == "S") ? "SIM" : "NÃO") . '</option>';
+											?>
+											</select>
+										</div>
+										<!-- BLOQUEADO -->
+										<div class="form-group col-md-3">
+											<label for="bloqueado">Bloqueado: </label>
+											<select class="form-control" id="bloqueado" name="bloqueado" <?php permissao(); ?>>
+											<?php
+												$bloqueado_a = array('N', 'S');
+												
+												foreach($bloqueado_a as $b) {
+													if ($b == $bloqueado) {
+														echo '<option value="' . $b . '" selected>' . (($b == "S") ? "SIM" : "NÃO") . '</option>'; 
+													} else {
+														echo '<option value="' . $b . '">' . (($b == "S") ? "SIM" : "NÃO") . '</option>';
+													}
 												}
-											}
-										?>
-										</select>
+											?>
+											</select>
+										</div>
 									</div>
-									<!-- OBSERVACOES -->
-									<div class="form-group col-md-12">
-										<label for="observacoes">Observações: </label>
-										<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" <?php permissao(); ?>><?= $observacoes ?></textarea>
+									<div class="row">
+										<!-- OBSERVACOES -->
+										<div class="form-group col-md-12">
+											<label for="observacoes">Observações: </label>
+											<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" <?php permissao(); ?>><?= $observacoes ?></textarea>
+										</div>
 									</div>
 									<input type="hidden" id="id" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

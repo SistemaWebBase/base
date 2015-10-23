@@ -4,6 +4,10 @@ function tratarTexto($texto) {
 	return strtoupper(str_replace("'", "", trim($texto)));
 }
 
+function tratarTextoMinusculo($texto) {
+	return strtolower(str_replace("'", "", trim($texto)));
+}
+
 function tratarTextoSimples($texto) {
 	return str_replace("'", "", trim($texto));
 }

@@ -25,6 +25,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
@@ -90,7 +91,7 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Cadastro de Módulos
+								Cadastro de Produtos
 							</div>
 							<!-- REGRAS DE PERMISSAO -->
 							<?php
@@ -109,13 +110,189 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class="form-group col-md-6">
-										<label for="nome">Nome do Módulo: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?> required>
+									<div class="row">
+										<!-- NOME -->
+									    <div class="form-group col-md-12">
+										    <label for="nome">Nome do Produto: <span class="label label-danger">Obrigatório</span></label>
+										    <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
+									    </div>
+										<!-- CODIGO REFERENCIA -->
+									    <div class="form-group col-md-3">
+										    <label for="codigo_referencia">Código de Referencia: </label>
+										    <input type="text" class="form-control" id="codigo_referencia" name="codigo_referencia" autocomplete="off" maxlength="60" value="<?= $codigo_referencia ?>" <?php permissao(); ?> >
+									    </div>
+										<!-- CODIGO FABRICA -->
+									    <div class="form-group col-md-3">
+										    <label for="codigo_fabrica">Código da Fábrica: </label>
+										    <input type="text" class="form-control" id="codigo_fabrica" name="codigo_fabrica" autocomplete="off" maxlength="60" value="<?= $codigo_fabrica ?>" <?php permissao(); ?> >
+									    </div>
+										<!-- CODIGO SERIE -->
+									    <div class="form-group col-md-3">
+										    <label for="codigo_serie">Código de Série: </label>
+										    <input type="text" class="form-control" id="codigo_serie" name="codigo_serie" autocomplete="off" maxlength="60" value="<?= $codigo_serie ?>" <?php permissao(); ?> >
+									    </div>
+										<!-- CODIGO BARRAS -->
+									    <div class="form-group col-md-3">
+										    <label for="codigo_barras">Código de Barras: </label>
+										    <input type="text" class="form-control" id="codigo_barras" name="codigo_barras" autocomplete="off" maxlength="60" value="<?= $codigo_barras ?>" <?php permissao(); ?> >
+									    </div>
+										<!-- LINHA -->
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO LINHA -->
+													<label for="linha">Linha: </label >
+													<div class="input-group">
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="linha" name="linha" data-mask="00000" autocomplete="off" value="<?= $linha ?>" onblur="consultarLinha();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/linhas/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
+												</div>
+												<!-- DESCRICAO LINHA -->
+												<div class="col-md-8">
+													<label for="nome_linha">Nome da Linha: </label>
+													<input type="text" class="form-control" id="nome_linha" autocomplete="off" maxlength="60" value="<?= $nome_linha ?>"  disabled>
+												</div>
+											</div>
+										</div>
+										<!-- GRUPO -->
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO GRUPO -->
+													<label for="grupo">Grupo: </label >
+													<div class="input-group">
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="grupo" name="grupo" data-mask="00000" autocomplete="off" value="<?= $grupo ?>" onblur="consultarGrupo();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/grupos/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
+												</div>
+												<!-- DESCRICAO GRUPO -->
+												<div class="col-md-8">
+													<label for="nome_grupo">Nome do Grupo: </label>
+													<input type="text" class="form-control" id="nome_grupo" autocomplete="off" maxlength="60" value="<?= $nome_grupo ?>"  disabled>
+												</div>
+											</div>
+										</div>
+										<!-- SUBGRUPO -->
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO SUBGRUPO -->
+													<label for="subgrupo">Subrupo: </label >
+													<div class="input-group">
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="subgrupo" name="subgrupo" data-mask="00000" autocomplete="off" value="<?= $subgrupo ?>" onblur="consultarSubgrupo();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/subgrupos/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
+												</div>
+												<!-- DESCRICAO SUBGRUPO -->
+												<div class="col-md-8">
+													<label for="nome_subgrupo">Nome do Subrupo: </label>
+													<input type="text" class="form-control" id="nome_subgrupo" autocomplete="off" maxlength="60" value="<?= $nome_subgrupo ?>"  disabled>
+												</div>
+											</div>
+										</div>
+										<!-- MARCA -->
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO MARCA -->
+													<label for="marca">Marca: </label >
+													<div class="input-group">
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="marca" name="marca" data-mask="00000" autocomplete="off" value="<?= $marca ?>" onblur="consultarMarca();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/marcas/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
+												</div>
+												<!-- DESCRICAO MARCA -->
+												<div class="col-md-8">
+													<label for="nome_marca">Nome da Marca: </label>
+													<input type="text" class="form-control" id="nome_marca" autocomplete="off" maxlength="60" value="<?= $nome_marca ?>"  disabled>
+												</div>
+											</div>
+										</div>
+										<!-- UNIDADE DE MEDIDA -->
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO UNIDADE DE MEDIDA -->
+													<label for="unidade_medida">UN: </label >
+													<div class="input-group">
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="unidade_medida" name="unidade_medida" data-mask="00000" autocomplete="off" value="<?= $unidade_medida ?>" onblur="consultarUnidadeMedida();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/unidades_medida/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
+												</div>
+												<!-- DESCRICAO UNIDADE DE MEDIDA -->
+												<div class="col-md-8">
+													<label for="nome_unidade_medida">Nome da Unidade de Medida: </label>
+													<input type="text" class="form-control" id="nome_unidade_medida" autocomplete="off" maxlength="60" value="<?= $nome_unidade_medida ?>"  disabled>
+												</div>
+											</div>
+										</div>
+									    <!-- NCM -->
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO NCM -->
+													<label for="ncm">NCM: </label >
+													<div class="input-group">
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="ncm" name="ncm" data-mask="00000" autocomplete="off" value="<?= $ncm ?>" onblur="consultarNCM();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/ncm/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
+												</div>
+												<!-- DESCRICAO NCM -->
+												<div class="col-md-8">
+													<label for="nome_ncm">Descrição do NCM: </label>
+													<input type="text" class="form-control" id="nome_ncm" autocomplete="off" maxlength="60" value="<?= $nome_ncm ?>"  disabled>
+												</div>
+											</div>
+										</div>
+										<!-- QUANTIDADE POR EMBALAGEM -->
+									    <div class="form-group col-md-3">
+										    <label for="qtd_embalagem">QTD por Embalagem: </label>
+										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="qtd_embalagem" name="qtd_embalagem" autocomplete="off" value="<?= $ncm ?>" <?php permissao(); ?>>
+									    </div>
+										<!-- PRECO DE CUSTO -->
+									    <div class="form-group col-md-3">
+										    <label for="preco_custo">Preço de Custo: </label>
+										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="preco_custo" name="preco_custo" autocomplete="off" value="<?= $preco_custo ?>" <?php permissao(); ?>>
+									    </div>
+										<!-- PRECO DE VENDA -->
+									    <div class="form-group col-md-3">
+										    <label for="preco_venda">Preço de Venda: </label>
+										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="preco_venda" name="preco_venda" autocomplete="off" value="<?= $preco_venda ?>" <?php permissao(); ?>>
+									    </div>
+										<!-- SITUACAO -->
+							    		<div class="form-group col-md-3">
+								    		<label for="situacao">Situação: </label>
+									    	<select class="form-control" id="situacao" name="situacao" <?php permissao(); ?>>
+										    <?php
+											    $situacao_a = array('A', 'I');
+											
+										    	foreach($situacao_a as $s) {
+											    	if ($s == $situacao) {
+												    	echo '<option value="' . $s . '" selected>' . (($s == "A") ? "ATIVO" : "INATIVO") . '</option>'; 
+											    	} else {
+												    	echo '<option value="' . $s . '">' . (($s == "I") ? "INATIVO" : "ATIVO") . '</option>';
+												    }
+											    }
+									    	?>
+										    </select>
+								    	</div>
+										<!-- OBSERVACOES -->
+							    		<div class="form-group col-md-12">
+								    		<label for="observacoes">Observações: </label>
+									    	<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" <?php permissao(); ?>><?= $observacoes ?></textarea>
+								    	</div>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

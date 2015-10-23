@@ -67,7 +67,6 @@
 											</div>
 										</div>
 									</div>
-									<input type="hidden" name="usuario" value="<?= $_GET['usuario'] ?>">
 								</form>
 								<!-- TABELA DE REGISTRO -->
 								<table class="table table-hover table-striped tabela-registro" id="tabela">
@@ -93,7 +92,6 @@
 										$conexao = new Conexao();
 										
 										// Ler GET
-										$id_usuario = $_GET['usuario'];
 										$pesquisa = tratarTexto($_GET['pesquisa']);
 										
 										// Se for passado referencia de alguma pagina, seta-lo como pesquisa
@@ -257,7 +255,7 @@
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button onclick="redirecionar('cadastro.php?usuario=<?= $id_usuario ?>', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
+								<button onclick="redirecionar('cadastro.php', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									 Novo
 								</button>

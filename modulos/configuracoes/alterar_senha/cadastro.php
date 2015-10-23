@@ -44,7 +44,8 @@
 					<div class="col-md-2">						
 					</div>
 					<!-- AREA DE CONTEUDO -->
-					<div id="conteudo" class="col-xs-12 col-md-10">
+					<div class="col-md-3"></div>
+					<div id="conteudo" class="col-xs-12 col-md-4">
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
@@ -54,17 +55,21 @@
 								<form role="form">
 									<div class="row">
 									    <!-- SENHA ATUAL -->
-									    <div class="form-group col-md-4">
+									    <div class="form-group col-md-12">
 										    <label for="senha_atual">Senha Atual: <span class="label label-danger">Obrigatório</span></label>
     										<input type="password" class="form-control" id="senha_atual" name="senha_atual" autocomplete="off" maxlength="20" value="<?= $senha_atual ?>" autofocus required>
 	    								</div>
+									</div>
+									<div class="row">
 										<!-- NOVA SENHA -->
-									    <div class="form-group col-md-4">
-										    <label for="nova_senha">Senha Atual: <span class="label label-danger">Obrigatório</span></label>
+									    <div class="form-group col-md-12">
+										    <label for="nova_senha">Nova Senha: <span class="label label-danger">Obrigatório</span></label>
     										<input type="password" class="form-control" id="nova_senha" name="nova_senha" autocomplete="off" maxlength="20" value="<?= $nova_senha ?>" required>
 	    								</div>
+									</div>
+									<div class="row">
 										<!-- CONFIRMAÇÃO DA NOVA SENHA -->
-									    <div class="form-group col-md-4">
+									    <div class="form-group col-md-12">
 										    <label for="confirmacao_senha">Confirme a Senha: <span class="label label-danger">Obrigatório</span></label>
     										<input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" autocomplete="off" maxlength="20" value="<?= $confirmacao_senha ?>" required>
 	    								</div>

@@ -29,6 +29,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
@@ -100,17 +101,54 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class="form-group col-md-6">
-										<label for="usuario">Usuário: <span class="label label-danger">Obrigatório</span></label>
-									    <input type="text" class="form-control" id="nome_usuario" autocomplete="off" value="<?= $usuario ?>" autofocus <?php permissao(); ?>>
+									<div class="row">
+										<!-- USUARIO -->
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO USUARIO -->
+													<label for="usuario">Código: </label >
+													<div class="input-group">
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="usuario" name="usuario" data-mask="00000" autocomplete="off" value="<?= $usuario ?>" onblur="consultarUsuario();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/usuarios/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
+												</div>
+												<!-- DESCRICAO USUARIO -->
+												<div class="col-md-8">
+													<label for="nome_usuario">Usuário: <span class="label label-danger">Obrigatório</span> </label>
+													<input type="text" class="form-control" id="nome_usuario" autocomplete="off" maxlength="60" value="<?= $nome_usuario ?>"  disabled>
+												</div>
+											</div>
+										</div>
+										<!-- PERMISSAO -->
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO PERMISSAO -->
+													<label for="permissao">Código: </label >
+													<div class="input-group">
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="permissao" name="permissao" data-mask="00000" autocomplete="off" value="<?= $permissao ?>" onblur="consultarPermissao();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/permissaos/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
+												</div>
+												<!-- DESCRICAO PERMISSAO -->
+												<div class="col-md-8">
+													<label for="nome_permissao">Permissão: </label>
+													<input type="text" class="form-control" id="nome_permissao" autocomplete="off" maxlength="60" value="<?= $nome_permissao ?>"  disabled>
+												</div>
+											</div>
+										</div>
 									</div>
-									<div class="form-group col-md-6">
-										<label for="programa">Permissão: <span class="label label-danger">Obrigatório</span></label>
-									    <input type="text" class="form-control" id="nome_programa" autocomplete="off" value="<?= $programa ?>" <?php permissao(); ?>>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?> required>
+									<div class="row">
+										<!-- VALOR -->
+										<div class="form-group col-md-6">
+											<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
+											<input type="text" class="form-control" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?> required>
+										</div>
 									</div>
 									<input type="hidden" id="usuario" name="usuario" value="<?= $usuario ?>">
 									<input type="hidden" id="programa" name="programa" value="<?= $programa ?>">
