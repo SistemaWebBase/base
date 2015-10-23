@@ -269,7 +269,7 @@
 										<!-- PRECO DE VENDA -->
 									    <div class="form-group col-md-3">
 										    <label for="preco_venda">Preço de Venda: </label>
-										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="preco_venda" name="preco_venda" autocomplete="off" value="<?= $preco_venda ?>" <?php permissao(); ?>>
+										    <input type="number" step="any" inputmode="numeric" pattern="[0-9]*" class="form-control" id="preco_venda" name="preco_venda" autocomplete="off" value="<?= $preco_venda ?>" <?php permissao(); ?>>
 									    </div>
 										<!-- SITUACAO -->
 							    		<div class="form-group col-md-3">

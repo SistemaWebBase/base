@@ -89,11 +89,11 @@
 										$conexao = new Conexao();
 										
 										// Ler POST
-										$pesquisa = tratarTexto($_GET['pesquisa']);
+										$pesquisa = tratarTextoSimples($_GET['pesquisa']);
 										
 										// Se for passado referencia de alguma pagina, seta-lo como pesquisa
-										if (! empty(tratarTexto($_GET['_ref']))) {
-											$pesquisa = tratarTexto($_GET['_ref']);
+										if (! empty(tratarTextoSimples($_GET['_ref']))) {
+											$pesquisa = tratarTextoSimples($_GET['_ref']);
 										}
 										
 										// Ler GET
@@ -107,7 +107,7 @@
 										if (empty($pesquisa)) {
 											$sql = "select * from modulos order by indice limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from modulos where nome like '" . $pesquisa . "%' order by indice limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from modulos where nome ilike '" . $pesquisa . "%' order by indice limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
