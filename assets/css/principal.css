@@ -27,6 +27,10 @@ input[type=email] {
 	text-transform: none !important;
 }
 
+.valor {
+	text-align: right;
+}
+
 /* campo de pesquisa do menu */
 #pesquisa_menu {
 	background: #222;

@@ -256,7 +256,7 @@
 						<div class="btn-control-bar">
 							<div class="panel-heading">
 								<!-- NOVO -->
-								<button onclick="redirecionar('cadastro.php', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
+								<button onclick="redirecionar('cadastro.php?cliente=<?= $cliente ?>', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									 Novo
 								</button>
