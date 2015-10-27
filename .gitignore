@@ -1,0 +1,5 @@
+.vscode
+logs/*
+uploads/avatar
+!uploads/avatar/avatar.png
+uploads/clientes/*
