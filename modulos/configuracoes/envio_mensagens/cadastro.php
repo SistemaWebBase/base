@@ -6,9 +6,9 @@
 		
 		// Testar permissao
 		require_once '../../../util/permissao.php';
-		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE MUNICIPIOS');
-		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE MUNICIPIOS');
-		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE MUNICIPIOS');
+		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE ENVIO DE MENSAGENS');
+		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE ENVIO DE MENSAGENS');
+		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE ENVIO DE MENSAGENS');
 		
 		// Testar assinatura da URL
 		require_once '../../../util/util.php';
@@ -29,6 +29,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
+	    <script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
@@ -41,12 +42,13 @@
 			$_action = "inclusao"; // por padrao, entrar no modo de inclusao
 			
 			// Se passar id, abrir registro
-			$id = $_GET['id'];
-			if (!empty($id)) {
+			$nome_mensagem = $_GET['nome_mensagem'];
+			$usuario = $_GET['usuario'];
+			if (!empty($nome_mensagem) && !empty($usuario)) {
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from municipios where id=" . $id;
+				$sql = "select * from envio_mensagens where nome_mensagem='" . $nome_mensagem . "' and usuario=" . $usuario;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -55,11 +57,10 @@
 				if ($rows == null) {
 					return;
 				}
-			
-				$id = $rows[0]['id'];
-				$municipio = $rows[0]['municipio'];
-				$uf = $rows[0]['uf'];
-				$ibge = $rows[0]['ibge'];
+
+				$usuario = $rows[0]['usuario'];
+				$nome_mensagem = $rows[0]['nome_mensagem'];	
+				$descricao = $rows[0]['descricao'];
 				$_action = "alteracao";
 			}
 			
@@ -67,7 +68,7 @@
 		<!-- MENU -->
 		<?php
 		    require_once '../../sistema/menu/menu.php';
-		    require_once '../../sistema/sidebar/sidebar.php';			
+		    require_once '../../sistema/sidebar/sidebar.php';
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
@@ -81,7 +82,7 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Cadastro de Município
+								Cadastro de Permissões do Usuário
 							</div>
 							<!-- REGRAS DE PERMISSAO -->
 							<?php
@@ -100,36 +101,22 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class="row">
-    									<!-- MUNICIPIO -->
-	    								<div class="form-group col-md-6">
-		     								<label for="municipio">Nome do Município: <span class="label label-danger">Obrigatório</span></label>
-			    							<input type="text" class="form-control" id="municipio" name="municipio" autocomplete="off" maxlength="60" value="<?= $municipio ?>" autofocus <?php permissao(); ?> required>
-				    					</div>
-					    				<!-- UF -->
-						    			<div class="form-group col-md-3">
-     							   	   		<label for="uf">UF: </label>
-	     							 		<select class="form-control" id="uf" name="uf" <?php permissao(); ?>>
-		     								<?php
-												$ufs = array('AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RS', 'SC', 'SE', 'SP', 'TO');
-										
-												foreach($ufs as $u) {
-													if ($u == $uf) {
-														echo '<option value="' . $u . '" selected>' . $u . '</option>';
-													} else {
-														echo '<option value="' . $u . '">' . $u . '</option>';
-													}
-												}
-											?>
-											</select>
-										</div>
-										<!-- IBGE -->
-										<div class="form-group col-md-3">
-											<label for="ibge">IBGE: <span class="label label-danger">Obrigatório</span></label>
-											<input type="number" inputmode="numeric" pattern="[0-9]{5}" class="form-control" id="ibge" name="ibge" autocomplete="off" min="0" max="999999"  value="<?= $ibge ?>" required <?php permissao(); ?> required>
-										</div>
+									<div class="form-group col-md-6">
+										<label for="usuario">Usuário: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" inputmode="numeric" class="form-control" id="usuario"  name="usuario" data-mask="000" autocomplete="off" min="0" max="999999" value="<?= $usuario ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";}  ?> required>
 									</div>
-									<input type="hidden" name="id" value="<?= $id ?>">
+									<div class="form-group col-md-6">
+										<label for="nome_mensagem">Nome da Mensagem: <span class="label label-danger">Obrigatório</span></label>
+									    <input type="text" class="form-control" id="nome_mensagem" name="nome_mensagem" autocomplete="off" value="<?= $nome_mensagem ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";} ?> required>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
+										<input type="text" class="form-control" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?> required>
+									</div>
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>
@@ -138,18 +125,18 @@
 						<div class="aviso">
 							<?php
 								if ($_action == 'inclusao' && $perm_incluir != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE MUNICIPIO. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE ENVIO DE MENSAGENS. Solicite ao administrador a liberação.');</script>";
 								}
 								
 								if ($_action == 'alteracao' && $perm_alterar != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE MUNICIPIO. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE ENVIO DE MENSAGENS. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#municipio');" <?php permissao(); ?>>
+								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#usuario');" <?php permissao(); ?>>
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
@@ -159,7 +146,7 @@
 										 Cancelar
 									</button>
 								</a>
-								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Município', 'Deseja excluir este município ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
+								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Permissão do Usuário', 'Deseja excluir esta Permissão ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>
