@@ -53,12 +53,41 @@
 								<form action="consulta.php" method="GET">
 									<div class="form">
 										<div class="row">
-											<div class="col-md-5">
+											<div class="col-md-4">
 												<div class="input-group">
 													<input class="form-control" type="text" placeholder="Pesquisar" name="pesquisa" autocomplete="off">
 													<span class="input-group-btn">
 														<button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 													</span>
+												</div>
+											</div>
+											<div class="col-md-8">
+												<div class="row">
+													<div class="col-md-2">
+														<div class="radio">
+															<label><input type="radio" name="campo" value="id" <?= ($_GET['campo'] == "id") ? "checked" : "" ?>>Código</label>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="radio">
+															<label><input type="radio" name="campo" value="razaosocial" <?= ($_GET['campo'] == "razaosocial" || empty($_GET['campo'])) ? "checked" : "" ?>>Razão Social</label>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="radio">
+															<label><input type="radio" name="campo" value="nomefantasia" <?= ($_GET['campo'] == "nomefantasia") ? "checked" : "" ?>>Nome Fantasia</label>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="radio">
+															<label><input type="radio" name="campo" value="cnpj" <?= ($_GET['campo'] == "cnpj") ? "checked" : "" ?>>CPF/CNPJ</label>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="radio">
+															<label><input type="radio" name="campo" value="nome_municipio_entrega" <?= ($_GET['campo'] == "nome_municipio_entrega") ? "checked" : "" ?>>Município</label>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -91,6 +120,10 @@
 										
 										// Ler POST
 										$pesquisa = tratarTexto($_GET['pesquisa']);
+										$campo = tratarTextoMinusculo($_GET['campo']);
+										if (empty($campo)) {
+											$campo = "razaosocial";
+										}
 										
 										// Se for passado referencia de alguma pagina, seta-lo como pesquisa
 										if (! empty(tratarTexto($_GET['_ref']))) {
@@ -104,11 +137,21 @@
 										}
 										
 										$sql = "";
+										
+										// clausulas de pesquisa
+										$clausula = "";
+										if ($campo == "id") {
+											$clausula = "where A.id=" . $pesquisa;
+										} else if ($campo == "nome_municipio_entrega") {
+											$clausula = "where B.municipio like '" . $pesquisa . "%'";
+										} else {
+											$clausula = "where A." . $campo . " like '" . $pesquisa . "%'";
+										}
 									
 										if (empty($pesquisa)) {
 											$sql = "select A.*, B.municipio as municipio, B.uf as uf from clientes A join municipios B on A.municipio_entrega = B.id limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select A.*, B.municipio as municipio, B.uf as uf from clientes A join municipios B on A.municipio_entrega = B.id where razaosocial like '" . $pesquisa . "%' order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select A.*, B.municipio as municipio, B.uf as uf from clientes A join municipios B on A.municipio_entrega = B.id " . $clausula . " order by razaosocial limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -130,7 +173,7 @@
 										if (empty($pesquisa)) {
 											$sql = "select count(*) as num from clientes";
 										} else {
-											$sql = "select count(*) as num from clientes where razaosocial like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from clientes A join municipios B on A.municipio_entrega = B.id " . $clausula;
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];
@@ -256,7 +299,7 @@
 						<div class="btn-control-bar">
 							<div class="panel-heading">
 								<!-- NOVO -->
-								<button onclick="redirecionar('cadastro.php', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
+								<button onclick="redirecionar('cadastro.php?cliente=<?= $cliente ?>', 0);" class="btn btn-success mob-btn-block" <?php if ($perm != "S") { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									 Novo
 								</button>

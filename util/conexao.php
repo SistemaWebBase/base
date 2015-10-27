@@ -9,6 +9,7 @@ class Conexao {
 	 		$this->conn = pg_connect("host=" . DB_SERVER . " user=" . DB_USER . " password=" . DB_PASSWORD . " dbname=" . DB_NAME);
 			pg_query($this->conn, "SET sistemaweb.usuario='" . $_SESSION['id'] . "'");
 			pg_query($this->conn, "SET sistemaweb.pagina='" . $_SERVER['HTTP_REFERER'] . "'");
+			pg_query($this->conn, "SET TIME ZONE '" . getConfig("timezone") . "'");
 	 }
 	 
 	 public function getConnection() {

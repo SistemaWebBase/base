@@ -150,7 +150,7 @@
 												<span class="glyphicon glyphicon-triangle-right" aria-hidden="true" style="margin-left: -7px"></span>
 									 			Títulos à Pagar
 											</button>
-											<button class="btn btn-default mob-btn-block" onclick="redirecionar('/modulos/clientes/creditos_cliente/consulta.php?id=<?= $_GET['id'] ?>&token=<?= assinarURL("id=" . $_GET['id']); ?>', 0)">
+											<button class="btn btn-default mob-btn-block" onclick="redirecionar('/modulos/clientes/creditos_cliente/consulta.php?cliente=<?= $_GET['id'] ?>&token=<?= assinarURL("cliente=" . $_GET['id']); ?>', 0)">
 												<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 									 			Liberação de Crédito
 											</button>

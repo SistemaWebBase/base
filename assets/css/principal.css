@@ -27,6 +27,10 @@ input[type=email] {
 	text-transform: none !important;
 }
 
+.valor {
+	text-align: right;
+}
+
 /* campo de pesquisa do menu */
 #pesquisa_menu {
 	background: #222;
@@ -88,7 +92,8 @@ textarea {
 .notificacao {
 	background: #e74c3c;
 	float: right;
-	margin-left: 15px;
+	margin-left: 10px;
+	margin-top: 2px;
 }
 
 /* rodape */
@@ -162,3 +167,15 @@ textarea {
 	background: #000;
 }
 
+/* div circular */
+.avatar {
+	border-radius: 100%;
+	border: 1px solid #e7e7e7;
+}
+
+#avatar-menu {
+	width: 20px;
+	margin: 0 auto;
+	clear: both;
+	border: 0px solid #000;
+}

@@ -26,32 +26,34 @@
 						$result = $conexao->query($sql);
 						$rows = pg_fetch_all($result);
 						
-						foreach ($rows as $row) {
-							echo '<!-- MENU "' . $row['nome'] . '" -->';
-							echo '<li class="dropdown">';
-							echo '<a class="dropdown-toggle" href="#" data-toggle="dropdown">' . $row['nome'] . '<b class="caret"></b></a>';
-							echo '<ul class="dropdown-menu">';
+						if ($rows != null) {
+							foreach ($rows as $row) {
+								echo '<!-- MENU "' . $row['nome'] . '" -->';
+								echo '<li class="dropdown">';
+								echo '<a class="dropdown-toggle" href="#" data-toggle="dropdown">' . $row['nome'] . '<b class="caret"></b></a>';
+								echo '<ul class="dropdown-menu">';
 							
-							$sql2 = "select * from programas where modulo=" . $row['id'] . " order by indice, agrupamento";
-							$result2 = $conexao->query($sql2);
-							$rows2 = pg_fetch_all($result2);
+								$sql2 = "select * from programas where modulo=" . $row['id'] . " order by indice, agrupamento";
+								$result2 = $conexao->query($sql2);
+								$rows2 = pg_fetch_all($result2);
 							
-							if ($rows2 == null) {
-								echo "</ul></a></li>";
-								continue;
-							}
-							
-							$agrupamento_a = "";
-							foreach ($rows2 as $row2) {
-								if ($row2['agrupamento'] != $agrupamento_a) {
-									$agrupamento_a = $row2['agrupamento'];
-									echo '<li class="dropdown-header">' . $agrupamento_a . '</li>';
+								if ($rows2 == null) {
+									echo "</ul></a></li>";
+									continue;
 								}
-								
-								echo '<li><a href="/modulos/' . $row['pasta'] . '/' . $row2['pasta'] . '/">' . $row2['nome'] . '</a></li>';
-							}
 							
-							echo "</ul>";
+								$agrupamento_a = "";
+								foreach ($rows2 as $row2) {
+									if ($row2['agrupamento'] != $agrupamento_a) {
+										$agrupamento_a = $row2['agrupamento'];
+										echo '<li class="dropdown-header">' . $agrupamento_a . '</li>';
+									}
+								
+									echo '<li><a href="/modulos/' . $row['pasta'] . '/' . $row2['pasta'] . '/">' . $row2['nome'] . '</a></li>';
+								}
+							
+								echo "</ul>";
+							}
 						}
 						
 						echo '</li>';
@@ -63,7 +65,7 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> ' . $usuario . '<b class="badge notificacao">5</b></a>
+						    <a class="dropdown-toggle" href="#" data-toggle="dropdown"><span><img class="avatar" id="avatar-menu" src="' . (file_exists(BASE_DIR . "/uploads/avatar/" . md5("id=" . $_SESSION['id'] . "/UPLOAD") . "/avatar.png") ? "/uploads/avatar/" . md5("id=" . $_SESSION['id'] . "/UPLOAD") . "/avatar.png" : "/uploads/avatar/avatar.png") . '"></img> ' . $usuario . '<b class="badge notificacao">5</b></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="/modulos/configuracoes/alterar_senha/cadastro.php">Trocar Senha</a></li>
 								<li role="separator" class="divider"></li>

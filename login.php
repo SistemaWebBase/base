@@ -47,16 +47,31 @@
 							<!-- CORPO -->
 							<div class="panel-body">
 								<form action="login.php" method="POST" role="form">
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-											<input class="form-control" type="text" maxlength="20" name="login" autocomplete="off" placeholder="USUÁRIO" autofocus>
+									<div class="row">
+										<div class="col-md-12">
+											<div align="center">
+												<img class="avatar" id="avatar" src="/uploads/avatar/avatar.png">
+											</div>
 										</div>
 									</div>
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-											<input class="form-control" type="password" maxlength="20" name="senha" autocomplete="off" placeholder="SENHA">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+													<input class="form-control" type="text" maxlength="20" id="login" name="login" autocomplete="off" placeholder="USUÁRIO" onblur="carregarAvatar();" autofocus>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+													<input class="form-control" type="password" maxlength="20" name="senha" autocomplete="off" placeholder="SENHA">
+												</div>
+											</div>
 										</div>
 									</div>
 									<!-- PAINEL DE AVISO -->

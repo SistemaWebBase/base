@@ -1,4 +1,4 @@
-create table if not exists log.creditos (
+create table if not exists log.creditos_cliente (
 	/* campos originais da tabela */
 	id int not null,
 	cliente int not null,
@@ -11,6 +11,8 @@ create table if not exists log.creditos (
 	usuario_revogacao int,
 	dt_aprovacao timestamp,
 	usuario_aprovacao int, 
+	dt_cancelamento timestamp,
+	usuario_cancelamento int,
 	observacoes text,
 	/* campos da log */
 	log_tipo char(1) not null,
