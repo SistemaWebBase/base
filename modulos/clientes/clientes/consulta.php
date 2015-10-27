@@ -80,12 +80,12 @@
 													</div>
 													<div class="col-md-2">
 														<div class="radio">
-															<label><input type="radio" name="campo" value="cnpj" <?= ($_GET['campo'] == "cnpj") ? "checked" : "" ?>>CNPJ</label>
+															<label><input type="radio" name="campo" value="cnpj" <?= ($_GET['campo'] == "cnpj") ? "checked" : "" ?>>CPF/CNPJ</label>
 														</div>
 													</div>
 													<div class="col-md-2">
 														<div class="radio">
-															<label><input type="radio" name="campo" value="nome_municipio_entrega" <?= ($_GET['campo'] == "nome_municipio_entrega") ? "checked" : "" ?>>Cidade</label>
+															<label><input type="radio" name="campo" value="nome_municipio_entrega" <?= ($_GET['campo'] == "nome_municipio_entrega") ? "checked" : "" ?>>Município</label>
 														</div>
 													</div>
 												</div>
