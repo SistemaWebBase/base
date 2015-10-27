@@ -92,7 +92,8 @@ textarea {
 .notificacao {
 	background: #e74c3c;
 	float: right;
-	margin-left: 15px;
+	margin-left: 10px;
+	margin-top: 2px;
 }
 
 /* rodape */
@@ -170,4 +171,11 @@ textarea {
 .avatar {
 	border-radius: 100%;
 	border: 1px solid #e7e7e7;
+}
+
+#avatar-menu {
+	width: 20px;
+	margin: 0 auto;
+	clear: both;
+	border: 0px solid #000;
 }
