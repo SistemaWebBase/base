@@ -42,13 +42,13 @@
 			$_action = "inclusao"; // por padrao, entrar no modo de inclusao
 			
 			// Se passar id, abrir registro
-			$nome_mensagem = $_GET['nome_mensagem'];
 			$usuario = $_GET['usuario'];
-			if (!empty($nome_mensagem) && !empty($usuario)) {
+			$nome_mensagem = $_GET['nome_mensagem'];
+			if (!empty($usuario) && !empty($nome_mensagem)) {
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from envio_mensagens where nome_mensagem='" . $nome_mensagem . "' and usuario=" . $usuario;
+				$sql = "select * from envio_mensagens where usuario=" . $usuario . " and nome_mensagem='" . $nome_mensagem ."';";
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -61,6 +61,7 @@
 				$usuario = $rows[0]['usuario'];
 				$nome_mensagem = $rows[0]['nome_mensagem'];	
 				$descricao = $rows[0]['descricao'];
+				$valor = $rows[0]['valor'];
 				$_action = "alteracao";
 			}
 			
@@ -82,7 +83,7 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Cadastro de Permissões do Usuário
+								Cadastro de Envio de Mensagens
 							</div>
 							<!-- REGRAS DE PERMISSAO -->
 							<?php
@@ -101,21 +102,56 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
-									<div class="form-group col-md-6">
-										<label for="usuario">Usuário: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" inputmode="numeric" class="form-control" id="usuario"  name="usuario" data-mask="000" autocomplete="off" min="0" max="999999" value="<?= $usuario ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";}  ?> required>
+									<div class="row">
+										<!-- USUARIO -->
+										<div class="form-group col-md-6">
+											<div class="row">
+												<div class="col-md-4">
+													<!-- CODIGO USUARIO -->
+													<label for="usuario">Código: </label >
+													<div class="input-group">
+														<input type="text" pattern="[0-9]*" class="form-control" id="usuario" name="usuario" data-mask="00000" autocomplete="off" value="<?= $usuario ?>" onblur="consultarUsuario();" <?php permissao(); ?>>
+														<span class="input-group-btn">
+															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/usuarios/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
+														</span>
+													</div>
+												</div>
+												<!-- DESCRICAO USUARIO -->
+												<div class="col-md-8">
+													<label for="nome_usuario">Usuário: <span class="label label-danger">Obrigatório</span> </label>
+													<input type="text" class="form-control" id="nome_usuario" autocomplete="off" maxlength="60" value="<?= $nome_usuario ?>"  disabled>
+												</div>
+											</div>
+										</div>
+										<!-- NOME MENSAGEM -->
+										<div class="form-group col-md-6">
+											<label for="nome_mensagem">Nome da Mensagem: <span class="label label-danger">Obrigatório</span></label>
+										    <input type="text" class="form-control" id="nome_mensagem" name="nome_mensagem" autocomplete="off" value="<?= $nome_mensagem ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";} ?> required>
+										</div>
 									</div>
-									<div class="form-group col-md-6">
-										<label for="nome_mensagem">Nome da Mensagem: <span class="label label-danger">Obrigatório</span></label>
-									    <input type="text" class="form-control" id="nome_mensagem" name="nome_mensagem" autocomplete="off" value="<?= $nome_mensagem ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";} ?> required>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
-										<input type="text" class="form-control" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?> required>
+									<div class="row">
+										<!-- DESCRICAO -->
+										<div class="form-group col-md-6">
+											<label for="descricao">Descrição: <span class="label label-danger">Obrigatório</span></label>
+											<input type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" maxlength="60" value="<?= $descricao ?>" <?php permissao(); ?> required>
+										</div>
+										<!-- VALOR -->
+										<div class="form-group col-md-3">
+											<label for="valor">Valor: </label>
+											<select class="form-control" id="valor" name="valor" <?php permissao(); ?>>
+											<?php
+												$valor_a = array('N', 'S');
+											
+												foreach($valor_a as $v) {
+													if ($v == $valor) {
+														echo '<option value="' . $v . '" selected>' . (($v == "S") ? "SIM" : "NÃO") . '</option>'; 
+													} else {
+														echo '<option value="' . $v . '">' . (($v == "S") ? "SIM" : "NÃO") . '</option>';
+													}
+												}
+											?>
+											</select>
+										</div>
 									</div>
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>

@@ -48,6 +48,7 @@
    $externo = tratarTexto($_POST['externo']);
    $mobile = tratarTexto($_POST['mobile']);
    $telefone = tratarNumero($_POST['telefone']);
+   $email = tratarTextoMinusculo($_POST['email']);
    $ramal = tratarNumero($_POST['ramal']);
    $bloqueado = tratarTexto($_POST['bloqueado']);
    $observacoes = tratarTexto($_POST['observacoes']);
@@ -67,22 +68,24 @@
 	          return;  
           }
    
-         if((strlen($senha)) < 6){
-	         http_response_code(400);
-	         echo "O campo senha deve conter no mínimo 6 dígitos.";
-	         return;
-         }
+         if ($_action == "inclusao") {
+               if((strlen($senha)) < 6){
+	              http_response_code(400);
+	               echo "O campo senha deve conter no mínimo 6 dígitos.";
+      	         return;
+               }
          
-         if (empty($senha)) {
-	         http_response_code(400);
-	         echo "Informe a senha.";
-	         return;
-         }
+               if (empty($senha)) {
+	              http_response_code(400);
+	               echo "Informe a senha.";
+      	         return;
+               }
    
-         if ($senha != $confirmacao_senha) {
-	         http_response_code(400);
-	         echo "Senhas não conferem.";
-	         return;
+               if ($senha != $confirmacao_senha) {
+      	         http_response_code(400);
+      	         echo "Senhas não conferem.";
+      	         return;
+               }
          }
      
          if (empty($empresa)) {
@@ -105,13 +108,13 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into usuarios (login, senha, nome, modelo, empresa, nivel, externo, mobile, telefone, ramal, bloqueado, observacoes) values ('" . $login . "', '" . sha1($senha) . "', '" . $nome . "', " . $modelo . ", " . $empresa . ", " . $nivel . ", '" . $externo . "', '" . $mobile . "', '" . $telefone . "', '" . $ramal . "', '" . $bloqueado . "', '" . $observacoes . "');";
+         $sql = "insert into usuarios (login, senha, nome, modelo, empresa, nivel, externo, mobile, telefone, ramal, email, bloqueado, observacoes) values ('" . $login . "', '" . sha1($senha) . "', '" . $nome . "', " . $modelo . ", " . $empresa . ", " . $nivel . ", '" . $externo . "', '" . $mobile . "', '" . $telefone . "', '" . $ramal . "', '" . $email . "', '" . $bloqueado . "', '" . $observacoes . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update usuarios set nome='" . $nome . "',modelo=" . $modelo . ",empresa=" . $empresa . ",nivel=" . $nivel . ",externo='" . $externo . "',mobile='" . $mobile . "',telefone='" . $telefone . "',ramal='" . $ramal . "',bloqueado='" . $bloqueado . "',observacoes='" . $observacoes ."' where id=" . $id;
+         $sql = "update usuarios set nome='" . $nome . "',modelo=" . $modelo . ",empresa=" . $empresa . ",nivel=" . $nivel . ",externo='" . $externo . "',mobile='" . $mobile . "',telefone='" . $telefone . "',ramal='" . $ramal . "',email='" . $email . "',bloqueado='" . $bloqueado . "',observacoes='" . $observacoes ."' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
