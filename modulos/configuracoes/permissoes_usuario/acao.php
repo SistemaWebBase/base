@@ -33,7 +33,7 @@
    
    if ($_action != "exclusao") {
          // validar campos
-         if (empty($usuario)) {
+         if ($usuario <= 0) {
 	         http_response_code(400);
         	   echo "Informe o usuário.";
 	         return;  

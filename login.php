@@ -1,4 +1,5 @@
 <?php
+
 	// destruir sessoes anteriores
 	@session_start();
 	@session_destroy();

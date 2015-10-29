@@ -126,7 +126,7 @@
 										<!-- NOME MENSAGEM -->
 										<div class="form-group col-md-6">
 											<label for="nome_mensagem">Nome da Mensagem: <span class="label label-danger">Obrigatório</span></label>
-										    <input type="text" class="form-control" id="nome_mensagem" name="nome_mensagem" autocomplete="off" value="<?= $nome_mensagem ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";} ?> required>
+										    <input type="text" class="form-control" id="nome_mensagem" name="nome_mensagem" autocomplete="off" value="<?= $nome_mensagem ?>" <?php permissao(); ?> required>
 										</div>
 									</div>
 									<div class="row">
