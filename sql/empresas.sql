@@ -12,6 +12,7 @@ create table if not exists empresas (
 	municipio int,
 	telefone varchar(11),
 	fax varchar(11),
+	email varchar(80),
     constraint PK_EMPRESAS primary key (id),
 	constraint FK_EMPRESAS_MUNICIPIOS foreign key (municipio) references municipios(id)
 );

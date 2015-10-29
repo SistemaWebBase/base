@@ -11,8 +11,8 @@ create table if not exists usuarios (
 	mobile char(1) not null default 'N',
 	telefone varchar(11),
 	ramal varchar(3),
+	email varchar(80),
 	bloqueado char(1) not null default 'N',
-	foto bytea,
 	observacoes text,
 	constraint PK_USUARIOS primary key (id),
 	constraint FK_USUARIOS_EMPRESAS foreign key (empresa) references empresas(id)

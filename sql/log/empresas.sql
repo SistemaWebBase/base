@@ -13,6 +13,7 @@ create table if not exists log.empresas (
 	municipio int,
 	telefone varchar(11),
 	fax varchar(11),
+	email varchar(80),
     /* campos da log */
 	log_tipo char(1) not null,
 	log_usuario text not null,
