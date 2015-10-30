@@ -36,7 +36,8 @@
    $cep = tratarNumero($_POST['cep']);   
    $municipio = tratarChave($_POST['municipio']);
    $telefone = tratarNumero($_POST['telefone']);   
-   $fax = tratarNumero($_POST['fax']);   
+   $fax = tratarNumero($_POST['fax']);
+   $email = tratarTextoMinusculo($_POST['email']);   
    
    $_action = $_POST['_action'];
    
@@ -110,13 +111,13 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into empresas (cnpj, ie, im, razaosocial, nomefantasia, endereco, bairro, cep, municipio, telefone, fax) values ('" . $cnpj . "', '" . $ie . "', '" . $im . "', '" . $razaosocial . "', '" . $nomefantasia . "', '" . $endereco . "', '" . $bairro . "', '" . $cep . "', " . $municipio . ", '" . $telefone . "', '"  . $fax . "');";
+         $sql = "insert into empresas (cnpj, ie, im, razaosocial, nomefantasia, endereco, bairro, cep, municipio, telefone, fax, email) values ('" . $cnpj . "', '" . $ie . "', '" . $im . "', '" . $razaosocial . "', '" . $nomefantasia . "', '" . $endereco . "', '" . $bairro . "', '" . $cep . "', " . $municipio . ", '" . $telefone . "', '"  . $fax . "', '" . $email . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update empresas set cnpj=" . $cnpj . ",ie=" . $ie . ",im=" . $im . ",razaosocial='" . $razaosocial . "',nomefantasia='" . $nomefantasia . "',endereco='" . $endereco . "',bairro='" . $bairro . "',cep=" . $cep . ",municipio=" . $municipio . ",telefone=" . $telefone . ",fax=" . $fax . " where id=" . $id;
+         $sql = "update empresas set cnpj=" . $cnpj . ",ie=" . $ie . ",im=" . $im . ",razaosocial='" . $razaosocial . "',nomefantasia='" . $nomefantasia . "',endereco='" . $endereco . "',bairro='" . $bairro . "',cep=" . $cep . ",municipio=" . $municipio . ",telefone=" . $telefone . ",fax=" . $fax . ",email='" . $email . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }

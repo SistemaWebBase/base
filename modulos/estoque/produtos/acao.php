@@ -27,6 +27,7 @@
    // acao        
    $id = tratarChave($_POST['id']);
    $nome = tratarTexto($_POST['nome']);
+   $aplicacao = tratarTexto($_POST['aplicacao']);
    $codigo_referencia = tratarTexto($_POST['codigo_referencia']);
    $codigo_fabrica = tratarTexto($_POST['codigo_fabrica']);
    $codigo_serie = tratarTexto($_POST['codigo_serie']);
@@ -97,13 +98,13 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into produtos (nome, codigo_referencia, codigo_fabrica, codigo_serie, codigo_barras, linha, grupo, subgrupo, ncm, unidade_medida, marca, situacao, qtd_embalagem, preco_custo, preco_venda, observacoes ) values ('" . $nome . "', '" . $codigo_referencia . "', '" . $codigo_fabrica . "', '" . $codigo_serie . "', '" . $codigo_barras . "', " . $linha . ", " . $grupo . ", " . $subgrupo . ", " . $ncm . ", " . $unidade_medida . ", " . $marca . ", '" . $situacao  . "', " . $qtd_embalagem . ", " . $preco_custo . ", " . $preco_venda . ", '" . $observacoes . "');";
+         $sql = "insert into produtos (nome, aplicacao, codigo_referencia, codigo_fabrica, codigo_serie, codigo_barras, linha, grupo, subgrupo, ncm, unidade_medida, marca, situacao, qtd_embalagem, preco_custo, preco_venda, observacoes ) values ('" . $nome . "', '" . $aplicacao . "', '" . $codigo_referencia . "', '" . $codigo_fabrica . "', '" . $codigo_serie . "', '" . $codigo_barras . "', " . $linha . ", " . $grupo . ", " . $subgrupo . ", " . $ncm . ", " . $unidade_medida . ", " . $marca . ", '" . $situacao  . "', " . $qtd_embalagem . ", " . $preco_custo . ", " . $preco_venda . ", '" . $observacoes . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update produtos set nome='" . $nome . "',codigo_referencia='" . $codigo_referencia . "',codigo_fabrica='" . $codigo_fabrica . "',codigo_serie='" . $codigo_serie . "',codigo_barras='" . $codigo_barras . "',linha=" . $linha . ",grupo=" . $grupo . ",subgrupo=" . $subgrupo . ",ncm=" . $ncm . ",unidade_medida=" . $unidade_medida . ",marca=" . $marca . ",situacao='" . $situacao . "',qtd_embalagem=" . $qtd_embalagem . ",preco_custo=" . $preco_custo . ",preco_venda=" . $preco_venda . ",observacoes='" . $observacoes . "' where id=" . $id;
+         $sql = "update produtos set nome='" . $nome . "',aplicacao='" . $aplicacao . "',codigo_referencia='" . $codigo_referencia . "',codigo_fabrica='" . $codigo_fabrica . "',codigo_serie='" . $codigo_serie . "',codigo_barras='" . $codigo_barras . "',linha=" . $linha . ",grupo=" . $grupo . ",subgrupo=" . $subgrupo . ",ncm=" . $ncm . ",unidade_medida=" . $unidade_medida . ",marca=" . $marca . ",situacao='" . $situacao . "',qtd_embalagem=" . $qtd_embalagem . ",preco_custo=" . $preco_custo . ",preco_venda=" . $preco_venda . ",observacoes='" . $observacoes . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }

@@ -69,6 +69,7 @@
 				$municipio = $rows[0]['municipio'];
 				$telefone = $rows[0]['telefone'];
 				$fax = $rows[0]['fax'];
+				$email = $rows[0]['email'];
 				$_action = "alteracao";
 			}
 			
@@ -188,6 +189,13 @@
 					    					<label for="fax">Fax: </label>
 						    			    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control telefone" id="fax" name="fax" autocomplete="off" value="<?= $fax ?>" <?php permissao(); ?>>
 							    		</div>
+									</div>
+									<div class="row">
+										<!-- E-MAIL -->
+										<div class="form-group col-md-6">
+											<label for="email">E-Mail: </label>
+											<input type="text" class="form-control" id="email" name="email" autocomplete="off" maxlength="60" value="<?= $email ?>" <?php permissao(); ?>>
+										</div>
 									</div>
 									<input type="hidden" name="id" value="<?= $id ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

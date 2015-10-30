@@ -12,6 +12,7 @@ create table if not exists log.usuarios (
 	mobile char(1) not null,
 	telefone varchar(11),
 	ramal varchar(3),
+	email varchar(80),
 	bloqueado char(1) not null,
 	foto bytea,
 	observacoes text,

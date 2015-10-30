@@ -55,6 +55,7 @@
 			
 				$id = $rows[0]['id'];
 				$nome = $rows[0]['nome'];
+				$aplicacao = $rows[0]['aplicacao'];
 				$codigo_referencia = $rows[0]['codigo_referencia'];
 				$codigo_fabrica = $rows[0]['codigo_fabrica'];
 				$codigo_serie = $rows[0]['codigo_serie'];
@@ -115,6 +116,11 @@
 									    <div class="form-group col-md-12">
 										    <label for="nome">Nome do Produto: <span class="label label-danger">Obrigatório</span></label>
 										    <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" maxlength="60" value="<?= $nome ?>" autofocus <?php permissao(); ?> required>
+									    </div>
+										<!-- APLICACAO -->
+									    <div class="form-group col-md-12">
+										    <label for="aplicacao">Aplicação: <span class="label label-danger">Obrigatório</span></label>
+										    <input type="text" class="form-control" id="nomaplicacaoe" name="aplicacao" autocomplete="off" maxlength="60" value="<?= $aplicacao ?>" <?php permissao(); ?>>
 									    </div>
 										<!-- CODIGO REFERENCIA -->
 									    <div class="form-group col-md-3">

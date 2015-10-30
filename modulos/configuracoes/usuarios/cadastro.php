@@ -60,6 +60,7 @@
 			
 				$id = $rows[0]['id'];
 				$nome = $rows[0]['nome'];
+				$login = $rows[0]['login'];
 				$modelo = $rows[0]['modelo'];
 				$empresa = $rows[0]['empresa'];
 				$nivel = $rows[0]['nivel'];
@@ -67,6 +68,7 @@
 				$mobile = $rows[0]['mobile'];
 				$telefone = $rows[0]['telefone'];
 				$ramal = $rows[0]['ramal'];
+				$email = $rows[0]['email'];
 				$bloqueado = $rows[0]['bloqueado'];
 				$observacoes = $rows[0]['observacoes'];
 				$_action = "alteracao";
@@ -118,7 +120,7 @@
 										<!-- LOGIN -->
 										<div class="form-group col-md-6">
 											<label for="login">Login: <span class="label label-danger">Obrigatório</span></label>
-											<input type="text" class="form-control" id="login" name="login" autocomplete="off" maxlength="60" value="<?= $login ?>" <?php permissao(); ?> required>
+											<input type="text" class="form-control" id="login" name="login" autocomplete="off" maxlength="60" value="<?= $login ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo"readonly";} ?> required>
 										</div>
 									</div>
 									<div class="row">
@@ -155,6 +157,13 @@
 										<div class="form-group col-md-6">
 											<label for="ramal">Ramal:</label>
 											<input type="number" inputmode="numeric" pattern="[0-9]{3}" class="form-control" id="ramal" name="ramal" autocomplete="off" min="0" max="999999" value="<?= $ramal ?>" <?php permissao(); ?>>
+										</div>
+									</div>
+									<div class="row">
+									    <!-- E-MAIL -->
+										<div class="form-group col-md-6">
+											<label for="email">E-Mail: </label>
+											<input type="text" class="form-control" id="email" name="email" autocomplete="off" maxlength="60" value="<?= $email ?>" <?php permissao(); ?>>
 										</div>
 									</div>
 									<div class="row">
