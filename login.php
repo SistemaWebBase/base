@@ -80,7 +80,7 @@
 									</div>
 									<!-- BOTAO DE LOGAR -->
 									<div class="form-group">
-										<button class="btn btn-success mob-btn-block" style="width: 100%">
+										<button class="btn btn-success mob-btn-block" style="width: 100%" onclick="fullscreen();">
 											<span class="glyphicon glyphicon-share-alt"></span>
 											Entrar
 										</button>
