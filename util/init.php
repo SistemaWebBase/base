@@ -22,4 +22,8 @@
 	define('DB_NAME', getConfig('db_name'));
 	define('DB_USER', getConfig('db_user'));
 	define('DB_PASSWORD', getConfig('db_password'));
+	
+	// Certificado Digital
+	define('PRIVATE_KEY', "file://" . BASE_DIR . "/" . getConfig("private_key_file"));
+	define('PUBLIC_KEY', "file://" . BASE_DIR . "/" . getConfig("public_key_file"));
 ?>
