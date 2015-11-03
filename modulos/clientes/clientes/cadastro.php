@@ -45,11 +45,12 @@
 		?>>
 		<?php
 			require_once '../../../util/conexao.php';
+			require_once '../../../util/criptografia.php';
 			
 			$_action = "inclusao"; // por padrao, entrar no modo de inclusao
 			
 			// Se passar id, abrir registro
-			$id = $_GET['id'];
+			$id = descriptografar($_GET['id']);
 			if (!empty($id)) {
 				// Abrir nova conexão
 				$conexao = new Conexao();
@@ -140,21 +141,21 @@
 									<!-- BARRA DE BOTOES -->
 									<div class="btn-control-bar">
 										<div class="panel-heading">
-											<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= $_GET['id'] ?>&token=<?= assinarURL("id=" . $_GET['id']); ?>', 0)">
+											<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= urlencode($_GET['id']) ?>', 0)">
 												<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 												<span class="glyphicon glyphicon-triangle-left" aria-hidden="true" style="margin-left: -7px"></span>
 									 			Títulos à Receber
 											</button>
-											<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= $_GET['id'] ?>&token=<?= assinarURL("id=" . $_GET['id']); ?>', 0)">
+											<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= urlencode($_GET['id']) ?>', 0)">
 												<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 												<span class="glyphicon glyphicon-triangle-right" aria-hidden="true" style="margin-left: -7px"></span>
 									 			Títulos à Pagar
 											</button>
-											<button class="btn btn-default mob-btn-block" onclick="redirecionar('/modulos/clientes/creditos_cliente/consulta.php?cliente=<?= $_GET['id'] ?>&token=<?= assinarURL("cliente=" . $_GET['id']); ?>', 0)">
+											<button class="btn btn-default mob-btn-block" onclick="redirecionar('/modulos/clientes/creditos_cliente/consulta.php?cliente=<?= urlencode($_GET['id']) ?>', 0)">
 												<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 									 			Liberação de Crédito
 											</button>
-											<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= $_GET['id'] ?>&token=<?= assinarURL("id=" . $_GET['id']); ?>', 0)">
+											<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= urlencode($_GET['id']) ?>', 0)">
 												<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 									 			Anexos
 											</button>
@@ -322,8 +323,8 @@
 											<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" <?php permissao(); ?>><?= $observacoes ?></textarea>
 										</div>
 									</div>
-									<input type="hidden" id="id" name="id" value="<?= $id ?>">
-									<input type="hidden" id="_action" name="_action" value="<?= $_action ?>">
+									<input type="hidden" id="id" name="id" value="<?= criptografar($id) ?>">
+									<input type="hidden" id="_action" name="_action" value="<?= criptografar($_action) ?>">
 								</form>
 							</div>
 						</div>

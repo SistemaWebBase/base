@@ -26,7 +26,9 @@
 	</head>
 	<body>
 		<?php
-			$enc = md5("id=" . $_GET['id'] . "/UPLOAD");
+			require_once '../../../util/criptografia.php';
+		
+			$enc = md5("id=" . descriptografar($_GET['id']) . "/UPLOAD");
 		?>
 		<!-- MENU -->
 		<?php

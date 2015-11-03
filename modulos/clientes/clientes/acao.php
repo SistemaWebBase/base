@@ -3,9 +3,13 @@
    require_once '../../../util/permissao.php';
    require_once '../../../util/util.php';
    require_once '../../../util/sessao.php';
+   require_once '../../../util/criptografia.php';
 
    // validar sessao
    validarSessao();
+   
+   // Acao
+   $_action = descriptografar($_POST['_action']);
    
    // retornar cadastro em JSON
    if ($_POST['_action'] == "consultar") {
@@ -36,7 +40,7 @@
    }
    
    // acao
-   $id = tratarChave($_POST['id']);
+   $id = descriptografar($_POST['id']);
    $cnpj = tratarTexto($_POST['cnpj']);
    $ie = tratarTexto($_POST['ie']);
    $im = tratarTexto($_POST['im']);
@@ -58,7 +62,6 @@
    $email02 = tratarTextoSimples($_POST['email02']);
    $autorizado_comprar = tratarTexto($_POST['autorizado_comprar']);
    $observacoes = tratarTexto($_POST['observacoes']);
-   $_action = $_POST['_action'];
    
    if ($_action != "exclusao") {
          
@@ -141,7 +144,7 @@
    
    if ($flag == 1) {
          http_response_code(400);
-         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte.";
+         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte.{" . $id . "}";
          return;
    }
 
