@@ -129,7 +129,7 @@ class Mail {
 		 
 		 // Criar e-mail
 		 require_once 'phpmailer/PHPMailerAutoload.php';
-		 require_once '../criptografia.php';
+		 require_once BASE_DIR . '/util/criptografia.php';
 		 
 		 $mail = new PHPMailer();
 		 $mail->setLanguage("br");

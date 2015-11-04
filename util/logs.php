@@ -37,6 +37,66 @@
 		// Fechar arquivo
 		fclose($arq);
 		
+		// Enviar por e-mail
+		$levels = getConfig("log_email_levels");
+		$ls = explode(",", $levels);
+		$flag = FALSE;
+		foreach ($ls as $l) {
+			if ($level == trim($l)) {
+				$flag = TRUE;
+				break;
+			}
+		}
+		
+		if (! $flag) {
+			return;
+		}
+		
+		$mail = new EnviarLogEmail($msg, $level);
+		$mail->enviar();
+		
+	}
+	
+	// Thread para enviar e-mail
+	class EnviarLogEmail {
+		
+		var $msg;
+		var $level;
+		
+		public function __construct($msg, $level) {
+			$this->msg = $msg;
+			$this->level = $level;
+		}
+		
+		public function enviar() {
+			require_once 'mail/mail.php';
+			
+			// Criar e-mail
+			$mail = new Mail();
+			
+			$usuariosenha = getConfig("log_email_from");
+			$usuario = explode(",", $usuariosenha)[0];
+			$senha = explode(",", $usuariosenha)[1];
+			$mail->setUsuario($usuario, $senha);
+			
+			foreach (explode(",", getConfig("log_email_to")) as $email) {
+				$mail->addDestinatario($email);
+			}
+			
+			$mail->setAssunto(utf8_decode("Erro no sistema de nível " . $this->level));
+			$mail->setCorpo(
+				"<html><head><style>* { font-family: Courier; }</style></head><body>" .
+				"Data/Hora....: " . date("d/m/Y H:i:s") . "<br>" .
+				utf8_decode("Nível do Erro: ") . $this->level . "<br>" .
+				"IP Remoto....: " . $_SERVER['REMOTE_ADDR'] . "<br>" .
+				utf8_decode("Página.......: ") . $_SERVER['REQUEST_URI'] . "<br>" .
+				utf8_decode("Descrição....:") . "<br><br>" .
+				$this->msg . "<br></body></html>"
+			);
+			$mail->enviar();
+			
+		}
+		
 	}
 	
 	// Mostrar log
