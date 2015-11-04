@@ -107,6 +107,7 @@
 									<?php
 										require_once '../../../util/conexao.php';
 										require_once '../../../util/util.php';
+										require_once '../../../util/criptografia.php';
 										
 										// Maximo de resultados por pagina
 										$limite = 10;
@@ -160,7 +161,7 @@
 										$rows = pg_fetch_all($result);
 										if ($rows != null) {
 											foreach ($rows as $row) {
-												echo "<tr onclick=\"abrirCadastro('" . $row['id'] . "', '" . assinarParametros('id=' . $row['id']) . "');\">";
+												echo "<tr onclick=\"abrirCadastro('" . urlencode(criptografar($row['id'])) . "');\">";
 												echo "<td>" . $row['id'] . "</td>";
 												echo "<td>" . $row['razaosocial'] . "</td>";
 												echo "<td>" . formatarCpfCnpj($row['cnpj']) . "</td>";

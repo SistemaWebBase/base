@@ -117,7 +117,7 @@
 										<!-- VALOR -->
 										<div class="form-group col-md-3">
 											<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
-										    <input type="text" class="form-control valor" id="valor" name="valor" data-mask="##.###.##0,00" data-mask-reverse="true" autocomplete="off" value="<?= $valor ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";} ?> required>
+										    <input type="text" class="form-control valor" id="valor" name="valor" data-mask="##.###.##0,00" data-mask-reverse="true" autocomplete="off" value="<?= $valor ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";} ?> autofocus required>
 										</div>
 										<!-- TIPO -->
 										<div class="form-group col-md-2">
@@ -183,6 +183,7 @@
 											<input type="text" class="form-control" id="dt_cancelamento" disabled>
 										</div>
 									</div>
+									<input type="hidden" name="cliente" value="<?= $cliente ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>

@@ -109,6 +109,12 @@ function adicionarMascaras() {
 			$(this).mask($(this).attr('data-mask'));
 		}
 	});
+	
+	$('body').find('input[data-mask-reverse=true]').each(function() {
+		if (typeof $(this).mask == 'function') {
+			$(this).mask($(this).attr('data-mask'), {reverse: true});
+		}
+	});
 
 }
 

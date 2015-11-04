@@ -11,9 +11,11 @@
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {
-         case "inclusao": $nperm = "INCLUIR LOCAIS DE COBRANCA";break;
-         case "alteracao": $nperm = "ALTERAR LOCAIS DE COBRANCA";break;
-         case "exclusao": $nperm = "EXCLUIR LOCAIS DE COBRANCA";break;
+         case "inclusao": $nperm = "INCLUIR SOLICITACAO DE CREDITO";break;
+         case "alteracao": $nperm = "ALTERAR SOLICITACAO DE CREDITO";break;
+         case "aprovacao": $nperm = "APROVAR SOLICITACAO DE CREDITO";break;
+         case "revogacao": $nperm = "REVOGAR SOLICITACAO DE CREDITO";break;
+         case "cancelamento": $nperm = "CANCELAR SOLICITACAO DE CREDITO";break;
    }
    
    $perm = testarPermissao($nperm);
@@ -24,28 +26,30 @@
          return;
    }
    
-   // acao         
-   $codigo_banco = (int)$_POST['codigo_banco'];
-   $complemento = tratarTexto($_POST['complemento']);   
-   $descricao = tratarTexto($_POST['descricao']);
+   // acao
+   $id = (int)$_POST['id'];
+   $cliente = (int)$_POST['cliente'];         
+   $valor = (float)$_POST['valor'];
+   $tipo = tratarTexto($_POST['tipo']);   
+   $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
    
-   if ($_action != "exclusao") {
+   if ($_action != "revogacao" && $_action != "cancelamento") {
          // validar campos
-         if ($codigo_banco <= 0) {
+         if ($valor <= 0) {
 	         http_response_code(400);
-        	   echo "Informe o código do banco.";
+        	   echo "Informe o valor do crédito.";
 	         return;  
          }
          
-         if (empty($complemento)) {
+         if (empty($observacoes)) {
 	         http_response_code(400);
-        	   echo "Informe o complemento.";
+        	   echo "Informe a observação.";
 	         return;  
          }
    }
    
-   if (empty($_action)) {
+   if (empty($_action) || $cliente == 0) {
         http_response_code(400);
         echo "Falha nos parâmetros da solicitação.";
         return;
@@ -58,7 +62,7 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into locais_cobranca (codigo_banco, complemento, descricao) values (" . $codigo_banco . ", '" . $complemento . "', '" . $descricao . "');";
+         $sql = "insert into creditos_cliente (cliente, tipo, valor, observacoes, status, usuario_solicitacao) values (" . $cliente . ", '" . $tipo . "', " . $valor . ", '" . $observacoes . "', 'S', " . $_SESSION['id'] . ");";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
