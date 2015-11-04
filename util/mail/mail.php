@@ -9,6 +9,20 @@ class Mail {
 		 $this->host = $host;
 	 }
 	 
+	 // Porta
+	 var $port = "25";
+	 
+	 public function setPort($port) {
+		 $this->port = $port;
+	 }
+	 
+	 // SMTP Secure
+	 var $SMTPSecure = "tls";
+	 
+	 public function setSMTPSecure($SMTPSecure) {
+		 $this->SMTPSecure = $SMTPSecure;
+	 }
+	 
 	 // Usuario e Senha
 	 var $usuario, $senha;
 	 
@@ -82,22 +96,31 @@ class Mail {
 	 var $anexos = array();
 	 
 	 public function addAnexo($file, $nome) {
-		 push_array($this->anexos, array($file, $nome));
+		 array_push($this->anexos, array($file, $nome));
+	 }
+	 
+	 // Setar debug
+	 var $debug = false;
+	 
+	 public function debug() {
+		 $this->debug = true;
 	 }
 	 
 	 // Enviar
 	 public function enviar() {
-		 // Testar parametros
-		 if (! isset($this->host) || empty($this->host)) {
-			 throw new Exception("Host não informado.");
-		 }
-		 
+		 // Testar parametros		 
 		 if (! isset($this->usuario) || empty($this->usuario)) {
 			 throw new Exception("Usuário não informado.");
 		 }
 		 
 		 if (! isset($this->senha) || empty($this->senha)) {
 			 throw new Exception("Senha não informado.");
+		 }
+		 
+		 $this->definirConfiguracoes();
+		 
+		 if (! isset($this->host) || empty($this->host)) {
+			 throw new Exception("Host não informado.");
 		 }
 		 
 		 if (! isset($this->destinatarios) || count($this->destinatarios) == 0) {
@@ -111,16 +134,23 @@ class Mail {
 		 $mail->setLanguage("br");
 		 $mail->IsSMTP();
 		 $mail->Host = $this->host;
-		 $mail->Port = 587;
-		 $mail->SMTPSecure = "tls";
-		//  $mail->Mailer =	 "smtp";
+		 $mail->Port = $this->port;
+		 $mail->SMTPSecure = $this->SMTPSecure;
 		 $mail->SMTPAuth = true;
 		 $mail->Username = $this->usuario;
 		 $mail->Password = $this->senha;
 		 $mail->From = $this->usuario;
 		 $mail->FromName = $this->nome_usuario;
-		 $mail->SMTPDebug = 4;
-		 $mail->Debugoutput = "html";
+		 $mail->SMTPOptions = array(
+			'ssl' => array(
+				'verify_peer' => false
+			) 
+		 );
+		 
+		 if ($this->debug) {
+			 $mail->SMTPDebug = 4;
+		 	$mail->Debugoutput = "html";
+		 }
 		 
 		 foreach($this->destinatarios as $destinatario) {
 			 $mail->AddAddress($destinatario[0], $destinatario[1]);
@@ -146,7 +176,7 @@ class Mail {
 		 // Enviar
 		 $enviado = $mail->Send();
 		 
-		 var_dump($mail);
+		//  var_dump($mail);
 		 
 		 // Limpar destinatarios e os anexos
 		 $mail->ClearAllRecipients();
@@ -156,6 +186,34 @@ class Mail {
 			 throw new Exception("Falha ao enviar e-mail. " . $mail->ErrorInfo);
 		 }
 
+	 }
+	 
+	 // definir configuracoes (GMAIL, OUTLOOK, HOTMAIL, ICLOUD, ETC...)
+	 private function definirConfiguracoes() {
+		 $provedor = strtolower(explode(".", explode("@", $this->usuario)[1])[0]);
+		 
+		 switch ($provedor) {
+			 // GMAIL
+			 case "gmail": {
+				 $this->host = "smtp.gmail.com";
+				 $this->port = "587";
+				 $this->SMTPSecure = "tls";
+			 };break;
+			 // HOTMAIL/OUTLOOK/LIVE
+			 case "hotmail":
+			 case "outlook":
+			 case "live": {
+				 $this->host = "smtp.live.com";
+				 $this->port = "587";
+				 $this->SMTPSecure = "tls";
+			 };break;
+			 // ICLOUD
+			 case "icloud": {
+				 $this->host = "smtp.mail.me.com";
+				 $this->port = "587";
+				 $this->SMTPSecure = "ssl";
+			 };break;
+		 }
 	 }
 	
 }
