@@ -23,7 +23,7 @@ class Mail {
 		 $this->SMTPSecure = $SMTPSecure;
 	 }
 	 
-	 // Usuario e Senha
+	 // Usuario e Senha (A senha deve ser criptografada)
 	 var $usuario, $senha;
 	 
 	 public function setUsuario($usuario, $senha) {
@@ -129,6 +129,7 @@ class Mail {
 		 
 		 // Criar e-mail
 		 require_once 'phpmailer/PHPMailerAutoload.php';
+		 require_once '../criptografia.php';
 		 
 		 $mail = new PHPMailer();
 		 $mail->setLanguage("br");
@@ -138,7 +139,7 @@ class Mail {
 		 $mail->SMTPSecure = $this->SMTPSecure;
 		 $mail->SMTPAuth = true;
 		 $mail->Username = $this->usuario;
-		 $mail->Password = $this->senha;
+		 $mail->Password = descriptografar($this->senha);
 		 $mail->From = $this->usuario;
 		 $mail->FromName = $this->nome_usuario;
 		 $mail->SMTPOptions = array(
