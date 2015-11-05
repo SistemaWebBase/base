@@ -27,5 +27,5 @@
 	define('DB_NAME', getConfig('db_name'));
 	define('DB_USER', getConfig('db_user'));
 	define('DB_PASSWORD', descriptografar(getConfig('db_password')));
-	
+
 ?>
