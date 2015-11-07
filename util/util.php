@@ -146,6 +146,21 @@ function formatarCnpj($cnpj) {
 	return $array[0] . $array[1] . "." . $array[2] . $array[3] . $array[4] . "." . $array[5] . $array[6] . $array[7] . "/" . $array[8] . $array[9] . $array[10] . $array[11] . "-" . $array[12] . $array[13];
 }
 
+// Validar E-Mail
+// Define uma função que poderá ser usada para validar e-mails usando regexp
+function validaEmail($email) {
+	$conta = "^[a-zA-Z0-9\._-]+@";
+	$domino = "[a-zA-Z0-9\._-]+.";
+	$extensao = "([a-zA-Z]{2,4})$";
+	
+	$pattern = $conta.$domino.$extensao;
+	
+	if (ereg($pattern, $email))
+		return true;
+	else
+		return false;
+}
+
 // Assinar URL
 function assinarURL() {
 	$query = explode("&token=", $_SERVER['QUERY_STRING'])[0];

@@ -105,7 +105,7 @@
 		    							<!-- VALOR -->
 			    						<div class="form-group col-md-6">
 				    						<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
-					    					<input type="text" class="form-control" id="valor" name="valor" autocomplete="off" maxlength="60" value="<?= $valor ?>" <?php permissao(); ?> required>
+					    					<input type="text" class="form-control no-uppercase" id="valor" name="valor" autocomplete="off" value="<?= $valor ?>" <?php permissao(); ?> required>
 						    			</div>
 									</div>
 									<div class="row">

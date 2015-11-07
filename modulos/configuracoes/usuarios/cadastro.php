@@ -144,7 +144,7 @@
 										<!-- EMPRESA -->
 										<div class="form-group col-md-6">
 											<label for="empresa">Empresa: <span class="label label-danger">Obrigatório</span></label>
-											<input type="text" class="form-control" id="empresa" name="empresa" autocomplete="off" maxlength="60" value="<?= $empresa ?>" <?php permissao(); ?>>
+											<input type="text" class="form-control" id="empresa" name="empresa" autocomplete="off" maxlength="60" value="<?= $empresa ?>" <?php permissao(); ?> required>
 										</div>
 									</div>
 									<div class="row">
@@ -162,8 +162,8 @@
 									<div class="row">
 									    <!-- E-MAIL -->
 										<div class="form-group col-md-6">
-											<label for="email">E-Mail: </label>
-											<input type="text" class="form-control" id="email" name="email" autocomplete="off" maxlength="60" value="<?= $email ?>" <?php permissao(); ?>>
+											<label for="email">E-Mail: <span class="label label-danger">Obrigatório</span></label>
+											<input type="text" class="form-control" id="email" name="email" autocomplete="off" maxlength="60" value="<?= $email ?>" <?php permissao(); ?> required>
 										</div>
 									</div>
 									<div class="row">

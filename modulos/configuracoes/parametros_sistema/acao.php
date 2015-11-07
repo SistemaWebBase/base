@@ -27,7 +27,7 @@
    // acao        
    $id = tratarChave($_POST['id']);
    $chave = tratarTexto($_POST['chave']);
-   $valor = tratarTexto($_POST['valor']);
+   $valor = tratarTextoSimples($_POST['valor']);
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
    

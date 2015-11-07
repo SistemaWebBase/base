@@ -11,7 +11,7 @@ create table if not exists usuarios (
 	mobile char(1) not null default 'N',
 	telefone varchar(11),
 	ramal varchar(3),
-	email varchar(80),
+	email varchar(80) not null,
 	bloqueado char(1) not null default 'N',
 	observacoes text,
 	constraint PK_USUARIOS primary key (id),
