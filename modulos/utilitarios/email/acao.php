@@ -3,6 +3,7 @@
    require_once '../../../util/permissao.php';
    require_once '../../../util/util.php';
    require_once '../../../util/sessao.php';
+   require_once BASE_DIR . "/util/mail/mail.php";
 
    // validar sessao
    validarSessao();
@@ -22,7 +23,7 @@
    }
    
    // acao   
-   $destinatario = tratarTextoSimples($_POST['destinatario']);
+   $destinatario = tratarTextoMinusculo($_POST['destinatario']);
    $assunto = tratarTextoSimples($_POST['assunto']);
    $corpo = tratarTextoSimples($_POST['corpo']);
      
@@ -48,11 +49,15 @@
    //Enviar E-Mail
    // Instanciando a Classe  
    $mail = new Mail();
-   $mail->setUsuario("raphael_amorim@outlook.com, ");  
+   $mail->setUsuario("raphael_amorim@outlook.com", "g49lWj+8xpoUQKQYOqIhlPyxGGcBj9IyicHdIxjncxaWPfFAKO9F/a05ppBNPbn9TMOkwg1dK9LC1yIBS9UKiZWImck/PlCLv8Twr7DlgBWPWW5ADzSp9BbU6Qn6Eg1Z47mVEo3G1BetIMgdrRIxvhZa7msgshuZY83rj4KaSWKW0i+JYlyWzSADqBpLlH4MeApI2dizedY1/NjPLbqOkl7Lh9nd5Uvp2clHWM5FTgn+T2aann1RsNKvcnhfOa8n4h4ZYppdTzuEPy7X9yuUgIW5soP8Yu5ThMZaZVDwSR/EiZx3ovMAFmSUQF1HS3wlabDiMK5Wwijela1LJsEhhQ==");
    
    //Destinatarios
-   $mail->addDestinatario($destinatario);
-   
+   $destinatarios = explode(",", $destinatario);
+   forech ( $destinatarios as $dest ) {
+      echo $dest; 
+      $mail->addDestinatario($dest);
+   }
+   echo "teste";
    //Assunto
    $mail->setAssunto($assunto);
    

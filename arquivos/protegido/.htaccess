@@ -1,4 +1,4 @@
-AuthUserFile /www/.htpasswd
+AuthUserFile /home/sistema/sistema/.htpasswd
 AuthType Basic
 AuthName "Autenticação Necessária"
 Require valid-user

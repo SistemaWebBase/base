@@ -57,7 +57,7 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Agenda Telefônica
+								Enviar E-Mail
 							</div>
 							<!-- REGRAS DE PERMISSAO -->
 							<?php
@@ -76,7 +76,7 @@
 										<!-- DESTINATARIO -->
 										<div class="form-group col-md-12">
 											<label for="destinatario">Destinatários: <span class="label label-danger">Obrigatório</span></label>
-											<input type="text" class="form-control" id="destinatario" name="destinatario" autocomplete="off" maxlength="60" value="<?= $destinatario ?>" autofocus <?php permissao(); ?> required>
+											<input type="text" class="form-control no-uppercase" id="destinatario" name="destinatario" autocomplete="off" maxlength="60" value="<?= $destinatario ?>" autofocus <?php permissao(); ?> required>
 											<h6>Se houver mais de um destinatário, os separe por vírgula.</h6>
 										</div>
 									</div>				
@@ -84,7 +84,7 @@
 										<!-- ASSUNTO -->
 										<div class="form-group col-md-12">
 											<label for="assunto">Assunto: <span class="label label-danger">Obrigatório</span></label>
-											<input type="text" class="form-control" id="assunto" name="assunto" autocomplete="off" maxlength="60" value="<?= $assunto ?>" autofocus <?php permissao(); ?> required>
+											<input type="text" class="form-control no-uppercase" id="assunto" name="assunto" autocomplete="off" maxlength="60" value="<?= $assunto ?>" <?php permissao(); ?> required>
 										</div>
 									</div>	
 									<div class="row">
@@ -112,7 +112,7 @@
 							<div class="panel-heading">
 								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#razaosocial');" <?php permissao(); ?>>
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-									 Salvar
+									 Enviar
 								</button>
 								<a href="<?= $_SERVER['HTTP_REFERER'] ?>">
 									<button class="btn btn-warning mob-btn-block">
