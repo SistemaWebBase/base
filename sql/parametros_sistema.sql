@@ -2,7 +2,7 @@
 create table if not exists parametros_sistema (
 	id serial not null,
 	chave varchar(20) not null,
-	valor varchar(400) not null,
+	valor text not null,
 	observacoes text,
 	constraint PK_PARAMETROS_SISTEMA primary key (id) 
 );

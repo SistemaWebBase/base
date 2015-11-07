@@ -3,7 +3,7 @@ create table if not exists log.parametros_sistema (
 	/* campos originais da tabela */
 	id serial not null,
 	chave varchar(20) not null,
-	valor varchar(400) not null,
+	valor text not null,
 	observacoes text,
 	/* campos da log */
 	log_tipo char(1) not null,
