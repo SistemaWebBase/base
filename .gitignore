@@ -3,4 +3,4 @@ logs/*
 uploads/avatar
 !uploads/avatar/avatar.png
 uploads/clientes/*
-.htaccess
+arquivos/protegido/.htaccess
