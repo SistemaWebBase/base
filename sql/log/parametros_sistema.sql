@@ -2,6 +2,8 @@
 create table if not exists log.parametros_sistema (
 	/* campos originais da tabela */
 	id serial not null,
+	empresa int,
+	usuario int,
 	chave varchar(20) not null,
 	valor text not null,
 	observacoes text,
