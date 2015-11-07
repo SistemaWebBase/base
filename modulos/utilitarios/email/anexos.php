@@ -56,7 +56,7 @@
 										<div class="row">
 											<div class="col-md-5">
 												<div class="input-group">
-													<input type="hidden" name="filename" value="clientes/<?= $enc ?>/{original}">
+													<input type="hidden" name="filename" value="tmp/<?= $enc ?>/{original}">
 													<input type="file" name="file">
 													<button class="btn btn-primary" onclick="enviar();">
 														<span class="glyphicon glyphicon-cloud-upload"></span>
@@ -78,7 +78,7 @@
 									</thead>
 									<tbody style="font-family: Courier">
 										<?php										
-											$dir = BASE_DIR . getConfig("upload_base_dir") . "/clientes/" . $enc;
+											$dir = BASE_DIR . "/tmp/" . $enc;
 											if (! file_exists($dir)) {
 												mkdir($dir);
 											}
@@ -89,7 +89,7 @@
 												if ($arquivo == "." || $arquivo == "..") {
 													continue;
 												}
-												echo "<tr onclick=\"download('" . getConfig("upload_base_dir") . "/clientes/" . $enc . "/" . $arquivo . "');\">";
+												echo "<tr onclick=\"download('/tmp/" . $enc . "/" . $arquivo . "');\">";
 												echo "<td>" . $arquivo . "</td>";
 												
 												// Extensão do arquivo

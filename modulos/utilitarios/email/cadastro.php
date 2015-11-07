@@ -83,12 +83,31 @@
 									</div>
 									<div class="row">
 										<!-- DESTINATARIO -->
-										<div class="form-group col-md-12">
-											<label for="destinatario">Destinatários: <span class="label label-danger">Obrigatório</span></label>
-											<input type="text" class="form-control no-uppercase" id="destinatario" name="destinatario" autocomplete="off" maxlength="60" value="<?= $destinatario ?>" autofocus <?php permissao(); ?> required>
-											<h6>Se houver mais de um destinatário, os separe por vírgula.</h6>
+										<div class="col-md-10">
+											<div class="form-group">
+												<label for="destinatario">Destinatários: <span class="label label-danger">Obrigatório</span></label>
+												<input type="text" class="form-control no-uppercase" id="destinatario" name="destinatario" autocomplete="off" maxlength="60" value="<?= $destinatario ?>" autofocus <?php permissao(); ?> required>
+												<h6>Se houver mais de um destinatário, os separe por vírgula.</h6>
+											</div>				
 										</div>
-									</div>				
+										<!-- CC -->
+										<div class="col-md-1">
+											<div class="form-group">
+												<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= urlencode($_GET['id']) ?>', 0)">
+													<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+										 			CC
+												</button>
+											</div>
+										</div>
+										<div class="col-md-1">
+											<div class="form-group">
+												<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= urlencode($_GET['id']) ?>', 0)">
+													<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+										 			CCO
+												</button>
+											</div>
+										</div>
+									</div>
 									<div class="row">
 										<!-- ASSUNTO -->
 										<div class="form-group col-md-12">
