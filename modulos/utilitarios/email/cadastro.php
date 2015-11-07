@@ -103,7 +103,7 @@
 											<textarea rows="20" cols="50" type="text" class="form-control" id="corpo" name="corpo" autocomplete="off" maxlength="500" value="<?= $corpo ?>" <?php permissao(); ?> required></textarea>
 										</div>
 									</div>
-									<input type="hidden" id="id" name="id" value="<?= $id ?>">
+									<input type="hidden" id="id" name="id" value="<?= time() ?>">
 									<input type="hidden" id="_action" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>

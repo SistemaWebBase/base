@@ -23,6 +23,7 @@
    }
    
    // acao   
+   $id = tratarNumero($_POST['id']);
    $destinatario = tratarTextoMinusculo($_POST['destinatario']);
    $assunto = tratarTextoSimples($_POST['assunto']);
    $corpo = tratarTextoSimples($_POST['corpo']);
@@ -69,7 +70,7 @@
    $valores = explode(",", $valor);
                            
    //Usuário e senha do emitente
-   $mail->setUsuario($valores[0],$valores[1]);
+   $mail->setUsuario(trim($valores[0]),trim($valores[1]));
    
    //Destinatarios
    $destinatarios = explode(",", $destinatario);
