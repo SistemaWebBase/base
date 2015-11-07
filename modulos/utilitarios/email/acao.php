@@ -53,7 +53,7 @@
    // Abrir nova conexão
    $conexao = new Conexao();
 
-   $sql = "select * from parametros_sistema where chave='EMAIL_UTILITARIOS'" . $id;
+   $sql = "select * from parametros_sistema where chave='EMAIL_UTILITARIOS'";
    $result = $conexao->query($sql);
 			
    // Abrir resultado
