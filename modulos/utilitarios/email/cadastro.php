@@ -72,6 +72,15 @@
 							?>
 							<div class="panel-body">
 								<form role="form">
+									<!-- BARRA DE BOTOES -->
+									<div class="btn-control-bar">
+										<div class="panel-heading">
+											<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= urlencode($_GET['id']) ?>', 0)">
+												<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+									 			Anexos
+											</button>
+										</div>
+									</div>
 									<div class="row">
 										<!-- DESTINATARIO -->
 										<div class="form-group col-md-12">

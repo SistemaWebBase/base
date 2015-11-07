@@ -49,15 +49,47 @@
    //Enviar E-Mail
    // Instanciando a Classe  
    $mail = new Mail();
-   $mail->setUsuario("raphael_amorim@outlook.com", "g49lWj+8xpoUQKQYOqIhlPyxGGcBj9IyicHdIxjncxaWPfFAKO9F/a05ppBNPbn9TMOkwg1dK9LC1yIBS9UKiZWImck/PlCLv8Twr7DlgBWPWW5ADzSp9BbU6Qn6Eg1Z47mVEo3G1BetIMgdrRIxvhZa7msgshuZY83rj4KaSWKW0i+JYlyWzSADqBpLlH4MeApI2dizedY1/NjPLbqOkl7Lh9nd5Uvp2clHWM5FTgn+T2aann1RsNKvcnhfOa8n4h4ZYppdTzuEPy7X9yuUgIW5soP8Yu5ThMZaZVDwSR/EiZx3ovMAFmSUQF1HS3wlabDiMK5Wwijela1LJsEhhQ==");
+   
+   // Abrir nova conexão
+   $conexao = new Conexao();
+
+   $sql = "select * from parametros_sistema where chave='EMAIL_UTILITARIOS'" . $id;
+   $result = $conexao->query($sql);
+			
+   // Abrir resultado
+   $rows = pg_fetch_all($result);
+		
+   if ($rows == null) {
+   	return;
+   }
+		
+   $valor = $rows[0]['valor'];
+   
+   //Separa campos
+   $valores = explode(",", $valor);
+                           
+   //Usuário e senha do emitente
+   $mail->setUsuario($valores[0],$valores[1]);
    
    //Destinatarios
    $destinatarios = explode(",", $destinatario);
-   forech ( $destinatarios as $dest ) {
-      echo $dest; 
-      $mail->addDestinatario($dest);
+   $cont = 0;
+   
+   //Verifica e-mail(s) informado(s) e os valida
+   foreach ( $destinatarios as $dest ) {
+      $cont++;
+      if(!validaEmail(trim($dest))){
+          http_response_code(400);
+          echo $cont . "° e-mail inválido!!!";
+          return;  
+      }
    }
-   echo "teste";
+   
+   //Adiciona destinatario(s)
+   foreach ( $destinatarios as $dest ) {
+      $mail->addDestinatario(trim($dest));
+   }
+
    //Assunto
    $mail->setAssunto($assunto);
    
