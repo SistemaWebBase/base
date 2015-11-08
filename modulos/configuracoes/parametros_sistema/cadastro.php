@@ -131,7 +131,7 @@
 									     	<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" <?php permissao(); ?>><?= $observacoes ?></textarea>
 									    </div>
 									</div>
-									<input type="hidden" id="chave" name="chave" value="<?= $chave ?>">
+									<input type="hidden" id="chave" name="chave" value="<?= $chave ?>">:
 									<input type="hidden" id="empresa" name="empresa" value="<?= $empresa ?>">
 									<input type="hidden" id="usuario" name="usuario" value="<?= $usuario ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">

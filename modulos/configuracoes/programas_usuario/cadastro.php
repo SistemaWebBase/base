@@ -82,7 +82,7 @@
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Cadastro de Permissões do Usuário
+								Cadastro de Programas do Usuário
 							</div>
 							<!-- REGRAS DE PERMISSAO -->
 							<?php

@@ -25,7 +25,6 @@
    }
    
    // acao         
-   $id = tratarChave($_POST['id']);
    $usuario = tratarChave($_POST['usuario']);
    $permissao = tratarChave($_POST['permissao']);   
    $valor = tratarTexto($_POST['valor']);
@@ -61,6 +60,23 @@
    
    // Abrir conexao
    $conexao = new Conexao();
+
+   if ($_action == "inclusao") {
+      $sql = "";
+   
+      // Verifica se chave já existe   
+      $sql = "select * from permissoes_usuario where usuario=" . $usuario . " and permissao=" . $permissao;
+      $result = $conexao->query($sql);
+			
+      // Abrir resultado
+      $rows = pg_fetch_all($result);
+			
+      if ($rows != null) {
+            http_response_code(400);
+            echo "Chave já existe.";
+            return;
+      }
+   }
    
    // Testar acao
    $sql = "";

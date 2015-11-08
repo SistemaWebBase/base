@@ -46,7 +46,7 @@
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Consulta de Permissões do Usuário
+								Cadastro de Programas do Usuário
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->

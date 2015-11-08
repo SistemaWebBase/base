@@ -25,14 +25,13 @@
    }
    
    // acao        
-   $id = tratarChave($_POST['id']);
    $chave = tratarTexto($_POST['chave']);
-   $empresa = tratarChave($_POST['empresa']);
-   $usuario = tratarChave($_POST['usuario']);
+   $empresa = tratarNumero($_POST['empresa']);
+   $usuario = tratarNumero($_POST['usuario']);
    $valor = tratarTextoSimples($_POST['valor']);
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
-   
+      
    if ($_action != "exclusao") {
 
          // validar campos
@@ -58,6 +57,23 @@
    
    // Abrir conexao
    $conexao = new Conexao();
+ 
+   if ($_action == "inclusao") {
+        $sql = "";
+   
+        // Verifica se chave já existe
+        $sql = "select * from parametros_sistema where chave='" . $chave . "' and empresa=" . $empresa . " and usuario=" . $usuario;
+        $result = $conexao->query($sql);
+ 	
+        // Abrir resultado
+        $rows = pg_fetch_all($result);
+			
+         if ($rows != null) {
+            http_response_code(400);
+            echo "Chave já existe.";
+            return;
+         }
+   }
    
    // Testar acao
    $sql = "";

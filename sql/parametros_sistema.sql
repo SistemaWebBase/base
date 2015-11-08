@@ -5,7 +5,7 @@ create table if not exists parametros_sistema (
 	usuario int,
 	valor text not null,
 	observacoes text,
-	constraint PK_PARAMETROS_SISTEMA primary key (chave),
+	constraint PK_PARAMETROS_SISTEMA primary key (chave, empresa, usuario),
 	constraint FK_PARAMETROS_SISTEMA_EMPRESA foreign key (empresa) references empresas(id),
 	constraint FK_PARAMETROS_SISTEMA_USUARIO foreign key (usuario) references usuarios(id)
 );
