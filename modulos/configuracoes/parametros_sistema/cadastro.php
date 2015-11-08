@@ -153,7 +153,7 @@
 						<!-- PAINEL DE BOTOES -->
 						<div class="btn-control-bar">
 							<div class="panel-heading">
-								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#nome');" <?php permissao(); ?>>
+								<button class="btn btn-success mob-btn-block <?php permissao(); ?>" onclick="submit('#chave');" <?php permissao(); ?>>
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
