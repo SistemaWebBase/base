@@ -37,12 +37,15 @@
 			$_action = "inclusao"; // por padrao, entrar no modo de inclusao
 			
 			// Se passar id, abrir registro
-			$id = $_GET['id'];
-			if (!empty($id)) {
+			$chave = $_GET['chave'];
+			$empresa = $_GET['empresa'];
+			$usuario = $_GET['usuario'];
+			
+			if (!empty($chave) && !empty($empresa) && !empty($usuario)) {
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from parametros_sistema where id=" . $id;
+				$sql = "select * from parametros_sistema where chave='" . $chave . "' and empresa=" . $empresa . " and usuario=" . $usuario;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -52,8 +55,9 @@
 					return;
 				}
 			
-				$id = $rows[0]['id'];
 				$chave = $rows[0]['chave'];
+				$empresa = $rows[0]['empresa'];
+				$usuario = $rows[0]['usuario'];
 				$valor = $rows[0]['valor'];
 				$observacoes = $rows[0]['observacoes'];
 				$_action = "alteracao";
@@ -102,8 +106,20 @@
 										    <label for="chave">Chave: <span class="label label-danger">Obrigatório</span></label>
     										<input type="text" class="form-control" id="chave" name="chave" autocomplete="off" maxlength="60" value="<?= $chave ?>" autofocus <?php permissao(); ?> required>
 	    								</div>
+										<!-- EMPRESA -->
+									    <div class="form-group col-md-2">
+										    <label for="empresa">Empresa: </label>
+    										<input type="text" class="form-control" id="empresa" name="empresa" autocomplete="off" maxlength="2" value="<?= $empresa ?>" <?php permissao(); ?>>
+	    								</div>
+										<!-- USUARIO -->
+									    <div class="form-group col-md-4">
+										    <label for="usuario">Usuário: </label>
+    										<input type="text" class="form-control" id="usuario" name="usuario" autocomplete="off" maxlength="60" value="<?= $usuario ?>" <?php permissao(); ?>>
+	    								</div>
+									</div>
+									<div class="row">
 		    							<!-- VALOR -->
-			    						<div class="form-group col-md-6">
+			    						<div class="form-group col-md-12">
 				    						<label for="valor">Valor: <span class="label label-danger">Obrigatório</span></label>
 					    					<input type="text" class="form-control no-uppercase" id="valor" name="valor" autocomplete="off" value="<?= $valor ?>" <?php permissao(); ?> required>
 						    			</div>
@@ -115,7 +131,9 @@
 									     	<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" <?php permissao(); ?>><?= $observacoes ?></textarea>
 									    </div>
 									</div>
-									<input type="hidden" name="id" value="<?= $id ?>">
+									<input type="hidden" id="chave" name="chave" value="<?= $chave ?>">
+									<input type="hidden" id="empresa" name="empresa" value="<?= $empresa ?>">
+									<input type="hidden" id="usuario" name="usuario" value="<?= $usuario ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>

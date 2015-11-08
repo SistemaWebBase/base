@@ -53,17 +53,20 @@
    
    // Abrir nova conexão
    $conexao = new Conexao();
-
-   $sql = "select * from parametros_sistema where chave='EMAIL_UTILITARIOS'";
+   
+   $sql = "select * from parametros_sistema where empresa=" . $_SESSION['id'] . " and usuario=" . $_SESSION['empresa'] . " and chave='EMAIL_PADRAO'";
+   http_response_code(400);
+   echo $sql;
    $result = $conexao->query($sql);
 			
    // Abrir resultado
    $rows = pg_fetch_all($result);
-		
+   
    if ($rows == null) {
    	return;
    }
-		
+   
+   
    $valor = $rows[0]['valor'];
    
    //Separa campos

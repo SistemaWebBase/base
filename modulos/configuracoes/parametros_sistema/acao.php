@@ -27,6 +27,8 @@
    // acao        
    $id = tratarChave($_POST['id']);
    $chave = tratarTexto($_POST['chave']);
+   $empresa = tratarChave($_POST['empresa']);
+   $usuario = tratarChave($_POST['usuario']);
    $valor = tratarTextoSimples($_POST['valor']);
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];
@@ -61,19 +63,19 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into parametros_sistema (chave, valor, observacoes) values ('" . $chave . "', '" . $valor . "', '" . $observacoes . "');";
+         $sql = "insert into parametros_sistema (chave, empresa, usuario, valor, observacoes) values ('" . $chave . "', " . $empresa . ", " . $usuario . ", '" . $valor . "', '" . $observacoes . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update parametros_sistema set chave='" . $chave . "',valor='" . $valor . "',observacoes='" . $observacoes . "' where id=" . $id;
+         $sql = "update parametros_sistema set valor='" . $valor . "',observacoes='" . $observacoes . "' where chave='" . $chave . "' and empresa=" . $empresa . " and usuario=" . $usuario;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from parametros_sistema where id=" . $id;
+         $sql = "delete from parametros_sistema where chave='" . $chave . "' and empresa=" . $empresa . " and usuario=" . $usuario;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }
@@ -89,7 +91,7 @@
    
    if ($flag == 1) {
          http_response_code(400);
-         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte.";
+         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte." . $sql;
          return;
    }
 

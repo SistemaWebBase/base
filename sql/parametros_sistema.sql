@@ -1,12 +1,11 @@
 /* criar tabela parâmetros_sistema */
 create table if not exists parametros_sistema (
-	id serial not null,
+	chave varchar(20) not null,
 	empresa int,
 	usuario int,
-	chave varchar(20) not null,
 	valor text not null,
 	observacoes text,
-	constraint PK_PARAMETROS_SISTEMA primary key (id),
+	constraint PK_PARAMETROS_SISTEMA primary key (chave),
 	constraint FK_PARAMETROS_SISTEMA_EMPRESA foreign key (empresa) references empresas(id),
 	constraint FK_PARAMETROS_SISTEMA_USUARIO foreign key (usuario) references usuarios(id)
 );
