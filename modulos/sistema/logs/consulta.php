@@ -1,6 +1,6 @@
 <?php
         // validar sessao
-        require_once '../../../util/sessao.php';
+        require_once BASE_DIR . '/util/sessao.php';
 
         validarSessao();
 
@@ -27,8 +27,8 @@
 	<body>
 		<!-- MENU -->
 		<?php
-		    require_once '../../sistema/menu/menu.php';
-		    require_once '../../sistema/sidebar/sidebar.php';			
+		    require_once BASE_DIR . '/modulos/sistema/menu/menu.php';
+		    require_once BASE_DIR . '/modulos/sistema/sidebar/sidebar.php';			
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
@@ -45,7 +45,7 @@
 								Registros de Log
 							</div>
 							<div class="panel-body">
-								<textarea readonly><?php require_once '../../../util/logs.php';
+								<textarea readonly><?php require_once BASE_DIR . '/util/logs.php';
 								                echo mostrarLog();
 										  ?></textarea> 
 							</div>
@@ -58,7 +58,7 @@
 		<footer>
 			<div class="container">
 				<?php
-					require_once '../../sistema/rodape/rodape.php';
+					require_once BASE_DIR . '/modulos/sistema/rodape/rodape.php';
 				?>
 			</div>
 		</footer>

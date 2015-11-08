@@ -1,6 +1,6 @@
 <?php
         // validar sessao
-        require_once '../../../util/sessao.php';
+        require_once BASE_DIR . '/util/sessao.php';
 
         validarSessao();
 
@@ -26,14 +26,14 @@
 	</head>
 	<body>
 		<?php
-			require_once '../../../util/criptografia.php';
+			require_once BASE_DIR . '/util/criptografia.php';
 		
 			$enc = md5("id=" . descriptografar($_GET['id']) . "/UPLOAD");
 		?>
 		<!-- MENU -->
 		<?php
-		    require_once '../../sistema/menu/menu.php';
-		    require_once '../../sistema/sidebar/sidebar.php';			
+		    require_once BASE_DIR . '/modulos/sistema/menu/menu.php';
+		    require_once BASE_DIR . '/modulos/sistema/sidebar/sidebar.php';			
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
@@ -135,7 +135,7 @@
 		<footer>
 			<div class="container">
 				<?php
-					require_once '../../sistema/rodape/rodape.php';
+					require_once BASE_DIR . '/modulos/sistema/rodape/rodape.php';
 				?>
 			</div>
 		</footer>

@@ -1,8 +1,8 @@
 <?php
-   require_once '../../../util/conexao.php';
-   require_once '../../../util/permissao.php';
-   require_once '../../../util/util.php';
-   require_once '../../../util/sessao.php';
+   require_once BASE_DIR . '/util/conexao.php';
+   require_once BASE_DIR . '/util/permissao.php';
+   require_once BASE_DIR . '/util/util.php';
+   require_once BASE_DIR . '/util/sessao.php';
 
    // validar sessao
    validarSessao();

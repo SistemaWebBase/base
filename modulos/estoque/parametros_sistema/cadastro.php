@@ -1,11 +1,11 @@
 <?php
         // validar sessao
-        require_once '../../../util/sessao.php';
+        require_once BASE_DIR . '/util/sessao.php';
 
         validarSessao();
 		
 		// Testar permissao
-		require_once '../../../util/permissao.php';
+		require_once BASE_DIR . '/util/permissao.php';
 		$perm_incluir = testarPermissao('INCLUIR PARAMETRO DO SISTEMA');
 		$perm_alterar = testarPermissao('ALTERAR PARAMETRO DO SISTEMA');
 		$perm_excluir = testarPermissao('EXCLUIR PARAMETRO DO SISTEMA');
@@ -32,7 +32,7 @@
 	</head>
 	<body>
 		<?php
-			require_once '../../../util/conexao.php';
+			require_once BASE_DIR . '/util/conexao.php';
 			
 			$_action = "inclusao"; // por padrao, entrar no modo de inclusao
 			
@@ -62,8 +62,8 @@
 		?>
 		<!-- MENU -->
 		<?php
-		    require_once '../../sistema/menu/menu.php';
-		    require_once '../../sistema/sidebar/sidebar.php';			
+		    require_once BASE_DIR . '/modulos/sistema/menu/menu.php';
+		    require_once BASE_DIR . '/modulos/sistema/sidebar/sidebar.php';			
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
@@ -159,7 +159,7 @@
         <footer>
 			<div class="container">
 				<?php
-					require_once '../../sistema/rodape/rodape.php';
+					require_once BASE_DIR . '/modulos/sistema/rodape/rodape.php';
 				?>
 			</div>
 		</footer>

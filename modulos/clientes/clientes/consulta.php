@@ -1,11 +1,11 @@
 <?php
         // validar sessao
-        require_once '../../../util/sessao.php';
+        require_once BASE_DIR . '/util/sessao.php';
 
         validarSessao();
 		
 		// testar permissao
-		require_once '../../../util/permissao.php';
+		require_once BASE_DIR . '/util/permissao.php';
 		$perm = testarPermissao('INCLUIR CADASTRO DE CLIENTES');
 
 ?>
@@ -31,8 +31,8 @@
 	<body>
 		<!-- MENU -->
 		<?php
-		    require_once '../../sistema/menu/menu.php';
-		    require_once '../../sistema/sidebar/sidebar.php';			
+		    require_once BASE_DIR . '/modulos/sistema/menu/menu.php';
+		    require_once BASE_DIR . '/modulos/sistema/sidebar/sidebar.php';			
 		?>
 		<!-- CONTEUDO -->
 		<div class="wrapper" role="main">
@@ -105,9 +105,9 @@
 									</thead>
 									<tbody>
 									<?php
-										require_once '../../../util/conexao.php';
-										require_once '../../../util/util.php';
-										require_once '../../../util/criptografia.php';
+										require_once BASE_DIR . '/util/conexao.php';
+										require_once BASE_DIR . '/util/util.php';
+										require_once BASE_DIR . '/util/criptografia.php';
 										
 										// Maximo de resultados por pagina
 										$limite = 10;
@@ -314,7 +314,7 @@
 		<footer>
 			<div class="container">
 				<?php
-					require_once '../../sistema/rodape/rodape.php';
+					require_once BASE_DIR . '/modulos/sistema/rodape/rodape.php';
 				?>
 			</div>
 		</footer>
