@@ -38,14 +38,12 @@
 			
 			// Se passar id, abrir registro
 			$chave = $_GET['chave'];
-			$empresa = $_GET['empresa'];
-			$usuario = $_GET['usuario'];
-			
-			if (!empty($chave) && !empty($empresa) && !empty($usuario)) {
+ 		
+			if (!empty($chave)) {
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from parametros_sistema where chave='" . $chave . "' and empresa=" . $empresa . " and usuario=" . $usuario;
+				$sql = "select * from parametros_sistema where chave='" . $chave;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -131,9 +129,6 @@
 									     	<textarea rows="4" cols="50" type="text" class="form-control" id="observacoes" name="observacoes" autocomplete="off" maxlength="500" <?php permissao(); ?>><?= $observacoes ?></textarea>
 									    </div>
 									</div>
-									<input type="hidden" id="chave" name="chave" value="<?= $chave ?>">:
-									<input type="hidden" id="empresa" name="empresa" value="<?= $empresa ?>">
-									<input type="hidden" id="usuario" name="usuario" value="<?= $usuario ?>">
 									<input type="hidden" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>

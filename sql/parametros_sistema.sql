@@ -1,13 +1,11 @@
 /* criar tabela parâmetros_sistema */
 create table if not exists parametros_sistema (
 	chave varchar(20) not null,
-	empresa int,
-	usuario int,
+	empresa int not null,
+	usuario int not null,
 	valor text not null,
 	observacoes text,
-	constraint PK_PARAMETROS_SISTEMA primary key (chave, empresa, usuario),
-	constraint FK_PARAMETROS_SISTEMA_EMPRESA foreign key (empresa) references empresas(id),
-	constraint FK_PARAMETROS_SISTEMA_USUARIO foreign key (usuario) references usuarios(id)
+	constraint PK_PARAMETROS_SISTEMA primary key (chave, empresa, usuario)
 );
 
 /* TRIGGER DA LOG */
