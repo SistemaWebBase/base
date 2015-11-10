@@ -1,9 +1,0 @@
-RewriteEngine On
-
-RewriteCond %{HTTPS} off
-RewriteCond %{REQUEST_URI} login.php
-RewriteRule (.*) https://%{HTTP_HOST}/login.php [R=301,L]
-
-RewriteCond %{HTTPS} on
-RewriteCond %{REQUEST_URI} index.php
-RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI}
