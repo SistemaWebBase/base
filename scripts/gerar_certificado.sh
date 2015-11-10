@@ -2,41 +2,45 @@
 
 export DIR="../arquivos/privado/certificado/sistemaweb"
 
-#Informações do certificado
-export CN="SistemaWeb"
-export O="Thiago Sistemas Ltda"
-export OU="Thiago Sistemas Group Ltda"
-export ST="MT"
-export C="BR"
-export L="Cuiaba"
-export SENHA="554860Ti"
+#################################################
+# GERAR CERTIFICADO DA AUTORIDADE CERTIFICADORA #
+#################################################
 
-# Gerar certificado
-keytool -genkeypair \
-	-alias SistemaWeb \
-	-keysize 2048 \
-	-dname "CN=$CN, O=$O, OU=$OU, ST=$ST, C=$C, L=$L" \
-	-validity 3650 \
-	-keyalg RSA \
-	-keypass $SENHA \
-	-keystore $DIR/certificado.pfx \
-	-storepass $SENHA \
-	-storetype PKCS12
+# Gerar chave da Autoridade Certificadora
+if [ ! -f "$DIR/ca.key" ]; then
+   openssl genrsa -des3 -out $DIR/ca.key 4096
+fi
 
-# Extrar chave privada
-openssl pkcs12 \
-	-in $DIR/certificado.pfx \
-	-nocerts \
-	-out $DIR/chave_privada.key
+# Gerar certificado X.509
+if [ ! -f "$DIR/ca.crt" ]; then
+   openssl req -new -x509 -days 3650 -key $DIR/ca.key -out $DIR/ca.crt
+fi
 
-# Extrar chave publica
-openssl pkcs12 \
-	-in $DIR/certificado.pfx \
-	-clcerts \
-	-nokeys \
-	-out $DIR/chave_publica.pem
+################################################
+#         GERAR CERTIFICADO DO SERVIDOR        #
+################################################
 
-# Retirar protecao de senha
-openssl rsa \
-	-in $DIR/chave_privada.key \
-	-out $DIR/chave_privada.pem
+# Gerar chave do servidor
+if [ ! -f "$DIR/server.key" ]; then
+   openssl genrsa -des3 -out $DIR/server.key 4096
+fi
+
+# Gerar requisição de certificado
+if [ ! -f "$DIR/server.csr" ]; then
+   openssl req -new -key $DIR/server.key -out $DIR/server.csr
+fi
+
+# Assinar certificado do servidor com o certificado raiz
+if [ ! -f "$DIR/server.crt" ]; then
+   openssl x509 -req -days 3650 -in $DIR/server.csr -CA $DIR/ca.crt -CAkey $DIR/ca.key -set_serial 10102014 -out $DIR/server.crt
+fi
+
+# Retirar senha da chave privada
+if [ ! -f "$DIR/server.insecure.key" ]; then
+   openssl rsa -in $DIR/server.key -out $DIR/server.insecure.key
+fi
+
+# Gerar PKCS#12
+if [ ! -f "$DIR/server.pfx" ]; then
+   openssl pkcs12 -export -in $DIR/server.crt -inkey $DIR/server.key -out $DIR/server.pfx 
+fi
