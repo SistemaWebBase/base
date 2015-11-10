@@ -10,14 +10,14 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/"><span style="color: #aaaaaa; font-weight: bold;">Sistema</span> <span style="color: #777777">Web</span></a>
+					<a class="navbar-brand" href="/index.php"><span style="color: #aaaaaa; font-weight: bold;">Sistema</span> <span style="color: #777777">Web</span></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-navbar">
 					<!-- MENU -->
 					<ul class="nav navbar-nav">
 						<!-- MENU "Início" -->
-						<li><a href="/">Início</a></li>';
+						<li><a href="/index.php">Início</a></li>';
 						
 						$conexao = new Conexao();
 						// $conexao->query("SET CLIENT_ENCODING TO UTF8");
@@ -49,7 +49,7 @@
 										echo '<li class="dropdown-header">' . $agrupamento_a . '</li>';
 									}
 								
-									echo '<li><a href="/modulos/' . $row['pasta'] . '/' . $row2['pasta'] . '/">' . $row2['nome'] . '</a></li>';
+									echo '<li><a href="/modulos/' . $row['pasta'] . '/' . $row2['pasta'] . '">' . $row2['nome'] . '</a></li>';
 								}
 							
 								echo "</ul>";
