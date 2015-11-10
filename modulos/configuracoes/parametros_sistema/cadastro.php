@@ -38,12 +38,14 @@
 			
 			// Se passar id, abrir registro
 			$chave = $_GET['chave'];
+			$empresa = $_GET['empresa'];
+			$usuario = $_GET['usuario'];
  		
 			if (!empty($chave)) {
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from parametros_sistema where chave='" . $chave;
+				$sql = "select * from parametros_sistema where chave='" . $chave . "' and empresa=" . $empresa . " and usuario=" . $usuario . ";";
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado

@@ -115,7 +115,7 @@
 										$rows = pg_fetch_all($result);
 										if ($rows != null) {
 											foreach ($rows as $row) {
-												echo "<tr onclick=\"abrirCadastro('" . $row['chave'] . "', " .$row['empresa'] . ", " . $row['usuario'] . ", '" . assinarParametros("chave=" . $row['chave'] . "&empresa=" . $row['empresa']) . "&usuario=" . $row['usuario']) . "');\">";
+												echo "<tr onclick=\"abrirCadastro('" . $row['chave'] . "', " .$row['empresa'] . ", " . $row['usuario'] . ", '" . assinarParametros("chave=" . $row['chave'] . "&empresa=" . $row['empresa'] . "&usuario=" . $row['usuario']) . "');\">";
 												echo "<td>" . $row['chave'] . "</td>";
 												echo "<td>" . $row['valor'] . "</td>";
 												echo "</tr>";

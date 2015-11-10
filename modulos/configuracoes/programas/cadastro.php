@@ -134,7 +134,7 @@
 										</div>
 										<!-- PASTA -->
 										<div class="form-group col-md-4">
-											<label for="pasta">Pasta: <span class="label label-danger">Obrigatório</span></label>
+											<label for="pasta">Pasta/Arquivo: <span class="label label-danger">Obrigatório</span></label>
 											<input type="text" class="form-control no-uppercase" id="pasta" name="pasta" autocomplete="off" maxlength="60" value="<?= $pasta ?>" <?php permissao(); ?> required>
 										</div>
 									</div>
