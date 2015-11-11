@@ -25,6 +25,8 @@
    // acao   
    $id = tratarNumero($_POST['id']);
    $destinatario = tratarTextoMinusculo($_POST['destinatario']);
+   $destinatariocc = tratarTextoMinusculo($_POST['destinatariocc']);
+   $destinatariobcc = tratarTextoMinusculo($_POST['destinatariobcc']);
    $assunto = tratarTextoSimples($_POST['assunto']);
    $corpo = tratarTextoSimples($_POST['corpo']);
      
@@ -74,10 +76,7 @@
       $sql = "";
       $sql = "select * from parametros_sistema where usuario=" . $_SESSION['id'] . " and empresa=99 and chave='EMAIL_PADRAO'";
       $result = $conexao->query($sql);
-      
-      http_response_code(400);
-      echo $id;
-			
+	
       //Abrir resultado
       $rows = pg_fetch_all($result);
    
@@ -103,7 +102,7 @@
    if ($test == 0){
       // Quarto  - verifica se existe email padrão idependente de usuario ou empresa.
       $sql = "";
-      $sql = "select * from parametros_sistema where usuario='PADRAO' and empresa=99 and chave='EMAIL_PADRAO'";
+      $sql = "select * from parametros_sistema where usuario=999 and empresa=99 and chave='EMAIL_PADRAO'";
       $result = $conexao->query($sql);
 			
       //Abrir resultado
@@ -130,6 +129,8 @@
    $mail->setUsuario(trim($valores[0]),trim($valores[1]));
    
    //Destinatarios
+   $destinatarios="";
+   $dest="";
    $destinatarios = explode(",", $destinatario);
    $cont = 0;
    
@@ -146,6 +147,52 @@
    //Adiciona destinatario(s)
    foreach ( $destinatarios as $dest ) {
       $mail->addDestinatario(trim($dest));
+   }
+   
+   //Destinatarios CC
+   if(!empty($destinatariocc)){
+      $destinatarios="";
+      $dest="";
+      $destinatarios = explode(",", $destinatariocc);
+      $cont = 0;
+   
+      //Verifica e-mail(s) informado(s) e os valida
+      foreach ( $destinatarios as $dest ) {
+            $cont++;
+            if(!validaEmail(trim($dest))){
+            http_response_code(400);
+            echo $cont . "° e-mail CC inválido!!!";
+            return;  
+            }
+      }
+   
+         //Adiciona destinatario(s)
+      foreach ( $destinatarios as $dest ) {
+            $mail->addCC(trim($dest));
+         }
+   }
+ 
+   //Destinatarios BCC
+   if(!empty($destinatariobcc)){
+      $destinatarios="";
+      $dest="";
+      $destinatarios = explode(",", $destinatariobcc);
+      $cont = 0;
+   
+      //Verifica e-mail(s) informado(s) e os valida
+      foreach ( $destinatarios as $dest ) {
+            $cont++;
+            if(!validaEmail(trim($dest))){
+                http_response_code(400);
+                echo $cont . "° e-mail CCO inválido!!!";
+            return;  
+            }
+      }
+   
+      //Adiciona destinatario(s)
+      foreach ( $destinatarios as $dest ) {
+            $mail->addBCC(trim($dest));
+      }
    }
 
    //Assunto
