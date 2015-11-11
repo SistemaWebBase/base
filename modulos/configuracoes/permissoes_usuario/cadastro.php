@@ -109,7 +109,7 @@
 													<!-- CODIGO USUARIO -->
 													<label for="usuario">Código: </label >
 													<div class="input-group">
-														<input type="numeric" pattern="[0-9]*" class="form-control" id="usuario" name="usuario" data-mask="00000" autocomplete="off" value="<?= $usuario ?>" onblur="consultarUsuario();" <?php permissao(); ?>>
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="usuario" name="usuario" data-mask="00000" autocomplete="off" value="<?= $usuario ?>" onblur="consultarUsuario();" <?php permissao(); ?> autofocus <?php if ($_action == "alteracao"){ echo "readonly";} ?> required>
 														<span class="input-group-btn">
 															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/usuarios/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>
@@ -118,7 +118,7 @@
 												<!-- DESCRICAO USUARIO -->
 												<div class="col-md-8">
 													<label for="nome_usuario">Usuário: <span class="label label-danger">Obrigatório</span> </label>
-													<input type="text" class="form-control" id="nome_usuario" autocomplete="off" maxlength="60" value="<?= $nome_usuario ?>"  disabled>
+													<input type="text" class="form-control" id="nome_usuario" autocomplete="off" maxlength="60" value="<?= $nome_usuario ?>"  disabled required>
 												</div>
 											</div>
 										</div>
@@ -129,7 +129,7 @@
 													<!-- CODIGO PERMISSAO -->
 													<label for="permissao">Código: </label >
 													<div class="input-group">
-														<input type="numeric" pattern="[0-9]*" class="form-control" id="permissao" name="permissao" data-mask="00000" autocomplete="off" value="<?= $permissao ?>" onblur="consultarPermissao();" <?php permissao(); ?>>
+														<input type="numeric" pattern="[0-9]*" class="form-control" id="permissao" name="permissao" data-mask="00000" autocomplete="off" value="<?= $permissao ?>" onblur="consultarPermissao();" <?php permissao(); ?> required <?php if ($_action == "alteracao"){ echo "readonly";} ?>>
 														<span class="input-group-btn">
 															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/permissaos/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>

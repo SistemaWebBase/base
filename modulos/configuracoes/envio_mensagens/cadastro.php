@@ -110,7 +110,7 @@
 													<!-- CODIGO USUARIO -->
 													<label for="usuario">Código: </label >
 													<div class="input-group">
-														<input type="text" pattern="[0-9]*" class="form-control" id="usuario" name="usuario" data-mask="00000" autocomplete="off" value="<?= $usuario ?>" onblur="consultarUsuario();" <?php permissao(); ?>>
+														<input type="text" pattern="[0-9]*" class="form-control" id="usuario" name="usuario" data-mask="00000" autocomplete="off" value="<?= $usuario ?>" onblur="consultarUsuario();" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";} ?> autofocus required>
 														<span class="input-group-btn">
 															<button class="btn btn-primary" <?php permissao(); ?> onclick="abrirConsulta('/modulos/configuracoes/usuarios/consulta.php', '<?= time(); ?>');"><span class="glyphicon glyphicon-search"></span></button>
 														</span>
@@ -126,7 +126,7 @@
 										<!-- NOME MENSAGEM -->
 										<div class="form-group col-md-6">
 											<label for="nome_mensagem">Nome da Mensagem: <span class="label label-danger">Obrigatório</span></label>
-										    <input type="text" class="form-control" id="nome_mensagem" name="nome_mensagem" autocomplete="off" value="<?= $nome_mensagem ?>" <?php permissao(); ?> required>
+										    <input type="text" class="form-control" id="nome_mensagem" name="nome_mensagem" autocomplete="off" value="<?= $nome_mensagem ?>" <?php permissao(); ?> required <?php if ($_action == "alteracao"){ echo "readonly";} ?>>
 										</div>
 									</div>
 									<div class="row">

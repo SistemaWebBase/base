@@ -115,6 +115,26 @@
 										</div>
 									</div>
 									<div class="row">
+										<!-- DESTINATARIO CC -->
+										<div class="col-md-9">
+											<div class="form-group">
+												<label for="destCC">Destinatários CC: </label>
+												<input type="text" class="form-control no-uppercase" id="destCC" name="destCC" autocomplete="off" maxlength="60" value="<?= $destCC ?>" <?php permissao(); ?> required>
+												<h6>Se houver mais de um destinatário, os separe por vírgula.</h6>
+											</div>				
+										</div>
+									</div>
+									<div class="row">
+										<!-- DESTINATARIO CCO -->
+										<div class="col-md-9">
+											<div class="form-group">
+												<label for="destCCO">Destinatários CCO: </label>
+												<input type="text" class="form-control no-uppercase" id="destCCO" name="destCCO" autocomplete="off" maxlength="60" value="<?= $destinatario ?>" <?php permissao(); ?> required>
+												<h6>Se houver mais de um destinatário, os separe por vírgula.</h6>
+											</div>				
+										</div>
+									</div>
+									<div class="row">
 										<!-- ASSUNTO -->
 										<div class="form-group col-md-12">
 											<label for="assunto">Assunto: <span class="label label-danger">Obrigatório</span></label>

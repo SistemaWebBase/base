@@ -26,8 +26,8 @@
    
    // acao        
    $chave = tratarTexto($_POST['chave']);
-   $empresa = tratarChave($_POST['empresa']);
-   $usuario = tratarChave($_POST['usuario']);
+   $empresa = tratarNumero($_POST['empresa']);
+   $usuario = tratarNumero($_POST['usuario']);
    $valor = tratarTextoSimples($_POST['valor']);
    $observacoes = tratarTexto($_POST['observacoes']);
    $_action = $_POST['_action'];

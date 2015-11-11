@@ -104,17 +104,17 @@
 									    <!-- CHAVE -->
 									    <div class="form-group col-md-6">
 										    <label for="chave">Chave: <span class="label label-danger">Obrigatório</span></label>
-    										<input type="text" class="form-control" id="chave" name="chave" autocomplete="off" maxlength="60" value="<?= $chave ?>" autofocus <?php permissao(); ?> required>
+    										<input type="text" class="form-control" id="chave" name="chave" autocomplete="off" maxlength="60" value="<?= $chave ?>" autofocus <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";} ?> required>
 	    								</div>
 										<!-- EMPRESA -->
 									    <div class="form-group col-md-2">
 										    <label for="empresa">Empresa: </label>
-    										<input type="text" class="form-control" id="empresa" name="empresa" autocomplete="off" maxlength="2" value="<?= $empresa ?>" <?php permissao(); ?>>
+    										<input type="text" class="form-control" id="empresa" name="empresa" autocomplete="off" maxlength="2" value="<?= $empresa ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";} ?>>
 	    								</div>
 										<!-- USUARIO -->
 									    <div class="form-group col-md-4">
 										    <label for="usuario">Usuário: </label>
-    										<input type="text" class="form-control" id="usuario" name="usuario" autocomplete="off" maxlength="60" value="<?= $usuario ?>" <?php permissao(); ?>>
+    										<input type="text" class="form-control" id="usuario" name="usuario" autocomplete="off" maxlength="60" value="<?= $usuario ?>" <?php permissao(); ?> <?php if ($_action == "alteracao"){ echo "readonly";} ?>>
 	    								</div>
 									</div>
 									<div class="row">
