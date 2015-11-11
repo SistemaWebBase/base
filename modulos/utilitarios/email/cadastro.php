@@ -90,7 +90,7 @@
 										<div class="col-md-9">
 											<div class="form-group">
 												<label for="destinatario">Destinatários: <span class="label label-danger">Obrigatório</span></label>
-												<input type="text" class="form-control no-uppercase" id="destinatario" name="destinatario" autocomplete="off" maxlength="60" value="<?= $destinatario ?>" autofocus <?php permissao(); ?> required>
+												<input type="text" class="form-control no-uppercase" id="destinatario" name="destinatario" autocomplete="off" maxlength="60" value="<?= $destinatario ?>" autofocus <?php permissao(); ?>>
 												<h6>Se houver mais de um destinatário, os separe por vírgula.</h6>
 											</div>				
 										</div>
@@ -99,14 +99,14 @@
 											<div class="row">
 												<div class="form-group col-md-6">
 													<label></label>
-													<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= urlencode($_GET['id']) ?>', 0)">
+													<button class="btn btn-default mob-btn-block" onclick="$('#divCC').slideToggle();">
 														<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 											 			CC
 													</button>
 												</div>
 												<div class="form-group col-md-6">
 													<label></label>
-													<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= urlencode($_GET['id']) ?>', 0)">
+													<button class="btn btn-default mob-btn-block" onclick="$('#divCCO').slideToggle();">
 														<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 											 			CCO
 													</button>
@@ -114,22 +114,22 @@
 											</div>
 										</div>
 									</div>
-									<div class="row">
+									<div class="row" id="divCC" style="display:none;">
 										<!-- DESTINATARIO CC -->
 										<div class="col-md-9">
 											<div class="form-group">
 												<label for="destinatariocc">Destinatários CC: </label>
-												<input type="text" class="form-control no-uppercase" id="destinatariocc" name="destinatariocc" autocomplete="off" maxlength="60" value="<?= $destinatariocc ?>" <?php permissao(); ?> required>
+												<input type="text" class="form-control no-uppercase" id="destinatariocc" name="destinatariocc" autocomplete="off" maxlength="60" value="<?= $destinatariocc ?>" <?php permissao(); ?>>
 												<h6>Se houver mais de um destinatário, os separe por vírgula.</h6>
 											</div>				
 										</div>
 									</div>
-									<div class="row">
+									<div class="row" id="divCCO" style="display:none;">
 										<!-- DESTINATARIO CCO -->
 										<div class="col-md-9">
 											<div class="form-group">
 												<label for="destinatariobcc">Destinatários CCO: </label>
-												<input type="text" class="form-control no-uppercase" id="destinatariobcc" name="destinatariobcc" autocomplete="off" maxlength="60" value="<?= $destinatariobcc ?>" <?php permissao(); ?> required>
+												<input type="text" class="form-control no-uppercase" id="destinatariobcc" name="destinatariobcc" autocomplete="off" maxlength="60" value="<?= $destinatariobcc ?>" <?php permissao(); ?>>
 												<h6>Se houver mais de um destinatário, os separe por vírgula.</h6>
 											</div>				
 										</div>
@@ -138,14 +138,14 @@
 										<!-- ASSUNTO -->
 										<div class="form-group col-md-12">
 											<label for="assunto">Assunto: <span class="label label-danger">Obrigatório</span></label>
-											<input type="text" class="form-control no-uppercase" id="assunto" name="assunto" autocomplete="off" maxlength="60" value="<?= $assunto ?>" <?php permissao(); ?> required>
+											<input type="text" class="form-control no-uppercase" id="assunto" name="assunto" autocomplete="off" maxlength="60" value="<?= $assunto ?>" <?php permissao(); ?>>
 										</div>
 									</div>	
 									<div class="row">
 										<!-- CORPO -->
 										<div class="form-group col-md-12">
 											<label for="corpo">Corpo: <span class="label label-danger">Obrigatório</span></label>
-											<textarea rows="20" cols="50" type="text" class="form-control" id="corpo" name="corpo" autocomplete="off" maxlength="500" value="<?= $corpo ?>" <?php permissao(); ?> required></textarea>
+											<textarea rows="20" cols="50" type="text" class="form-control" id="corpo" name="corpo" autocomplete="off" maxlength="500" value="<?= $corpo ?>" <?php permissao(); ?>></textarea>
 										</div>
 									</div>
 									<input type="hidden" id="id" name="id" value="<?= time() ?>">
