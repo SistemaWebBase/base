@@ -33,7 +33,7 @@
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
 		<title>SistemaWeb | Thiago Pereira</title> 
 	</head>
-	<body <?= (! empty($_GET['id'])) ? 'onload="consultarMunicipio();"' : "" ?> <?php if (! empty($_GET['link'])) { echo "onload=\"restaurarCadastro('" . $_GET['link'] . "', '#municipio'); consultarMunicipio(); \""; } ?>>
+	<body>
 		<?php
 			require_once BASE_DIR . '/util/conexao.php';
 			
@@ -68,13 +68,93 @@
 										echo "readonly";
 										return;
 									}
-								}
+							   	}
 							?>
+							
+							<!-- VERIFICAR SE O PARAMETRO ESTA CADASTRADO, E PEGAR EMAIL DE ENVIO -->
+							<?php						   
+                                // Abrir nova conexão
+                                $conexao = new Conexao();
+   
+                                $test=0;
+   
+                                // Pegar dados de forma hierarquica - Parametro EMAIL_PADRAO
+                                // Primeiro  - verifica se existe email especifico do usuario para a empresa atual
+                                $sql = "";
+   						        $sql = "select * from parametros_sistema where usuario=" . $_SESSION['id'] . " and empresa=" . $_SESSION['empresa'] . " and chave='EMAIL_PADRAO'";
+   							    $result = $conexao->query($sql);
+			                     
+   							    // Abrir resultado
+   						        $rows = pg_fetch_all($result);
+   
+   						        if ($rows != null) {
+   							        $test=1;
+   							    }
+   
+   							    if ($test == 0){
+      							    // Segundo  - verifica se existe email especifico do usuario, utilizado idependentemente da empresa.
+      						        $sql = "";
+      						        $sql = "select * from parametros_sistema where usuario=" . $_SESSION['id'] . " and empresa=99 and chave='EMAIL_PADRAO'";
+      							    $result = $conexao->query($sql);
+	
+       							    //Abrir resultado
+      					            $rows = pg_fetch_all($result);
+   
+      							    if ($rows != null) {
+   	  							        $test=1;
+      							    }
+   							    }
+   
+   							    if ($test == 0){
+      							    // Terceiro  - verifica se existe email padrão para a empresa atual.
+      						        $sql = "";	
+      						        $sql = "select * from parametros_sistema where usuario=999 and empresa=" . $_SESSION['empresa'] . " and chave='EMAIL_PADRAO'";
+      							    $result = $conexao->query($sql);
+			
+      							    //Abrir resultado
+      							    $rows = pg_fetch_all($result);
+   
+      							    if ($rows != null) {
+   	  								    $test=1;
+      							    }
+   							    }
+   
+   							    if ($test == 0){
+      							    // Quarto  - verifica se existe email padrão idependente de usuario ou empresa.
+      						        $sql = "";
+      						        $sql = "select * from parametros_sistema where usuario=999 and empresa=99 and chave='EMAIL_PADRAO'";
+      						        $result = $conexao->query($sql);
+			
+      						        //Abrir resultado
+      						        $rows = pg_fetch_all($result);
+   
+         						    if ($rows != null) {
+   	     							    $test=1;
+      	    					    }
+   							    }
+    
+   	   					        //Se chegou aqui com valor 0 significa que esse parametro não esta cadastrado.
+   							    if ($test == 0){
+      						        http_response_code(400);
+      						        echo "Parâmetro: EMAIL_PADRAO não cadastrado.";
+      							    return;
+   							    }
+   
+   							    $valor = $rows[0]['valor'];
+   
+   							    //Separa campos
+   							    $valores = explode(",", $valor);
+                           
+   							    //Pega Usuário e senha do emitente
+   							    $emitente = trim($valores[0]);
+   							    $senha_emitente = trim($valores[1]);
+							?>
+							   
 							<div class="panel-body">
 								<form role="form">
 									<!-- BARRA DE BOTOES -->
 									<div class="row">
-										<div class="col-md-12">
+										<div class="col-md-4">
 											<div class="btn-control-bar">
 												<div class="panel-heading">
 													<button class="btn btn-default mob-btn-block" onclick="redirecionar('anexos.php?id=<?= urlencode($_GET['id']) ?>', 0)">
@@ -83,8 +163,11 @@
 													</button>
 												</div>
 											</div>
-										</div>
-									</div>
+										</div>	
+										<div class="col-md-8">
+											 <span><h4>Este e-mail será enviado como: <?= $emitente ?> </h4></span>
+										</div>	
+  									</div>
 									<div class="row">
 										<!-- DESTINATARIO -->
 										<div class="col-md-9">
@@ -149,6 +232,8 @@
 										</div>
 									</div>
 									<input type="hidden" id="id" name="id" value="<?= time() ?>">
+									<input type="hidden" id="emitente" name="emitente" value="<?= $emitente ?>">
+									<input type="hidden" id="senha_emitente" name="senha_emitente" value="<?= $senha_emitente ?>">
 									<input type="hidden" id="_action" name="_action" value="<?= $_action ?>">
 								</form>
 							</div>
@@ -157,7 +242,7 @@
 						<div class="aviso">
 							<?php
 								if ($_action == 'inclusao' && $perm_incluir != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CONTATO NA AGENDA. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: ENVIAR E-MAIL. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>

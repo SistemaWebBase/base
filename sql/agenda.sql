@@ -4,7 +4,7 @@ create table if not exists agenda (
      razaosocial varchar(60) not null,
      endereco varchar(60),
      bairro varchar(40),
-     cep char( 8 ),
+     cep char(8),
      municipio int,
      telefone varchar(13),
      celular varchar(13),

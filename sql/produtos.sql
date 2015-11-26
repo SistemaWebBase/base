@@ -15,6 +15,8 @@ create table if not exists produtos (
 	marca int not null,
 	situacao char(1),
 	qtd_embalagem numeric(14,4),
+	peso_liquido numeric(10,4),
+	peso_bruto numeric(10,4),
 	preco_custo numeric(14,4),
 	preco_venda numeric(14,4),
 	observacoes text,
