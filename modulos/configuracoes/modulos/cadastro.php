@@ -165,7 +165,7 @@
 										 Cancelar
 									</button>
 								</a>
-								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Módulo', 'Deseja excluir este módulo ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
+								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Módulo', 'Deseja excluir este Módulo ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>

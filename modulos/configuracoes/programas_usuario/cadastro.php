@@ -181,7 +181,7 @@
 										 Cancelar
 									</button>
 								</a>
-								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Permissão do Usuário', 'Deseja excluir esta Permissão ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
+								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Programas do Usuário', 'Deseja excluir este Programa ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>

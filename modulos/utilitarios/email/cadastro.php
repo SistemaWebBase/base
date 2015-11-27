@@ -259,10 +259,6 @@
 										 Cancelar
 									</button>
 								</a>
-								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Contato', 'Deseja excluir este contato ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-									 Excluir
-								</button>
 							</div>
 						</div>
 					</div>
