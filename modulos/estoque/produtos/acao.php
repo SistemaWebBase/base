@@ -40,6 +40,8 @@
    $marca = tratarChave($_POST['marca']);
    $situacao = tratarTexto($_POST['situacao']);
    $qtd_embalagem = tratarNumero($_POST['qtd_embalagem']);
+   $peso_liquido = tratarNumero($_POST['peso_liquido']);
+   $peso_bruto = tratarNumero($_POST['peso_bruto']);
    $preco_custo = tratarNumero($_POST['preco_custo']);
    $preco_venda = tratarNumero($_POST['preco_venda']);
    $observacoes = tratarTexto($_POST['observacoes']);
@@ -83,6 +85,12 @@
 	         echo "Informe a unidade de medida do produto.";
 	         return;  
          }
+         
+         if ($peso_bruto < $peso_liquido) {
+	         http_response_code(400);
+	         echo "Peso Bruto não pode ser menor que Peso Líquido.";
+	         return;  
+         }
    }
    
    if (empty($_action)) {
@@ -98,13 +106,13 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into produtos (nome, aplicacao, codigo_referencia, codigo_fabrica, codigo_serie, codigo_barras, linha, grupo, subgrupo, ncm, unidade_medida, marca, situacao, qtd_embalagem, preco_custo, preco_venda, observacoes ) values ('" . $nome . "', '" . $aplicacao . "', '" . $codigo_referencia . "', '" . $codigo_fabrica . "', '" . $codigo_serie . "', '" . $codigo_barras . "', " . $linha . ", " . $grupo . ", " . $subgrupo . ", " . $ncm . ", " . $unidade_medida . ", " . $marca . ", '" . $situacao  . "', " . $qtd_embalagem . ", " . $preco_custo . ", " . $preco_venda . ", '" . $observacoes . "');";
+         $sql = "insert into produtos (nome, aplicacao, codigo_referencia, codigo_fabrica, codigo_serie, codigo_barras, linha, grupo, subgrupo, ncm, unidade_medida, marca, situacao, qtd_embalagem, peso_liquido, peso_bruto, preco_custo, preco_venda, observacoes ) values ('" . $nome . "', '" . $aplicacao . "', '" . $codigo_referencia . "', '" . $codigo_fabrica . "', '" . $codigo_serie . "', '" . $codigo_barras . "', " . $linha . ", " . $grupo . ", " . $subgrupo . ", " . $ncm . ", " . $unidade_medida . ", " . $marca . ", '" . $situacao  . "', " . $qtd_embalagem . ", '" . $peso_liquido . "', '" . $peso_bruto . "', " . $preco_custo . ", " . $preco_venda . ", '" . $observacoes . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update produtos set nome='" . $nome . "',aplicacao='" . $aplicacao . "',codigo_referencia='" . $codigo_referencia . "',codigo_fabrica='" . $codigo_fabrica . "',codigo_serie='" . $codigo_serie . "',codigo_barras='" . $codigo_barras . "',linha=" . $linha . ",grupo=" . $grupo . ",subgrupo=" . $subgrupo . ",ncm=" . $ncm . ",unidade_medida=" . $unidade_medida . ",marca=" . $marca . ",situacao='" . $situacao . "',qtd_embalagem=" . $qtd_embalagem . ",preco_custo=" . $preco_custo . ",preco_venda=" . $preco_venda . ",observacoes='" . $observacoes . "' where id=" . $id;
+         $sql = "update produtos set nome='" . $nome . "',aplicacao='" . $aplicacao . "',codigo_referencia='" . $codigo_referencia . "',codigo_fabrica='" . $codigo_fabrica . "',codigo_serie='" . $codigo_serie . "',codigo_barras='" . $codigo_barras . "',linha=" . $linha . ",grupo=" . $grupo . ",subgrupo=" . $subgrupo . ",ncm=" . $ncm . ",unidade_medida=" . $unidade_medida . ",marca=" . $marca . ",situacao='" . $situacao . "',qtd_embalagem=" . $qtd_embalagem . "',peso_liquido=" . $peso_liquido . "',peso_bruto=" . $peso_bruto . ",preco_custo=" . $preco_custo . ",preco_venda=" . $preco_venda . ",observacoes='" . $observacoes . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
@@ -126,7 +134,7 @@
    
    if ($flag == 1) {
          http_response_code(400);
-         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte.";
+         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte." . $sql;
          return;
    }
 

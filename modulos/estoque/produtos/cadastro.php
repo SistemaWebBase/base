@@ -68,6 +68,8 @@
 				$marca = $rows[0]['marca'];
 				$situacao = $rows[0]['situacao'];
 				$qtd_embalagem = $rows[0]['qtd_embalagem'];
+				$peso_liquido = $rows[0]['peso_liquido'];
+				$peso_bruto = $rows[0]['peso_bruto'];
 				$preco_custo = $rows[0]['preco_custo'];
 				$preco_venda = $rows[0]['preco_venda'];
 				$observacoes = $rows[0]['observacoes'];
@@ -265,7 +267,17 @@
 										<!-- QUANTIDADE POR EMBALAGEM -->
 									    <div class="form-group col-md-3">
 										    <label for="qtd_embalagem">QTD por Embalagem: </label>
-										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="qtd_embalagem" name="qtd_embalagem" autocomplete="off" value="<?= $ncm ?>" <?php permissao(); ?>>
+										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="qtd_embalagem" name="qtd_embalagem" autocomplete="off" value="<?= $qtd_embalagem ?>" <?php permissao(); ?>>
+									    </div>
+										<!-- PESO LIQUIDO -->
+									    <div class="form-group col-md-3">
+										    <label for="peso_liquido">Peso Líquido: </label>
+										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="peso_liquido" name="peso_liquido" autocomplete="off" value="<?= $peso_liquido ?>" <?php permissao(); ?>>
+									    </div>
+										<!-- PESO BRUTO -->
+									    <div class="form-group col-md-3">
+										    <label for="peso_bruto">Peso Bruto: </label>
+										    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="peso_bruto" name="peso_bruto" autocomplete="off" value="<?= $peso_bruto ?>" <?php permissao(); ?>>
 									    </div>
 										<!-- PRECO DE CUSTO -->
 									    <div class="form-group col-md-3">
