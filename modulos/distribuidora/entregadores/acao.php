@@ -27,7 +27,7 @@
    // acao        
    $id = tratarChave($_POST['id']);
    $nome = tratarTexto($_POST['nome']);
-   $cpf = tratarTexto($_POST['cpf']);
+   $cpf = tratarNumero($_POST['cpf']);
    $telefone = tratarTexto($_POST['telefone']);
    $cnh = tratarTexto($_POST['cnh']);
    $categoria_cnh = tratarTexto($_POST['categoria_cnh']);
@@ -47,6 +47,12 @@
 	         http_response_code(400);
 	         echo "Informe o cpf do entregador.";
 	         return;  
+         }
+      
+         if( $telefone > "" && (strlen($telefone)) < 13){
+	         http_response_code(400);
+	         echo "Telefone inválido.";
+	         return;
          }
       
    }

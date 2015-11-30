@@ -95,14 +95,22 @@
 	         http_response_code(400);
         	   echo "Informe o telefone da empresa.";
 	         return;  
-         }       
+         }     
          
-         if (empty($_action)) {
+         if( $telefone > "" && (strlen($telefone)) < 13){
 	         http_response_code(400);
-	         echo "Falha nos parâmetros da solicitação.";
-               return;
+	         echo "Telefone inválido.";
+	         return;
          }
+         
+   }  
+         
+   if (empty($_action)) {
+       http_response_code(400);
+       echo "Falha nos parâmetros da solicitação.";
+       return;
    }
+   
    
    // Abrir conexao
    $conexao = new Conexao();

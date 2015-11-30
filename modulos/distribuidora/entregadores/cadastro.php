@@ -25,6 +25,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
+	    <script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
@@ -110,7 +111,7 @@
 										<!-- CPF -->
 									    <div class="form-group col-md-6">
 										    <label for="cpf">CPF: <span class="label label-danger">Obrigatório</span></label>
-                                            <input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control" id="cnpj" name="cnpj" autocomplete="off" maxlength="18" value="<?= $cnpj ?>" onfocus="removerMascara();" onblur="consultarCliente();testarCpfCnpj();" <?php if ($_action == "inclusao" && empty($_GET['target'])) { echo "autofocus"; } ?> <?php permissao(); ?> 
+                                            <input type="text" inputmode="numeric" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control" id="cpf" name="cpf" autocomplete="off" maxlength="18" value="<?= $cpf ?>">
 	    								</div>
 										<!-- TELEFONE -->
 									    <div class="form-group col-md-6">
@@ -122,7 +123,7 @@
 										<!-- CNH -->
 									    <div class="form-group col-md-4">
 										    <label for="cnh">CNH: </label>
-    										<input type="text" class="form-control" id="cnh" name="cnh" autocomplete="off" maxlength="60" value="<?= $cnh ?>"  <?php permissao(); ?> >
+    										<input type="text" class="form-control" id="cnh" name="cnh" autocomplete="off" maxlength="11" value="<?= $cnh ?>"  <?php permissao(); ?> >
 	    								</div>
 										<!-- CATEGORIA_CNH -->
 									    <div class="form-group col-md-4">
@@ -143,7 +144,7 @@
 										</div>
 										<!-- COMISSAO -->
 									    <div class="form-group col-md-4">
-										    <label for="comissao">Comissão: <span class="label label-danger">Obrigatório</span></label>
+										    <label for="comissao">Comissão: </label>
     										<input type="text" class="form-control" id="comissao" name="comissao" autocomplete="off" maxlength="60" value="<?= $comissao ?>"  <?php permissao(); ?> >
 	    								</div>
 									</div>

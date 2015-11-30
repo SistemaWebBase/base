@@ -1,4 +1,4 @@
-<?php
+o<?php
         // validar sessao
         require_once BASE_DIR . '/util/sessao.php';
 
@@ -25,6 +25,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/principal.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/cadastro.css" />
 		<script type="text/javascript" src="/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery.mask.min.js"></script>
 		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/assets/js/principal.js"></script>
 		<script type="text/javascript" src="assets/js/cadastro.js"></script>
@@ -118,17 +119,17 @@
 									    <!-- PLACA -->
 									    <div class="form-group col-md-4">
 										    <label for="placa">Placa: </label>
-    										<input type="text" class="form-control" id="placa" name="placa" autocomplete="off" data-mask="AAA-0000" value="<?= $placa ?>"  <?php permissao(); ?> >
+    										<input type="text" class="form-control" id="placa" name="placa" autocomplete="off" data-mask="SSS-0000" value="<?= $placa ?>"  <?php permissao(); ?> >
 	    								</div>
 										<!-- MUNICIPIO DA PLACA -->
 									    <div class="form-group col-md-6">
-										    <label for="municipio">Município: </label>
-    										<input type="text" class="form-control" id="municipio" name="municipio" autocomplete="off" maxlength="50" value="<?= $municipio ?>"  <?php permissao(); ?> >
+										    <label for="municipio_placa">Município: </label>
+    										<input type="text" class="form-control" id="municipio_placa" name="municipio_placa" autocomplete="off" maxlength="50" value="<?= $municipio_placa ?>"  <?php permissao(); ?> >
 	    								</div>
 										<!-- UF DA PLACA -->
 									    <div class="form-group col-md-2">
-										    <label for="uf">UF: </label>
-    										<input type="text" class="form-control" id="uf" name="uf" autocomplete="off" maxlength="2" value="<?= $uf ?>"  <?php permissao(); ?> >
+										    <label for="uf_placa">UF: </label>
+    										<input type="text" class="form-control" id="uf_placa" name="uf_placa" autocomplete="off" maxlength="2" value="<?= $uf_placa ?>"  <?php permissao(); ?> >
 	    								</div>
 									</div>
 									<div class="row">
@@ -173,7 +174,7 @@
 	    								</div>
 										<!-- COMBUSTIVEL -->
 									    <div class="form-group col-md-3">
-											<label for="combustivel">Nível: </label>
+											<label for="combustivel">Combustível: </label>
 											<select class="form-control" id="combustivel" name="combustivel" <?php permissao(); ?>>
 											<?php
 												$combustivel_c = array('','GASOLINA', 'ETANOL', 'DIESEL', 'FLEX', 'GÁS');
@@ -196,6 +197,7 @@
     										<input type="text" class="form-control" id="tipo" name="tipo" autocomplete="off" maxlength="60" value="<?= $tipo ?>"  <?php permissao(); ?> >
 	    								</div>
 									</div>
+									<div class="row">
 										<!-- OBSERVACOES -->
 							    		<div class="form-group col-md-12">
 								    		<label for="observacoes">Observações: </label>

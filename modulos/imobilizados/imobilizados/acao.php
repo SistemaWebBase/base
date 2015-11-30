@@ -51,21 +51,30 @@
 	         return;  
          }
          
-         if ($ano_fabricacao > 0){
-             if((strlen($ano_fabricacao)) < 4){
-	           http_response_code(400);
-	           echo "O campo Ano de Fabricação deve conter 4 dígitos ou estar vazio.";
-	           return;
-             }
+         if((strlen($uf_placa)) < 2 && $uf_placa > ""){
+	         http_response_code(400);
+	         echo "UF inválida.";
+	         return;
          }
          
-         if ($ano_modelo > 0){
-             if((strlen($ano_modelo)) < 4){
-	           http_response_code(400);
-	           echo "O campo Ano do Modelo deve conter 4 dígitos ou estar vazio.";
-	           return;
-             }
+         $year = date('Y');
+         if ($ano_fabricacao < 1970 && $ano_fabricacao != 0)  {
+	         http_response_code(400);
+	         echo "Ano de Fabricação Inválido.";
+	         return;  
          }
+         
+         if (($ano_modelo < 1970 && $ano_modelo != 0) || $ano_modelo > ($year + 1))  {
+	         http_response_code(400);
+	         echo "Ano do Modelo Inválido.";
+	         return;  
+         }
+         
+         if ($ano_modelo < $ano_fabricacao)  {
+	         http_response_code(400);
+	         echo "Ano do modelo não pode ser menor que Ano de fabricação.";
+	         return;  
+         }                 
       
    }
    
@@ -110,7 +119,7 @@
    
    if ($flag == 1) {
          http_response_code(400);
-         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte.";
+         echo "Falha ao " . $msg1 . " registro. Tente novamente mais tarde ou contate o suporte." . $sql;
          return;
    }
 

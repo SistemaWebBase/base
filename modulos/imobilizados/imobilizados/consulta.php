@@ -91,7 +91,7 @@
 										
 										// Se for passado referencia de alguma pagina, seta-lo como pesquisa
 										if (! empty(tratarTexto($_GET['_ref']))) {
-											$pesquisa = $_GET['_ref'];
+											$pesquisa = tratarTexto($_GET['_ref']);
 										}
 										
 										// Ler GET

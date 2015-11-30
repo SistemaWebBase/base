@@ -94,7 +94,18 @@
 	         echo "Informe a Razão Social.~razaosocial";
 	         return;  
          }
+         
+         if( $telefone_entrega > "" && (strlen($telefone_entrega)) < 13){
+	         http_response_code(400);
+	         echo "Telefone de entrega inválido.";
+	         return;
+         }
    
+         if( $telefone_cobranca > "" && (strlen($telefone_cobranca)) < 13){
+	         http_response_code(400);
+	         echo "Telefone de cobrança inválido.";
+	         return;
+         }
    }
    
    if (empty($_action)) {

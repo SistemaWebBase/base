@@ -50,6 +50,18 @@
 	         echo "Informe o telefone do contato.";
 	         return;
          }
+         
+         if( $telefone > "" && (strlen($telefone)) < 13){
+	         http_response_code(400);
+	         echo "Telefone inválido.";
+	         return;
+         }
+         
+         if( $celular > "" && (strlen($celular)) < 13){
+	         http_response_code(400);
+	         echo "Número de celular inválido.";
+	         return;
+         }
    }
    
    if (empty($_action)) {
