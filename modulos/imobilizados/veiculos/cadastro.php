@@ -6,9 +6,9 @@ o<?php
 		
 		// Testar permissao
 		require_once BASE_DIR . '/util/permissao.php';
-		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE IMOBILIZADOS');
-		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE IMOBILIZADOS');
-		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE IMOBILIZADOS');
+		$perm_incluir = testarPermissao('INCLUIR CADASTRO DE VEICULOS');
+		$perm_alterar = testarPermissao('ALTERAR CADASTRO DE VEICULOS');
+		$perm_excluir = testarPermissao('EXCLUIR CADASTRO DE VEICULOS');
 
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ o<?php
 				// Abrir nova conexão
 				$conexao = new Conexao();
 
-				$sql = "select * from imobilizados where id=" . $id;
+				$sql = "select * from veiculos where id=" . $id;
 				$result = $conexao->query($sql);
 			
 				// Abrir resultado
@@ -89,7 +89,7 @@ o<?php
 						<!-- FORMULARIO -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Cadastro de Imobilizados
+								Cadastro de Veículos
 							</div>
 							<!-- REGRAS DE PERMISSAO -->
 							<?php
@@ -213,11 +213,11 @@ o<?php
 						<div class="aviso">
 							<?php
 								if ($_action == 'inclusao' && $perm_incluir != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE IMOBILIZADOS. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE VEICULOS. Solicite ao administrador a liberação.');</script>";
 								}
 								
 								if ($_action == 'alteracao' && $perm_alterar != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE IMOBILIZADOS. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: ALTERAR CADASTRO DE VEICULOS. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>

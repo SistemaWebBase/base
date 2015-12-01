@@ -6,7 +6,7 @@
 		
 		// testar permissao
 		require_once BASE_DIR . '/util/permissao.php';
-		$perm = testarPermissao('INCLUIR CADASTRO DE IMOBILIZADOS');
+		$perm = testarPermissao('INCLUIR CADASTRO DE VEICULOS');
 
 ?>
 <!DOCTYPE html>
@@ -46,7 +46,7 @@
 						<!-- PAINEL -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Consulta de Imobilizados
+								Consulta de Veículos
 							</div>
 							<div class="panel-body">
 								<!-- PESQUISA -->
@@ -103,9 +103,9 @@
 										$sql = "";
 									
 										if (empty($pesquisa)) {
-											$sql = "select * from imobilizados order by descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from veiculos order by descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
 										} else {
-											$sql = "select * from imobilizados where descricao like '" . $pesquisa . "%' order by descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
+											$sql = "select * from veiculos where descricao like '" . $pesquisa . "%' order by descricao limit " . $limite . " offset " . (($pagina-1)*$limite);
 										}
 										
 										$result = $conexao->query($sql);
@@ -122,9 +122,9 @@
 									
 										// Paginaçao
 										if (empty($pesquisa)) {
-											$sql = "select count(*) as num from imobilizados";
+											$sql = "select count(*) as num from veiculos";
 										} else {
-											$sql = "select count(*) as num from imobilizados where descricao like '" . $pesquisa . "%';";
+											$sql = "select count(*) as num from veiculos where descricao like '" . $pesquisa . "%';";
 										}
 										
 										$num = pg_fetch_all($conexao->query($sql))[0]['num'];
@@ -242,7 +242,7 @@
 						<div class="aviso">
 							<?php
 								if ($perm != 'S') {
-									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE IMOBILIZADOS. Solicite ao administrador a liberação.');</script>";
+									echo "<script>avisoAtencao('Sem permissão: INCLUIR CADASTRO DE VEICULOS. Solicite ao administrador a liberação.');</script>";
 								}
 							?>
 						</div>

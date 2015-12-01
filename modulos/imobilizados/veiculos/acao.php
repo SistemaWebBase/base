@@ -11,9 +11,9 @@
    // testar permissao
    $nperm = "";
    switch($_POST['_action']) {
-         case "inclusao": $nperm = "INCLUIR CADASTRO DE IMOBILIZADOS";break;
-         case "alteracao": $nperm = "ALTERAR CADASTRO DE IMOBILIZADOS";break;
-         case "exclusao": $nperm = "EXCLUIR CADASTRO DE IMOBILIZADOS";break;
+         case "inclusao": $nperm = "INCLUIR CADASTRO DE VEICULOS";break;
+         case "alteracao": $nperm = "ALTERAR CADASTRO DE VEICULOS";break;
+         case "exclusao": $nperm = "EXCLUIR CADASTRO DE VEICULOS";break;
    }
    
    $perm = testarPermissao($nperm);
@@ -49,6 +49,12 @@
 	         http_response_code(400);
 	         echo "Informe a descricao.";
 	         return;  
+         }
+         
+         if( $placa > "" && (strlen($placa)) < 8){
+	         http_response_code(400);
+	         echo "Placa inválida.";
+	         return;
          }
          
          if((strlen($uf_placa)) < 2 && $uf_placa > ""){
@@ -91,19 +97,19 @@
    $sql = "";
    
    if ($_action == "inclusao") {
-         $sql = "insert into imobilizados (placa, municipio_placa, uf_placa, descricao, renavan, chassi, marca, modelo, ano_modelo, ano_fabricacao, cor, combustivel, tipo, observacoes) values ('" . $placa . "', '" . $municipio_placa . "', '" . $uf_placa . "', '" . $descricao . "', '" . $renavan . "', '" . $chassi . "', '" . $marca . "', '" . $modelo . "', " . $ano_modelo . ", " . $ano_fabricacao . ", '" . $cor . "', '" . $combustivel . "', '" . $tipo . "', '" . $observacoes . "');";
+         $sql = "insert into veiculos (placa, municipio_placa, uf_placa, descricao, renavan, chassi, marca, modelo, ano_modelo, ano_fabricacao, cor, combustivel, tipo, observacoes) values ('" . $placa . "', '" . $municipio_placa . "', '" . $uf_placa . "', '" . $descricao . "', '" . $renavan . "', '" . $chassi . "', '" . $marca . "', '" . $modelo . "', " . $ano_modelo . ", " . $ano_fabricacao . ", '" . $cor . "', '" . $combustivel . "', '" . $tipo . "', '" . $observacoes . "');";
          $msg1 = "incluir";
          $msg2 = "inclusão";
    }
    
    if ($_action == "alteracao") {
-         $sql = "update imobilizados set placa='" . $placa . "',municipio_placa='" . $municipio_placa . "',uf_placa='" . $uf_placa . "',descricao='" . $descricao . "',renavan='" . $renavan . "',chassi='" . $chassi . "',marca='" . $marca . "',modelo='" . $modelo . "',ano_modelo='" . $ano_modelo . "',ano_fabricacao='" . $ano_fabricacao . "',cor='" . $cor . "',combustivel='" . $combustivel . "',tipo='" . $tipo . "',observacoes='" . $observacoes . "' where id=" . $id;
+         $sql = "update veiculos set placa='" . $placa . "',municipio_placa='" . $municipio_placa . "',uf_placa='" . $uf_placa . "',descricao='" . $descricao . "',renavan='" . $renavan . "',chassi='" . $chassi . "',marca='" . $marca . "',modelo='" . $modelo . "',ano_modelo='" . $ano_modelo . "',ano_fabricacao='" . $ano_fabricacao . "',cor='" . $cor . "',combustivel='" . $combustivel . "',tipo='" . $tipo . "',observacoes='" . $observacoes . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }
    
    if ($_action == "exclusao") {
-         $sql = "delete from imobilizados where id=" . $id;
+         $sql = "delete from veiculos where id=" . $id;
          $msg1 = "excluir";
          $msg2 = "excluído";
    }

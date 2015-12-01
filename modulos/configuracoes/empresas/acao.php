@@ -97,10 +97,22 @@
 	         return;  
          }     
          
+         if( $cep > 0 && ((strlen($cep)) < 8)){
+	         http_response_code(400);
+	         echo "CEP inválido.";
+	         return;
+         }
+         
          if( $telefone > 0 && ((strlen($telefone)) < 10)){
 	         http_response_code(400);
 	         echo "Telefone inválido.";
 	         return;
+         }
+         
+         if(!validaEmail($email)){
+               http_response_code(400);
+               echo "E-mail inválido!!!";
+               return;  
          }
          
    }  

@@ -106,6 +106,18 @@
 	         echo "Telefone de cobrança inválido.";
 	         return;
          }
+         
+         if(!validaEmail($email1)){
+               http_response_code(400);
+               echo "E-mail principal inválido!!!";
+               return;  
+         }
+         
+         if(!validaEmail($email2)){
+               http_response_code(400);
+               echo "E-mail secundário inválido!!!";
+               return;  
+         }
    }
    
    if (empty($_action)) {

@@ -92,6 +92,12 @@
 	             echo "Telefone inválido.";
 	             return;
                }
+               
+               if(!validaEmail($email)){
+                   http_response_code(400);
+                   echo "E-mail inválido!!!";
+                   return;  
+               }
          }
      
          if (empty($empresa)) {
