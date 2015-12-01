@@ -95,13 +95,13 @@
 	         return;  
          }
          
-         if( $telefone_entrega > "" && (strlen($telefone_entrega)) < 13){
+         if( $telefone_entrega > 0 && ((strlen($telefone_entrega)) < 10)){
 	         http_response_code(400);
 	         echo "Telefone de entrega inválido.";
 	         return;
          }
    
-         if( $telefone_cobranca > "" && (strlen($telefone_cobranca)) < 13){
+         if( $telefone_cobranca > 0 && (strlen($telefone_cobranca)) < 10){
 	         http_response_code(400);
 	         echo "Telefone de cobrança inválido.";
 	         return;

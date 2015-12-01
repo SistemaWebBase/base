@@ -97,7 +97,7 @@
 	         return;  
          }     
          
-         if( $telefone > "" && (strlen($telefone)) < 13){
+         if( $telefone > 0 && ((strlen($telefone)) < 10)){
 	         http_response_code(400);
 	         echo "Telefone inválido.";
 	         return;

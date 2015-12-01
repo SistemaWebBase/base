@@ -51,13 +51,13 @@
 	         return;
          }
          
-         if( $telefone > "" && (strlen($telefone)) < 13){
+         if( $telefone > 0 && ((strlen($telefone)) < 10)){
 	         http_response_code(400);
 	         echo "Telefone inválido.";
 	         return;
          }
          
-         if( $celular > "" && (strlen($celular)) < 13){
+         if( $celular > 0 && (strlen($celular)) < 10){
 	         http_response_code(400);
 	         echo "Número de celular inválido.";
 	         return;
