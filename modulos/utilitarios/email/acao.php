@@ -25,7 +25,7 @@
    // acao   
    $id = tratarNumero($_POST['id']);
    $emitente = tratarTextoMinusculo($_POST['emitente']);
-   $senha_emitente = tratarTextoMinusculo($_POST['senha_emitente']);
+   $senha_emitente = $_POST['senha_emitente'];
    $destinatario = tratarTextoMinusculo($_POST['destinatario']);
    $destinatariocc = tratarTextoMinusculo($_POST['destinatariocc']);
    $destinatariobcc = tratarTextoMinusculo($_POST['destinatariobcc']);
@@ -57,9 +57,7 @@
    
    //Usuário e senha do emitente
    $mail->setUsuario($emitente, $senha_emitente);
-   
-   echo $senha_emitente;
-   
+      
    //Destinatarios
    $destinatarios="";
    $dest="";

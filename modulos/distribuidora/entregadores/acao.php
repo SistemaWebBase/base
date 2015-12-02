@@ -28,7 +28,7 @@
    $id = tratarChave($_POST['id']);
    $nome = tratarTexto($_POST['nome']);
    $cpf = tratarNumero($_POST['cpf']);
-   $telefone = tratarTexto($_POST['telefone']);
+   $telefone = tratarNumero($_POST['telefone']);
    $cnh = tratarTexto($_POST['cnh']);
    $categoria_cnh = tratarTexto($_POST['categoria_cnh']);
    $comissao = tratarTexto($_POST['comissao']);
@@ -48,10 +48,16 @@
 	         echo "Informe o cpf do entregador.";
 	         return;  
          }
-      
+              
          if( $telefone > 0 && ((strlen($telefone)) < 10)){
 	         http_response_code(400);
 	         echo "Telefone inválido.";
+	         return;
+         }
+         
+         if( $cnh > 0 && ((strlen($cnh)) < 11)){
+	         http_response_code(400);
+	         echo "CNH inválida.";
 	         return;
          }
       

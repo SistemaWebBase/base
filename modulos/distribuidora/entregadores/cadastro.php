@@ -126,20 +126,18 @@
     										<input type="text" class="form-control" id="cnh" name="cnh" autocomplete="off" maxlength="11" value="<?= $cnh ?>"  <?php permissao(); ?> >
 	    								</div>
 										<!-- CATEGORIA_CNH -->
-									    <div class="form-group col-md-4">
-											<label for="categoria_cnh">Nível: </label>
+									    <div class="form-group col-md-3">
+											<label for="categoria_cnh">Combustível: </label>
 											<select class="form-control" id="categoria_cnh" name="categoria_cnh" <?php permissao(); ?>>
-											<?php
-												$categoria_cnh_c = array('A', 'B', 'C', 'D', 'E', 'AB', 'AC', "AD", "AE");
-									
-												foreach($categoria_cnh_c as $c) {
-													if ($c == $categoria_cnh) {
-														echo '<option value="' . $c . '" selected>' . $c . '</option>';
-													} else {
-														echo '<option value="' . $c . '">' . $c . '</option>';
-													}
-												}
-											?>
+											<option value="A" <?= ($categoria_cnh == "A") ? "selected" : "" ?>>A</option>
+											<option value="B" <?= ($categoria_cnh == "B") ? "selected" : "" ?>>B</option>
+											<option value="C" <?= ($categoria_cnh == "C") ? "selected" : "" ?>>C</option>
+											<option value="D" <?= ($categoria_cnh == "D") ? "selected" : "" ?>>D</option>
+											<option value="E" <?= ($categoria_cnh == "E") ? "selected" : "" ?>>E</option>
+											<option value="AB" <?= ($categoria_cnh == "AB") ? "selected" : "" ?>>AB</option>
+											<option value="AC" <?= ($categoria_cnh == "AC") ? "selected" : "" ?>>AC</option>
+											<option value="AD" <?= ($categoria_cnh == "AD") ? "selected" : "" ?>>AD</option>
+											<option value="AE" <?= ($categoria_cnh == "AE") ? "selected" : "" ?>>AE</option>
 											</select>
 										</div>
 										<!-- COMISSAO -->

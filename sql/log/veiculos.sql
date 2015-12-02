@@ -1,5 +1,5 @@
-/* criar tabela de imobilizados */
-create table if not exists log.imobilizados (
+/* criar tabela de veiculos */
+create table if not exists log.veiculos (
 	/* campos originais da tabela */
     id serial not null,
 	placa char(8),
@@ -22,5 +22,5 @@ create table if not exists log.imobilizados (
 	log_pagina text,
 	log_data timestamp default current_timestamp,
 	log_seq serial not null,
-   	constraint PK_LOG_IMOBILIZADOS primary key (log_seq)
+   	constraint PK_LOG_VEICULOS primary key (log_seq)
 );

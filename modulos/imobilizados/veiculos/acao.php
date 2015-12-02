@@ -103,7 +103,7 @@
    }
    
    if ($_action == "alteracao") {
-         $sql = "update veiculos set placa='" . $placa . "',municipio_placa='" . $municipio_placa . "',uf_placa='" . $uf_placa . "',descricao='" . $descricao . "',renavan='" . $renavan . "',chassi='" . $chassi . "',marca='" . $marca . "',modelo='" . $modelo . "',ano_modelo='" . $ano_modelo . "',ano_fabricacao='" . $ano_fabricacao . "',cor='" . $cor . "',combustivel='" . $combustivel . "',tipo='" . $tipo . "',observacoes='" . $observacoes . "' where id=" . $id;
+         $sql = "update veiculos set municipio_placa='" . $municipio_placa . "',uf_placa='" . $uf_placa . "',descricao='" . $descricao . "',renavan='" . $renavan . "',chassi='" . $chassi . "',marca='" . $marca . "',modelo='" . $modelo . "',ano_modelo='" . $ano_modelo . "',ano_fabricacao='" . $ano_fabricacao . "',cor='" . $cor . "',combustivel='" . $combustivel . "',tipo='" . $tipo . "',observacoes='" . $observacoes . "' where id=" . $id;
          $msg1 = "alterar";
          $msg2 = "alterado";
    }

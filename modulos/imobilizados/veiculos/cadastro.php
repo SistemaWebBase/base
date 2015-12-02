@@ -1,4 +1,4 @@
-o<?php
+<?php
         // validar sessao
         require_once BASE_DIR . '/util/sessao.php';
 
@@ -176,26 +176,25 @@ o<?php
 									    <div class="form-group col-md-3">
 											<label for="combustivel">Combustível: </label>
 											<select class="form-control" id="combustivel" name="combustivel" <?php permissao(); ?>>
-											<?php
-												$combustivel_c = array('','GASOLINA', 'ETANOL', 'DIESEL', 'FLEX', 'GÁS');
-									
-												foreach($combustivel_c as $c) {
-													if ($c == $combustivel) {
-														echo '<option value="' . $c . '" selected>' . $c . '</option>';
-													} else {
-														echo '<option value="' . $c . '">' . $c . '</option>';
-													}
-												}
-											?>
+											<option value="1" <?= ($combustivel == "1") ? "selected" : "" ?>>Gasolina</option>
+											<option value="2" <?= ($combustivel == "2") ? "selected" : "" ?>>Etanol</option>
+											<option value="3" <?= ($combustivel == "3") ? "selected" : "" ?>>Diesel</option>
+											<option value="4" <?= ($combustivel == "4") ? "selected" : "" ?>>Flex</option>
+											<option value="5" <?= ($combustivel == "5") ? "selected" : "" ?>>Gás</option>
 											</select>
 										</div>
 									</div>
 									<div class="row">
 										<!-- TIPO -->
-									    <div class="form-group col-md-6">
-										    <label for="tipo">Tipo: </label>
-    										<input type="text" class="form-control" id="tipo" name="tipo" autocomplete="off" maxlength="60" value="<?= $tipo ?>"  <?php permissao(); ?> >
-	    								</div>
+									    <div class="form-group col-md-3">
+											<label for="tipo">Combustível: </label>
+											<select class="form-control" id="tipo" name="tipo" <?php permissao(); ?>>
+											<option value="1" <?= ($tipo == "1") ? "selected" : "" ?>>Moto</option>
+											<option value="2" <?= ($tipo == "2") ? "selected" : "" ?>>Carro</option>
+											<option value="3" <?= ($tipo == "3") ? "selected" : "" ?>>Caminhão</option>
+											<option value="4" <?= ($tipo == "4") ? "selected" : "" ?>>Carreta</option>
+											</select>
+										</div>
 									</div>
 									<div class="row">
 										<!-- OBSERVACOES -->
@@ -234,7 +233,7 @@ o<?php
 										 Cancelar
 									</button>
 								</a>
-								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Imobilizado', 'Deseja excluir este Imobilizado ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
+								<button class="btn btn-danger mob-btn-block" style="<?php if ($_action == "inclusao") { echo "display: none"; } ?>" data-toggle="modal" data-target="#modal" onclick="dialogYesNo('esubmit()', null, 'Excluir Veículo', 'Deseja excluir este Veículo ?', 'trash');" <?php if ($perm_excluir != 'S') { echo "disabled"; } ?>>
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									 Excluir
 								</button>
