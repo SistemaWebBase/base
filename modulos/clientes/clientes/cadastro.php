@@ -351,7 +351,7 @@
 									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 									 Salvar
 								</button>
-								<a href="<?= $_SERVER['HTTP_REFERER'] ?>">
+								<a href="consulta.php">
 									<button class="btn btn-warning mob-btn-block">
 										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 										 Cancelar
